@@ -1,0 +1,49 @@
+﻿
+@media only screen and (max-width: 800px) {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+
+    table tr:first-child{
+        display: none;
+    }
+
+	tr { 
+        border: 1px solid #ccc; 
+        margin-bottom: 10px;
+	}
+
+	/*
+	Label the data
+	*/
+    td:nth-of-type(1):before {
+        content: "Imie : ";
+    }
+
+    td:nth-of-type(2):before {
+        content: "Nazwisko : ";
+    }
+
+    td:nth-of-type(3):before{
+       content: "Zdjęcie : ";
+    }
+
+    td:nth-of-type(4):before {
+        content: "Nr tel : ";
+    }
+
+    td:nth-of-type(5):before {
+        content: "Email : ";
+    }
+
+    td:nth-of-type(6) {
+        content: "Akcja : ";
+    }
+    
+    td:hover{
+        background-color: azure;
+    }
+
+}

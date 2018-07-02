@@ -1,0 +1,22 @@
+﻿/*table style*/
+table{
+    width: 100%;
+    box-shadow: 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
+
+
+table tr:first-child{
+    background-color: aqua;
+}
+
+table tr:nth-child(2n+2){
+    background-color: azure;
+}
+
+table tr:not(:first-child):hover{
+    background-color: antiquewhite;
+}
+
+.table >  tbody > tr > td {
+     vertical-align: middle;
+}

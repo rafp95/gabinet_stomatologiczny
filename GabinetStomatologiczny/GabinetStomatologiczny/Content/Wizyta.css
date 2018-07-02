@@ -1,0 +1,55 @@
+﻿table tbody tr {
+    height: 5px;
+}
+
+.modal {
+    text-align: center;
+    padding: 0 !important;
+}
+
+    .modal::before {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px;
+        content: " ";
+    }
+
+.modal-dialog {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+
+input#txtStart,
+input#txtDescription,
+select#txtSelect,
+textarea#txtDescription {
+    max-width: 100%;
+}
+
+.fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
+    background: aliceblue;
+}
+
+td.fc-event-container:hover, div.fc-event-container a:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 760px) {
+
+    div.modal-footer button {
+        margin-right: 5px;
+    }
+    
+    div.fc-toolbar.fc-header-toolbar{
+        font-size: 9px;
+    }
+
+    div.fc-view, div.fc-view>table{
+        font-size: 12px;
+    }
+
+}
+

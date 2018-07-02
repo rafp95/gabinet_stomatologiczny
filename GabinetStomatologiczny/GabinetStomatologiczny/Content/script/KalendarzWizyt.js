@@ -1,4 +1,9 @@
 ﻿$(document).ready(function () {
+
+    //Czas
+
+    var czas = setInterval(pokazAktualnyCzas, 1000);
+
     //Mechanizm autopodpowiedzi
     var setupAutoComplete = function () {
         var input = $("#searchQuery");
@@ -97,13 +102,12 @@
 
     //Generate calandar
     function GenerateCalender(events) {
-        var aktualntCzas = moment().add(7, 'minutes');
-       
-        pokazAktualnyCzas($("div#aktualnyCzas"),aktualntCzas.format("HH:m"));
+        
+        setInterval(czas, 1000);
 
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
-            theme: true,
+            theme: false,
             slotMinutes: 30,
             slotEventOverlap: false,
             nowIndicator: true,
@@ -299,6 +303,7 @@
     }
 });
 
-function pokazAktualnyCzas(zrodlo,czas) {
-    zrodlo.html(czas);
+function pokazAktualnyCzas() {
+    var aktualntCzas = moment(new Date());
+    $("div#aktualnyCzas").html(aktualntCzas.format("HH:mm:ss"));
 }

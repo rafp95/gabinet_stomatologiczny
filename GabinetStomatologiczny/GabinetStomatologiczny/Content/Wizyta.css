@@ -1,4 +1,12 @@
-﻿table tbody tr {
+﻿div#aktualnyCzas::before{
+    content: "Godzina: ";
+}
+
+div#aktualnyCzas{
+    font-size: 18px;
+}
+
+table tbody tr {
     height: 5px;
 }
 

@@ -318,7 +318,9 @@
     <Content Include="Content\Lekarzs.css" />
     <Content Include="Content\LoginInput.css" />
     <Content Include="Content\script\KalendarzWizyt.js" />
+    <Content Include="Content\script\SilaHasla.js" />
     <Content Include="Content\script\WyszykiwanieAjaxLekarz.js" />
+    <Content Include="Content\SilaHasla.css" />
     <Content Include="Content\TableStyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

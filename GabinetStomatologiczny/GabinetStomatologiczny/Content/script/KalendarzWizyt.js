@@ -97,9 +97,13 @@
 
     //Generate calandar
     function GenerateCalender(events) {
+        var aktualntCzas = moment().add(7, 'minutes');
+       
+        pokazAktualnyCzas($("div#aktualnyCzas"),aktualntCzas.format("HH:m"));
+
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
-            theme: false,
+            theme: true,
             slotMinutes: 30,
             slotEventOverlap: false,
             nowIndicator: true,
@@ -294,3 +298,7 @@
         $("#txtStart").css('border', '');
     }
 });
+
+function pokazAktualnyCzas(zrodlo,czas) {
+    zrodlo.html(czas);
+}

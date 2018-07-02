@@ -28,6 +28,7 @@ Content/
 Scripts/
 fonts/
 TestResults/
+App_Data/
 ###################
 # Web publish log #
 ###################

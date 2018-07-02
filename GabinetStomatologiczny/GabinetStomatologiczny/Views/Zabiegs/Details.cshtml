@@ -1,0 +1,42 @@
+﻿@model GabinetStomatologiczny.Models.Zabieg
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Zabieg</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Wizyta.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wizyta.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypZabiegu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypZabiegu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CenaZabiegu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CenaZabiegu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

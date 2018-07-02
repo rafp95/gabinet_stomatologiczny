@@ -1,0 +1,103 @@
+﻿@model PagedList.IPagedList<GabinetStomatologiczny.Models.Lekarz>
+@using PagedList.Mvc;
+@using Microsoft.AspNet.Identity
+
+@if (Model.Count > 0)
+{
+    <div class="lekarzs-select">
+        <table class="table">
+            <tr>
+                <th>
+                    Imie
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Zdjęcie
+                </th>
+                <th>
+                    Telefon
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    @Html.DisplayName("Akcja")
+                </th>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "name_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "surname_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "surname_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td></td>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "nrtel_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "nrtel_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td colspan="2">
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "email_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "email_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nazwisko)
+                    </td>
+                    <td>
+                        @if (item.Zdjecie != null)
+                        {
+                            <img src="~/Obrazki/@Html.DisplayFor(modelItem => item.Zdjecie)" id="myImg" class="rozmiar" />
+                            <div id="myModal" class="modal">
+                                <span class="close">&times;</span>
+                                <img class="modal-content" id="img01">
+                                <div id="caption"></div>
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.NrTelefonu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Email)
+                    </td>
+                    <td>
+                        @if ((User.Identity.GetUserName() == item.Email && User.Identity.IsAuthenticated)
+                        || User.IsInRole("Administrator") )
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) <span> | </span>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-info" }) <span> | </span>
+                        }
+
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-success" })
+
+                    </td>
+
+
+
+                </tr>
+                }
+
+            </table>
+            <br />
+            Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+}
+else
+{
+    <div>Nic nie znaleziono</div>
+}

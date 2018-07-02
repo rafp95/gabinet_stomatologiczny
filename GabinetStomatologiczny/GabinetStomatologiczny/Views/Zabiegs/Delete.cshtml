@@ -1,0 +1,48 @@
+﻿@model GabinetStomatologiczny.Models.Zabieg
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Zabieg</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Wizyta.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wizyta.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypZabiegu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypZabiegu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CenaZabiegu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CenaZabiegu)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

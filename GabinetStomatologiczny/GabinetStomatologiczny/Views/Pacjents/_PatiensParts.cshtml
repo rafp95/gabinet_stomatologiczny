@@ -1,0 +1,101 @@
+﻿@model PagedList.IPagedList<GabinetStomatologiczny.Models.Pacjent>
+@using PagedList.Mvc;
+@using Microsoft.AspNet.Identity
+
+@if (Model.Count > 0)
+{
+    <div class="select-patients">
+        <table class="table">
+            <tr>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Pesel</th>
+                <th>Płeć</th>
+                <th>Data urodzenia</th>
+                <th>Nr tel.</th>
+                <th>Data rejestracji</th>
+                <th>Akcja</th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "name_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "surname_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "surname_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "pesel_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "pesel_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "plec_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "plec_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "dataurodzenia_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "dataurodzenia_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td>
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "nrtel_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "nrtel_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+                <td colspan="2">
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "datarejestracji_desc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "datarejestracji_asc", currentFilter = ViewBag.CurrentFilter })
+                </td>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pesel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Plec)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataUrodzenia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrTelefonu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataRejestracji)
+                    </td>
+                    <td>
+                        @if ( (User.Identity.IsAuthenticated && User.Identity.GetUserName() == item.Email)
+                            || User.IsInRole("Administrator")
+                            || User.IsInRole("Lekarz"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) <span> | </span>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-info" }) <span> | </span>
+                        }
+                        
+                        @Html.ActionLink("Details", "Details", new { id = item.ID}, new { @class = "btn btn-success" }) 
+                        
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <br />
+
+        Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}else{
+    <div> Nic nie znaleziono</div>
+}

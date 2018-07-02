@@ -1,0 +1,28 @@
+﻿@model DateTime?
+
+@{
+    var uid = Guid.NewGuid();
+}
+
+@Html.TextBox(
+    string.Empty,
+    Model.HasValue ? Model.Value.ToString("yyyy-MM-dd") : string.Empty,
+    new { @id = uid }
+)
+
+<script type="text/javascript">
+
+    function wypisz() {
+        $("#@uid").datepicker(
+           {
+               dateFormat: 'yy-mm-dd',
+               yearRange: "-100:+0",
+               changeMonth: true,
+               changeYear: true,
+               showAnim: 'slideDown',
+           }
+        ).addClass("form-control");
+    }
+    wypisz();
+
+</script>

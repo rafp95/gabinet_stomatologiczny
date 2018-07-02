@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GabinetStomatologiczny.Models.Zabieg>
+
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Active = "Pacjenci";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Wizyta.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypZabiegu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CenaZabiegu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wizyta.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypZabiegu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CenaZabiegu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

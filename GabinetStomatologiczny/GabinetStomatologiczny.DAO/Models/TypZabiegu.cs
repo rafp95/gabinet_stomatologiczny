@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GabinetStomatologiczny.Models
+namespace GabinetStomatologiczny.DAO.Models
 {
     public enum TypZabiegu
     {

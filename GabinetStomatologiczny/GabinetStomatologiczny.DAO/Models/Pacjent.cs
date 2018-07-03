@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.DAO.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GabinetStomatologiczny.Models
+namespace GabinetStomatologiczny.DAO.Models
 {
     public class Pacjent
     {
@@ -54,5 +54,6 @@ namespace GabinetStomatologiczny.Models
 
 
         public virtual ICollection<Wizyta> Wizyty { get; set; }
+
     }
 }

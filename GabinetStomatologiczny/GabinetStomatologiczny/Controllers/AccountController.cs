@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.DAO.Models;
+using GabinetStomatologiczny.Utils;
+using AppLogin;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -215,7 +218,7 @@ namespace GabinetStomatologiczny.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                new SendEmail().SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">here</a>");
+                new SendEmail().SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

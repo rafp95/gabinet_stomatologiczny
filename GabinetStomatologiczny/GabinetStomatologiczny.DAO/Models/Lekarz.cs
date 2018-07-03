@@ -1,11 +1,12 @@
-﻿using System;
+﻿using GabinetStomatologiczny.DAO.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace GabinetStomatologiczny.Models
+namespace GabinetStomatologiczny.DAO.Models
 {
     public class Lekarz
     {

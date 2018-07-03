@@ -2,7 +2,7 @@
 
     //Czas
 
-    var czas = setInterval(pokazAktualnyCzas, 1000);
+    pokazAktualnyCzas();
 
     //Mechanizm autopodpowiedzi
     var setupAutoComplete = function () {
@@ -102,8 +102,6 @@
 
     //Generate calandar
     function GenerateCalender(events) {
-        
-        setInterval(czas, 1000);
 
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
@@ -304,6 +302,8 @@
 });
 
 function pokazAktualnyCzas() {
-    var aktualntCzas = moment(new Date());
-    $("div#aktualnyCzas").html(aktualntCzas.format("HH:mm:ss"));
+    var aktualny = setInterval(() => {
+        var aktualntCzas = moment(new Date());
+        $("div#aktualnyCzas").html(aktualntCzas.format("HH:mm:ss"));
+    }, 1000);
 }

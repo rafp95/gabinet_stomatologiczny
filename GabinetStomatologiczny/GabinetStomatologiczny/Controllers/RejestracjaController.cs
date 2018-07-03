@@ -1,4 +1,5 @@
 ﻿using GabinetStomatologiczny.DAL;
+using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;

@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GabinetStomatologiczny.DAL;
-using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.DAO.Models;
 using System.IO;
 using PagedList;
 

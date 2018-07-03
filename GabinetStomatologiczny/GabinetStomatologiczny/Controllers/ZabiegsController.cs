@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.DAO.Models;
 
 namespace GabinetStomatologiczny.Controllers
 {

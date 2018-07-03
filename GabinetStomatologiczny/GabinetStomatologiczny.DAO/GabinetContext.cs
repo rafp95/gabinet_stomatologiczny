@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.DAO.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
+
 
 namespace GabinetStomatologiczny.DAL
 {

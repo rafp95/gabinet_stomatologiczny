@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace GabinetStomatologiczny.Models
+namespace GabinetStomatologiczny.DAO.Models
 {
     public class Zabieg
     {

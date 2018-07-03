@@ -275,11 +275,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LekarzsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\LiczbaPacjentow.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Controllers\PacjentsController.cs" />
     <Compile Include="Controllers\RejestracjaController.cs" />
     <Compile Include="Controllers\WizytasController.cs" />
     <Compile Include="Controllers\ZabiegsController.cs" />
-    <Compile Include="DAL\GabinetContext.cs" />
     <Compile Include="DAL\GabinetInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -289,22 +291,8 @@
       <DependentUpon>201807020807501_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Administrator.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Lekarz.cs" />
-    <Compile Include="Models\LiczbaPacjentow.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\OddzialNfz.cs" />
-    <Compile Include="Models\Pacjent.cs" />
-    <Compile Include="Models\Plec.cs" />
     <Compile Include="Models\Osoba.cs" />
     <Compile Include="Models\SendEmail.cs" />
-    <Compile Include="Models\TypPracownika.cs" />
-    <Compile Include="Models\TypZabiegu.cs" />
-    <Compile Include="Models\Wizyta.cs" />
-    <Compile Include="Models\Wojewodztwo.cs" />
-    <Compile Include="Models\Zabieg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

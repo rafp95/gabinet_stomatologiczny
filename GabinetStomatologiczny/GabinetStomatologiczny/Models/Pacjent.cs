@@ -54,5 +54,6 @@ namespace GabinetStomatologiczny.Models
 
 
         public virtual ICollection<Wizyta> Wizyty { get; set; }
+
     }
 }

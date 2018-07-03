@@ -1,6 +1,7 @@
 ﻿using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.Utils;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -13,9 +14,8 @@ using System.Web.Mvc;
 namespace GabinetStomatologiczny.Controllers
 {
     [Authorize(Roles = "Administrator,Lekarz")]
-    public class RejestracjaController : Controller
+    public class RejestracjaController : BaseController
     {
-        private GabinetContext db = new GabinetContext();
         private Osoba os = new Osoba();
         private SendEmail se = new SendEmail();
 

@@ -5,12 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.Utils;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private GabinetContext db = new GabinetContext();
+        
         public ActionResult Index()
         {
             return View();

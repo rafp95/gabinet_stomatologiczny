@@ -292,7 +292,6 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Osoba.cs" />
-    <Compile Include="Models\SendEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -524,7 +523,7 @@
     <Content Include="Content\Zdjecia.css" />
     <Content Include="Error.html" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Migrations\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -735,7 +734,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Content\script\WyszukiwanieAjaxowe.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -798,9 +799,9 @@
     <Folder Include="Obrazki\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Migrations\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Migrations\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Migrations\fonts\glyphicons-halflings-regular.eot" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
@@ -812,6 +813,10 @@
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">
       <Project>{db0427cd-f52c-47bb-b9c6-54b5c3f9ab71}</Project>
       <Name>GabinetStomatologiczny.DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GabinetStomatologiczny.Utils\GabinetStomatologiczny.Utils.csproj">
+      <Project>{DED59786-9561-4530-943D-114C7446F95D}</Project>
+      <Name>GabinetStomatologiczny.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

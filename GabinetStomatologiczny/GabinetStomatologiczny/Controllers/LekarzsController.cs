@@ -10,12 +10,12 @@ using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
 using System.IO;
 using PagedList;
+using GabinetStomatologiczny.Utils;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    public class LekarzsController : Controller
+    public class LekarzsController : BaseController
     {
-        private GabinetContext db = new GabinetContext();
 
         // GET: Lekarzs
         public ActionResult Index(string sortOrder,string currentFilter,string searchString,int? page)

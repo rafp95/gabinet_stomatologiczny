@@ -2,34 +2,34 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.Configuration;
 using System.Net.Mail;
 using System.Web;
 
-namespace GabinetStomatologiczny.Models
+namespace GabinetStomatologiczny.Utils
 {
     public class SendEmail
     {
 
-        private const string email = "p.rafal123@gmail.com";
-        private const string smpt = "smtp.gmail.com";
-        private const string password = "PatrykRafal12.pl";
-        private const int port = 587;
-
         public void SendMail(string to, string subject, string body)
         {
+
+            var smtpCli = new SmtpClient();
+            var credential = (System.Net.NetworkCredential)smtpCli.Credentials;
+
             MailMessage mail = new MailMessage();
             mail.To.Add(to);
-            mail.From = new MailAddress(email);
+            mail.From = new MailAddress(credential.UserName);
             mail.Subject = subject;
 
             mail.Body = body;
 
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = smpt; //Or Your SMTP Server Address
+            smtp.Host = smtpCli.Host; //Or Your SMTP Server Address
             smtp.Credentials = new System.Net.NetworkCredential
-                 (email, password); 
-            smtp.Port = port;
+                 (credential.UserName, credential.Password);
+            smtp.Port = smtpCli.Port;
 
             //Or your Smtp Email ID and Password
             smtp.EnableSsl = true;

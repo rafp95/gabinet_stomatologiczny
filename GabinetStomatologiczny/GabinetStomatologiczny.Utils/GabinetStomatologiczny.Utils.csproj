@@ -82,6 +82,10 @@
       <Project>{DB0427CD-F52C-47BB-B9C6-54B5C3F9AB71}</Project>
       <Name>GabinetStomatologiczny.DAO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LogowanieBledow\AppLog.csproj">
+      <Project>{a9cf07bd-05e1-4917-99e8-3992ff21a9c6}</Project>
+      <Name>AppLog</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
+using AppLogin;
 
 namespace GabinetStomatologiczny.Controllers
 {

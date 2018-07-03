@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -310,17 +311,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\fullcalendar.css" />
-    <Content Include="Content\fullcalendar.min.css" />
-    <Content Include="Content\fullcalendar.print.css" />
-    <Content Include="Content\fullcalendar.print.min.css" />
-    <Content Include="Content\Lekarzs.css" />
-    <Content Include="Content\LoginInput.css" />
-    <Content Include="Content\script\KalendarzWizyt.js" />
-    <Content Include="Content\script\SilaHasla.js" />
-    <Content Include="Content\script\WyszykiwanieAjaxLekarz.js" />
-    <Content Include="Content\SilaHasla.css" />
-    <Content Include="Content\TableStyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
@@ -480,13 +470,24 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\fullcalendar.min.css" />
+    <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\Lekarzs.css" />
+    <Content Include="Content\LoginInput.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\script\KalendarzWizyt.js" />
+    <Content Include="Content\script\SilaHasla.js" />
+    <Content Include="Content\script\WyszykiwanieAjaxLekarz.js" />
+    <Content Include="Content\SilaHasla.css" />
+    <Content Include="Content\TableStyle.css" />
     <Content Include="Content\Galeria.css" />
     <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\2.jpg" />
     <Content Include="Content\img\3.jpg" />
     <Content Include="Content\Kalendarz.css" />
     <Content Include="Content\Pacjent.css" />
-    <Content Include="Content\PagedList.css" />
     <Content Include="Content\script\Zdjecia.js" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -538,16 +539,13 @@
     <Content Include="Migrations\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\DataTables\css\semanticui.scss" />
-    <Content Include="Content\DataTables\css\mixins.scss" />
-    <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -625,28 +623,26 @@
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\datepicker-pl.js" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="Content\script\WyszukiwanieAjaxowe.js" />
+    <Content Include="Content\DataTables\css\semanticui.scss" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
+    <Content Include="Content\DataTables\css\common.scss" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />
     <Content Include="Scripts\gcal.min.js" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="packages.config" />
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Scripts\jquery-3.3.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.ajaxhelper.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -750,7 +746,6 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Content\script\WyszukiwanieAjaxowe.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -817,10 +812,12 @@
     <Folder Include="Obrazki\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Migrations\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Migrations\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Migrations\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807020807501_InitialCreate.resx">

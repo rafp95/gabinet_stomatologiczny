@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GabinetStomatologiczny.DAO.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GabinetStomatologiczny.Models

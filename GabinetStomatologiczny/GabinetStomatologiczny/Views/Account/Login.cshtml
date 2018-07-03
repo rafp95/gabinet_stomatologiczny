@@ -5,9 +5,9 @@
     ViewBag.Active = "Zaloguj";
 }
 <link href="~/Content/LoginInput.css" rel="stylesheet" />
-<h2>@ViewBag.Title.</h2>
 <div class="row wysrodkowanieLoginForm">
     <div class="col-md-12">
+        <h2>@ViewBag.Title.</h2>
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {

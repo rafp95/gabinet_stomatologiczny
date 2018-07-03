@@ -8,12 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.DAO.Models;
+using GabinetStomatologiczny.Utils;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    public class WizytasController : Controller
+    public class WizytasController : BaseController
     {
-        private GabinetContext db = new GabinetContext();
 
         // GET: Wizytas
         public ActionResult Index()

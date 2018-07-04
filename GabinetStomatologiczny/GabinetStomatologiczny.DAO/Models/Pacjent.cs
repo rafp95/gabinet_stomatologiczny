@@ -18,6 +18,7 @@ namespace GabinetStomatologiczny.DAO.Models
         [Required(ErrorMessage = "Pole nazwisko jest wymagane")]
         public string Nazwisko { get; set; }
 
+        [RegularExpression(@"^\d{11}$",ErrorMessage = "Pesel nieprawidłowy")]
         public string Pesel { get; set; }
         public Plec Plec { get; set; }
 

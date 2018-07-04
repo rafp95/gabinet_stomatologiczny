@@ -8,6 +8,8 @@ namespace Gabinet.Tests
     [TestClass]
     public class GabinetTest
     {
+
+        //Check phone number
         [TestMethod]
         public void VerifyPhoneNumber()
         {
@@ -29,6 +31,10 @@ namespace Gabinet.Tests
             return Regex.IsMatch(email, regular);
         }
 
+        //end check phone number
+
+
+        //check kod pocztowy
         [TestMethod]
         public void verifyPostalCode()
         {
@@ -41,20 +47,48 @@ namespace Gabinet.Tests
 
         }
 
+        
         private bool CodeNumberCheck(string code)
         {
-            const string pattern = @"^\d{2}-\d{3}$";
+            string pattern = @"^\d{2}-\d{3}$";
             return Regex.IsMatch(code, pattern);
         }
 
+        //End Check kod pocztowy
 
+        //Check date format
         [TestMethod]
         public  void verifyTestDateFormat()
         {
 
         }
 
- 
+        //End Check date format
+
+        //Check pesel
+        [TestMethod]
+        public void peselCheck()
+        {
+            var pesel = "9503041314";
+
+            var isValid = CheckPesel(pesel);
+
+            Assert.AreEqual(true,isValid);
+
+        }
+
+
+        private bool CheckPesel(string pesel)
+        {
+            string regularPesel = @"^\d{11}$";
+
+            return Regex.IsMatch(pesel, regularPesel);
+
+        }
+
+        //End check pesel
+
+
     }
 
 

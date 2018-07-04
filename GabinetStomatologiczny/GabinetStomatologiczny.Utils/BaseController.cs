@@ -41,7 +41,7 @@ namespace GabinetStomatologiczny.Utils
             string user = User.Identity.Name;
             if (!string.IsNullOrEmpty(user))
             {
-                //logger.Info("User " + user);
+                logger.Info("User " + user);
             }
         }
 

@@ -69,7 +69,7 @@ namespace Gabinet.Tests
         [TestMethod]
         public void peselCheck()
         {
-            var pesel = "9503041314";
+            var pesel = "95030410314";
 
             var isValid = CheckPesel(pesel);
 

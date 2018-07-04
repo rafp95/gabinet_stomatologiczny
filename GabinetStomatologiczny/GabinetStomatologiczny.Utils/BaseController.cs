@@ -13,11 +13,10 @@ namespace GabinetStomatologiczny.Utils
     public abstract class BaseController : Controller
     {
         protected GabinetContext db = new GabinetContext();
-        private Logger logger = null;
+        private Logger logger = LogManager.GetLogger("fileLogger");
 
         public BaseController()
         {
-            logger = LogManager.GetLogger("fileLogger");
             logger.Info(this);
         }
 

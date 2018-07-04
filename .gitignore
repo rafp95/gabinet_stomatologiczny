@@ -29,6 +29,7 @@ Scripts/
 fonts/
 TestResults/
 App_Data/
+Log/
 ###################
 # Web publish log #
 ###################

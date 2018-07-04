@@ -54,3 +54,115 @@
  Stack Trace: 
  Additional Info: GabinetStomatologiczny.Controllers.HomeController
 
+ -------------- Info (2018-07-04 20:59:16.4594) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.HomeController
+
+ -------------- Info (2018-07-04 20:59:48.8288) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.HomeController
+
+ -------------- Info (2018-07-04 20:59:56.5186) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.PacjentsController
+
+ -------------- Info (2018-07-04 21:00:04.5605) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.ZabiegsController
+
+ -------------- Info (2018-07-04 21:00:07.5371) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.LekarzsController
+
+ -------------- Info (2018-07-04 21:00:09.9037) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.WizytasController
+
+ -------------- Info (2018-07-04 21:00:10.2135) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.WizytasController
+
+ -------------- Info (2018-07-04 21:00:39.6399) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.HomeController
+
+ -------------- Info (2018-07-04 21:00:51.0354) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.WizytasController
+
+ -------------- Info (2018-07-04 21:00:51.2660) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.WizytasController
+
+ -------------- Info (2018-07-04 21:01:10.8360) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.HomeController
+
+ -------------- Info (2018-07-04 21:01:13.4944) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.ManageController
+
+ -------------- Info (2018-07-04 21:01:18.7560) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.ManageController
+
+ -------------- Info (2018-07-04 21:01:35.2326) --------------
+ 
+ Call Site: GabinetStomatologiczny.Utils.BaseController..ctor
+ Exception Type: 
+ Exception Message: 
+ Stack Trace: 
+ Additional Info: GabinetStomatologiczny.Controllers.HomeController
+

@@ -1,5 +1,6 @@
 ﻿using GabinetStomatologiczny.DAL;
 using NLog;
+using NLog.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,27 @@ namespace GabinetStomatologiczny.Utils
 {
     public abstract class BaseController : Controller
     {
-        protected GabinetContext db = new GabinetContext();
-        private Logger logger = LogManager.GetLogger("fileLogger");
+        private GabinetContext _db;
+
+        protected GabinetContext db
+        {
+            get
+            {
+                    if(_db == null)
+                        {
+                            _db = new GabinetContext();
+                        }
+                    return _db;
+            }
+           
+        }
+        
+        private Logger logger = LogManager.GetCurrentClassLogger();
+        
 
         public BaseController()
         {
-            logger.Info(this);
+           logger.Info(this);
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -25,7 +41,7 @@ namespace GabinetStomatologiczny.Utils
             string user = User.Identity.Name;
             if (!string.IsNullOrEmpty(user))
             {
-                logger.Info("User " + user);
+                //logger.Info("User " + user);
             }
         }
 
@@ -36,7 +52,7 @@ namespace GabinetStomatologiczny.Utils
                 if (db != null)
                 {
                     this.db.Dispose();
-                    this.db = null;
+                    this._db = null;
                 }
             }
 

@@ -60,9 +60,18 @@ namespace Gabinet.Tests
         [TestMethod]
         public  void verifyTestDateFormat()
         {
+            string code = "21-405";
 
+            var isValid = CodeDateCheck(code);
+
+            Assert.AreEqual(true, isValid);
         }
 
+        private bool CodeDateCheck(string code)
+        {
+            string pattern = @"^\d{2}-\d{3}$";
+            return Regex.IsMatch(code,pattern);
+        }
         //End Check date format
 
         //Check pesel

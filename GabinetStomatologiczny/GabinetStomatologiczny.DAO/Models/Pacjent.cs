@@ -37,6 +37,8 @@ namespace GabinetStomatologiczny.DAO.Models
         [EmailAddress(ErrorMessage = "Podaj poprawy adres email")]
         public string Email { get; set; }
         public string Miejscowosc { get; set; }
+
+        [RegularExpression(@"^\d{2}-\d{3}$",ErrorMessage = "Podany kod pocztowy jest nie poprawny")]
         public string Kod { get; set; }
         public string Ulica { get; set; }
         public Wojewodztwo Wojewodztwo { get; set; }

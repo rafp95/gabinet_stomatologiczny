@@ -174,10 +174,6 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NLogger, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NLogger.dll.1.0.4\lib\NLogger.dll</HintPath>
       <Private>True</Private>
@@ -628,6 +624,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="NLog.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
@@ -832,10 +829,6 @@
     <ProjectReference Include="..\GabinetStomatologiczny.Utils\GabinetStomatologiczny.Utils.csproj">
       <Project>{DED59786-9561-4530-943D-114C7446F95D}</Project>
       <Name>GabinetStomatologiczny.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogowanieBledow\AppLog.csproj">
-      <Project>{a9cf07bd-05e1-4917-99e8-3992ff21a9c6}</Project>
-      <Name>AppLog</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -11,9 +11,7 @@ namespace AppLogin
     {
         public static void LogInfo(string message)
         {
-            var logger = LoggerFactory.CreateLogger();
-            logger.LogInfo(message);
-            
+           
         }
 
 

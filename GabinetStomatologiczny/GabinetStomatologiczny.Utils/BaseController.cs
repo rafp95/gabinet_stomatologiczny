@@ -19,30 +19,28 @@ namespace GabinetStomatologiczny.Utils
         {
             get
             {
-                    if(_db == null)
-                        {
-                            _db = new GabinetContext();
-                        }
-                    return _db;
+                if (_db == null)
+                {
+                    _db = new GabinetContext();
+                }
+                return _db;
             }
-           
         }
-        
-        private Logger logger = LogManager.GetCurrentClassLogger();
+
+        private readonly Logger logger = null;
         
 
         public BaseController()
         {
-           logger.Info(this);
+            this.logger = LogManager.GetLogger(this.GetType().Name);
+            logger.Info(this);
         }
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+
+        protected override void OnException(ExceptionContext filterContext)
         {
-            string user = User.Identity.Name;
-            if (!string.IsNullOrEmpty(user))
-            {
-                logger.Info("User " + user);
-            }
+            logger.Info(filterContext.Exception);
+            base.OnException(filterContext);
         }
 
         protected override void Dispose(bool disposing)

@@ -135,6 +135,11 @@ namespace GabinetStomatologiczny.Controllers
         {
             var personList = db.Pacjent.ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower())).Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko });
 
+            if(personList.Count() == 0)
+            {
+                personList = db.Pacjent.Select(p => new { label = "Nie znaleziono"});
+            }
+
             return Json(personList, JsonRequestBehavior.AllowGet);
         }
 

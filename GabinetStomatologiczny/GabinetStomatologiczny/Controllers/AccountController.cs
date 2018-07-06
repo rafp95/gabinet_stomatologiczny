@@ -11,18 +11,41 @@ using Microsoft.Owin.Security;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
-
+using AutoMapper;
+using GabinetStomatologiczny.Controllers;
 
 namespace GabinetStomatologiczny.Controllers
 {
+
+    public static class Mapper<T>
+    {
+        private static MapperConfiguration _manger;
+        public static MapperConfiguration Maper
+        {
+            get
+            {
+                if(_manger == null)
+                {
+                    _manger = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<T, ApplicationUser>();
+                    });
+                }
+                return _manger;
+            }
+        }
+    }
+
+
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+      
         public AccountController()
         {
+            
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -152,9 +175,13 @@ namespace GabinetStomatologiczny.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                IMapper mapper = Mapper<RegisterViewModel>.Maper.CreateMapper();
+                var user = mapper.Map<ApplicationUser>(model);
+
+                //var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Haslo);
 
                 if (result.Succeeded)

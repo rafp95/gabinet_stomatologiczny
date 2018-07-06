@@ -1,4 +1,5 @@
-﻿using GabinetStomatologiczny.DAL;
+﻿using AutoMapper;
+using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.Utils;
@@ -47,12 +48,10 @@ namespace GabinetStomatologiczny.Controllers
 
                     roleAdministrator.Create(new IdentityRole(o.TypPracownika.ToString()));
 
-
                     var user = new ApplicationUser { UserName = o.Email };
-                    user.EmailConfirmed = true;
-                    var pass = o.Haslo;
 
-                    userAdministrator.Create(user, pass);
+                    user.EmailConfirmed = true;
+                    userAdministrator.Create(user,o.Haslo);
 
                     userAdministrator.AddToRole(user.Id, o.TypPracownika.ToString());
 
@@ -73,7 +72,7 @@ namespace GabinetStomatologiczny.Controllers
                                 };
                                 se.SendMail(o.Email, "Witaj, administrator " +
                                   o.Imie, "Twoje dane do logowania to \n"
-                                   + "Login:  " + o.Email + "\n" + "hasło " + pass);
+                                   + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
                                 db.Administrator.Add(admin);
                                 db.SaveChanges();
                                 return RedirectToAction("Index", "Rejestracja");
@@ -91,7 +90,7 @@ namespace GabinetStomatologiczny.Controllers
                                 };
                                 se.SendMail(o.Email, "Witaj, lekarz " +
                                     o.Imie, "Twoje dane do logowania to \n"
-                                    + "Login:  " + o.Email + "\n" + "hasło " + pass);
+                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
                                 db.Lekarz.Add(lekarz);
                                 db.SaveChanges();
                                 return RedirectToAction("Index", "Rejestracja");
@@ -108,7 +107,7 @@ namespace GabinetStomatologiczny.Controllers
                                 };
                                 se.SendMail(o.Email, "Witaj, pacjencie " +
                                    o.Imie, "Twoje dane do logowania to \n "
-                                   + "Login:  " + o.Email + "\n" + "hasło " + pass);
+                                   + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
                                 db.Pacjent.Add(pacjent);
                                 db.SaveChanges();
                                 return RedirectToAction("Index", "Rejestracja");

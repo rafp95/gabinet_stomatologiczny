@@ -41,7 +41,7 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Zabiegs/Create
         public ActionResult Create()
         {
-            ViewBag.WizytaID = new SelectList(db.Wizyta, "ID", "ID");
+            ViewBag.WizytaID = new SelectList(db.Wizyta.Include(p => p.Pacjent), "ID", "ID");
             return View();
         }
 
@@ -50,10 +50,21 @@ namespace GabinetStomatologiczny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu")] Zabieg zabieg)
+        public ActionResult Create([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu,SearchQuery")] Zabieg zabieg)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(zabieg.SearchQuery))
             {
+                TempData["error"] = "Pole szukaj pacjęta nie może być puste";
+            }
+            else if (ModelState.IsValid)
+            {
+                var pacjet = db.Pacjent.ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().
+                Contains(zabieg.SearchQuery.ToLower())).Select(p => p.ID).FirstOrDefault();
+
+                var wizyta = db.Wizyta.ToList().
+                    Where(p => p.PacjentID == pacjet).Select(p => p.ID).FirstOrDefault();
+
+                zabieg.WizytaID = wizyta;
                 db.Zabieg.Add(zabieg);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -70,7 +81,9 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Zabieg zabieg = db.Zabieg.Find(id);
+            
             if (zabieg == null)
             {
                 return HttpNotFound();

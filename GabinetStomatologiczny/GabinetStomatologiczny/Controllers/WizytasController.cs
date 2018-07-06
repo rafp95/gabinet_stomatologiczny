@@ -28,6 +28,13 @@ namespace GabinetStomatologiczny.Controllers
         public JsonResult GetEvents(string searchQuery)
         {
             var events = db.Wizyta.ToList();
+            if (!User.Identity.IsAuthenticated)
+            {
+                foreach (var item in events)
+                {
+                    item.Tytul = "*";
+                }
+            }
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 events.Where(p => p.Tytul.Contains(searchQuery)).ToList();

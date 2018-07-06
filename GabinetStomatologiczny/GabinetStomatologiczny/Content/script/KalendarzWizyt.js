@@ -107,7 +107,6 @@
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
             theme: false,
-            editable: false,
             slotMinutes: 30,
             slotEventOverlap: false,
             nowIndicator: true,
@@ -165,6 +164,15 @@
                     Description: event.description,
                 };
                 SaveEvent(data);
+            }, eventRender: function (eventObj, el) {
+                var dataStart = eventObj.start.format("DD-MMM-YYYY HH:mm");
+                el.popover({
+                    title: eventObj.title,
+                    content: dataStart,
+                    trigger: 'hover',
+                    placement: 'top',
+                    container: 'body'
+                });
             },
         })
     }
@@ -308,3 +316,4 @@ function pokazAktualnyCzas() {
         $("div#aktualnyCzas").html(aktualntCzas.format("HH:mm:ss"));
     }, 1000);
 }
+

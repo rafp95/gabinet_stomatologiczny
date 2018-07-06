@@ -37,7 +37,10 @@ textarea#txtDescription {
 }
 
 .fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
-    background: aliceblue;
+    background: aqua;
+    border-radius: 50%;
+    padding: 4px;
+    font-size: 14px;
 }
 
 td.fc-event-container:hover, div.fc-event-container a:hover {

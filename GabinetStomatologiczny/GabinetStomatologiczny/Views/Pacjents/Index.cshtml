@@ -1,6 +1,5 @@
 ﻿@model PagedList.IPagedList<GabinetStomatologiczny.DAO.Models.Pacjent>
 @using PagedList.Mvc;
-
 @{
     ViewBag.Title = "Pacjenci";
     ViewBag.Active = "Pacjenci";
@@ -10,13 +9,11 @@
 <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
 <link href="~/Content/Pacjent.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-
 @section scripts{
-
     <script src="~/Content/script/WyszukiwanieAjaxowe.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    
+
     <script>
         var setupAutoComplete = function () {
             var input = $("#searchQuery");
@@ -35,26 +32,17 @@
 
         setupAutoComplete();
     </script>
-
 }
-
 <h2>Pacjenci</h2>
-
-<p>
-    @Html.ActionLink("Dodaj", "Create", null, new { @class = "btn btn-primary dodajNowegoPacjenta" })
-</p>
-
 
 <div class="form-group">
     <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
         <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
-        <input type="text" id="searchQuery" name="searchQuery" 
+        <input type="text" id="searchQuery" name="searchQuery"
                data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Wpisz min 1 znak"
                class="form-control" />
-        <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajPacjentAjax form-control" ><i class="fa fa-search"></i></button>
+        <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajPacjentAjax form-control"><i class="fa fa-search"></i></button>
     </form>
 </div>
-
 @Html.Partial("_PatiensParts")
-
 

@@ -227,7 +227,6 @@ namespace GabinetStomatologiczny.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-           
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -236,7 +235,7 @@ namespace GabinetStomatologiczny.Controllers
 
             if (result.Succeeded)
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.Name);
+                var user = await UserManager.FindByNameAsync(User.Identity.Name);
                 if (user != null)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

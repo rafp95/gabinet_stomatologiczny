@@ -1,22 +1,15 @@
 ﻿@model GabinetStomatologiczny.DAO.Models.Zabieg
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Wiecej";
 }
 
-<h2>Details</h2>
+<h2>Wiecej</h2>
 
 <div>
     <h4>Zabieg</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Wizyta.ID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Wizyta.ID)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.TypZabiegu)
@@ -33,7 +26,6 @@
         <dd>
             @Html.DisplayFor(model => model.CenaZabiegu)
         </dd>
-
     </dl>
 </div>
 <p>

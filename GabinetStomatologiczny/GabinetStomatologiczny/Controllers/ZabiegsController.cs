@@ -20,6 +20,7 @@ namespace GabinetStomatologiczny.Controllers
         public ActionResult Index()
         {
             var zabieg = db.Zabieg.Include(z => z.Wizyta);
+            zabieg.Include(p => p.Wizyta.Pacjent);
             return View(zabieg.ToList());
         }
 

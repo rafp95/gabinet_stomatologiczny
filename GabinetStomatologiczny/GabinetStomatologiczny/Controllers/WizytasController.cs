@@ -38,7 +38,7 @@ namespace GabinetStomatologiczny.Controllers
         {
             var events = db.Wizyta.ToList().
                 Where(p => p.Tytul.ToLower().Contains(term.ToLower()))
-                .Take(1).Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
+                .Take(5).Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
 
             if (events.Count() == 0)
             {

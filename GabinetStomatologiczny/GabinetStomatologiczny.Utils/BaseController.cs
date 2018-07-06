@@ -27,7 +27,7 @@ namespace GabinetStomatologiczny.Utils
             }
         }
 
-        private readonly Logger logger = null;
+        protected readonly Logger logger = null;
         
 
         public BaseController()

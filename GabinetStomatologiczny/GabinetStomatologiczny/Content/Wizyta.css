@@ -1,9 +1,10 @@
-﻿div#aktualnyCzas::before{
+﻿div#aktualnyCzas::before {
     content: "Godzina: ";
 }
 
-div#aktualnyCzas{
+div#aktualnyCzas {
     font-size: 18px;
+    margin-bottom: 10px;
 }
 
 table tbody tr {
@@ -53,14 +54,19 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
     div.modal-footer button {
         margin-right: 5px;
     }
-    
-    div.fc-toolbar.fc-header-toolbar{
+
+    div.fc-toolbar.fc-header-toolbar {
         font-size: 9px;
     }
 
-    div.fc-view, div.fc-view>table{
+    div.fc-view, div.fc-view > table {
         font-size: 12px;
     }
 
+    .fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
+        background: aqua;
+        border-radius: 50%;
+        padding: 2px;
+        font-size: 10px;
+    }
 }
-

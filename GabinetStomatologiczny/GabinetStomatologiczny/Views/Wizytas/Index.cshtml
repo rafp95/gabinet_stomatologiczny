@@ -12,14 +12,19 @@
 <h2 id="ladowanie">Ładowanie kalendarza .....</h2>
 <!--Search form-->
 <div class="text-right" id="aktualnyCzas"></div>
-<div class="form-group">
-    <form id="wyslij" class="wyszukiwarka" action="@Url.Action("GetEvents")" method="get" data-ajax="true">
-        <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
-        <input type="text" id="searchQuery" name="searchQuery"
-               data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
-               class="form-control" />
-    </form>
-</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="form-group">
+        <form id="wyslij" class="wyszukiwarka" action="@Url.Action("GetEvents")" method="get" data-ajax="true">
+            <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
+            <input type="text" id="searchQuery" name="searchQuery"
+                   data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
+                   class="form-control" />
+        </form>
+    </div>
+}
+
 <!--End search form-->
 <div id="calender"></div>
 <!--About-->
@@ -31,9 +36,9 @@
                 <h4 class="modal-title text-center"><span id="eventTitle"></span></h4>
             </div>
             <div class="modal-body">
-                @if (User.IsInRole("Pacjent") 
-                    || User.IsInRole("Lekarz") 
-                    || User.IsInRole("Administrator"))
+                @if (User.IsInRole("Pacjent")
+            || User.IsInRole("Lekarz")
+            || User.IsInRole("Administrator"))
                 {
                     {
                         <button id="btnDelete" class="btn btn-default btn-sm pull-right">
@@ -54,8 +59,8 @@
 </div>
 <!--End about-->
 @if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
-                            || User.IsInRole("Administrator")
-                            || User.IsInRole("Lekarz"))
+                                                    || User.IsInRole("Administrator")
+                                                    || User.IsInRole("Lekarz"))
 {
     <!--Eror-->
     <div id="myModalError" class="modal fade" role="dialog">

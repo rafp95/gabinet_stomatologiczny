@@ -7,6 +7,7 @@
 <link href="~/Content/Zabieg.css" rel="stylesheet" />
 <link href="~/Content/TableStyle.css" rel="stylesheet" />
 <h2>Zabiegi</h2>
+
 @if (!User.Identity.IsAuthenticated)
 {
     <div class="alert alert-danger" role="alert">
@@ -14,6 +15,7 @@
     </div>
 
 }
+
 @if (User.IsInRole("Administrator")
                 || User.IsInRole("Lekarz"))
 {
@@ -31,7 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.TypZabiegu)
             </th>
-            <th>
+            <th colspan="2">
                 @Html.DisplayNameFor(model => model.CenaZabiegu)
             </th>
         </tr>

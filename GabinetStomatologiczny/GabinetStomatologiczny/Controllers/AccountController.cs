@@ -17,7 +17,7 @@ using GabinetStomatologiczny.Controllers;
 namespace GabinetStomatologiczny.Controllers
 {
 
-    public static class Mapper<T>
+    public static class Mapper<T,T1>
     {
         private static MapperConfiguration _manger;
         public static MapperConfiguration Maper
@@ -28,7 +28,7 @@ namespace GabinetStomatologiczny.Controllers
                 {
                     _manger = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<T, ApplicationUser>();
+                        cfg.CreateMap<T, T1>();
                     });
                 }
                 return _manger;
@@ -42,7 +42,7 @@ namespace GabinetStomatologiczny.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-      
+
         public AccountController()
         {
             
@@ -179,7 +179,7 @@ namespace GabinetStomatologiczny.Controllers
             
             if (ModelState.IsValid)
             {
-                IMapper mapper = Mapper<RegisterViewModel>.Maper.CreateMapper();
+                IMapper mapper = Mapper<ApplicationUser,RegisterViewModel>.Maper.CreateMapper();
                 var user = mapper.Map<ApplicationUser>(model);
 
                 //var user = new ApplicationUser { UserName = model.Email, Email = model.Email};

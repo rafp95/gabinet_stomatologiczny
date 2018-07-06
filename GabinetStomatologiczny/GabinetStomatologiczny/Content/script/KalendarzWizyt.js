@@ -84,6 +84,7 @@
                 $("h2#ladowanie").html("");
                 $.each(data, function (i, v) {
                     events.push({
+                        pacjentID: v.PacjentID,
                         eventID: v.ID,
                         title: v.Tytul,
                         start: moment(v.Poczatek),
@@ -106,6 +107,7 @@
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
             theme: false,
+            editable: false,
             slotMinutes: 30,
             slotEventOverlap: false,
             nowIndicator: true,
@@ -216,7 +218,6 @@
     function openAddEditForm() {
         //Save button change text
         buttonInfo($("#btnSave"), "Zapisz");
-
         if (selectedEvent != null) {
             $('#hdEventID').val(selectedEvent.eventID);
             $('#txtStart').val(selectedEvent.start.format('DD.MM.YYYY HH:mm'));

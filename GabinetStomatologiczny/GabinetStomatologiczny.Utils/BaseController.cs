@@ -3,6 +3,7 @@ using NLog;
 using NLog.Fluent;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace GabinetStomatologiczny.Utils
         public BaseController()
         {
             this.logger = LogManager.GetLogger(this.GetType().Name);
+            Trace.WriteLine(this);
             logger.Info(this);
         }
 
@@ -40,6 +42,7 @@ namespace GabinetStomatologiczny.Utils
         protected override void OnException(ExceptionContext filterContext)
         {
             logger.Info(filterContext.Exception);
+            Trace.WriteLine(filterContext.Exception);
             base.OnException(filterContext);
         }
 

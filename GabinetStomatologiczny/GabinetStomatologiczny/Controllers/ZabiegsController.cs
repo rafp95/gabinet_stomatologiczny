@@ -53,22 +53,29 @@ namespace GabinetStomatologiczny.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu,SearchQuery")] Zabieg zabieg)
         {
-            if (string.IsNullOrEmpty(zabieg.SearchQuery))
+           try
             {
-                TempData["error"] = "Pole szukaj pacjęta nie może być puste";
+                if (string.IsNullOrEmpty(zabieg.SearchQuery))
+                {
+                    TempData["error"] = "Pole szukaj pacjęta nie może być puste";
+                }
+                else if (ModelState.IsValid)
+                {
+                    var pacjet = db.Pacjent.ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().
+                    Contains(zabieg.SearchQuery.ToLower())).Select(p => p.ID).FirstOrDefault();
+
+                    var wizyta = db.Wizyta.ToList().
+                        Where(p => p.PacjentID == pacjet).Select(p => p.ID).FirstOrDefault();
+
+                    zabieg.WizytaID = wizyta;
+                    db.Zabieg.Add(zabieg);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            else if (ModelState.IsValid)
+            catch (Exception)
             {
-                var pacjet = db.Pacjent.ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().
-                Contains(zabieg.SearchQuery.ToLower())).Select(p => p.ID).FirstOrDefault();
-
-                var wizyta = db.Wizyta.ToList().
-                    Where(p => p.PacjentID == pacjet).Select(p => p.ID).FirstOrDefault();
-
-                zabieg.WizytaID = wizyta;
-                db.Zabieg.Add(zabieg);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["error"] = "Osoba nie była zapisana na wizytę";
             }
 
             ViewBag.WizytaID = new SelectList(db.Wizyta, "ID", "ID", zabieg.WizytaID);

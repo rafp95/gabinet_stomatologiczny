@@ -10,6 +10,7 @@ using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
+using System.Diagnostics;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -19,6 +20,7 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Wizytas
         public ActionResult Index()
         {
+            ViewBag.User = User.Identity.Name;
             var wizyta = db.Wizyta.Include(w => w.Lekarz).Include(w => w.Pacjent);
             return View(wizyta.ToList());
         }
@@ -42,7 +44,7 @@ namespace GabinetStomatologiczny.Controllers
 
             if (events.Count() == 0)
             {
-                events = db.Wizyta.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" });
+                events = db.Wizyta.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1);
             }
 
             return Json(events, JsonRequestBehavior.AllowGet);
@@ -72,6 +74,7 @@ namespace GabinetStomatologiczny.Controllers
                 
             }
 
+            db.Database.Log = message => Trace.WriteLine(message);
             db.SaveChanges();
             status = true;
             return new JsonResult { Data = new { status } };

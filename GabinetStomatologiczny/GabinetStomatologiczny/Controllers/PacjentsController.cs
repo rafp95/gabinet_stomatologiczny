@@ -137,7 +137,7 @@ namespace GabinetStomatologiczny.Controllers
 
             if(personList.Count() == 0)
             {
-                personList = db.Pacjent.Select(p => new { label = "Nie znaleziono"});
+                personList = db.Pacjent.Select(p => new { label = "Nie znaleziono"}).Take(1);
             }
 
             return Json(personList, JsonRequestBehavior.AllowGet);

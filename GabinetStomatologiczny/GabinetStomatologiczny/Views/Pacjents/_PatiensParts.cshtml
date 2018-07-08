@@ -73,16 +73,16 @@
                         @Html.DisplayFor(modelItem => item.DataRejestracji)
                     </td>
                     <td>
-                        @if ( (User.Identity.IsAuthenticated && User.Identity.GetUserName() == item.Email)
-                            || User.IsInRole("Administrator")
-                            || User.IsInRole("Lekarz"))
+                        @if ((User.Identity.IsAuthenticated && User.Identity.GetUserName() == item.Email)
+                        || User.IsInRole("Administrator")
+                        || User.IsInRole("Lekarz"))
                         {
-                            @Html.ActionLink("Edycja", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) <span> | </span>
-                            @Html.ActionLink("Kasuj", "Delete", new { id = item.ID }, new { @class = "btn btn-info" }) <span> | </span>
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit" }) <span> | </span>
+                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash" }) <span> | </span>
                         }
-                        
-                        @Html.ActionLink("Więcej", "Details", new { id = item.ID}, new { @class = "btn btn-success" }) 
-                        
+
+                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-plus" })
+
                     </td>
                 </tr>
             }
@@ -91,10 +91,12 @@
 
         <br />
 
-           Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
-           @Html.PagedListPager(Model, page => Url.Action("Index",
+        Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
         new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
     </div>
-}else{
+}
+else
+{
     <div> Nic nie znaleziono</div>
 }

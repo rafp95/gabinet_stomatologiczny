@@ -1,12 +1,12 @@
 ﻿@model GabinetStomatologiczny.DAO.Models.Zabieg
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Kasuj";
 }
 
-<h2>Delete</h2>
+<h2>@ViewBag.Title</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Jeseś pewny?</h3>
 <div>
     <h4>Zabieg</h4>
     <hr />
@@ -41,8 +41,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Kasuj" class="btn btn-default" /> |
+            @Html.ActionLink("Wstecz", "Index",null,new {@class= "glyphicon glyphicon-hand-left" })
         </div>
     }
 </div>

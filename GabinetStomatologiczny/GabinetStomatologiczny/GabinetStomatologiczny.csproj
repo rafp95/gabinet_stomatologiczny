@@ -302,6 +302,9 @@
     <Compile Include="Controllers\LekarzsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AutoMapperAdmin.cs" />
+    <Compile Include="Models\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\AutoMapperLekarz.cs" />
     <Compile Include="Models\AutoMapperPacjents.cs" />
     <Compile Include="Models\AutoMapperWizyta.cs" />
     <Compile Include="Models\LiczbaPacjentow.cs" />
@@ -638,7 +641,6 @@
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\datepicker-pl.js" />
-    <Content Include="ClassDiagram1.cd" />
     <Content Include="Content\script\WyszukiwanieAjaxowe.js" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
@@ -655,7 +657,6 @@
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />
     <Content Include="Scripts\gcal.min.js" />
-    <Content Include="ClassDiagram1.cd" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-3.3.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

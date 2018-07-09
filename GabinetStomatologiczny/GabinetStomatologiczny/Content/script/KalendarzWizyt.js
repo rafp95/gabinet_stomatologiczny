@@ -62,10 +62,10 @@
     var size = 0;
     $(window).resize(function () {
         if ($(window).width() < 500) {
-            size = 2;
+            size = 0;
             console.log(size);
         } else {
-            size = 0;
+            size = 2;
             console.log(size);
         }
     });
@@ -106,7 +106,7 @@
 
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
-            theme: false,
+            theme: true,
             slotMinutes: 30,
             slotEventOverlap: false,
             nowIndicator: true,

@@ -20,8 +20,9 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult About()
         {
-            return View(Mapper.Map<IEnumerable<LiczbaPacjentow>>(db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date).
-                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).ToList()));
+            var about = Mapper.Map<IEnumerable<LiczbaPacjentow>>(db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date).
+                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).ToList());
+            return View(about);
         }
 
     }

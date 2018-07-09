@@ -32,13 +32,13 @@ textarea {
 
 @media only screen and (min-width: 571px) {
     div.wysrodkowanieLoginForm {
-       position: relative;
-       margin: 0 auto;
-       width: 50%;
-       left: 50%;
-       transform: translate(-40%);
-       padding: 10px;
-       display: inline-block;
+        position: relative;
+        margin: 0 auto;
+        width: 50%;
+        left: 50%;
+        transform: translate(-40%);
+        padding: 10px;
+        display: inline-block;
     }
 }
 
@@ -53,4 +53,11 @@ textarea {
         display: inline-block;
     }
 
+    .carousel-control .glyphicon-chevron-right {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        z-index: 5;
+        display: inline-block;
+    }
 }

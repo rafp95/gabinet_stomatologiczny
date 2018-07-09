@@ -38,22 +38,24 @@ namespace GabinetStomatologiczny.Controllers
             {
                 try
                 {
-                    var userRole = new RoleManager<IdentityRole>(
+                    var roleUser = new RoleManager<IdentityRole>(
                                  new RoleStore<IdentityRole>(
                                  new ApplicationDbContext()));
 
-                    var userCreate = new UserManager<ApplicationUser>(
+                    var createUser = new UserManager<ApplicationUser>(
                                       new UserStore<ApplicationUser>(
                                       new ApplicationDbContext()));
 
-                    userRole.Create(new IdentityRole(o.TypPracownika.ToString()));
+                    roleUser.Create(new IdentityRole(o.TypPracownika.ToString()));
+
 
                     var user = new ApplicationUser { UserName = o.Email };
-
                     user.EmailConfirmed = true;
-                    userCreate.Create(user,o.Haslo);
+                    var pass = o.Haslo;
 
-                    userCreate.AddToRole(user.Id, o.TypPracownika.ToString());
+                    createUser.Create(user, pass);
+
+                    createUser.AddToRole(user.Id, o.TypPracownika.ToString());
 
                     TempData["ok"] = o.Imie + " typ konta " + o.TypPracownika;
 
@@ -62,14 +64,7 @@ namespace GabinetStomatologiczny.Controllers
 
                         case TypPracownika.Administrator:
                             {
-                                Administrator admin = new Administrator()
-                                {
-                                    Email = o.Email,
-                                    Imie = o.Imie,
-                                    Nazwisko = o.Nazwisko,
-                                    NrTelefonu = o.NrTelefonu
-
-                                };
+                                var admin = Mapper.Map<Administrator>(o);
                                 se.SendMail(o.Email, "Witaj, administrator " +
                                   o.Imie, "Twoje dane do logowania to \n"
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
@@ -79,15 +74,8 @@ namespace GabinetStomatologiczny.Controllers
                             }
                         case TypPracownika.Lekarz:
                             {
-                                Lekarz lekarz = new Lekarz()
-                                {
-                                    Imie = o.Imie,
-                                    NrTelefonu = o.NrTelefonu,
-                                    DataDodania = DateTime.Now,
-                                    Nazwisko = o.Nazwisko,
-                                    Email = o.Email
-
-                                };
+                                var lekarz = Mapper.Map<Lekarz>(o);
+                                lekarz.DataDodania = DateTime.Now;
                                 se.SendMail(o.Email, "Witaj, lekarz " +
                                     o.Imie, "Twoje dane do logowania to \n"
                                     + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);

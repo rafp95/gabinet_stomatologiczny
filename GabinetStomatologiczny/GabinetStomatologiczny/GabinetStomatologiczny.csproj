@@ -302,6 +302,8 @@
     <Compile Include="Controllers\LekarzsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AutoMapperPacjents.cs" />
+    <Compile Include="Models\AutoMapperWizyta.cs" />
     <Compile Include="Models\LiczbaPacjentow.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Controllers\PacjentsController.cs" />

@@ -38,22 +38,22 @@ namespace GabinetStomatologiczny.Controllers
             {
                 try
                 {
-                    var roleAdministrator = new RoleManager<IdentityRole>(
+                    var userRole = new RoleManager<IdentityRole>(
                                  new RoleStore<IdentityRole>(
                                  new ApplicationDbContext()));
 
-                    var userAdministrator = new UserManager<ApplicationUser>(
+                    var userCreate = new UserManager<ApplicationUser>(
                                       new UserStore<ApplicationUser>(
                                       new ApplicationDbContext()));
 
-                    roleAdministrator.Create(new IdentityRole(o.TypPracownika.ToString()));
+                    userRole.Create(new IdentityRole(o.TypPracownika.ToString()));
 
                     var user = new ApplicationUser { UserName = o.Email };
 
                     user.EmailConfirmed = true;
-                    userAdministrator.Create(user,o.Haslo);
+                    userCreate.Create(user,o.Haslo);
 
-                    userAdministrator.AddToRole(user.Id, o.TypPracownika.ToString());
+                    userCreate.AddToRole(user.Id, o.TypPracownika.ToString());
 
                     TempData["ok"] = o.Imie + " typ konta " + o.TypPracownika;
 
@@ -97,14 +97,8 @@ namespace GabinetStomatologiczny.Controllers
                             }
                         case TypPracownika.Pacjent:
                             {
-                                Pacjent pacjent = new Pacjent()
-                                {
-                                    Imie = o.Imie,
-                                    Nazwisko = o.Nazwisko,
-                                    NrTelefonu = o.NrTelefonu,
-                                    Email = o.Email,
-                                    DataRejestracji = DateTime.Now,
-                                };
+                                var pacjent = Mapper.Map<Pacjent>(o);
+                                pacjent.DataRejestracji = DateTime.Now;
                                 se.SendMail(o.Email, "Witaj, pacjencie " +
                                    o.Imie, "Twoje dane do logowania to \n "
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);

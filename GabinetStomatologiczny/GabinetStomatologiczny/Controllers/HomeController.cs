@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.Utils;
-
+using AutoMapper;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -20,9 +20,8 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult About()
         {
-            var pacjenci = db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date).
-                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() });
-            return View(pacjenci.ToList());
+            return View(Mapper.Map<IEnumerable<LiczbaPacjentow>>(db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date).
+                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).ToList()));
         }
 
     }

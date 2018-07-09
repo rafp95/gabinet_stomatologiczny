@@ -13,30 +13,11 @@ using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
 using AutoMapper;
 using GabinetStomatologiczny.Controllers;
+using static GabinetStomatologiczny.Startup;
 
 namespace GabinetStomatologiczny.Controllers
 {
-
-    public static class Mapper<T,T1>
-    {
-        private static MapperConfiguration _manger;
-        public static MapperConfiguration Maper
-        {
-            get
-            {
-                if(_manger == null)
-                {
-                    _manger = new MapperConfiguration(cfg =>
-                    {
-                        cfg.CreateMap<T, T1>();
-                    });
-                }
-                return _manger;
-            }
-        }
-    }
-
-
+    
     [Authorize]
     public class AccountController : BaseController
     {
@@ -179,8 +160,7 @@ namespace GabinetStomatologiczny.Controllers
             
             if (ModelState.IsValid)
             {
-                IMapper mapper = Mapper<ApplicationUser,RegisterViewModel>.Maper.CreateMapper();
-                var user = mapper.Map<ApplicationUser>(model);
+                var user = Mapper.Map<ApplicationUser>(model);
 
                 //var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Haslo);
@@ -289,10 +269,12 @@ namespace GabinetStomatologiczny.Controllers
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
+            
             AddErrors(result);
             return View();
         }

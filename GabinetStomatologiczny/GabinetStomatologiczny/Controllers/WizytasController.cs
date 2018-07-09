@@ -11,6 +11,8 @@ using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
 using System.Diagnostics;
+using AutoMapper;
+using static GabinetStomatologiczny.Startup;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -67,17 +69,18 @@ namespace GabinetStomatologiczny.Controllers
                 var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
                 if(v != null)
                 {
-                    v.Tytul = w.Tytul;
-                    v.Poczatek = w.Poczatek;
-                    v.Koniec = w.Poczatek.AddMinutes(30);
+                    w.LekarzID = v.LekarzID;
+                    w.PacjentID = v.PacjentID;
+                    var m = Mapper.Map<Wizyta, Wizyta>(w,v);
+                    db.Entry(m).State = EntityState.Modified;
                 }
 
             }else
             {
                 w.PacjentID = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.ID).FirstOrDefault();
                 w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
-                w.Koniec = w.Poczatek.AddMinutes(30);
-                db.Wizyta.Add(w);
+                var m = Mapper.Map<Wizyta, Wizyta>(w);
+                db.Wizyta.Add(m);
                 
             }
 

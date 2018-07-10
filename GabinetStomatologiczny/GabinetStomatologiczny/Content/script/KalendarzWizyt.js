@@ -144,10 +144,7 @@
                     end: end,
                 };
                 var dataStart = new Date(moment(start, "DD-MM-YYYY HH:mm"));
-
-                if (dataStart >= now
-                    || start.format("DD-MM-YYYY")
-                    === now.format("DD-MM-YYYY")) {
+                if (dataStart >= now) {
                     openAddEditForm();
                 } else {
                     $("#myModalError").modal();
@@ -252,7 +249,7 @@
             errorTime.html("");
         } else {
             $("#txtStart").css('border', '1px solid red').parent().
-               after("<div class='errorTime'>Wybrałeś błędny czas</div>").next().css("color", "red");
+               after("<div class='errorTime'>Wybrany czas już był</div>").next().css("color", "red");
             return;
         }
 

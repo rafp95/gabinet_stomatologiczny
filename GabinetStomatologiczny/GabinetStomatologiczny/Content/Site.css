@@ -53,10 +53,13 @@ textarea {
         display: inline-block;
     }
 
+}
+
+@media only screen and (max-width: 560px) {
     .carousel-control .glyphicon-chevron-right {
         position: absolute;
         top: 50%;
-        left: 20%;
+        left: 0%;
         z-index: 5;
         display: inline-block;
     }

@@ -311,7 +311,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LekarzsController.cs" />
+    <Compile Include="Controllers\LekarzController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AutoMapperAdmin.cs" />
@@ -321,10 +321,10 @@
     <Compile Include="Models\AutoMapperWizyta.cs" />
     <Compile Include="Models\LiczbaPacjentow.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Controllers\PacjentsController.cs" />
+    <Compile Include="Controllers\PacjentController.cs" />
     <Compile Include="Controllers\RejestracjaController.cs" />
-    <Compile Include="Controllers\WizytasController.cs" />
-    <Compile Include="Controllers\ZabiegsController.cs" />
+    <Compile Include="Controllers\WizytaController.cs" />
+    <Compile Include="Controllers\ZabiegController.cs" />
     <Compile Include="DAL\GabinetInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -863,6 +863,10 @@
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">
       <Project>{db0427cd-f52c-47bb-b9c6-54b5c3f9ab71}</Project>
       <Name>GabinetStomatologiczny.DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GabinetStomatologiczny.Services\GabinetStomatologiczny.Services.csproj">
+      <Project>{904100e3-8b99-45a4-9d15-64e2ed0f829e}</Project>
+      <Name>GabinetStomatologiczny.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\GabinetStomatologiczny.Utils\GabinetStomatologiczny.Utils.csproj">
       <Project>{DED59786-9561-4530-943D-114C7446F95D}</Project>

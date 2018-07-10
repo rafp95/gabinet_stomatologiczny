@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GabinetStomatologiczny.Utils;
+using Moq;
 
 namespace Gabinet.Tests
 {
@@ -10,7 +11,7 @@ namespace Gabinet.Tests
         [TestMethod]
         public void TestSaveToDataBase()
         {
-            
+            //var mockContect = new Mock<GabinetCon>
         }
     }
 }

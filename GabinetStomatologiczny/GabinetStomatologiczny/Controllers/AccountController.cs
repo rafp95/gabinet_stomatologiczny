@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -12,25 +9,23 @@ using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
 using AutoMapper;
-using GabinetStomatologiczny.Controllers;
-using static GabinetStomatologiczny.Startup;
-using GabinetStomatologiczny.DAL;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    
+
     [Authorize]
     public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController(GabinetContext db):base(db)
+        public AccountController()
         {
             
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, GabinetContext db) : base(db)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;

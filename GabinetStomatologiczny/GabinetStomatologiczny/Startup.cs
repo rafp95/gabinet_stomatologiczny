@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using GabinetStomatologiczny.Services;
 
+
 [assembly: OwinStartupAttribute(typeof(GabinetStomatologiczny.Startup))]
 namespace GabinetStomatologiczny
 {
@@ -25,16 +26,18 @@ namespace GabinetStomatologiczny
 
            var services = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
 
-            // configure all of the services required for DI
-            ConfigureServices(services);
+            //configure all of the services required for DI
 
-            // Configure authentication
-            ConfigureAuth(app);
+           ConfigureServices(services);
 
-            // Create a new resolver from our own default implementation
+            //Configure authentication
+
+           ConfigureAuth(app);
+
+            //Create a new resolver from our own default implementation
             var resolver = new DefaultDependencyResolver(services.BuildServiceProvider());
 
-            // Set the application resolver to our default resolver. This comes from "System.Web.Mvc"
+            //Set the application resolver to our default resolver.This comes from "System.Web.Mvc"
             //Other services may be added elsewhere through time
             DependencyResolver.SetResolver(resolver);
         }
@@ -47,32 +50,30 @@ namespace GabinetStomatologiczny
             // Add a database context - this can be instantiated with no parameters
             services.AddTransient(typeof(ApplicationDbContext));
 
-            services.AddTransient(typeof(GabinetContext));
-
             //====================================================
             // ApplicationUserManager
             //====================================================
             // instantiation requires the following instance of the Identity database
-            services.AddTransient(typeof(IUserStore<ApplicationUser>), p => new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            //services.AddTransient(typeof(IUserStore<ApplicationUser>), p => new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
             // with the above defined, we can add the user manager class as a type
-            services.AddTransient(typeof(ApplicationUserManager));
+            //services.AddTransient(typeof(ApplicationUserManager));
 
             //====================================================
             // ApplicationSignInManager
             //====================================================
             // instantiation requires two parameters, [ApplicationUserManager] (defined above) and [IAuthenticationManager]
-            services.AddTransient(typeof(Microsoft.Owin.Security.IAuthenticationManager), p => new OwinContext().Authentication);
-            services.AddTransient(typeof(ApplicationSignInManager));
+            //services.AddTransient(typeof(Microsoft.Owin.Security.IAuthenticationManager), p => new OwinContext().Authentication);
+            ///services.AddTransient(typeof(ApplicationSignInManager));
 
             //====================================================
             // ApplicationRoleManager
             //====================================================
             // Maps the rolemanager of identity role to the concrete role manager type
-            //services.AddTransient<RoleManager<IdentityRole>, ApplicationRoleManager>();
+            //ervices.AddTransient<RoleManager<IdentityRole>, ApplicationRoleManager>();
 
             // Maps the role store role to the implemented type
-            services.AddTransient<IRoleStore<IdentityRole, string>, RoleStore<IdentityRole>>();
+            //services.AddTransient<IRoleStore<IdentityRole, string>, RoleStore<IdentityRole>>();
             //services.AddTransient(typeof(ApplicationRoleManager));
 
             //====================================================
@@ -82,8 +83,9 @@ namespace GabinetStomatologiczny
                 .Where(t => !t.IsAbstract && !t.IsGenericTypeDefinition)
             .Where(t => typeof(IController).IsAssignableFrom(t)
             || t.Name.EndsWith("Controller", StringComparison.OrdinalIgnoreCase)));
-
+    
             services.AddTransient<IPacjentsService, PacjentsService>();
+
         }
     }
 

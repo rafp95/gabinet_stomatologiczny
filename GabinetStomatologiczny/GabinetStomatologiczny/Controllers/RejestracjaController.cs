@@ -20,11 +20,6 @@ namespace GabinetStomatologiczny.Controllers
         private Osoba os = new Osoba();
         private SendEmail se = new SendEmail();
 
-        public RejestracjaController(GabinetContext db) : base(db)
-        {
-
-        }
-
         // GET: Rejestracja
         public ActionResult Index()
         {

@@ -29,6 +29,7 @@ namespace GabinetStomatologiczny.Utils
 
         public BaseController()
         {
+            this.db = new GabinetContext();
             this.logger = LogManager.GetLogger(this.GetType().Name);
             Trace.WriteLine(this);
             logger.Info(this);

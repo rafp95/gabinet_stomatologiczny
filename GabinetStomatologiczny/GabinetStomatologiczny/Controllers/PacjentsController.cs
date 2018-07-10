@@ -11,15 +11,18 @@ using GabinetStomatologiczny.Models;
 using PagedList;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
+using GabinetStomatologiczny.Services;
 
 namespace GabinetStomatologiczny.Controllers
 {
     public class PacjentsController : BaseController
     {
 
-        public PacjentsController(GabinetContext db) : base(db)
-        {
+        private readonly IPacjentsService pacjentsService = null;
 
+        public PacjentsController(IPacjentsService pacjentsService)
+        {
+            this.pacjentsService = pacjentsService;
         }
 
         // GET: Pacjents
@@ -36,7 +39,7 @@ namespace GabinetStomatologiczny.Controllers
    
 
             ViewBag.CurrentFilter = searchString;
-            var pacjent = db.Pacjent.ToList();
+            var pacjent = this.pacjentsService.getAllPacjents();
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -138,11 +141,11 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult Sugestions(string term)
         {
-            var personList = db.Pacjent.ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower())).Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko });
+            var personList = this.pacjentsService.getAllPacjents().ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower())).Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko });
 
             if(personList.Count() == 0)
             {
-                personList = db.Pacjent.Select(p => new { label = "Nie znaleziono"}).Take(1);
+                personList = this.pacjentsService.getAllPacjents().Select(p => new { label = "Nie znaleziono"}).Take(1);
             }
 
             return Json(personList, JsonRequestBehavior.AllowGet);
@@ -155,7 +158,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pacjent pacjent = db.Pacjent.Find(id);
+            Pacjent pacjent = this.pacjentsService.About(id);
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -211,9 +214,7 @@ namespace GabinetStomatologiczny.Controllers
         {
             if (ModelState.IsValid)
             {
-                pacjent.DataRejestracji = DateTime.Now;
-                db.Entry(pacjent).State = EntityState.Modified;
-                db.SaveChanges();
+                this.pacjentsService.Edit(pacjent);
                 return RedirectToAction("Index");
             }
             return View(pacjent);

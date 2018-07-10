@@ -13,7 +13,13 @@ namespace GabinetStomatologiczny.Services
 
     public interface IPacjentsService
     {
+
+        IEnumerable<Pacjent> getAllPacjents();
         IEnumerable<IGrouping<DateTime, Pacjent>> Statistic();
+        Pacjent About(int? id);
+
+        void Edit(Pacjent pacjent);
+        
     }
 
 
@@ -29,6 +35,23 @@ namespace GabinetStomatologiczny.Services
         public IEnumerable<IGrouping<DateTime, Pacjent>> Statistic()
         {
             return this._db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date); 
+        }
+
+        public Pacjent About(int? id)
+        {
+            return this._db.Pacjent.Find(id);
+        }
+
+        public IEnumerable<Pacjent> getAllPacjents()
+        {
+            return this._db.Pacjent.ToList();
+        }
+
+        public void Edit(Pacjent pacjent)
+        {
+            pacjent.DataRejestracji = DateTime.Now;
+            this._db.Entry(pacjent).State = EntityState.Modified;
+            this._db.SaveChanges();
         }
     }
 }

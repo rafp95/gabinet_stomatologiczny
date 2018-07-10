@@ -12,7 +12,7 @@ namespace Gabinet.Tests
 
         public AutoMapperTest()
         {
-            AutoMapper.Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperWizyta<Wizyta, Wizyta>>());
+            AutoMapper.Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperWizyta>());
             Mapper.Configuration.AssertConfigurationIsValid();
         }
 

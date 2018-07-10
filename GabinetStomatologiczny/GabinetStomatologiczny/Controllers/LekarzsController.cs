@@ -14,7 +14,7 @@ using GabinetStomatologiczny.Utils;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    public class LekarzController : BaseController
+    public class LekarzsController : BaseController
     {
 
         // GET: Lekarzs

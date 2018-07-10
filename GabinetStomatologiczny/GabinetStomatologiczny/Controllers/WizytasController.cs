@@ -16,7 +16,7 @@ using static GabinetStomatologiczny.Startup;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    public class WizytaController : BaseController
+    public class WizytasController : BaseController
     {
 
         // GET: Wizytas

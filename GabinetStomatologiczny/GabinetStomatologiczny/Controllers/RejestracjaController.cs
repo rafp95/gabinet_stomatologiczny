@@ -14,11 +14,16 @@ using System.Web.Mvc;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    [Authorize(Roles = "Administrator,Lekarz")]
+    [Authorize(Roles = "Administrator,Lekarz,Pacjent")]
     public class RejestracjaController : BaseController
     {
         private Osoba os = new Osoba();
         private SendEmail se = new SendEmail();
+
+        public RejestracjaController(GabinetContext db) : base(db)
+        {
+
+        }
 
         // GET: Rejestracja
         public ActionResult Index()

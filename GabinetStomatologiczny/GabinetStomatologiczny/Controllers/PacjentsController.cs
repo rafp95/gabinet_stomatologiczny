@@ -17,6 +17,11 @@ namespace GabinetStomatologiczny.Controllers
     public class PacjentsController : BaseController
     {
 
+        public PacjentsController(GabinetContext db) : base(db)
+        {
+
+        }
+
         // GET: Pacjents
         public ActionResult Index(string sortOrder,string currentFilter,string searchString,int? page)
         {

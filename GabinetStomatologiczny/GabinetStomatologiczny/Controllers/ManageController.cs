@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.Utils;
+using GabinetStomatologiczny.DAL;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -17,11 +18,11 @@ namespace GabinetStomatologiczny.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
+        public ManageController(GabinetContext db) : base(db)
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, GabinetContext db) : base(db)
         {
             UserManager = userManager;
             SignInManager = signInManager;

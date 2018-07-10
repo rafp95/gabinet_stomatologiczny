@@ -18,6 +18,10 @@ namespace GabinetStomatologiczny.Controllers
 {
     public class WizytasController : BaseController
     {
+        public WizytasController(GabinetContext db) : base(db)
+        {
+
+        }
 
         // GET: Wizytas
         public ActionResult Index()

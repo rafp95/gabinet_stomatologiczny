@@ -29,6 +29,10 @@ namespace GabinetStomatologiczny.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
 
     }
 }

@@ -15,9 +15,9 @@ namespace GabinetStomatologiczny.Controllers
     {
         private readonly IPacjentsService pacjentsService = null;
 
-        public HomeController() : base()
+        public HomeController(IPacjentsService pacjentsService)
         {
-            this.pacjentsService = new PacjentsService(this.db);
+            this.pacjentsService = pacjentsService;
         }
         
         public ActionResult Index()

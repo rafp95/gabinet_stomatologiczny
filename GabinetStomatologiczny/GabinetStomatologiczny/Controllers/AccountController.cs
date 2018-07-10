@@ -14,6 +14,7 @@ using GabinetStomatologiczny.Utils;
 using AutoMapper;
 using GabinetStomatologiczny.Controllers;
 using static GabinetStomatologiczny.Startup;
+using GabinetStomatologiczny.DAL;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -24,12 +25,12 @@ namespace GabinetStomatologiczny.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public AccountController(GabinetContext db):base(db)
         {
             
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, GabinetContext db) : base(db)
         {
             UserManager = userManager;
             SignInManager = signInManager;

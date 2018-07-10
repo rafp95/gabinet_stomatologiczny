@@ -15,6 +15,9 @@ namespace GabinetStomatologiczny.Controllers
 {
     public class ZabiegsController : BaseController
     {
+        public ZabiegsController(GabinetContext db) : base(db)
+        {
+        }
 
         // GET: Zabiegs
         public ActionResult Index()

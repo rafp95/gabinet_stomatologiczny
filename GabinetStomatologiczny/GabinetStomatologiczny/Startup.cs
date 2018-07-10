@@ -48,7 +48,7 @@ namespace GabinetStomatologiczny
             // Create the DB context for the IDENTITY database
             //====================================================
             // Add a database context - this can be instantiated with no parameters
-            services.AddTransient(typeof(ApplicationDbContext));
+            services.AddTransient(typeof(GabinetContext));
 
             //====================================================
             // ApplicationUserManager

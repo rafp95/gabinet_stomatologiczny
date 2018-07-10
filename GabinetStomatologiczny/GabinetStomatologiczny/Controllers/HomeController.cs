@@ -27,8 +27,7 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult About()
         {
-            var about = Mapper.Map<IEnumerable<LiczbaPacjentow>>(this.pacjentsService.Statistic().
-                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).ToList());
+            var about = pacjentsService.Statistic().Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).ToList();
             return View(about);
         }
 

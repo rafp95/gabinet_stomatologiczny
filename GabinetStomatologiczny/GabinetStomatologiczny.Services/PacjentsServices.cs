@@ -34,7 +34,7 @@ namespace GabinetStomatologiczny.Services
 
         public IEnumerable<IGrouping<DateTime, Pacjent>> Statistic()
         {
-            return this._db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date); 
+            return this._db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date);
         }
 
         public Pacjent About(int? id)

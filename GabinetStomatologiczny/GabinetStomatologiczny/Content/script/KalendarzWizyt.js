@@ -144,7 +144,9 @@
                     end: end,
                 };
                 var dataStart = new Date(moment(start, "DD-MM-YYYY HH:mm"));
-                if (dataStart >= now) {
+                if (dataStart >= now
+                    || start.format("DD-MM-YYYY")
+                    === now.format("DD-MM-YYYY")) {
                     openAddEditForm();
                 } else {
                     $("#myModalError").modal();

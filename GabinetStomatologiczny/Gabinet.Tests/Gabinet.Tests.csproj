@@ -97,6 +97,10 @@
       <Project>{db0427cd-f52c-47bb-b9c6-54b5c3f9ab71}</Project>
       <Name>GabinetStomatologiczny.DAO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GabinetStomatologiczny.Services\GabinetStomatologiczny.Services.csproj">
+      <Project>{904100E3-8B99-45A4-9D15-64E2ED0F829E}</Project>
+      <Name>GabinetStomatologiczny.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GabinetStomatologiczny.Utils\GabinetStomatologiczny.Utils.csproj">
       <Project>{ded59786-9561-4530-943d-114c7446f95d}</Project>
       <Name>GabinetStomatologiczny.Utils</Name>

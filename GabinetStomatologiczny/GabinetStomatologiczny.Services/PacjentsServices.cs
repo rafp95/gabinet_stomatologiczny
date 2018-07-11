@@ -17,8 +17,10 @@ namespace GabinetStomatologiczny.Services
         IEnumerable<Pacjent> getAllPacjents();
         IEnumerable<IGrouping<DateTime, Pacjent>> Statistic();
         Pacjent About(int? id);
-
         void Edit(Pacjent pacjent);
+        Pacjent Find(int? id);
+        void Remove(Pacjent pacjent);
+        Pacjent CreatePacjnt(Pacjent pacjent);
         
     }
 
@@ -52,6 +54,28 @@ namespace GabinetStomatologiczny.Services
             pacjent.DataRejestracji = DateTime.Now;
             this._db.Entry(pacjent).State = EntityState.Modified;
             this._db.SaveChanges();
+        }
+
+        public void Remove(Pacjent pacjent)
+        {
+            if(pacjent != null)
+            {
+                this._db.Pacjent.Remove(pacjent);
+                this._db.SaveChanges();
+            }
+            
+        }
+
+        public Pacjent Find(int? id)
+        {
+            return this._db.Pacjent.Find(id);
+        }
+
+        public Pacjent CreatePacjnt(Pacjent pacjent)
+        {
+            Pacjent p = this._db.Pacjent.Add(pacjent);
+            this._db.SaveChanges();
+            return p;
         }
     }
 }

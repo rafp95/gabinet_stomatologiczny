@@ -74,8 +74,8 @@
                     </td>
                     <td>
                         @if ((User.Identity.IsAuthenticated && User.Identity.GetUserName() == item.Email)
-                        || User.IsInRole("Administrator")
-                        || User.IsInRole("Lekarz"))
+                || User.IsInRole("Administrator")
+                || User.IsInRole("Lekarz"))
                         {
                             @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit" }) <span> | </span>
                             @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash" }) <span> | </span>
@@ -91,12 +91,23 @@
 
         <br />
 
-        Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-    </div>
+       <div id="pagination-postion">
+           <div class="count">
+               Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount 
+           </div>
+           @Html.PagedListPager(Model, page => Url.Action("Index",
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+       </div>
+     
+        <div class="text-center">
+            Elementów : @(Model.Count * Model.PageNumber) z @Model.TotalItemCount
+        </div>
+
+     </div>
 }
 else
 {
     <div> Nic nie znaleziono</div>
 }
+
+<link href="~/Content/PginationPosition.css" rel="stylesheet" />

@@ -182,8 +182,7 @@ namespace GabinetStomatologiczny.Controllers
             if (ModelState.IsValid)
             {
                 pacjent.DataRejestracji = DateTime.Now;
-                db.Pacjent.Add(pacjent);
-                db.SaveChanges();
+                this.pacjentsService.CreatePacjnt(pacjent);
                 return RedirectToAction("Index");
             }
 
@@ -197,7 +196,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pacjent pacjent = db.Pacjent.Find(id);
+            Pacjent pacjent = this.pacjentsService.Find(id);
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -227,7 +226,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pacjent pacjent = db.Pacjent.Find(id);
+            Pacjent pacjent = this.pacjentsService.Find(id);
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -240,19 +239,20 @@ namespace GabinetStomatologiczny.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pacjent pacjent = db.Pacjent.Find(id);
-            db.Pacjent.Remove(pacjent);
-            db.SaveChanges();
+            Pacjent pacjent = this.pacjentsService.Find(id);
+            this.pacjentsService.Remove(pacjent);
             return RedirectToAction("Index");
         }
 
+        /*
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
             base.Dispose(disposing);
         }
+        */
     }
 }

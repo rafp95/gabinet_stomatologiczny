@@ -103,7 +103,7 @@
 
     //Generate calandar
     function GenerateCalender(events) {
-
+        let widok = 'month';
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
             theme: true,
@@ -115,7 +115,12 @@
             timeFormat: 'HH:mm',
             minTime: "08:00:00",
             maxTime: "17:00:00",
-            defaultView: "month",
+            defaultView: widok,
+            selectHelper: true,
+            success: function(events)
+            {
+                $('#calendar').fullCalendar('refetchEvents');
+            },
             header: {
                 left: 'prev,next,today',
                 center: 'title',
@@ -172,7 +177,7 @@
                     placement: 'top',
                     container: 'body'
                 });
-            },
+            }
         })
     }
     //End generate calendar
@@ -242,6 +247,15 @@
         var maxTime = moment("17:00", 'HH:mm').format("HH:mm");
         var clickTime = moment($("#txtStart").val().trim(), 'DD.MM.YYYY HH:mm');
         var minTime = moment("8:00", 'HH:mm').format("HH:mm");
+
+        for (var i = 0; i < events.length; i++) {
+            if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
+                $("#txtStart").css('border', '1px solid red').parent().
+               after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
+                return;
+            }
+            
+        }
 
         //Check date and time
         if (new Date(now) <= new Date(clickTime)

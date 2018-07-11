@@ -221,7 +221,7 @@
     //Date time picker
     $('#dtp1,#dtp2').datetimepicker({
         stepping: '30',
-        enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16],
         minDate: new Date(),
         daysOfWeekDisabled: [0, 6]
     });
@@ -265,7 +265,7 @@
             errorTime.html("");
         } else {
             $("#txtStart").css('border', '1px solid red').parent().
-               after("<div class='errorTime'>Wybrany czas już był</div>").next().css("color", "red");
+               after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
             return;
         }
 

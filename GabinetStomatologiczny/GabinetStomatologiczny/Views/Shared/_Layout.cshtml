@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/Wlidacja.css" rel="stylesheet" />
+    <link href="~/Content/ToTopPage.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -56,9 +57,16 @@
         </footer>
     </div>
 
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button"
+       title="Do góry" data-toggle="tooltip" data-placement="left">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendarjs")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Content/script/GoToTop.js"></script>
 </body>
 </html>

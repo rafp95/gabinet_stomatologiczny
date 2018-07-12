@@ -37,6 +37,14 @@
                 @Html.DisplayNameFor(model => model.CenaZabiegu)
             </th>
         </tr>
+        @if(Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() == 0 && User.IsInRole("Pacjent"))
+        {
+            <tr>
+                <td colspan="3" style="text-align:center;">
+                    Nie masz zdefiniowanych zabiegów
+                </td>
+            </tr>
+        }
         @foreach (var item in Model)
         {
             if (User.IsInRole("Administrator")

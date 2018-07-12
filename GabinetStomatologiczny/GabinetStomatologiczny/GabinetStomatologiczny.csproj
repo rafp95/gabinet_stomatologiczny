@@ -576,6 +576,7 @@
     <Content Include="Content\LoginInput.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PginationPosition.css" />
+    <Content Include="Content\script\GoToTop.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <Content Include="Content\script\WyszykiwanieAjaxLekarz.js" />
@@ -629,6 +630,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\ToTopPage.css" />
     <Content Include="Content\Wizyta.css" />
     <Content Include="Content\Wlidacja.css" />
     <Content Include="Content\Wyszukiwarka.css" />

@@ -46,7 +46,6 @@
                     @Html.ActionLink("↓", "Index", new { sortOrder = "datarejestracji_asc", currentFilter = ViewBag.CurrentFilter })
                 </td>
             </tr>
-
             @foreach (var item in Model)
             {
 
@@ -100,7 +99,7 @@
        </div>
      
         <div class="text-center">
-            Elementów : @(Model.Count * Model.PageNumber) z @Model.TotalItemCount
+            Wszystkich: @Model.TotalItemCount
         </div>
 
      </div>

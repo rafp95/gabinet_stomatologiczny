@@ -70,3 +70,26 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
         font-size: 10px;
     }
 }
+
+.modal{
+    overflow: hidden;
+}
+
+/*Loading*/
+
+div.loader {
+  height: 18px;
+  width: 18px;
+  animation: rotate 0.8s infinite linear;
+  border: 2px solid white;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+
+
+@keyframes rotate {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
+
+/*End loading*/

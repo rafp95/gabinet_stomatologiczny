@@ -194,7 +194,7 @@
     })
 
     $("#kasujElement").click(function () {
-        buttonInfo($(this), "Kasowanie......");
+        buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie ...</div> <div class='loader' style='float:left;'></div>");
 
         if (selectedEvent != null) {
             $.ajax({
@@ -272,7 +272,7 @@
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
         }
-        buttonInfo($(this), "Zapisywanie.......");
+        buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie ...</div> <div class='loader' style='float:left;'></div>");
         SaveEvent(data);
         // call function for submit data to the server
     })
@@ -287,7 +287,7 @@
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
                     $('#myModalSave').modal('hide');
-                    $("h2#ladowanie").html("Dodawanie ......");
+                    $("h2#ladowanie").html("Dodawanie ......" );
                 }
             },
             error: function () {
@@ -298,7 +298,7 @@
 
     //Change text in button
     function buttonInfo(button, text) {
-        button.text(text);
+        button.html(text);
     }
 
     //Validate massage
@@ -307,6 +307,8 @@
         $("div.errorTime").html("");
         $("#txtStart").css('border', '');
     }
+
+
 });
 
 function pokazAktualnyCzas() {

@@ -106,6 +106,7 @@
         let widok = 'month';
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
+            groupByResource: true,
             theme: true,
             slotMinutes: 30,
             slotEventOverlap: false,
@@ -116,7 +117,6 @@
             minTime: "08:00:00",
             maxTime: "17:00:00",
             defaultView: widok,
-            selectHelper: true,
             success: function(events)
             {
                 $('#calendar').fullCalendar('refetchEvents');
@@ -124,7 +124,13 @@
             header: {
                 left: 'prev,next,today',
                 center: 'title',
-                right: 'month,agenda,list'
+                right: 'month,agenda,agendaFourDay'
+            },
+            views: {
+                agendaFourDay: {
+                    type: 'agenda',
+                    duration: { days: 4 }
+                }
             },
             eventLimit: 3,
             eventColor: '#378006',

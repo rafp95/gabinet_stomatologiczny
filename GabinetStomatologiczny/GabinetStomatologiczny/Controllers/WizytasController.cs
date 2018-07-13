@@ -75,6 +75,7 @@ namespace GabinetStomatologiczny.Controllers
                     w.LekarzID = v.LekarzID;
                     w.PacjentID = v.PacjentID;
                     var m = Mapper.Map<Wizyta, Wizyta>(w,v);
+                    m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
                     db.Entry(m).State = EntityState.Modified;
                 }
 

@@ -101,10 +101,8 @@ namespace GabinetStomatologiczny.Controllers
                     }
             }
 
-
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-
 
            if (Request.IsAjaxRequest())
             {
@@ -216,7 +214,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekarz lekarz = db.Lekarz.Find(id);
+            Lekarz lekarz = this._lekarzservice.Find(id);
             if (lekarz == null)
             {
                 return HttpNotFound();
@@ -239,8 +237,7 @@ namespace GabinetStomatologiczny.Controllers
                 string path = Request.MapPath("~/Obrazki/" + lekarz.Zdjecie);
                 System.IO.File.Delete(path);
             }
-            db.Lekarz.Remove(lekarz);
-            db.SaveChanges();
+            this._lekarzservice.Remove(lekarz);
             return RedirectToAction("Index");
         }
 

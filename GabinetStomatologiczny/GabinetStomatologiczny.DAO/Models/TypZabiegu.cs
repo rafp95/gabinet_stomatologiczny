@@ -7,7 +7,7 @@ namespace GabinetStomatologiczny.DAO.Models
 {
     public enum TypZabiegu
     {
-        Przegląd_Stomatologiczny,
-        Konsultacja_Stomatologiczna
+        Przegląd,
+        Konsultacja
     }
 }

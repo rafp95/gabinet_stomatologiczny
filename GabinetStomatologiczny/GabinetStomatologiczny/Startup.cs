@@ -85,7 +85,7 @@ namespace GabinetStomatologiczny
             || t.Name.EndsWith("Controller", StringComparison.OrdinalIgnoreCase)));
     
             services.AddTransient<IPacjentsService, PacjentsService>();
-
+            services.AddTransient<ILekarzService, LekarzsService>();
         }
     }
 

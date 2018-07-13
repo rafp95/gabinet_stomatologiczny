@@ -13,6 +13,7 @@ using GabinetStomatologiczny.Utils;
 
 namespace GabinetStomatologiczny.Controllers
 {
+    [Authorize]
     public class ZabiegsController : BaseController
     {
         public ZabiegsController(GabinetContext db) : base(db)

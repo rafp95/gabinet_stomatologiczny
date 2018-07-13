@@ -15,6 +15,7 @@ using GabinetStomatologiczny.Services;
 
 namespace GabinetStomatologiczny.Controllers
 {
+    [Authorize]
     public class LekarzsController : BaseController
     {
 

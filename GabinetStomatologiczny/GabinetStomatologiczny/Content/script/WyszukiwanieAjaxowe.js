@@ -17,7 +17,9 @@
 });
 
 function tooltip() {
-    $("[data-toggle=tooltip]").tooltip();
+    $("[data-toggle=tooltip]").tooltip({
+        placment: 'top'
+    });
 }
 
 function szukajPacjenta(pom) {

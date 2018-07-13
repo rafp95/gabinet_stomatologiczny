@@ -233,7 +233,6 @@
         if (selectedEvent != null) {
             $('#hdEventID').val(selectedEvent.eventID);
             $('#txtStart').val(selectedEvent.start.format('DD.MM.YYYY HH:mm'));
-            $('#txtDescription').val(selectedEvent.title);
         }
         $('#myModal').modal('hide');
         $('#myModalSave').modal();
@@ -269,21 +268,9 @@
             return;
         }
 
-        if ($("#txtDescription").val().trim() == "") {
-            error.html("");
-            $("#txtDescription").css('border', '1px solid red').
-                after("<div class='error'>Pole wymagane</div>").next().css("color", "red");
-            return;
-        } else {
-            $("#txtDescription").css('border', '');
-            error.html("");
-        }
-
-
         var data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
-            Tytul: $("#txtDescription").val().trim()
         }
         buttonInfo($(this), "Zapisywanie.......");
         SaveEvent(data);
@@ -317,7 +304,6 @@
     //Validate massage
     function ErorMessage() {
         $("div.error").html("");
-        $("#txtDescription").css('border', '');
         $("div.errorTime").html("");
         $("#txtStart").css('border', '');
     }

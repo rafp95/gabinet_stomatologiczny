@@ -4,7 +4,7 @@
 
 div#aktualnyCzas {
     font-size: 18px;
-    margin-bottom: 10px;
+    padding: 10px;
 }
 
 table tbody tr {

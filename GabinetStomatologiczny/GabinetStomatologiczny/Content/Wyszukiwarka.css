@@ -1,19 +1,19 @@
 ﻿/*wyszukaj*/
 
-form#wyslij{
+form#wyslij {
     position: relative;
 }
 
-span.kasujText{
+span.kasujText {
     position: absolute;
     left: 250px;
     top: 7px;
     display: none;
 }
 
-span.kasujText:hover{
-    cursor: pointer;
-}
+    span.kasujText:hover {
+        cursor: pointer;
+    }
 
 form.wyszukiwarka {
     margin-bottom: 20px;
@@ -57,19 +57,30 @@ p a.dodajNowegoPacjenta {
 
 
 @media only screen and (max-width: 500px) {
+
+    form.wyszukiwarka input[type=text] {
+        padding: 8px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 100%;
+        background: #f1f1f1;
+    }
+
+
     form.wyszukiwarka button {
         width: 40%;
     }
 
-    span.kasujText{
-        left: 50%;
+    span.kasujText {
+        left: 225px;
         top: 7px;
         display: none;
     }
 }
 
 @media only screen (min-width: 501px) and (max-width: 1200px) {
-    span.kasujText{
+    span.kasujText {
         left: 255px;
         top: 7px;
         display: none;

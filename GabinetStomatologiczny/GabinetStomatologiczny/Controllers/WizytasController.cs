@@ -52,8 +52,10 @@ namespace GabinetStomatologiczny.Controllers
         public JsonResult Sugestions(string term)
         {
             var events = db.Wizyta.ToList().
-                Where(p => p.Tytul.ToLower().Contains(term.ToLower()))
-                .Take(5).Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
+                Where(p => p.Tytul.ToLower().
+                Contains(term.ToLower()) && p.Poczatek >= DateTime.Now)
+               .Take(5).OrderBy(p =>p.Poczatek).
+                Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
 
             if (events.Count() == 0)
             {
@@ -84,11 +86,11 @@ namespace GabinetStomatologiczny.Controllers
                 w.PacjentID = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.ID).FirstOrDefault();
                 w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
                 var m = Mapper.Map<Wizyta, Wizyta>(w);
+                m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
                 db.Wizyta.Add(m);
                 
             }
 
-            db.Database.Log = message => Trace.WriteLine(message);
             db.SaveChanges();
             status = true;
             return new JsonResult { Data = new { status } };

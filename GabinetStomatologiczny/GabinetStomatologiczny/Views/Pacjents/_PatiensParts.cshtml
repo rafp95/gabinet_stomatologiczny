@@ -18,32 +18,46 @@
             </tr>
             <tr>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "name_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter }, 
+                    new { Class = "Action", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "name_asc", currentFilter = ViewBag.CurrentFilter },
+                    new {Class="Action",title="Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "surname_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "surname_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "surname_desc", currentFilter = ViewBag.CurrentFilter }
+                    ,new {Class="Akcja",title="Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "surname_asc", currentFilter = ViewBag.CurrentFilter }
+                    ,new {Class="Akcja",title="Malejąco"})
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "pesel_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "pesel_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "pesel_desc", currentFilter = ViewBag.CurrentFilter }
+                    ,new {Class="Akcja",title="Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "pesel_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "plec_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "plec_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "plec_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "plec_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "dataurodzenia_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "dataurodzenia_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "dataurodzenia_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "dataurodzenia_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "nrtel_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "nrtel_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "nrtel_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "nrtel_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
                 <td colspan="2">
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "datarejestracji_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "datarejestracji_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "datarejestracji_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "datarejestracji_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
             </tr>
             @foreach (var item in Model)
@@ -76,11 +90,11 @@
                 || User.IsInRole("Administrator")
                 || User.IsInRole("Lekarz"))
                         {
-                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit" }) <span> | </span>
-                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash" }) <span> | </span>
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title = "Edycja" }) <span> | </span>
+                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title = "Kasuj" }) <span> | </span>
                         }
 
-                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-align-justify" })
+                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-align-justify", title="Więcej" })
 
                     </td>
                 </tr>

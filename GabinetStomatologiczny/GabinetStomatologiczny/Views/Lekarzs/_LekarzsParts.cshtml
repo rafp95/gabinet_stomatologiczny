@@ -29,21 +29,29 @@
 
             <tr>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "name_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter }
+                    ,new {Class="Akcja",title="Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "name_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "surname_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "surname_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "surname_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "surname_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
                 <td></td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "nrtel_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "nrtel_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "nrtel_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "nrtel_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
                 <td colspan="2">
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "email_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "email_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "email_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "email_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { Class = "Akcja", title = "Malejąco" })
                 </td>
 
                 @foreach (var item in Model)
@@ -74,13 +82,13 @@
                     </td>
                     <td>
                         @if ((User.Identity.GetUserName() == item.Email && User.Identity.IsAuthenticated)
-                    || User.IsInRole("Administrator"))
+                        || User.IsInRole("Administrator"))
                         {
-                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit" }) <span> | </span>
-                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash" }) <span> | </span>
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title="Edycja" }) <span> | </span>
+                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title="Kasuj" }) <span> | </span>
                         }
 
-                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-align-justify" })
+                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-align-justify", title="Więcej" })
 
                     </td>
 
@@ -101,7 +109,7 @@
             </div>
 
             <div class="text-center">
-               Wszystkich: @Model.TotalItemCount
+                Wszystkich: @Model.TotalItemCount
             </div>
 
         </div>

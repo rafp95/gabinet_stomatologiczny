@@ -81,7 +81,7 @@
             type: "GET",
             url: "/Wizytas/GetEvents",
             success: function (data) {
-                $("h2#ladowanie").html("");
+                $("div.loader").html("");
                 $.each(data, function (i, v) {
                     events.push({
                         pacjentID: v.PacjentID,
@@ -129,7 +129,8 @@
             views: {
                 agendaFourDay: {
                     type: 'agenda',
-                    duration: { days: 4 }
+                    dayCount: 4,
+                    buttonText: '4 dni'
                 }
             },
             eventLimit: 3,
@@ -200,7 +201,7 @@
     })
 
     $("#kasujElement").click(function () {
-        buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie ...</div> <div class='loader' style='float:left;'></div>");
+        buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie </div> <div class='loader' style='float:left;'></div>");
 
         if (selectedEvent != null) {
             $.ajax({
@@ -212,7 +213,6 @@
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
                         $('#myModal').modal('hide');
-                        $("h2#ladowanie").html("Kasowanie ......");
                     }
                 },
                 error: function () {
@@ -278,7 +278,7 @@
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
         }
-        buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie ...</div> <div class='loader' style='float:left;'></div>");
+        buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie </div> <div class='loader' style='float:left;'></div>");
         SaveEvent(data);
         // call function for submit data to the server
     })
@@ -293,7 +293,6 @@
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
                     $('#myModalSave').modal('hide');
-                    $("h2#ladowanie").html("Dodawanie ......" );
                 }
             },
             error: function () {

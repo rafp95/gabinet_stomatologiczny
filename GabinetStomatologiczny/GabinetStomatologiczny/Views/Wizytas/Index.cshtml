@@ -9,7 +9,9 @@
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link href="~/Content/Wizyta.css" rel="stylesheet" />
 <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
-<h2 id="ladowanie">Ładowanie kalendarza .....</h2>
+
+<div class="ladowanie"></div>
+
 <!--Search form-->
 <div class="text-right" id="aktualnyCzas"></div>
 
@@ -37,8 +39,8 @@
             </div>
             <div class="modal-body">
                 @if (User.IsInRole("Pacjent")
-            || User.IsInRole("Lekarz")
-            || User.IsInRole("Administrator"))
+    || User.IsInRole("Lekarz")
+    || User.IsInRole("Administrator"))
                 {
                     {
                         <button id="btnDelete" class="btn btn-default btn-sm pull-right">
@@ -59,8 +61,8 @@
 </div>
 <!--End about-->
 @if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
-                                                    || User.IsInRole("Administrator")
-                                                    || User.IsInRole("Lekarz"))
+                                                                            || User.IsInRole("Administrator")
+                                                                            || User.IsInRole("Lekarz"))
 {
     <!--Eror-->
     <div id="myModalError" class="modal fade" role="dialog">
@@ -120,15 +122,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            
+
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-                    <button type="button" id="btnSave" 
+                    <button type="button" id="btnSave"
                             class="btn btn-success float-right" data-loading-text="Zapisywanie...">
-                            Zapisz </button>
+                        Zapisz
+                    </button>
                 </div>
             </div>
         </div>

@@ -245,15 +245,5 @@ namespace GabinetStomatologiczny.Controllers
             return RedirectToAction("Index");
         }
 
-        /*
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                this.db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-        */
     }
 }

@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    let ladowanie = $("div.ladowanie");
+    ladowanie.css('display', 'block');
     //Czas
 
     pokazAktualnyCzas();
@@ -91,8 +93,8 @@
                         end: v.Koniec != null ? moment(v.Koniec) : null
                     });
                 })
-
                 GenerateCalender(events);
+                ladowanie.css('display', 'none');
             },
             error: function (error) {
                 alert('failed');

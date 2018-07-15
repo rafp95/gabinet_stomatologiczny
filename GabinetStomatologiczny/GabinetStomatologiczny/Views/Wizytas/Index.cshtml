@@ -39,8 +39,8 @@
             </div>
             <div class="modal-body">
                 @if (User.IsInRole("Pacjent")
-    || User.IsInRole("Lekarz")
-    || User.IsInRole("Administrator"))
+                    || User.IsInRole("Lekarz")
+                    || User.IsInRole("Administrator"))
                 {
                     {
                         <button id="btnDelete" class="btn btn-default btn-sm pull-right">
@@ -61,8 +61,8 @@
 </div>
 <!--End about-->
 @if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
-                                                                            || User.IsInRole("Administrator")
-                                                                            || User.IsInRole("Lekarz"))
+     || User.IsInRole("Administrator")
+     || User.IsInRole("Lekarz"))
 {
     <!--Eror-->
     <div id="myModalError" class="modal fade" role="dialog">

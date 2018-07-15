@@ -28,17 +28,24 @@ textarea {
 }
 
 
-/*centrowanie formularza*/
+/*center form*/
 
-div.wysrodkowanieLoginForm{
+div.wysrodkowanieLoginForm {
     width: 100%;
     margin: 0;
-    margin-top: 5%;
-    text-align: center;
+    margin-top: 8%;
+    text-align: left;
 }
 
-@media only screen and (max-width: 991px){
-    div.wysrodkowanieLoginForm form input,  div.wysrodkowanieLoginForm button {
-        margin: auto;
+@media only screen and (max-width: 991px) {
+    div.wysrodkowanieLoginForm form input, div.wysrodkowanieLoginForm button {
+        margin: 0 auto;
+    }
+
+    div.wysrodkowanieLoginForm {
+        margin-top: 5%;
+        text-align: center;
     }
 }
+
+/*end center form*/

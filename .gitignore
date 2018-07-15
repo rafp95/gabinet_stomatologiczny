@@ -30,6 +30,7 @@ fonts/
 TestResults/
 App_Data/
 Log/
+Migrations/
 ###################
 # Web publish log #
 ###################

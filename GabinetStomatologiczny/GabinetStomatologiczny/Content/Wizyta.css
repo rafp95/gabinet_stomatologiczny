@@ -1,4 +1,5 @@
 ﻿div#aktualnyCzas::before {
+    font-weight: bold;
     content: "Godzina: ";
 }
 

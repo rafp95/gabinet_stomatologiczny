@@ -579,7 +579,6 @@
     <Content Include="Content\script\GoToTop.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />
     <Content Include="Content\script\SilaHasla.js" />
-    <Content Include="Content\script\WyszykiwanieAjaxLekarz.js" />
     <Content Include="Content\SilaHasla.css" />
     <Content Include="Content\TableStyle.css" />
     <Content Include="Content\Galeria.css" />

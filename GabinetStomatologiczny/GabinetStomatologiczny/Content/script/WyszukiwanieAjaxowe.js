@@ -4,15 +4,33 @@
 
     tooltip();
 
+    //Pacjent
     var szukajL = $(".szukajPacjentAjax");
     szukajL.on('click', function () {
         var pom = $("#searchQuery").val();
-        szukajPacjenta(pom);
+        SzukajDane(pom, "Pacjents/Index/"); 
     });
 
-    $("input[type=text]").bind('click keyup', function (event) {
-        szukajPacjenta("");
+
+    $(".pacjent-query").bind('click keyup', function (event) {
+        SzukajDane("", "Pacjents/Index/");
     });
+
+    //End pacjent
+
+    //Lekarz
+    var szukaj = $(".szukajLekarzaAjax").on('click', function () {
+        var pom = $("#searchQuery").val();
+        SzukajDane(pom,"Lekarzs/Index/");
+    });
+
+    $(".lekarz-query").bind('click keyup', function (event) {
+        SzukajDane("", "Lekarzs/Index/");
+    });
+
+    //end lekarz
+
+
 
     czyscText();
 
@@ -23,10 +41,10 @@
         });
     }
 
-    function szukajPacjenta(pom) {
+    function SzukajDane(pom,akcja) {
         ladowanie.css("display", "block");
         var searchQuery = $("#searchQuery").val();
-        var setData = $(".select-patients");
+        var setData = $(".data-select");
         var param = getUrlParams("sortOrder");
         var page = getUrlParams("page");
 
@@ -42,7 +60,7 @@
 
         $.ajax({
             type: "GET",
-            url: "Pacjents/Index/",
+            url: akcja,
             data: ({ "searchString": searchQuery, "sortOrder": param, "page": page }),
             success: function (data) {
                 setData.html(data);
@@ -69,10 +87,17 @@
     }
 
     function czyscText() {
-        var kasuj = $("span.kasujText");
+        var kasuj = $("span.kasujTextPacjent");
         kasuj.on("click", function () {
             $("#searchQuery").val("");
-            szukajPacjenta("");
+            SzukajDane("", "Pacjents/Index/");
+            kasuj.css("display", "none");
+        });
+
+        var kasuj = $("span.kasujTextLekarz");
+        kasuj.on("click", function () {
+            $("#searchQuery").val("");
+            SzukajDane("", "Lekarzs/Index/");
             kasuj.css("display", "none");
         });
 

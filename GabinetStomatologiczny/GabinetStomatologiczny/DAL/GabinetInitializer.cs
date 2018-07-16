@@ -48,7 +48,7 @@ namespace GabinetStomatologiczny.DAL
 
             //roleAdministrator2.Create(new IdentityRole("Pacjent"));
 
-            ////Pacjent
+            //Pacjent
 
             //var user2 = new ApplicationUser { UserName = "pacjent@o2.pl" };
             //var pass2 = "Patryk12345!";
@@ -57,7 +57,7 @@ namespace GabinetStomatologiczny.DAL
 
             //userAdministrator2.AddToRole(user2.Id, "Pacjent");
 
-            ////Lekarz
+            //Lekarz
 
             //var roleAdministrator3 = new RoleManager<IdentityRole>(
             //                 new RoleStore<IdentityRole>(

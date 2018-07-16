@@ -13,7 +13,7 @@ namespace GabinetStomatologiczny.DAL
     {
 
         public GabinetContext()
-            :base("Gabinet Stomatologiczny")
+            :base("DefaultConnection")
         {
             this.Configuration.ProxyCreationEnabled = false;
         }

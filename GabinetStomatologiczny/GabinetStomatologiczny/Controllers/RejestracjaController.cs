@@ -2,6 +2,7 @@
 using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.Services;
 using GabinetStomatologiczny.Utils;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -14,11 +15,21 @@ using System.Web.Mvc;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    [Authorize(Roles = "Administrator,Lekarz,Pacjent")]
+    [Authorize(Roles = "Administrator,Lekarz")]
     public class RejestracjaController : BaseController
     {
-        private Osoba os = new Osoba();
-        private SendEmail se = new SendEmail();
+        private readonly GabinetContext db;
+        private readonly ISendEmailService se;
+        private readonly IPacjentsService ps;
+        private readonly ILekarzService ls;
+
+        public RejestracjaController(ISendEmailService se,IPacjentsService ps,ILekarzService ls,GabinetContext db)
+        {
+            this.se = se;
+            this.db = db;
+            this.ps = ps;
+            this.ls = ls;
+        }
 
         // GET: Rejestracja
         public ActionResult Index()
@@ -70,7 +81,7 @@ namespace GabinetStomatologiczny.Controllers
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
                                 db.Administrator.Add(admin);
                                 db.SaveChanges();
-                                return RedirectToAction("Index", "Rejestracja");
+                                break;
                             }
                         case TypPracownika.Lekarz:
                             {
@@ -79,9 +90,8 @@ namespace GabinetStomatologiczny.Controllers
                                 se.SendMail(o.Email, "Witaj, lekarz " +
                                     o.Imie, "Twoje dane do logowania to \n"
                                     + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                db.Lekarz.Add(lekarz);
-                                db.SaveChanges();
-                                return RedirectToAction("Index", "Rejestracja");
+                                this.ls.CreateLekarz(lekarz);
+                                break;
                             }
                         case TypPracownika.Pacjent:
                             {
@@ -90,11 +100,11 @@ namespace GabinetStomatologiczny.Controllers
                                 se.SendMail(o.Email, "Witaj, pacjencie " +
                                    o.Imie, "Twoje dane do logowania to \n "
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                db.Pacjent.Add(pacjent);
-                                db.SaveChanges();
-                                return RedirectToAction("Index", "Rejestracja");
+                                ps.CreatePacjnt(pacjent);
+                                break;
                             }
                     }
+                    return RedirectToAction("Index", "Rejestracja");
                 }
 
                 catch (InvalidOperationException)
@@ -102,6 +112,7 @@ namespace GabinetStomatologiczny.Controllers
                     ModelState.AddModelError("Email", "Podany email jest już zajęty");
                 }
             }
+            
             return View(o);
         }
     }

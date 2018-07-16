@@ -10,6 +10,9 @@ using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
 using AutoMapper;
 using Microsoft.AspNet.Identity.EntityFramework;
+using GabinetStomatologiczny.Services;
+using System.Globalization;
+using System.Threading;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -19,6 +22,21 @@ namespace GabinetStomatologiczny.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private SendEmail _sendEmial;
+
+        private SendEmail sendEmial
+        {
+            get
+            {
+                if(_sendEmial == null)
+                {
+                    this._sendEmial = new SendEmail();
+                }
+                return _sendEmial;
+            }
+        }
+
+
 
         public AccountController()
         {
@@ -222,7 +240,7 @@ namespace GabinetStomatologiczny.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                new SendEmail().SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
+                this.sendEmial.SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
@@ -265,7 +283,7 @@ namespace GabinetStomatologiczny.Controllers
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            
+
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
@@ -450,8 +468,15 @@ namespace GabinetStomatologiczny.Controllers
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
+            { 
+                if(error.Equals("Invalid token."))
+                {
+                    ModelState.AddModelError("Invalid token.", "Upewnij się czy wprowadzasz poprawny email bądź kod aktywacyjny został już użyty");
+                }else
+                {
+                    ModelState.AddModelError("", error);
+                }
+               
             }
         }
 

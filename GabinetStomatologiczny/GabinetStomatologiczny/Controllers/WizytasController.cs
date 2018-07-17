@@ -13,6 +13,7 @@ using GabinetStomatologiczny.Utils;
 using System.Diagnostics;
 using AutoMapper;
 using static GabinetStomatologiczny.Startup;
+using System.Threading.Tasks;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -31,22 +32,32 @@ namespace GabinetStomatologiczny.Controllers
             return View(wizyta.ToList());
         }
 
-        public JsonResult GetEvents(string searchQuery)
+        public async Task<JsonResult> GetEvents(string searchQuery)
         {
-            var events = db.Wizyta.ToList();
-            if (!User.Identity.IsAuthenticated)
-            {
-                foreach (var item in events)
-                {
-                    item.Tytul = "*";
-                }
-            }
+            var eventsQuery = db.Wizyta.AsQueryable();
+
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                events.Where(p => p.Tytul.Contains(searchQuery)).ToList();
+                eventsQuery = eventsQuery.Where(p => p.Tytul.Contains(searchQuery));
             }
-            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
+            var isLogedin = User.Identity.IsAuthenticated;
+
+            var events = await eventsQuery.Select(_ =>
+           new
+           {
+               _.Koniec,
+               _.Poczatek,
+               Tytul = isLogedin ? _.Tytul : "*",
+               p = isLogedin ? 
+                    new
+                        {
+                            _.Pacjent.NrTelefonu, _.Pacjent.Email
+                        }:
+                    null,
+           }).ToListAsync();
+
+            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public JsonResult Sugestions(string term)
@@ -54,10 +65,10 @@ namespace GabinetStomatologiczny.Controllers
             var events = db.Wizyta.ToList().
                 Where(p => p.Tytul.ToLower().
                 Contains(term.ToLower()) && p.Poczatek >= DateTime.Now)
-               .Take(5).OrderBy(p =>p.Poczatek).
+               .Take(5).OrderBy(p => p.Poczatek).
                 Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
 
-            events = events.Count() == 0 ? db.Wizyta.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events ;
+            events = events.Count() == 0 ? db.Wizyta.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }
@@ -66,31 +77,38 @@ namespace GabinetStomatologiczny.Controllers
         public JsonResult SaveEvent(Wizyta w)
         {
             var status = false;
-
-            if(w.ID > 0)
+            try
             {
-                var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
-                if(v != null)
+                if (w.ID > 0)
                 {
-                    w.LekarzID = v.LekarzID;
-                    w.PacjentID = v.PacjentID;
-                    var m = Mapper.Map<Wizyta, Wizyta>(w,v);
-                    m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
-                    db.Entry(m).State = EntityState.Modified;
-                }
+                    var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
+                    if (v != null)
+                    {
+                        w.LekarzID = v.LekarzID;
+                        w.PacjentID = v.PacjentID;
+                        var m = Mapper.Map<Wizyta, Wizyta>(w, v);
+                        m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                        db.Entry(m).State = EntityState.Modified;
+                    }
 
-            }else
+                }
+                else
+                {
+                    w.PacjentID = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.ID).FirstOrDefault();
+                    w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
+                    var m = Mapper.Map<Wizyta, Wizyta>(w);
+                    m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                    db.Wizyta.Add(m);
+
+                }
+                status = true;
+                db.SaveChanges();
+            }
+            catch (Exception)
             {
-                w.PacjentID = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.ID).FirstOrDefault();
-                w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
-                var m = Mapper.Map<Wizyta, Wizyta>(w);
-                m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
-                db.Wizyta.Add(m);
-                
+
             }
 
-            db.SaveChanges();
-            status = true;
             return new JsonResult { Data = new { status } };
         }
 
@@ -100,14 +118,14 @@ namespace GabinetStomatologiczny.Controllers
             var status = false;
 
             var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
-            if(v != null)
+            if (v != null)
             {
                 db.Wizyta.Remove(v);
                 db.SaveChanges();
                 status = true;
             }
 
-            return new JsonResult { Data = new {status = status} };
+            return new JsonResult { Data = new { status = status } };
         }
 
 

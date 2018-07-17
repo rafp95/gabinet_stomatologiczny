@@ -12,6 +12,7 @@ using PagedList;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
 using GabinetStomatologiczny.Services;
+using System.Threading.Tasks;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -21,23 +22,24 @@ namespace GabinetStomatologiczny.Controllers
 
         private readonly IPacjentsService pacjentsService = null;
 
-        public PacjentsController(IPacjentsService pacjentsService)
+        public PacjentsController(IPacjentsService pacjentsService,GabinetContext db):base(db)
         {
             this.pacjentsService = pacjentsService;
         }
 
         // GET: Pacjents
-        public ActionResult Index(string sortOrder,string currentFilter,string searchString,int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
             if (!string.IsNullOrEmpty(searchString))
             {
                 page = 1;
-            }else
+            }
+            else
             {
                 searchString = currentFilter;
             }
-   
+
 
             ViewBag.CurrentFilter = searchString;
             var pacjent = this.pacjentsService.getAllPacjents();
@@ -45,89 +47,93 @@ namespace GabinetStomatologiczny.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 pacjent = pacjent.Where(s => (s.Imie + " " + s.Nazwisko + " " + s.NrTelefonu + " " + s.Email + " " + s.Plec)
-                .ToLower().Contains(searchString.ToLower())).ToList();
+                .ToLower().Contains(searchString.ToLower()));
 
             }
+            
             switch (sortOrder)
             {
                 case "name_desc":
                     {
-                        pacjent = pacjent.OrderByDescending(p => p.Imie).ToList();
+                        pacjent =  pacjent.OrderByDescending(p => p.Imie);
+                        ViewBag.ClassIsActive = "active";
                         break;
                     }
                 case "name_asc":
                     {
-                        pacjent = pacjent.OrderBy(p => p.Imie).ToList();
+                        pacjent =  pacjent.OrderBy(p => p.Imie);
                         break;
 
                     }
                 case "surname_desc":
                     {
-                        pacjent = pacjent.OrderByDescending(p => p.Nazwisko).ToList();
+                        pacjent = pacjent.OrderByDescending(p => p.Nazwisko);
                         break;
                     }
                 case "surname_asc":
                     {
-                        pacjent = pacjent.OrderBy(p => p.Nazwisko).ToList();
+                        pacjent = pacjent.OrderBy(p => p.Nazwisko);
                         break;
 
                     }
                 case "pesel_desc":
                     {
-                        pacjent = pacjent.OrderByDescending(p => p.Pesel).ToList();
+                        pacjent = pacjent.OrderByDescending(p => p.Pesel);
                         break;
                     }
                 case "pesel_asc":
                     {
-                        pacjent = pacjent.OrderBy(p => p.Pesel).ToList();
+                        pacjent = pacjent.OrderBy(p => p.Pesel);
                         break;
                     }
                 case "plec_desc":
                     {
-                        pacjent = pacjent.OrderByDescending(p => p.Plec).ToList();
+                        pacjent = pacjent.OrderByDescending(p => p.Plec);
                         break;
                     }
                 case "plec_asc":
                     {
-                        pacjent = pacjent.OrderBy(p => p.Plec).ToList();
+                        pacjent = pacjent.OrderBy(p => p.Plec);
                         break;
                     }
                 case "dataurodzenia_desc":
                     {
-                        pacjent = pacjent.OrderByDescending(p => p.DataUrodzenia).ToList();
+                        pacjent = pacjent.OrderByDescending(p => p.DataUrodzenia);
                         break;
                     }
                 case "dataurodzenia_asc":
                     {
-                        pacjent = pacjent.OrderBy(p => p.DataUrodzenia).ToList();
+                        pacjent = pacjent.OrderBy(p => p.DataUrodzenia);
                         break;
                     }
                 case "nrtel_desc":
                     {
-                        pacjent = pacjent.OrderByDescending(p => p.NrTelefonu).ToList();
+                        pacjent = pacjent.OrderByDescending(p => p.NrTelefonu);
                         break;
                     }
                 case "nrtel_asc":
                     {
-                        pacjent = pacjent.OrderBy(p => p.NrTelefonu).ToList();
+                        pacjent = pacjent.OrderBy(p => p.NrTelefonu);
                         break;
                     }
                 case "datarejestracji_desc":
                     {
-                        pacjent = pacjent.OrderByDescending(p => p.DataRejestracji).ToList();
+                        pacjent = pacjent.OrderByDescending(p => p.DataRejestracji);
                         break;
                     }
                 case "datarejestracji_asc":
                     {
-                        pacjent = pacjent.OrderBy(p => p.DataRejestracji).ToList();
+                        pacjent = pacjent.OrderBy(p => p.DataRejestracji);
                         break;
                     }
                 default:
                     {
-                        pacjent = pacjent.OrderBy(p => p.Imie).ToList();
+                        pacjent = pacjent.OrderBy(p => p.Imie);
                         break;
                     }
             }
+
+            
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -137,29 +143,26 @@ namespace GabinetStomatologiczny.Controllers
                 return PartialView("_PatiensParts", pacjent.ToPagedList(pageNumber, pageSize));
             }
 
-            return View(pacjent.ToPagedList(pageNumber,pageSize));
+            return View(pacjent.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult Sugestions(string term)
+        public async Task <ActionResult> Sugestions(string term)
         {
-            var personList = this.pacjentsService.getAllPacjents().ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower())).Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko });
-
-            if(personList.Count() == 0)
-            {
-                personList = this.pacjentsService.getAllPacjents().Select(p => new { label = "Nie znaleziono"}).Take(1);
-            }
+            var personList = await this.db.Pacjent
+                .Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower())).
+                Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko }).ToListAsync();
 
             return Json(personList, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Pacjents/Details/5
-        public ActionResult Details(int? id)
+        public async Task <ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pacjent pacjent = this.pacjentsService.About(id);
+            Pacjent pacjent = await this.pacjentsService.Find(id);
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -191,13 +194,13 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Pacjents/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pacjent pacjent = this.pacjentsService.Find(id);
+            Pacjent pacjent = await this.pacjentsService.Find(id);
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -221,13 +224,13 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Pacjents/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task <ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pacjent pacjent = this.pacjentsService.Find(id);
+            Pacjent pacjent = await this.pacjentsService.Find(id);
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -238,9 +241,9 @@ namespace GabinetStomatologiczny.Controllers
         // POST: Pacjents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task <ActionResult> DeleteConfirmed(int id)
         {
-            Pacjent pacjent = this.pacjentsService.Find(id);
+            Pacjent pacjent = await this.pacjentsService.Find(id);
             this.pacjentsService.Remove(pacjent);
             return RedirectToAction("Index");
         }

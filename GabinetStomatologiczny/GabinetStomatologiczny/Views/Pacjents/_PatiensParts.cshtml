@@ -20,8 +20,8 @@
             </tr>
             <tr>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter },
-                    new { Class = "Action", title = "Rosnąco" })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class= @ViewBag.ClassIsActive, title = "Rosnąco" })
                     @Html.ActionLink("↓", "Index", new { sortOrder = "name_asc", currentFilter = ViewBag.CurrentFilter },
                     new { Class = "Action", title = "Malejąco" })
                 </td>

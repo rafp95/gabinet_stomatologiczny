@@ -90,7 +90,9 @@
                         eventID: v.ID,
                         title: v.Tytul,
                         start: moment(v.Poczatek),
-                        end: v.Koniec != null ? moment(v.Koniec) : null
+                        end: v.Koniec != null ? moment(v.Koniec) : null,
+                        phone: v.p != null ? v.p.NrTelefonu : null,
+                        email: v.p != null ? v.p.Email : null
                     });
                 })
                 GenerateCalender(events);
@@ -108,8 +110,8 @@
         let widok = 'month';
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
+            themeSystem: 'jquery-ui',
             groupByResource: true,
-            theme: true,
             slotMinutes: 30,
             slotEventOverlap: false,
             nowIndicator: true,
@@ -141,10 +143,12 @@
             eventClick: function (calEvent, jsEvent, view) {
                 selectedEvent = calEvent;
                 //budowanie modal
+                var tel = calEvent.phone != null ? calEvent.phone : " *";
                 $("#myModal #eventTitle").text(calEvent.title);
                 $('#myModal #pDetails').html("<div> <b>Początek : </b> " + calEvent.start.format('HH:mm') + "</div>").
                                append("<div> <b> Koniec: </b> " + calEvent.end.format("HH:mm") + "</div>").
-                               append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>");
+                               append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>").
+                               append("<div> <b>Tel:</b> "+  tel + "</div>");
                 $('#myModal').modal();
                 //koniec budowania modal
             },

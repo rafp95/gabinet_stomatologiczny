@@ -4,6 +4,7 @@
 }
 
 div#aktualnyCzas {
+    margin: 10px 0;
     font-size: 18px;
     padding: 10px;
 }

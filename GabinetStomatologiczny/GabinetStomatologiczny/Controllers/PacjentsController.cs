@@ -33,8 +33,7 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Pacjents
         public ActionResult Index(PacjentSort pacjentSort)
         {
-            pacjentSort.pageSize = 10;
-            pacjentSort.pageNumber = (pacjentSort.page ?? 1);
+
             var pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort);
 
             if (Request.IsAjaxRequest())

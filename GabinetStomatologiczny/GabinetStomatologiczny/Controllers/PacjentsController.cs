@@ -13,6 +13,7 @@ using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
 using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
+using System.Drawing.Printing;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -21,129 +22,27 @@ namespace GabinetStomatologiczny.Controllers
     {
 
         private readonly IPacjentsService pacjentsService = null;
+        private readonly ISortPacjentService sortPacjentService = null;
 
-        public PacjentsController(IPacjentsService pacjentsService,GabinetContext db):base(db)
+        public PacjentsController(IPacjentsService pacjentsService, ISortPacjentService sortPacjentService, GabinetContext db):base(db)
         {
             this.pacjentsService = pacjentsService;
+            this.sortPacjentService = sortPacjentService;
         }
 
         // GET: Pacjents
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(PacjentSort pacjentSort)
         {
-            ViewBag.CurrentSort = sortOrder;
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-
-            ViewBag.CurrentFilter = searchString;
-            var pacjent = this.pacjentsService.getAllPacjents();
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                pacjent = pacjent.Where(s => (s.Imie + " " + s.Nazwisko + " " + s.NrTelefonu + " " + s.Email + " " + s.Plec)
-                .ToLower().Contains(searchString.ToLower()));
-
-            }
-            
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    {
-                        pacjent =  pacjent.OrderByDescending(p => p.Imie);
-                        ViewBag.ClassIsActive = "active";
-                        break;
-                    }
-                case "name_asc":
-                    {
-                        pacjent =  pacjent.OrderBy(p => p.Imie);
-                        break;
-
-                    }
-                case "surname_desc":
-                    {
-                        pacjent = pacjent.OrderByDescending(p => p.Nazwisko);
-                        break;
-                    }
-                case "surname_asc":
-                    {
-                        pacjent = pacjent.OrderBy(p => p.Nazwisko);
-                        break;
-
-                    }
-                case "pesel_desc":
-                    {
-                        pacjent = pacjent.OrderByDescending(p => p.Pesel);
-                        break;
-                    }
-                case "pesel_asc":
-                    {
-                        pacjent = pacjent.OrderBy(p => p.Pesel);
-                        break;
-                    }
-                case "plec_desc":
-                    {
-                        pacjent = pacjent.OrderByDescending(p => p.Plec);
-                        break;
-                    }
-                case "plec_asc":
-                    {
-                        pacjent = pacjent.OrderBy(p => p.Plec);
-                        break;
-                    }
-                case "dataurodzenia_desc":
-                    {
-                        pacjent = pacjent.OrderByDescending(p => p.DataUrodzenia);
-                        break;
-                    }
-                case "dataurodzenia_asc":
-                    {
-                        pacjent = pacjent.OrderBy(p => p.DataUrodzenia);
-                        break;
-                    }
-                case "nrtel_desc":
-                    {
-                        pacjent = pacjent.OrderByDescending(p => p.NrTelefonu);
-                        break;
-                    }
-                case "nrtel_asc":
-                    {
-                        pacjent = pacjent.OrderBy(p => p.NrTelefonu);
-                        break;
-                    }
-                case "datarejestracji_desc":
-                    {
-                        pacjent = pacjent.OrderByDescending(p => p.DataRejestracji);
-                        break;
-                    }
-                case "datarejestracji_asc":
-                    {
-                        pacjent = pacjent.OrderBy(p => p.DataRejestracji);
-                        break;
-                    }
-                default:
-                    {
-                        pacjent = pacjent.OrderBy(p => p.Imie);
-                        break;
-                    }
-            }
-
-            
-
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
+            pacjentSort.pageSize = 10;
+            pacjentSort.pageNumber = (pacjentSort.page ?? 1);
+            var pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_PatiensParts", pacjent.ToPagedList(pageNumber, pageSize));
-            }
+                return PartialView("_PatiensParts", pacjent);
 
-            return View(pacjent.ToPagedList(pageNumber, pageSize));
+            }
+            return View(pacjent);
         }
 
         public async Task <ActionResult> Sugestions(string term)

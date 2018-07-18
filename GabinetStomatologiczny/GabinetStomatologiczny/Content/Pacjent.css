@@ -95,3 +95,7 @@ div.ladowanie {
 
 
 /*End preloader*/
+
+div.data-select a.active{
+    color: black;
+}

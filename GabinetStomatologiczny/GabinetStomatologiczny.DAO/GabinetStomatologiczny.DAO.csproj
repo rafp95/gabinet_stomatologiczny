@@ -120,6 +120,7 @@
     <Compile Include="Models\Lekarz.cs" />
     <Compile Include="Models\OddzialNfz.cs" />
     <Compile Include="Models\Pacjent.cs" />
+    <Compile Include="Models\PacjentSort.cs" />
     <Compile Include="Models\Plec.cs" />
     <Compile Include="Models\TypPracownika.cs" />
     <Compile Include="Models\TypZabiegu.cs" />

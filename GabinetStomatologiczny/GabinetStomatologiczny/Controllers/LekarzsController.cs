@@ -45,7 +45,7 @@ namespace GabinetStomatologiczny.Controllers
             var lekarz = this._lekarzservice.getAllLekarz();
             if (!string.IsNullOrEmpty(searchString))
             {
-                lekarz = lekarz.Where(l => (l.Imie + " "  + l.Nazwisko).ToLower().Contains(searchString.ToLower())).ToList();
+                lekarz = lekarz.Where(_ => (_.Imie + " "  + _.Nazwisko).ToLower().Contains(searchString.ToLower()));
             }
 
 
@@ -53,52 +53,52 @@ namespace GabinetStomatologiczny.Controllers
             {
                 case "name_desc":
                     {
-                        lekarz = lekarz.OrderByDescending(p => p.Imie).ToList();
+                        lekarz = lekarz.OrderByDescending(p => p.Imie);
                         break;
                     }
                 case "name_asc":
                     {
-                        lekarz = lekarz.OrderBy(p => p.Imie).ToList();
+                        lekarz = lekarz.OrderBy(p => p.Imie);
                         break;
 
                     }
                 case "surname_desc":
                     {
-                        lekarz = lekarz.OrderByDescending(p => p.Nazwisko).ToList();
+                        lekarz = lekarz.OrderByDescending(p => p.Nazwisko);
                         break;
                     }
                 case "surname_asc":
                     {
-                        lekarz = lekarz.OrderBy(p => p.Nazwisko).ToList();
+                        lekarz = lekarz.OrderBy(p => p.Nazwisko);
                         break;
 
                     }
                 case "nrtel_desc":
                     {
-                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu).ToList();
+                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu);
                         break;
                     }
                 case "nrtel_asc":
                     {
-                        lekarz = lekarz.OrderBy(p => p.NrTelefonu).ToList();
+                        lekarz = lekarz.OrderBy(p => p.NrTelefonu);
                         break;
                         
                     }
                 case "email_desc":
                     {
-                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu).ToList();
+                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu);
                         break;
                     }
                 case "email_asc":
                     {
-                        lekarz = lekarz.OrderBy(p => p.NrTelefonu).ToList();
+                        lekarz = lekarz.OrderBy(p => p.NrTelefonu);
                         break;
                     }
 
 
                 default:
                     {
-                        lekarz = lekarz.OrderBy(p => p.Imie).ToList();
+                        lekarz = lekarz.OrderBy(p => p.Imie);
                         break;
                     }
             }
@@ -143,12 +143,7 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Lekarzs/Create
         public ActionResult Create()
         {
-            if(User.Identity.IsAuthenticated || User.IsInRole("Administrator") || User.IsInRole("Lekarz"))
-            {
-                return View();
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
+           return View();
         }
 
         // POST: Lekarzs/Create

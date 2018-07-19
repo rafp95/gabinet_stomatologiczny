@@ -183,9 +183,10 @@
                 SaveEvent(data);
             }, eventRender: function (eventObj, el) {
                 var dataStart = eventObj.start.format("DD-MMM-YYYY HH:mm");
+                var phone = eventObj.phone;
                 el.popover({
                     title: eventObj.title,
-                    content: dataStart,
+                    content: phone == null ? "Dla zalogowanych" : "tel. " + phone,
                     trigger: 'hover',
                     placement: 'top',
                     container: 'body'

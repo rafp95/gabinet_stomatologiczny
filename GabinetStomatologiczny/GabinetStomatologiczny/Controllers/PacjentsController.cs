@@ -23,11 +23,16 @@ namespace GabinetStomatologiczny.Controllers
 
         private readonly IPacjentsService pacjentsService = null;
         private readonly ISortPacjentService sortPacjentService = null;
+        private readonly ISugestionService sugestionService = null;
 
-        public PacjentsController(IPacjentsService pacjentsService, ISortPacjentService sortPacjentService, GabinetContext db):base(db)
+        public PacjentsController(IPacjentsService pacjentsService, 
+            ISortPacjentService sortPacjentService, 
+            ISugestionService sugestionService,
+            GabinetContext db):base(db)
         {
             this.pacjentsService = pacjentsService;
             this.sortPacjentService = sortPacjentService;
+            this.sugestionService = sugestionService;
         }
 
         // GET: Pacjents
@@ -38,8 +43,11 @@ namespace GabinetStomatologiczny.Controllers
             {
                 pacjentSort.searchString = pacjentSort.currentFilter;
             }
+
             ViewBag.CurrentFilter = pacjentSort.searchString;
             var pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort);
+            ViewBag.ActiveClass = this.sortPacjentService.RodzajSort;
+
 
             if (Request.IsAjaxRequest())
             {
@@ -49,13 +57,11 @@ namespace GabinetStomatologiczny.Controllers
             return View(pacjent);
         }
 
-        public async Task <ActionResult> Sugestions(string term)
+        public ActionResult Sugestions(Sugestion sugestion)
         {
-            var personList = await this.db.Pacjent
-                .Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower())).
-                Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko }).ToListAsync();
+            var list = this.sugestionService.SugestionAsync(sugestion);
 
-            return Json(personList, JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Pacjents/Details/5

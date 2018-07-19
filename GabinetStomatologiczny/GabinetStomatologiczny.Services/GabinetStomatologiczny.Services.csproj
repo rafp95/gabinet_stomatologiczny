@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendEmailService.cs" />
     <Compile Include="SortPacjentService.cs" />
+    <Compile Include="SugestionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">

@@ -98,4 +98,5 @@ div.ladowanie {
 
 div.data-select a.active{
     color: black;
+    border-bottom: 1px solid black;
 }

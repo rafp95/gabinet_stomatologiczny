@@ -88,6 +88,7 @@ namespace GabinetStomatologiczny
             services.AddTransient<ILekarzService, LekarzsService>();
             services.AddTransient<ISendEmailService, SendEmailService>();
             services.AddTransient<ISortPacjentService, SortPacjentService>();
+            services.AddTransient<ISugestionService, SugestionService>();
         }
     }
 

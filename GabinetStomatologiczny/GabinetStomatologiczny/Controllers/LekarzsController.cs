@@ -12,6 +12,7 @@ using System.IO;
 using PagedList;
 using GabinetStomatologiczny.Utils;
 using GabinetStomatologiczny.Services;
+using System.Threading.Tasks;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -113,9 +114,11 @@ namespace GabinetStomatologiczny.Controllers
             return View(lekarz.ToPagedList(pageNumber,pageSize));
         }
 
-        public ActionResult SugestionsLekarzs(string term)
+        public async Task<ActionResult> SugestionsLekarzs(string term)
         {
-            var personList = this._lekarzservice.getAllLekarz().ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower())).Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko });
+            var personList = await this.db.Lekarz.AsQueryable()
+                .Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower()))
+                .Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko }).ToListAsync();
 
             return Json(personList, JsonRequestBehavior.AllowGet);
         }

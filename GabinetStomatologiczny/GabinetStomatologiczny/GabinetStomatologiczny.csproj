@@ -578,6 +578,7 @@
     <Content Include="Content\PginationPosition.css" />
     <Content Include="Content\script\GoToTop.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />
+    <Content Include="Content\script\PacjentAutoComplete.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <Content Include="Content\SilaHasla.css" />
     <Content Include="Content\TableStyle.css" />

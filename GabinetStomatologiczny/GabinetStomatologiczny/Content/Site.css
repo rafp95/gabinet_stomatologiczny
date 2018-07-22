@@ -49,3 +49,11 @@ div.wysrodkowanieLoginForm {
 }
 
 /*end center form*/
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+    transition: .3s;
+}

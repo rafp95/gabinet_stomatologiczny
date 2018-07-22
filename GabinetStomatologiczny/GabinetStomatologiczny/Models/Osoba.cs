@@ -17,6 +17,7 @@ namespace GabinetStomatologiczny.Models
         public string Email { get; set; }
 
         [Required]
+        [MinLength(6,ErrorMessage = "Podane hasło musi mieć min 6 znaków")]
         [DataType(DataType.Password)]
         public string Haslo { get; set; }
 

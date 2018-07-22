@@ -102,7 +102,7 @@ namespace GabinetStomatologiczny.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Potwierdź hasło")]
-        [Compare("Password", ErrorMessage = "Podan hasła nie są takie same .")]
+        [Compare("Password", ErrorMessage = "Podane hasła nie są takie same .")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

@@ -28,29 +28,32 @@ textarea {
 }
 
 
-/*centrowanie formularza*/
+/*center form*/
 
-@media only screen and (min-width: 571px) {
+div.wysrodkowanieLoginForm {
+    width: 100%;
+    margin: 0;
+    margin-top: 8%;
+    text-align: left;
+}
+
+@media only screen and (max-width: 991px) {
+    div.wysrodkowanieLoginForm form input, div.wysrodkowanieLoginForm button {
+        margin: auto;
+    }
+
     div.wysrodkowanieLoginForm {
-       position: relative;
-       margin: 0 auto;
-       width: 50%;
-       left: 50%;
-       transform: translate(-40%);
-       padding: 10px;
-       display: inline-block;
+        margin-top: 5%;
+        text-align: center;
     }
 }
 
-@media only screen and (max-width: 560px) {
-    section#loginForm {
-        position: relative;
-        margin: 0 auto;
-        padding: 10px;
-        width: 100%;
-        left: 50%;
-        transform: translate(-50%);
-        display: inline-block;
-    }
+/*end center form*/
 
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+    transition: .3s;
 }

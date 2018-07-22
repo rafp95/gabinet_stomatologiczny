@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     powieksznie();
     miniaturka();
+
 });
 
 function powieksznie() {
@@ -27,10 +28,11 @@ function miniaturka() {
     miniaturka.change(function (event) {
         var input = event.target;
         var reader = new FileReader();
+        $("#miniaturka").html("<div class='loader'></div>");
         reader.onload = function () {
             var dataURL = reader.result;
             var output = $("#miniaturka");
-            output.html("<img class='zdjecie' src='"+dataURL+"' />");
+            output.html("<img class='zdjecie' src='" + dataURL + "' />");
         };
         reader.readAsDataURL(input.files[0]);
     });

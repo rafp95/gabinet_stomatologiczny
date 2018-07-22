@@ -1,47 +1,76 @@
 ﻿@model IEnumerable<GabinetStomatologiczny.DAO.Models.Zabieg>
 
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Zabiegi";
     ViewBag.Active = "Pacjenci";
 }
+<link href="~/Content/Zabieg.css" rel="stylesheet" />
+<link href="~/Content/TableStyle.css" rel="stylesheet" />
+<h2>Zabiegi</h2>
 
-<h2>Index</h2>
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="alert alert-danger" role="alert">
+        Do tej sekcji dostęp mają jedynie osoby zalogowane
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Wizyta.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypZabiegu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CenaZabiegu)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Wizyta.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypZabiegu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CenaZabiegu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
 }
 
-</table>
+@if (User.IsInRole("Administrator")
+                || User.IsInRole("Lekarz"))
+{
+    <p>
+        @Html.ActionLink("Dodaj zabieg", "Create", null, new { @class = "btn btn-primary dodajNowyZabieg" })
+    </p>
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Imie i Nazwisko")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypZabiegu)
+            </th>
+            <th colspan="2">
+                @Html.DisplayNameFor(model => model.CenaZabiegu)
+            </th>
+        </tr>
+        @if(Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() == 0 && User.IsInRole("Pacjent"))
+        {
+            <tr>
+                <td colspan="3" style="text-align:center;">
+                    Nie masz zdefiniowanych zabiegów
+                </td>
+            </tr>
+        }
+        @foreach (var item in Model)
+        {
+            if (User.IsInRole("Administrator")
+                || User.IsInRole("Lekarz")
+                || User.Identity.Name == item.Wizyta.Pacjent.Email)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypZabiegu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                    </td>
+                    @if (User.IsInRole("Lekarz"))
+                    {
+                        <td>
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit" }) |
+                            @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-info  glyphicon glyphicon-align-justify" }) |
+                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-trash" })
+                        </td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+}

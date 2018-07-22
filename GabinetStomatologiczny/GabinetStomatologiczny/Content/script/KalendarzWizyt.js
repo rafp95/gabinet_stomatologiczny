@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    let ladowanie = $("div.ladowanie");
+    ladowanie.css('display', 'block');
     //Czas
 
     pokazAktualnyCzas();
@@ -62,10 +64,10 @@
     var size = 0;
     $(window).resize(function () {
         if ($(window).width() < 500) {
-            size = 2;
+            size = 0;
             console.log(size);
         } else {
-            size = 0;
+            size = 2;
             console.log(size);
         }
     });
@@ -81,17 +83,20 @@
             type: "GET",
             url: "/Wizytas/GetEvents",
             success: function (data) {
-                $("h2#ladowanie").html("");
+                $("div.loader").html("");
                 $.each(data, function (i, v) {
                     events.push({
+                        pacjentID: v.PacjentID,
                         eventID: v.ID,
                         title: v.Tytul,
                         start: moment(v.Poczatek),
-                        end: v.Koniec != null ? moment(v.Koniec) : null
+                        end: v.Koniec != null ? moment(v.Koniec) : null,
+                        phone: v.p != null ? v.p.NrTelefonu : null,
+                        email: v.p != null ? v.p.Email : null
                     });
                 })
-
                 GenerateCalender(events);
+                ladowanie.css('display', 'none');
             },
             error: function (error) {
                 alert('failed');
@@ -102,10 +107,11 @@
 
     //Generate calandar
     function GenerateCalender(events) {
-
+        let widok = 'month';
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
-            theme: false,
+            themeSystem: 'jquery-ui',
+            groupByResource: true,
             slotMinutes: 30,
             slotEventOverlap: false,
             nowIndicator: true,
@@ -114,11 +120,22 @@
             timeFormat: 'HH:mm',
             minTime: "08:00:00",
             maxTime: "17:00:00",
-            defaultView: "month",
+            defaultView: widok,
+            success: function(events)
+            {
+                $('#calendar').fullCalendar('refetchEvents');
+            },
             header: {
                 left: 'prev,next,today',
                 center: 'title',
-                right: 'month,agenda,list'
+                right: 'month,agenda,agendaFourDay'
+            },
+            views: {
+                agendaFourDay: {
+                    type: 'agenda',
+                    dayCount: 4,
+                    buttonText: '4 dni'
+                }
             },
             eventLimit: 3,
             eventColor: '#378006',
@@ -126,10 +143,12 @@
             eventClick: function (calEvent, jsEvent, view) {
                 selectedEvent = calEvent;
                 //budowanie modal
+                var tel = calEvent.phone != null ? calEvent.phone : " *";
                 $("#myModal #eventTitle").text(calEvent.title);
                 $('#myModal #pDetails').html("<div> <b>Początek : </b> " + calEvent.start.format('HH:mm') + "</div>").
                                append("<div> <b> Koniec: </b> " + calEvent.end.format("HH:mm") + "</div>").
-                               append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>");
+                               append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>").
+                               append("<div> <b>Tel:</b> "+  tel + "</div>");
                 $('#myModal').modal();
                 //koniec budowania modal
             },
@@ -143,7 +162,6 @@
                     end: end,
                 };
                 var dataStart = new Date(moment(start, "DD-MM-YYYY HH:mm"));
-
                 if (dataStart >= now
                     || start.format("DD-MM-YYYY")
                     === now.format("DD-MM-YYYY")) {
@@ -163,7 +181,17 @@
                     Description: event.description,
                 };
                 SaveEvent(data);
-            },
+            }, eventRender: function (eventObj, el) {
+                var dataStart = eventObj.start.format("DD-MMM-YYYY HH:mm");
+                var phone = eventObj.phone;
+                el.popover({
+                    title: eventObj.title,
+                    content: phone == null ? "Dla zalogowanych" : "tel. " + phone,
+                    trigger: 'hover',
+                    placement: 'top',
+                    container: 'body'
+                });
+            }
         })
     }
     //End generate calendar
@@ -180,7 +208,7 @@
     })
 
     $("#kasujElement").click(function () {
-        buttonInfo($(this), "Kasowanie......");
+        buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie </div> <div class='loader' style='float:left;'></div>");
 
         if (selectedEvent != null) {
             $.ajax({
@@ -192,7 +220,6 @@
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
                         $('#myModal').modal('hide');
-                        $("h2#ladowanie").html("Kasowanie ......");
                     }
                 },
                 error: function () {
@@ -207,7 +234,7 @@
     //Date time picker
     $('#dtp1,#dtp2').datetimepicker({
         stepping: '30',
-        enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16],
         minDate: new Date(),
         daysOfWeekDisabled: [0, 6]
     });
@@ -216,11 +243,9 @@
     function openAddEditForm() {
         //Save button change text
         buttonInfo($("#btnSave"), "Zapisz");
-
         if (selectedEvent != null) {
             $('#hdEventID').val(selectedEvent.eventID);
             $('#txtStart').val(selectedEvent.start.format('DD.MM.YYYY HH:mm'));
-            $('#txtDescription').val(selectedEvent.title);
         }
         $('#myModal').modal('hide');
         $('#myModalSave').modal();
@@ -235,6 +260,15 @@
         var clickTime = moment($("#txtStart").val().trim(), 'DD.MM.YYYY HH:mm');
         var minTime = moment("8:00", 'HH:mm').format("HH:mm");
 
+        for (var i = 0; i < events.length; i++) {
+            if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
+                $("#txtStart").css('border', '1px solid red').parent().
+               after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
+                return;
+            }
+            
+        }
+
         //Check date and time
         if (new Date(now) <= new Date(clickTime)
             && clickTime.format("HH:mm") >= minTime
@@ -243,27 +277,15 @@
             errorTime.html("");
         } else {
             $("#txtStart").css('border', '1px solid red').parent().
-               after("<div class='errorTime'>Wybrałeś błędny czas</div>").next().css("color", "red");
+               after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
             return;
         }
-
-        if ($("#txtDescription").val().trim() == "") {
-            error.html("");
-            $("#txtDescription").css('border', '1px solid red').
-                after("<div class='error'>Pole wymagane</div>").next().css("color", "red");
-            return;
-        } else {
-            $("#txtDescription").css('border', '');
-            error.html("");
-        }
-
 
         var data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
-            Tytul: $("#txtDescription").val().trim()
         }
-        buttonInfo($(this), "Zapisywanie.......");
+        buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie </div> <div class='loader' style='float:left;'></div>");
         SaveEvent(data);
         // call function for submit data to the server
     })
@@ -278,7 +300,6 @@
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
                     $('#myModalSave').modal('hide');
-                    $("h2#ladowanie").html("Dodawanie ......");
                 }
             },
             error: function () {
@@ -289,16 +310,17 @@
 
     //Change text in button
     function buttonInfo(button, text) {
-        button.text(text);
+        button.html(text);
     }
 
     //Validate massage
     function ErorMessage() {
         $("div.error").html("");
-        $("#txtDescription").css('border', '');
         $("div.errorTime").html("");
         $("#txtStart").css('border', '');
     }
+
+
 });
 
 function pokazAktualnyCzas() {
@@ -307,3 +329,4 @@ function pokazAktualnyCzas() {
         $("div#aktualnyCzas").html(aktualntCzas.format("HH:mm:ss"));
     }, 1000);
 }
+

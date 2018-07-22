@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/Wlidacja.css" rel="stylesheet" />
+    <link href="~/Content/ToTopPage.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,15 +26,19 @@
                 <ul class="nav navbar-nav">
                     <li class="@(ViewBag.Active=="Home"? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="@(ViewBag.Active == "About" ? "active" : "")">@Html.ActionLink("About", "About", "Home")</li>
-                    <li class="dropdown @(ViewBag.Active == "Pacjenci" ? "active" : "")">
-                        <a href="@Url.Action("Index","Pacjenci")" class="dropdown-toggle" data-toggle="dropdown">
-                                Osoby <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Pacjenci", "Index", "Pacjents")</li>
-                            <li>@Html.ActionLink("Zabiegi", "Index", "Zabiegs")</li>
-                            <li>@Html.ActionLink("Lekarze","Index","Lekarzs")</li>
-                        </ul>
-                     </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown @(ViewBag.Active == "Pacjenci" ? "active" : "")">
+                            <a href="@Url.Action("Index", "Pacjenci")" class="dropdown-toggle" data-toggle="dropdown">
+                                Osoby <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Pacjenci", "Index", "Pacjents")</li>
+                                <li>@Html.ActionLink("Zabiegi", "Index", "Zabiegs")</li>
+                                <li>@Html.ActionLink("Lekarze", "Index", "Lekarzs")</li>
+                            </ul>
+                        </li>
+                    }
                     <li class="@(ViewBag.Active == "Wizytas" ? "active" : "")">@Html.ActionLink("Wizyty", "Index", "Wizytas")</li>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                     {
@@ -52,9 +57,16 @@
         </footer>
     </div>
 
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button"
+       title="Do góry" data-toggle="tooltip" data-placement="left">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendarjs")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Content/script/GoToTop.js"></script>
 </body>
 </html>

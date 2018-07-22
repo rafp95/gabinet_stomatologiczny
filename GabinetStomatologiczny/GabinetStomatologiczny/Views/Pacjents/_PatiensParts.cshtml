@@ -1,10 +1,13 @@
 ﻿@model PagedList.IPagedList<GabinetStomatologiczny.DAO.Models.Pacjent>
 @using PagedList.Mvc;
 @using Microsoft.AspNet.Identity
+@using GabinetStomatologiczny.DAO.Models;
 
+
+<div class="ladowanie"></div>
 @if (Model.Count > 0)
 {
-    <div class="select-patients">
+    <div class="data-select">
         <table class="table">
             <tr>
                 <th>Imie</th>
@@ -18,35 +21,48 @@
             </tr>
             <tr>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "name_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.name_asc, currentFilter = ViewBag.CurrentFilter }
+                    , new { @class= @ViewBag.ActiveClass == RodzajSort.name_asc ? "active" : "", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.name_desc, currentFilter = ViewBag.CurrentFilter },
+                    new { @class = @ViewBag.ActiveClass == RodzajSort.name_desc ? "active" : "", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "surname_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "surname_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "surname_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.surname_asc ? "active" : "", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "surname_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.surname_desc ? "active" : "", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "pesel_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "pesel_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "pesel_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class= @ViewBag.ActiveClass == RodzajSort.pesel_asc ? "active" : "", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "pesel_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.pesel_desc ? "active" : "", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "plec_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "plec_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "plec_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.plec_asc ? "active" : "", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "plec_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.plec_desc ? "active" : "", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "dataurodzenia_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "dataurodzenia_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "dataurodzenia_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.dataurodzenia_asc ? "active" : "", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "dataurodzenia_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.dataurodzenia_desc ? "active" : "", title = "Malejąco" })
                 </td>
                 <td>
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "nrtel_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "nrtel_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "nrtel_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.nrtel_asc ? "active" : "", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "nrtel_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class= @ViewBag.ActiveClass == RodzajSort.nrtel_desc ? "active" : "", title = "Malejąco" })
                 </td>
                 <td colspan="2">
-                    @Html.ActionLink("↑", "Index", new { sortOrder = "datarejestracji_desc", currentFilter = ViewBag.CurrentFilter })
-                    @Html.ActionLink("↓", "Index", new { sortOrder = "datarejestracji_asc", currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("↑", "Index", new { sortOrder = "datarejestracji_asc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.datarejestracji_asc ? "active" : "", title = "Rosnąco" })
+                    @Html.ActionLink("↓", "Index", new { sortOrder = "datarejestracji_desc", currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.datarejestracji_desc ? "active" : "", title = "Malejąco" })
                 </td>
             </tr>
-
             @foreach (var item in Model)
             {
 
@@ -73,16 +89,16 @@
                         @Html.DisplayFor(modelItem => item.DataRejestracji)
                     </td>
                     <td>
-                        @if ( (User.Identity.IsAuthenticated && User.Identity.GetUserName() == item.Email)
-                            || User.IsInRole("Administrator")
-                            || User.IsInRole("Lekarz"))
+                        @if ((User.Identity.IsAuthenticated && User.Identity.GetUserName() == item.Email)
+            || User.IsInRole("Administrator")
+            || User.IsInRole("Lekarz"))
                         {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) <span> | </span>
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-info" }) <span> | </span>
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title = "Edycja" }) <span> | </span>
+                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title = "Kasuj" }) <span> | </span>
                         }
-                        
-                        @Html.ActionLink("Details", "Details", new { id = item.ID}, new { @class = "btn btn-success" }) 
-                        
+
+                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-align-justify", title = "Więcej" })
+
                     </td>
                 </tr>
             }
@@ -91,11 +107,23 @@
 
         <br />
 
-        Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
+        <div id="pagination-postion">
+            <div class="count">
+                Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
+            </div>
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
 
-        @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        <div class="text-center">
+            Wszystkich: @Model.TotalItemCount
+        </div>
+
     </div>
-}else{
+}
+else
+{
     <div> Nic nie znaleziono</div>
 }
+
+<link href="~/Content/PginationPosition.css" rel="stylesheet" />

@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.DAO.Models;
+using static GabinetStomatologiczny.EmailService;
 
 namespace GabinetStomatologiczny
 {

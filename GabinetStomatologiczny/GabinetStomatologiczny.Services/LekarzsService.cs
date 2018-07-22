@@ -1,0 +1,72 @@
+﻿using GabinetStomatologiczny.DAL;
+using GabinetStomatologiczny.DAO.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GabinetStomatologiczny.Services
+{
+
+    public interface ILekarzService
+    {
+        IEnumerable<Lekarz> getAllLekarz();
+        Lekarz About(int? id);
+        void Edit(Lekarz lekarz);
+        Lekarz Find(int? id);
+        void Remove(Lekarz lekarz);
+        void CreateLekarz(Lekarz lekarz);
+    }
+
+    public class LekarzsService : ILekarzService
+    {
+        private readonly GabinetContext _db;
+
+        public LekarzsService(GabinetContext db)
+        {
+            this._db = db;
+        }
+
+        public IEnumerable<Lekarz> getAllLekarz()
+        {
+            return this._db.Lekarz.ToList();
+        }
+
+        public Lekarz About(int? id)
+        {
+            return this._db.Lekarz.Find(id);
+        }
+
+        public void Edit(Lekarz lekarz)
+        {
+            lekarz.DataDodania = DateTime.Now;
+            this._db.Entry(lekarz).State = EntityState.Modified;
+            this._db.SaveChanges();
+        }
+
+        public void Remove(Lekarz lekarz)
+        {
+            if (lekarz != null)
+            {
+                this._db.Lekarz.Remove(lekarz);
+                this._db.SaveChanges();
+            }
+        }
+
+        public Lekarz Find(int? id)
+        {
+            return this._db.Lekarz.Find(id);
+        }
+
+        public void CreateLekarz(Lekarz lekarz)
+        {
+            if (lekarz != null)
+            {
+                this._db.Lekarz.Add(lekarz);
+                this._db.SaveChanges();
+            }
+        }
+    }
+}

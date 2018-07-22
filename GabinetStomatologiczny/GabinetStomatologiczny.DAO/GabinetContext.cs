@@ -13,7 +13,7 @@ namespace GabinetStomatologiczny.DAL
     {
 
         public GabinetContext()
-            :base("Gabinet Stomatologiczny")
+            :base("DefaultConnection")
         {
             this.Configuration.ProxyCreationEnabled = false;
         }
@@ -29,6 +29,10 @@ namespace GabinetStomatologiczny.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
 
     }
 }

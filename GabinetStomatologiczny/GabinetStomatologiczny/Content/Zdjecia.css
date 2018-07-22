@@ -1,15 +1,17 @@
-﻿img.rozmiar{
+﻿img.rozmiar {
     width: 80px;
     height: 60px;
 }
 
 #myImg {
     border-radius: 5px;
+    overflow: hidden;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-#myImg:hover {opacity: 0.7;}
+#myImg:hover {
+    opacity: 0.7;
+}
 
 /* The Modal (background) */
 .modal {
@@ -51,7 +53,7 @@
 }
 
 /* Add Animation */
-.modal-content, #caption {    
+.modal-content, #caption {
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -59,42 +61,79 @@
 }
 
 @-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)} 
-    to {-webkit-transform:scale(1)}
+    from {
+        -webkit-transform: scale(0);
+    }
+
+    to {
+        -webkit-transform: scale(1);
+    }
 }
 
 @keyframes zoom {
-    from {transform:scale(0)} 
-    to {transform:scale(1)}
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
 
 /* The Close Button */
 .close {
     position: absolute;
-    top: 15px;
+    top: 5px;
     right: 35px;
-    color: #f1f1f1;
+    color: white;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
     z-index: 9999;
+    opacity: 10;
 }
 
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
 /* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
     .modal-content {
         width: 100%;
     }
 }
 
-img.zdjecie{
-    width:40%;
+img.zdjecie {
+    width: 40%;
     height: 40%;
 }
+
+
+/*Loading*/
+
+div.loader {
+    height: 50px;
+    width: 50px;
+    animation: rotate 0.8s infinite linear;
+    border: 2px solid black;
+    border-right-color: transparent;
+    border-radius: 50%;
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*End loading*/
+

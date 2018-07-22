@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<GabinetStomatologiczny.DAO.Models.Wizyta>
-
 @{
-    ViewBag.Title = "Wizyta";
+    ViewBag.Title = "Wizyty";
     ViewBag.Active = "Wizytas";
 }
-
 <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
 <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
@@ -12,23 +10,25 @@
 <link href="~/Content/Wizyta.css" rel="stylesheet" />
 <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
 
-<h2 id="ladowanie">Ładowanie kalendarza .....</h2>
+<div class="ladowanie"></div>
 
 <!--Search form-->
 <div class="text-right" id="aktualnyCzas"></div>
 
-<div class="form-group">
-    <form id="wyslij" class="wyszukiwarka" action="@Url.Action("GetEvents")" method="get" data-ajax="true">
-        <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
-        <input type="text" id="searchQuery" name="searchQuery"
-               data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
-               class="form-control"/>
-    </form>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="form-group">
+        <form id="wyslij" class="wyszukiwarka" action="@Url.Action("GetEvents")" method="get" data-ajax="true">
+            <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
+            <input type="text" id="searchQuery" name="searchQuery"
+                   data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
+                   class="form-control" />
+        </form>
+    </div>
+}
+
 <!--End search form-->
-
 <div id="calender"></div>
-
 <!--About-->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -38,14 +38,18 @@
                 <h4 class="modal-title text-center"><span id="eventTitle"></span></h4>
             </div>
             <div class="modal-body">
-                @if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent"))
+                @if (User.IsInRole("Pacjent")
+                    || User.IsInRole("Lekarz")
+                    || User.IsInRole("Administrator"))
                 {
-                    <button id="btnDelete" class="btn btn-default btn-sm pull-right">
-                        <span class="glyphicon glyphicon-remove"></span> Kasuj
-                    </button>
-                    <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
-                        <span class="glyphicon glyphicon-pencil"></span> Edytuj
-                    </button>
+                    {
+                        <button id="btnDelete" class="btn btn-default btn-sm pull-right">
+                            <span class="glyphicon glyphicon-remove"></span> Kasuj
+                        </button>
+                        <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
+                            <span class="glyphicon glyphicon-pencil"></span> Edytuj
+                        </button>
+                    }
                 }
                 <p id="pDetails"></p>
             </div>
@@ -56,7 +60,9 @@
     </div>
 </div>
 <!--End about-->
-@if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent"))
+@if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
+     || User.IsInRole("Administrator")
+     || User.IsInRole("Lekarz"))
 {
     <!--Eror-->
     <div id="myModalError" class="modal fade" role="dialog">
@@ -116,21 +122,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Imię i nazwisko</label>
-                            <input id="txtDescription" class="form-control" />
+
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-                    <button type="button" id="btnSave" class="btn btn-success float-right" data-loading-text="Zapisywanie...">Zapisz</button>
+                    <button type="button" id="btnSave"
+                            class="btn btn-success float-right" data-loading-text="Zapisywanie...">
+                        Zapisz
+                    </button>
                 </div>
             </div>
         </div>
     </div>
     <!--End Add Edit-->
 }
-
 @section scripts{
     <script src="~/Scripts/locale/pl.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
@@ -138,9 +145,6 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Content/script/KalendarzWizyt.js"></script>
 }
-
-
-
 
 
 

@@ -30,6 +30,7 @@ fonts/
 TestResults/
 App_Data/
 Log/
+Migrations/
 ###################
 # Web publish log #
 ###################
@@ -78,3 +79,4 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+/GabinetStomatologiczny/GabinetStomatologiczny/Obrazki/PPr Egzamin[8850].pdf

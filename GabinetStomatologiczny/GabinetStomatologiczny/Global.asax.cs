@@ -9,6 +9,12 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using GabinetStomatologiczny.DAL;
 using System.Data.Entity;
+using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.DAO.Models;
+using AutoMapper;
+using AutoMapper.Configuration;
+using System.Reflection;
+using WebGrease.Css.Extensions;
 
 namespace GabinetStomatologiczny
 {
@@ -16,6 +22,18 @@ namespace GabinetStomatologiczny
     {
         protected void Application_Start()
         {
+            /*
+            AutoMapper.Mapper.Initialize( cfg => {
+                cfg.AddProfile<AutoMapperWizyta>();
+                cfg.AddProfile<AutoMapperPacjents>();
+                cfg.AddProfile<AutoMapperAdmin>();
+                cfg.AddProfile<AutoMapperLekarz>();
+            });
+            */
+
+            AutoMapperConfiguration.Configure();
+
+            Mapper.AssertConfigurationIsValid();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -23,5 +41,7 @@ namespace GabinetStomatologiczny
 
             Database.SetInitializer(new GabinetInitializer());
         }
+
+       
     }
 }

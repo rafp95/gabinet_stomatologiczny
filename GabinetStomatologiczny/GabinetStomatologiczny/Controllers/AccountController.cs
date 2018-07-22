@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -12,43 +9,41 @@ using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
 using AutoMapper;
-using GabinetStomatologiczny.Controllers;
+using Microsoft.AspNet.Identity.EntityFramework;
+using GabinetStomatologiczny.Services;
+using System.Globalization;
+using System.Threading;
 
 namespace GabinetStomatologiczny.Controllers
 {
 
-    public static class Mapper<T>
-    {
-        private static MapperConfiguration _manger;
-        public static MapperConfiguration Maper
-        {
-            get
-            {
-                if(_manger == null)
-                {
-                    _manger = new MapperConfiguration(cfg =>
-                    {
-                        cfg.CreateMap<T, ApplicationUser>();
-                    });
-                }
-                return _manger;
-            }
-        }
-    }
-
-
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-      
+        private SendEmail _sendEmial;
+
+        private SendEmail sendEmial
+        {
+            get
+            {
+                if(_sendEmial == null)
+                {
+                    this._sendEmial = new SendEmail();
+                }
+                return _sendEmial;
+            }
+        }
+
+
+
         public AccountController()
         {
             
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -98,13 +93,14 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return View(model);
             }
-
+            
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                    logger.Info("Zalogowal sie " + model.Email);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -178,8 +174,7 @@ namespace GabinetStomatologiczny.Controllers
             
             if (ModelState.IsValid)
             {
-                IMapper mapper = Mapper<RegisterViewModel>.Maper.CreateMapper();
-                var user = mapper.Map<ApplicationUser>(model);
+                var user = Mapper.Map<ApplicationUser>(model);
 
                 //var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Haslo);
@@ -245,7 +240,7 @@ namespace GabinetStomatologiczny.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                new SendEmail().SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
+                this.sendEmial.SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
@@ -288,10 +283,12 @@ namespace GabinetStomatologiczny.Controllers
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
+            
             AddErrors(result);
             return View();
         }
@@ -471,8 +468,15 @@ namespace GabinetStomatologiczny.Controllers
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
+            { 
+                if(error.Equals("Invalid token."))
+                {
+                    ModelState.AddModelError("Invalid token.", "Upewnij się czy wprowadzasz poprawny email bądź kod aktywacyjny został już użyty");
+                }else
+                {
+                    ModelState.AddModelError("", error);
+                }
+               
             }
         }
 

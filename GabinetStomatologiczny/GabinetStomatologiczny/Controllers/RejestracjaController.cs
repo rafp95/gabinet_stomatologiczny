@@ -2,6 +2,7 @@
 using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Models;
+using GabinetStomatologiczny.Services;
 using GabinetStomatologiczny.Utils;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -17,8 +18,18 @@ namespace GabinetStomatologiczny.Controllers
     [Authorize(Roles = "Administrator,Lekarz")]
     public class RejestracjaController : BaseController
     {
-        private Osoba os = new Osoba();
-        private SendEmail se = new SendEmail();
+        private readonly GabinetContext db;
+        private readonly ISendEmailService se;
+        private readonly IPacjentsService ps;
+        private readonly ILekarzService ls;
+
+        public RejestracjaController(ISendEmailService se,IPacjentsService ps,ILekarzService ls,GabinetContext db)
+        {
+            this.se = se;
+            this.db = db;
+            this.ps = ps;
+            this.ls = ls;
+        }
 
         // GET: Rejestracja
         public ActionResult Index()
@@ -38,22 +49,24 @@ namespace GabinetStomatologiczny.Controllers
             {
                 try
                 {
-                    var roleAdministrator = new RoleManager<IdentityRole>(
+                    var roleUser = new RoleManager<IdentityRole>(
                                  new RoleStore<IdentityRole>(
                                  new ApplicationDbContext()));
 
-                    var userAdministrator = new UserManager<ApplicationUser>(
+                    var createUser = new UserManager<ApplicationUser>(
                                       new UserStore<ApplicationUser>(
                                       new ApplicationDbContext()));
 
-                    roleAdministrator.Create(new IdentityRole(o.TypPracownika.ToString()));
+                    roleUser.Create(new IdentityRole(o.TypPracownika.ToString()));
+
 
                     var user = new ApplicationUser { UserName = o.Email };
-
                     user.EmailConfirmed = true;
-                    userAdministrator.Create(user,o.Haslo);
+                    var pass = o.Haslo;
 
-                    userAdministrator.AddToRole(user.Id, o.TypPracownika.ToString());
+                    createUser.Create(user, pass);
+
+                    createUser.AddToRole(user.Id, o.TypPracownika.ToString());
 
                     TempData["ok"] = o.Imie + " typ konta " + o.TypPracownika;
 
@@ -62,57 +75,36 @@ namespace GabinetStomatologiczny.Controllers
 
                         case TypPracownika.Administrator:
                             {
-                                Administrator admin = new Administrator()
-                                {
-                                    Email = o.Email,
-                                    Imie = o.Imie,
-                                    Nazwisko = o.Nazwisko,
-                                    NrTelefonu = o.NrTelefonu
-
-                                };
+                                var admin = Mapper.Map<Administrator>(o);
                                 se.SendMail(o.Email, "Witaj, administrator " +
                                   o.Imie, "Twoje dane do logowania to \n"
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
                                 db.Administrator.Add(admin);
                                 db.SaveChanges();
-                                return RedirectToAction("Index", "Rejestracja");
+                                break;
                             }
                         case TypPracownika.Lekarz:
                             {
-                                Lekarz lekarz = new Lekarz()
-                                {
-                                    Imie = o.Imie,
-                                    NrTelefonu = o.NrTelefonu,
-                                    DataDodania = DateTime.Now,
-                                    Nazwisko = o.Nazwisko,
-                                    Email = o.Email
-
-                                };
+                                var lekarz = Mapper.Map<Lekarz>(o);
+                                lekarz.DataDodania = DateTime.Now;
                                 se.SendMail(o.Email, "Witaj, lekarz " +
                                     o.Imie, "Twoje dane do logowania to \n"
                                     + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                db.Lekarz.Add(lekarz);
-                                db.SaveChanges();
-                                return RedirectToAction("Index", "Rejestracja");
+                                this.ls.CreateLekarz(lekarz);
+                                break;
                             }
                         case TypPracownika.Pacjent:
                             {
-                                Pacjent pacjent = new Pacjent()
-                                {
-                                    Imie = o.Imie,
-                                    Nazwisko = o.Nazwisko,
-                                    NrTelefonu = o.NrTelefonu,
-                                    Email = o.Email,
-                                    DataRejestracji = DateTime.Now,
-                                };
+                                var pacjent = Mapper.Map<Pacjent>(o);
+                                pacjent.DataRejestracji = DateTime.Now;
                                 se.SendMail(o.Email, "Witaj, pacjencie " +
                                    o.Imie, "Twoje dane do logowania to \n "
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                db.Pacjent.Add(pacjent);
-                                db.SaveChanges();
-                                return RedirectToAction("Index", "Rejestracja");
+                                ps.CreatePacjnt(pacjent);
+                                break;
                             }
                     }
+                    return RedirectToAction("Index", "Rejestracja");
                 }
 
                 catch (InvalidOperationException)
@@ -120,6 +112,7 @@ namespace GabinetStomatologiczny.Controllers
                     ModelState.AddModelError("Email", "Podany email jest już zajęty");
                 }
             }
+            
             return View(o);
         }
     }

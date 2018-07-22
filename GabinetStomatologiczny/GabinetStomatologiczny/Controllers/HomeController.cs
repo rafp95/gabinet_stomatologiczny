@@ -6,12 +6,19 @@ using System.Web.Mvc;
 using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.Utils;
-
+using AutoMapper;
+using GabinetStomatologiczny.Services;
 
 namespace GabinetStomatologiczny.Controllers
 {
     public class HomeController : BaseController
     {
+        private readonly IPacjentsService pacjentsService = null;
+
+        public HomeController(IPacjentsService pacjentsService)
+        {
+            this.pacjentsService = pacjentsService;
+        }
         
         public ActionResult Index()
         {
@@ -20,9 +27,10 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult About()
         {
-            var pacjenci = db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date).
-                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() });
-            return View(pacjenci.ToList());
+            var about = pacjentsService.Statistic().
+                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
+                OrderByDescending(p => p.DataRejestracji).ToList();
+            return View(about);
         }
 
     }

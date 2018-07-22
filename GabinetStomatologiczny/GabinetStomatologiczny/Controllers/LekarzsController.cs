@@ -11,11 +11,20 @@ using GabinetStomatologiczny.DAO.Models;
 using System.IO;
 using PagedList;
 using GabinetStomatologiczny.Utils;
+using GabinetStomatologiczny.Services;
+using System.Threading.Tasks;
 
 namespace GabinetStomatologiczny.Controllers
 {
+    [Authorize]
     public class LekarzsController : BaseController
     {
+
+        private readonly ILekarzService _lekarzservice;
+        public LekarzsController(ILekarzService lekarzservice)
+        {
+            this._lekarzservice = lekarzservice;
+        }
 
         // GET: Lekarzs
         public ActionResult Index(string sortOrder,string currentFilter,string searchString,int? page)
@@ -33,10 +42,10 @@ namespace GabinetStomatologiczny.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var lekarz = db.Lekarz.ToList();
+            var lekarz = this._lekarzservice.getAllLekarz();
             if (!string.IsNullOrEmpty(searchString))
             {
-                lekarz = lekarz.Where(l => (l.Imie + " "  + l.Nazwisko).ToLower().Contains(searchString.ToLower())).ToList();
+                lekarz = lekarz.Where(_ => (_.Imie + " "  + _.Nazwisko).ToLower().Contains(searchString.ToLower()));
             }
 
 
@@ -44,60 +53,58 @@ namespace GabinetStomatologiczny.Controllers
             {
                 case "name_desc":
                     {
-                        lekarz = lekarz.OrderByDescending(p => p.Imie).ToList();
+                        lekarz = lekarz.OrderByDescending(p => p.Imie);
                         break;
                     }
                 case "name_asc":
                     {
-                        lekarz = lekarz.OrderBy(p => p.Imie).ToList();
+                        lekarz = lekarz.OrderBy(p => p.Imie);
                         break;
 
                     }
                 case "surname_desc":
                     {
-                        lekarz = lekarz.OrderByDescending(p => p.Nazwisko).ToList();
+                        lekarz = lekarz.OrderByDescending(p => p.Nazwisko);
                         break;
                     }
                 case "surname_asc":
                     {
-                        lekarz = lekarz.OrderBy(p => p.Nazwisko).ToList();
+                        lekarz = lekarz.OrderBy(p => p.Nazwisko);
                         break;
 
                     }
                 case "nrtel_desc":
                     {
-                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu).ToList();
+                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu);
                         break;
                     }
                 case "nrtel_asc":
                     {
-                        lekarz = lekarz.OrderBy(p => p.NrTelefonu).ToList();
+                        lekarz = lekarz.OrderBy(p => p.NrTelefonu);
                         break;
                         
                     }
                 case "email_desc":
                     {
-                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu).ToList();
+                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu);
                         break;
                     }
                 case "email_asc":
                     {
-                        lekarz = lekarz.OrderBy(p => p.NrTelefonu).ToList();
+                        lekarz = lekarz.OrderBy(p => p.NrTelefonu);
                         break;
                     }
 
 
                 default:
                     {
-                        lekarz = lekarz.OrderBy(p => p.Imie).ToList();
+                        lekarz = lekarz.OrderBy(p => p.Imie);
                         break;
                     }
             }
 
-
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-
 
            if (Request.IsAjaxRequest())
             {
@@ -107,9 +114,11 @@ namespace GabinetStomatologiczny.Controllers
             return View(lekarz.ToPagedList(pageNumber,pageSize));
         }
 
-        public ActionResult SugestionsLekarzs(string term)
+        public async Task<ActionResult> SugestionsLekarzs(string term)
         {
-            var personList = db.Lekarz.ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower())).Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko });
+            var personList = await this.db.Lekarz.AsQueryable()
+                .Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower()))
+                .Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko }).ToListAsync();
 
             return Json(personList, JsonRequestBehavior.AllowGet);
         }
@@ -122,7 +131,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekarz lekarz = db.Lekarz.Find(id);
+            Lekarz lekarz = this._lekarzservice.Find(id);
             if (lekarz == null)
             {
                 return HttpNotFound();
@@ -134,12 +143,7 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Lekarzs/Create
         public ActionResult Create()
         {
-            if(User.Identity.IsAuthenticated || User.IsInRole("Administrator") || User.IsInRole("Lekarz"))
-            {
-                return View();
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
+           return View();
         }
 
         // POST: Lekarzs/Create
@@ -151,8 +155,7 @@ namespace GabinetStomatologiczny.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Lekarz.Add(lekarz);
-                db.SaveChanges();
+                this._lekarzservice.CreateLekarz(lekarz);
                 return RedirectToAction("Index");
             }
 
@@ -166,7 +169,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekarz lekarz = db.Lekarz.Find(id);
+            Lekarz lekarz = this._lekarzservice.Find(id);
 
             if (lekarz == null)
             {
@@ -197,8 +200,7 @@ namespace GabinetStomatologiczny.Controllers
                     file.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
                 }
 
-                db.Entry(lekarz).State = EntityState.Modified;
-                db.SaveChanges();
+                this._lekarzservice.Edit(lekarz);
                 return RedirectToAction("Index");
             }
             return View(lekarz);
@@ -211,7 +213,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekarz lekarz = db.Lekarz.Find(id);
+            Lekarz lekarz = this._lekarzservice.Find(id);
             if (lekarz == null)
             {
                 return HttpNotFound();
@@ -234,18 +236,9 @@ namespace GabinetStomatologiczny.Controllers
                 string path = Request.MapPath("~/Obrazki/" + lekarz.Zdjecie);
                 System.IO.File.Delete(path);
             }
-            db.Lekarz.Remove(lekarz);
-            db.SaveChanges();
+            this._lekarzservice.Remove(lekarz);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿@model PagedList.IPagedList<GabinetStomatologiczny.DAO.Models.Pacjent>
 @using PagedList.Mvc;
-
 @{
     ViewBag.Title = "Pacjenci";
     ViewBag.Active = "Pacjenci";
@@ -11,50 +10,24 @@
 <link href="~/Content/Pacjent.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 
-@section scripts{
-
-    <script src="~/Content/script/WyszukiwanieAjaxowe.js"></script>
-    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    
-    <script>
-        var setupAutoComplete = function () {
-            var input = $("#searchQuery");
-
-            var options = {
-                source: input.attr("data-autocomplete-source"),
-                select: function (event, ui) {
-                    input.val(ui.item.label);
-                    var form = input.parents("form:first");
-                    form.submit();
-                }
-            };
-
-            input.autocomplete(options);
-        };
-
-        setupAutoComplete();
-    </script>
-
-}
-
 <h2>Pacjenci</h2>
-
-<p>
-    @Html.ActionLink("Dodaj", "Create", null, new { @class = "btn btn-primary dodajNowegoPacjenta" })
-</p>
-
 
 <div class="form-group">
     <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
-        <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
-        <input type="text" id="searchQuery" name="searchQuery" 
+        <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextPacjent"></span>
+        <input type="text" id="searchQuery" name="searchQuery"
                data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Wpisz min 1 znak"
-               class="form-control" />
-        <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajPacjentAjax form-control" ><i class="fa fa-search"></i></button>
+               class="form-control pacjent-query" />
+        <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajPacjentAjax form-control"><i class="fa fa-search"></i></button>
     </form>
 </div>
 
+
 @Html.Partial("_PatiensParts")
 
-
+@section scripts{
+    <script src="~/Content/script/WyszukiwanieAjaxowe.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Content/script/PacjentAutoComplete.js"></script>
+}

@@ -52,7 +52,8 @@ namespace GabinetStomatologiczny.Controllers
                p = isLogedin ? 
                     new
                         {
-                            _.Pacjent.NrTelefonu, _.Pacjent.Email
+                            _.Pacjent.NrTelefonu,
+                            _.Pacjent.Email
                         }:
                     null,
            }).ToListAsync();

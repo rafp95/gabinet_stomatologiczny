@@ -9,7 +9,7 @@ namespace GabinetStomatologiczny.Models
 {
     public class Osoba
     {
-        [Display(Name = "Wybierz rodzaj osoby")]
+        [Display(Name = "Typ konta")]
         public TypPracownika TypPracownika { get; set; }
 
         [Required]
@@ -38,5 +38,8 @@ namespace GabinetStomatologiczny.Models
         [RegularExpression(@"([\+]){0,1}([0-9]{2})?[\-\s]?[-]?([0-9]{3})\-?[-\s]?([0-9]{3})[-\s]\-?([0-9]{3})$",
             ErrorMessage = "Numer musi być zapisany w formacie 123-123-123")]
         public string NrTelefonu { get; set; }
+        
+        [Display(Name = "Płeć")]
+        public Plec Plec { get; set; }
     }
 }

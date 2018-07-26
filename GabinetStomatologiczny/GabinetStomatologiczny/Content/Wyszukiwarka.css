@@ -21,6 +21,7 @@ form.wyszukiwarka {
 
     form.wyszukiwarka input[type=text] {
         padding: 8px;
+        padding-right: 35px;
         font-size: 17px;
         border: 1px solid grey;
         float: left;

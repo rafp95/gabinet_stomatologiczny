@@ -34,6 +34,7 @@ namespace GabinetStomatologiczny.Controllers
 
         public async Task<JsonResult> GetEvents(string searchQuery)
         {
+           
             var eventsQuery = db.Wizyta.AsQueryable();
 
             if (!string.IsNullOrEmpty(searchQuery))
@@ -43,21 +44,25 @@ namespace GabinetStomatologiczny.Controllers
 
             var isLogedin = User.Identity.IsAuthenticated;
 
+            var u = new { Name = User.Identity.Name  };
             var events = await eventsQuery.Select(_ =>
            new
            {
                _.Koniec,
                _.Poczatek,
                Tytul = isLogedin ? _.Tytul : "*",
-               p = isLogedin ? 
+               p = isLogedin ?
                     new
-                        {
-                            _.Pacjent.NrTelefonu,
-                            _.Pacjent.Email
-                        }:
+                    {
+                        _.Pacjent.NrTelefonu,
+                        _.Pacjent.Email,
+                        activeUser = new { u.Name }
+                    } : 
                     null,
            }).ToListAsync();
 
+            
+            
             return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 

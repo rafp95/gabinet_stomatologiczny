@@ -92,7 +92,8 @@
                         start: moment(v.Poczatek),
                         end: v.Koniec != null ? moment(v.Koniec) : null,
                         phone: v.p != null ? v.p.NrTelefonu : null,
-                        email: v.p != null ? v.p.Email : null
+                        email: v.p != null ? v.p.Email : null,
+                        activeUser: v.p != null ? v.p.activeUser.Name : null
                     });
                 })
                 GenerateCalender(events);
@@ -148,7 +149,15 @@
                 $('#myModal #pDetails').html("<div> <b>Początek : </b> " + calEvent.start.format('HH:mm') + "</div>").
                                append("<div> <b> Koniec: </b> " + calEvent.end.format("HH:mm") + "</div>").
                                append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>").
-                               append("<div> <b>Tel:</b> "+  tel + "</div>");
+                               append("<div> <b>Tel:</b> " + tel + "</div>");
+                if (calEvent.activeUser != calEvent.email) {
+                    $('#btnEdit').hide();
+                    $('#btnDelete').hide();
+                } else {
+                    $('#btnEdit').show();
+                    $('#btnDelete').show();
+                }
+
                 $('#myModal').modal();
                 //koniec budowania modal
             },

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +8,7 @@ namespace GabinetStomatologiczny.DAO.Models
 {
     public enum Plec
     {
-        Mezczyzna,
+        Mężczyzna,
         Kobieta
     }
 }

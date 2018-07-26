@@ -145,6 +145,7 @@
                 selectedEvent = calEvent;
                 //budowanie modal
                 var tel = calEvent.phone != null ? calEvent.phone : " *";
+
                 $("#myModal #eventTitle").text(calEvent.title);
                 $('#myModal #pDetails').html("<div> <b>Początek : </b> " + calEvent.start.format('HH:mm') + "</div>").
                                append("<div> <b> Koniec: </b> " + calEvent.end.format("HH:mm") + "</div>").

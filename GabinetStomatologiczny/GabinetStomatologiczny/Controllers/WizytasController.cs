@@ -27,9 +27,7 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Wizytas
         public ActionResult Index()
         {
-            ViewBag.User = User.Identity.Name;
-            var wizyta = db.Wizyta.Include(w => w.Lekarz).Include(w => w.Pacjent);
-            return View(wizyta.ToList());
+            return View();
         }
 
         public async Task<JsonResult> GetEvents(string searchQuery)

@@ -352,7 +352,7 @@ namespace GabinetStomatologiczny.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("Nie podano adresu email", error);
             }
         }
 

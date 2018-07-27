@@ -54,7 +54,7 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult SugestionsLekarzs(Sugestion sugestion)
         {
-            var list = this._sugestionService.SugestionLekarzAsync(sugestion);
+            var list = this._sugestionService.SugestionLekarz(sugestion);
 
             return Json(list, JsonRequestBehavior.AllowGet);
         }

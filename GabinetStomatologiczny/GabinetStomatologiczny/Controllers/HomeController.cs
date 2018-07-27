@@ -8,6 +8,7 @@ using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.Utils;
 using AutoMapper;
 using GabinetStomatologiczny.Services;
+using Rotativa;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -33,5 +34,13 @@ namespace GabinetStomatologiczny.Controllers
             return View(about);
         }
 
+        public ActionResult Pdf()
+        {
+            var p = new ActionAsPdf("About");
+            return p;
+        }
+    
+        
+   
     }
 }

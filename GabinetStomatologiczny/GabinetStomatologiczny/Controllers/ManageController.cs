@@ -233,7 +233,7 @@ namespace GabinetStomatologiczny.Controllers
                 return View(model);
             }
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-
+            
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByNameAsync(User.Identity.Name);
@@ -352,7 +352,18 @@ namespace GabinetStomatologiczny.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("Nie podano adresu email", error);
+                if(error.Equals("Email cannot be null or empty."))
+                {
+                    ModelState.AddModelError("Email cannot be null or empty.", "Pole email jest puste");
+                }else if(error.Equals("Incorrect password."))
+                {
+                    ModelState.AddModelError("Incorrect password.", "Obecne hasło jest nie poprawne");
+                }
+                else
+                {
+                    ModelState.AddModelError("", error);
+                }
+
             }
         }
 

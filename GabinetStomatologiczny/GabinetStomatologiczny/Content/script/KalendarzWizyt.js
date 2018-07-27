@@ -219,7 +219,6 @@
 
     $("#kasujElement").click(function () {
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie </div> <div class='loader' style='float:left;'></div>");
-
         if (selectedEvent != null) {
             $.ajax({
                 type: "POST",

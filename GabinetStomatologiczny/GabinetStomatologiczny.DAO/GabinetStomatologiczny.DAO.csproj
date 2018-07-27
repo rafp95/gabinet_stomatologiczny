@@ -118,6 +118,7 @@
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Lekarz.cs" />
+    <Compile Include="Models\LekarzSort.cs" />
     <Compile Include="Models\OddzialNfz.cs" />
     <Compile Include="Models\Pacjent.cs" />
     <Compile Include="Models\PacjentSort.cs" />

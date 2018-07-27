@@ -48,6 +48,7 @@ namespace GabinetStomatologiczny.Controllers
             var events = await eventsQuery.Select(_ =>
            new
            {
+               _.ID,
                _.Koniec,
                _.Poczatek,
                Tytul = isLogedin ? _.Tytul : "*",

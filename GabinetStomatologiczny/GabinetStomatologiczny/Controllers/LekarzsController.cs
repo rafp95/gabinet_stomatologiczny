@@ -48,7 +48,6 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return PartialView("_LekarzsParts", lekarz);
             }
-
             return View(lekarz);
         }
 

@@ -18,7 +18,7 @@ namespace GabinetStomatologiczny.Controllers
     [Authorize(Roles = "Administrator,Lekarz")]
     public class RejestracjaController : BaseController
     {
-        private readonly GabinetContext db;
+        private readonly new GabinetContext db;
         private readonly ISendEmailService se;
         private readonly IPacjentsService ps;
         private readonly ILekarzService ls;

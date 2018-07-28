@@ -34,9 +34,18 @@ namespace GabinetStomatologiczny.Controllers
             return View(about);
         }
 
+        public ActionResult Statistic()
+        {
+            var about = pacjentsService.Statistic().
+                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
+                OrderByDescending(p => p.DataRejestracji).ToList();
+            return View(about);
+        }
+
         public ActionResult Pdf()
         {
-            var p = new ActionAsPdf("About");
+            var p = new ActionAsPdf("Statistic");
+           
             return p;
         }
     

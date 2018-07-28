@@ -1,0 +1,51 @@
+﻿@model List<GabinetStomatologiczny.Models.LiczbaPacjentow>
+
+@{
+    Layout = null;
+    ViewBag.Active = "About";
+    ViewBag.Title = "Statystki";
+}
+
+<h2 style="text-align: center;">Statystki rejestracji pacjętów</h2>
+
+<style>
+    table tr td, tr th{
+        border: 1px solid black;
+        text-align: center;
+        padding: 10px;
+    }
+</style>
+
+@if (Model.Count() > 0)
+{
+
+    <table class="table">
+        <tr>
+            <th>
+                Data rejestracji
+            </th>
+            <th>
+                Liczba pacjentów
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataRejestracji)
+                </td>
+                <td>
+                    <span class="badge"> @item.Pacjentow </span>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>Jeszcze żaden pacjent się nie zarejestrował </div>
+}
+
+
+<link href="~/Content/TableStyle.css" rel="stylesheet" />

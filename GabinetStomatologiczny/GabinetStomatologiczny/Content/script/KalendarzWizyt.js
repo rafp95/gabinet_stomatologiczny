@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
     let ladowanie = $("div.ladowanie");
+    let widok = 'month';
     ladowanie.css('display', 'block');
     //Czas
 
@@ -71,7 +72,8 @@
             console.log(size);
         }
     });
-    //Akttuana data do sprawdzania czy wprowadzona data nie jest wcześniejsza
+    //Aktualna data do sprawdzania czy wprowadzona data nie jest wcześniejsza
+
     var now = moment(new Date(), "DD-MM-YYYY HH:mm");
     //Get all events
     var events = [];
@@ -108,12 +110,11 @@
 
     //Generate calandar
     function GenerateCalender(events) {
-        let widok = 'month';
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
-            themeSystem: 'jquery-ui',
-            groupByResource: true,
+            navLinks: true,
             slotMinutes: 30,
+            slotLabelInterval: 30,
             slotEventOverlap: false,
             nowIndicator: true,
             aspectRatio: () => { size },
@@ -129,13 +130,13 @@
             header: {
                 left: 'prev,next,today',
                 center: 'title',
-                right: 'month,agenda,agendaFourDay'
+                right: 'month,agendaDay,agendaFourDay'
             },
             views: {
                 agendaFourDay: {
                     type: 'agenda',
-                    dayCount: 4,
-                    buttonText: '4 dni'
+                    dayCount: 5,
+                    buttonText: '5 dni'
                 }
             },
             eventLimit: 3,
@@ -164,6 +165,7 @@
             },
             selectable: true,
             select: function (start, end) {
+
                 ErorMessage();
                 selectedEvent = {
                     eventID: 0,
@@ -272,7 +274,7 @@
         for (var i = 0; i < events.length; i++) {
             if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
                 $("#txtStart").css('border', '1px solid red').parent().
-               after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
+                after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
                 return;
             }
             
@@ -335,7 +337,7 @@
 function pokazAktualnyCzas() {
     var aktualny = setInterval(() => {
         var aktualntCzas = moment(new Date());
-        $("div#aktualnyCzas").html(aktualntCzas.format("HH:mm:ss"));
+        $("div#aktualnyCzas").html(aktualntCzas.format("DD-MMM-YYYY HH:mm:ss"));
     }, 1000);
 }
 

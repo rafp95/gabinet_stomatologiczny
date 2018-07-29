@@ -13,4 +13,5 @@ input[type=text], input[type=password] {
 
 span.control-label span.glyphicon {
     padding: 4px;
+    font-size: 20px;
 }

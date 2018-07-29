@@ -32,6 +32,10 @@ table tbody tr {
     text-align: left;
 }
 
+div.fc-content{
+    font-size: 2vh;
+}
+
 input#txtStart,
 input#txtDescription,
 select#txtSelect,

@@ -69,8 +69,10 @@ namespace GabinetStomatologiczny.Controllers
         {
             var events = db.Wizyta.ToList().
                 Where(p => p.Tytul.ToLower().
-                Contains(term.ToLower())).
-                Take(5).OrderByDescending(p => p.Poczatek).
+                Contains(term.ToLower()) &&
+                p.Poczatek >= DateTime.Now).
+                OrderBy(p => p.Poczatek).
+                Take(5).
                 Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
 
             events = events.Count() == 0 ? db.Wizyta.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;

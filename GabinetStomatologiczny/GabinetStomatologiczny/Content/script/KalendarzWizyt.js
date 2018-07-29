@@ -112,6 +112,7 @@
     function GenerateCalender(events) {
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
+            weekNumbers: true,
             navLinks: true,
             slotMinutes: 30,
             slotLabelInterval: 30,
@@ -123,12 +124,8 @@
             minTime: "08:00:00",
             maxTime: "17:00:00",
             defaultView: widok,
-            success: function(events)
-            {
-                $('#calendar').fullCalendar('refetchEvents');
-            },
             header: {
-                left: 'prev,next,today',
+                left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaDay,agendaFourDay'
             },
@@ -140,7 +137,6 @@
                 }
             },
             eventLimit: 3,
-            eventColor: '#378006',
             events: events,
             eventClick: function (calEvent, jsEvent, view) {
                 selectedEvent = calEvent;

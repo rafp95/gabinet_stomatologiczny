@@ -29,10 +29,15 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult About()
         {
+            return View();
+        }
+
+        public ActionResult Chart()
+        {
             var about = pacjentsService.Statistic().
-                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
-                OrderByDescending(p => p.DataRejestracji).ToList();
-            return View(about);
+               Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
+               OrderByDescending(p => p.DataRejestracji).ToList();
+            return Json(about, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Statistic()

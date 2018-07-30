@@ -15,6 +15,7 @@ using AutoMapper;
 using static GabinetStomatologiczny.Startup;
 using System.Threading.Tasks;
 using Nexmo.Api;
+using System.Security.Claims;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -28,6 +29,11 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Wizytas
         public ActionResult Index()
         {
+            var userIdentity = (ClaimsIdentity)User.Identity;
+            var claims = userIdentity.Claims;
+            var roleClaimType = userIdentity.RoleClaimType;
+            var roles = claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+           
             return View();
         }
 

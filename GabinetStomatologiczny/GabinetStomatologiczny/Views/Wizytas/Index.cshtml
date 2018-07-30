@@ -40,9 +40,8 @@
             </div>
             <div class="modal-body">
                 <p id="pDetails"></p>
-                @if (User.IsInRole("Pacjent")
-                  || User.IsInRole("Lekarz")
-                  || User.IsInRole("Administrator"))
+                @if (User.IsInRole("Pacjent") ||
+                     User.IsInRole("Administrator"))
                 {
                     {
                         <div id="action">
@@ -51,7 +50,7 @@
                             </button>
                             <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
                                 <span class="glyphicon glyphicon-pencil"></span> Edytuj
-                            </button>
+                            </button>                            
                             @if (User.IsInRole("Lekarz") ||
                                  User.IsInRole("Administrator"))
                             {
@@ -107,7 +106,7 @@
                 <div class="modal-body">
                     <form class="col-md-12 form-horizontal">
                         <label for="inputDo">Do : </label>
-                        <input type="text" class="form-control" id="inputDo" placeholder="Nr telefonu">
+                        <input type="text" class="form-control" id="inputDo" placeholder="Nr telefonu" />
                         <div id="errorSmsTo"></div>
                         <label for="inputDo">Wiadomość : </label>
                         <textarea type="text" class="form-control" id="inputWiadomosc" placeholder="Wiadomość" ></textarea>

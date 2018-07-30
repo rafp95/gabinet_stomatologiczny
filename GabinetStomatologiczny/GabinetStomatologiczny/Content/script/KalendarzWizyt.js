@@ -204,6 +204,67 @@
     }
     //End generate calendar
 
+    //Send sms
+    $("#btnSms").click(() => {
+        czyscSmsInput();
+        ErorMessage();
+        $("#inputDo").val('+48' + getPhoneNumber());
+        $("#inputWiadomosc").val("Przypomnienie o wizycie dnia "  + selectedEvent.start.format("DD-MMM-YYYY HH:mm"));
+        buttonInfo($("#btnSmsSend"), "Wyślij");
+        $("#myModalSendSms").modal();
+    });
+
+
+    $("#btnSmsSend").click(() => {
+
+        let data = {
+            to: $("#inputDo").val(),
+            text: $("#inputWiadomosc").val()
+        };
+
+        if (data.to.length === 0) {
+            $("#inputDo").css('border', '1px solid red');
+            $("#errorSmsTo").text("Pole wymagane").css("color", "red");
+            return;
+        } else if (data.text.length === 0) {
+            $("#inputWiadomosc").css('border', '1px solid red');
+            $("#errorSmsWiadomosc").text("Pole wymagane").css("color", "red");;
+            return;
+        }
+        
+        sendSmsToApi(data);
+
+        buttonInfo($("#btnSmsSend"), "<div class='btnSmsSend' style='float:left; '>Wysyłanie </div> <div class='loader' style='float:left;'></div>");
+        $("#myModalSendSms").modal('hide');
+    });
+
+    function czyscSmsInput() {
+        $("#inputDo").val("");
+        $("#inputWiadomosc").val("");
+    }
+
+    function sendSmsToApi(data) {
+        $.ajax({
+            type: "POST",
+            url: '/Wizytas/Sms',
+            data: data
+        });
+    }
+
+    function getPhoneNumber() {
+        let phone = selectedEvent.phone.trim();
+        let pomPhone = '';
+        for (var i = 0; i < phone.length; i++) {
+            
+            if (phone.charAt(i) != '-') {
+                pomPhone += phone.charAt(i);
+            }
+        }
+        return pomPhone;
+    }
+
+    //End send sms
+
     $('#btnEdit').click(function () {
         //Open modal dialog for edit event
         openAddEditForm();
@@ -322,8 +383,11 @@
 
     //Validate massage
     function ErorMessage() {
+        $("#errorSmsTo").html("");
+        $("#errorSmsWiadom").html("");
         $("div.error").html("");
         $("div.errorTime").html("");
+        $("div#errorSms").html("");
         $("#txtStart").css('border', '');
     }
 

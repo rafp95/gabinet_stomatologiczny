@@ -13,28 +13,7 @@ table tbody tr {
     height: 5px;
 }
 
-.modal {
-    text-align: center;
-    padding: 0 !important;
-}
 
-    .modal::before {
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-        margin-right: -4px;
-        content: " ";
-    }
-
-.modal-dialog {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: left;
-}
-
-div.fc-content{
-    font-size: 2vh;
-}
 
 input#txtStart,
 input#txtDescription,
@@ -44,12 +23,19 @@ textarea#txtDescription {
 }
 
 .fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
-    border-radius: 50%;
-    font-size: 3vh;
+    font-size: 16px;
 }
 
 td.fc-event-container:hover, div.fc-event-container a:hover {
+    opacity: 0.8;
     cursor: pointer;
+}
+
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
 }
 
 @media only screen and (max-width: 760px) {
@@ -63,11 +49,12 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
     }
 
     div.fc-view, div.fc-view > table {
-        font-size: 2vh;
+        font-size: 12px;
     }
 
     .fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
-        font-size: 1.5vh;
+        padding: 2px;
+        font-size: 10px;
     }
 }
 
@@ -123,5 +110,5 @@ div.loader {
 
 tr:hover {
     cursor: pointer;
-    transition:all 0.3s ease;
+    transition: all 0.3s ease;
 }

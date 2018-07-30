@@ -14,6 +14,7 @@ using System.Diagnostics;
 using AutoMapper;
 using static GabinetStomatologiczny.Startup;
 using System.Threading.Tasks;
+using Nexmo.Api;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -79,6 +80,22 @@ namespace GabinetStomatologiczny.Controllers
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult Sms(string to, string text)
+        {
+            var status = false;
+            var results = SMS.Send(new SMS.SMSRequest
+            {
+                from = Configuration.Instance.Settings["appsettings:NEXMO_FROM_NUMBER"],
+                to = to,
+                text = text
+              
+            });
+            status = true;
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost]
         public JsonResult SaveEvent(Wizyta w)

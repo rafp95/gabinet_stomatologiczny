@@ -35,23 +35,33 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 style="text-align:center;">Informacje o pacjęcie</h1>
                 <h4 class="modal-title text-center"><span id="eventTitle"></span></h4>
             </div>
             <div class="modal-body">
+                <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent")
-                    ||User.IsInRole("Lekarz")
-                    || User.IsInRole("Administrator"))
+                  || User.IsInRole("Lekarz")
+                  || User.IsInRole("Administrator"))
                 {
                     {
-                        <button id="btnDelete" class="btn btn-default btn-sm pull-right">
-                            <span class="glyphicon glyphicon-remove"></span> Kasuj
-                        </button>
-                        <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
-                            <span class="glyphicon glyphicon-pencil"></span> Edytuj
-                        </button>
+                        <div id="action">
+                            <button id="btnDelete" class="btn btn-default btn-sm pull-right">
+                                <span class="glyphicon glyphicon-remove"></span> Kasuj
+                            </button>
+                            <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
+                                <span class="glyphicon glyphicon-pencil"></span> Edytuj
+                            </button>
+                            @if (User.IsInRole("Lekarz") ||
+                                 User.IsInRole("Administrator"))
+                            {
+                                <button id="btnSms" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
+                                    <span class="glyphicon glyphicon-pencil"></span> Sms
+                                </button>
+                            }
+                        </div>
                     }
                 }
-                <p id="pDetails"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
@@ -59,10 +69,13 @@
         </div>
     </div>
 </div>
+
+
+
 <!--End about-->
 @if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
-     || User.IsInRole("Administrator")
-     || User.IsInRole("Lekarz"))
+                 || User.IsInRole("Administrator")
+                 || User.IsInRole("Lekarz"))
 {
     <!--Eror-->
     <div id="myModalError" class="modal fade" role="dialog">
@@ -82,6 +95,37 @@
         </div>
     </div>
     <!--End Eror-->
+
+    <!--Send sms-->
+    <div id="myModalSendSms" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Wyslij sms</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="col-md-12 form-horizontal">
+                        <label for="inputDo">Do : </label>
+                        <input type="text" class="form-control" id="inputDo" placeholder="Nr telefonu">
+                        <div id="errorSmsTo"></div>
+                        <label for="inputDo">Wiadomość : </label>
+                        <textarea type="text" class="form-control" id="inputWiadomosc" placeholder="Wiadomość" ></textarea>
+                        <div id="errorSmsWiadom"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" id="btnSmsSend"
+                            class="btn btn-success float-right" data-loading-text="Wysyłanie...">
+                        Wyslij
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End send sms-->
+
      <!-- Delete coonfirm modal -->
     <div class="modal fade" id="deleteConfirmModal" role="dialog">
         <div class="modal-dialog modal-sm">
@@ -120,9 +164,6 @@
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="form-group">
-
                         </div>
                     </form>
                 </div>

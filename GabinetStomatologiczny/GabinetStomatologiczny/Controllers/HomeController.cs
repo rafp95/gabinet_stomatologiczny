@@ -9,6 +9,7 @@ using GabinetStomatologiczny.Utils;
 using AutoMapper;
 using GabinetStomatologiczny.Services;
 using Rotativa;
+using Nexmo.Api;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -48,8 +49,6 @@ namespace GabinetStomatologiczny.Controllers
            
             return p;
         }
-    
-        
    
     }
 }

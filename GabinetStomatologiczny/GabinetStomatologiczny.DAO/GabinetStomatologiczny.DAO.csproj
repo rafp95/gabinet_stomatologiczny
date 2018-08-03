@@ -115,6 +115,51 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GabinetContext.cs" />
+    <Compile Include="Migrations\201807151820346_InitialCreate.cs" />
+    <Compile Include="Migrations\201807151820346_InitialCreate.Designer.cs">
+      <DependentUpon>201807151820346_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011144014_InitialCreate1.cs" />
+    <Compile Include="Migrations\201808011144014_InitialCreate1.Designer.cs">
+      <DependentUpon>201808011144014_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011145407_n.cs" />
+    <Compile Include="Migrations\201808011145407_n.Designer.cs">
+      <DependentUpon>201808011145407_n.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011406433_ZabiegProperty2.cs" />
+    <Compile Include="Migrations\201808011406433_ZabiegProperty2.Designer.cs">
+      <DependentUpon>201808011406433_ZabiegProperty2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011409348_InitialCreate2.cs" />
+    <Compile Include="Migrations\201808011409348_InitialCreate2.Designer.cs">
+      <DependentUpon>201808011409348_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011411062_propo.cs" />
+    <Compile Include="Migrations\201808011411062_propo.Designer.cs">
+      <DependentUpon>201808011411062_propo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011428408_MigrationName.cs" />
+    <Compile Include="Migrations\201808011428408_MigrationName.Designer.cs">
+      <DependentUpon>201808011428408_MigrationName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011429478_MigrationName2.cs" />
+    <Compile Include="Migrations\201808011429478_MigrationName2.Designer.cs">
+      <DependentUpon>201808011429478_MigrationName2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011438334_removeProp.cs" />
+    <Compile Include="Migrations\201808011438334_removeProp.Designer.cs">
+      <DependentUpon>201808011438334_removeProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011507334_propertyPacjent.cs" />
+    <Compile Include="Migrations\201808011507334_propertyPacjent.Designer.cs">
+      <DependentUpon>201808011507334_propertyPacjent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011509084_removePacjentProp.cs" />
+    <Compile Include="Migrations\201808011509084_removePacjentProp.Designer.cs">
+      <DependentUpon>201808011509084_removePacjentProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Lekarz.cs" />
@@ -135,6 +180,41 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807151820346_InitialCreate.resx">
+      <DependentUpon>201807151820346_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011144014_InitialCreate1.resx">
+      <DependentUpon>201808011144014_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011145407_n.resx">
+      <DependentUpon>201808011145407_n.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011406433_ZabiegProperty2.resx">
+      <DependentUpon>201808011406433_ZabiegProperty2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011409348_InitialCreate2.resx">
+      <DependentUpon>201808011409348_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011411062_propo.resx">
+      <DependentUpon>201808011411062_propo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011428408_MigrationName.resx">
+      <DependentUpon>201808011428408_MigrationName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011429478_MigrationName2.resx">
+      <DependentUpon>201808011429478_MigrationName2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011438334_removeProp.resx">
+      <DependentUpon>201808011438334_removeProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011507334_propertyPacjent.resx">
+      <DependentUpon>201808011507334_propertyPacjent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011509084_removePacjentProp.resx">
+      <DependentUpon>201808011509084_removePacjentProp.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -441,6 +441,30 @@
     <Compile Include="Migrations\201807151738398_InitialMigrations.Designer.cs">
       <DependentUpon>201807151738398_InitialMigrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807311649241_InitialCreate.cs" />
+    <Compile Include="Migrations\201807311649241_InitialCreate.Designer.cs">
+      <DependentUpon>201807311649241_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011418396_propZabieg.cs" />
+    <Compile Include="Migrations\201808011418396_propZabieg.Designer.cs">
+      <DependentUpon>201808011418396_propZabieg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011419453_propZabieg2.cs" />
+    <Compile Include="Migrations\201808011419453_propZabieg2.Designer.cs">
+      <DependentUpon>201808011419453_propZabieg2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011421043_propZabieg4.cs" />
+    <Compile Include="Migrations\201808011421043_propZabieg4.Designer.cs">
+      <DependentUpon>201808011421043_propZabieg4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011433061_removeZabiegProperty.cs" />
+    <Compile Include="Migrations\201808011433061_removeZabiegProperty.Designer.cs">
+      <DependentUpon>201808011433061_removeZabiegProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011435284_removeProp.cs" />
+    <Compile Include="Migrations\201808011435284_removeProp.Designer.cs">
+      <DependentUpon>201808011435284_removeProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AutoMapperAdmin.cs" />
     <Compile Include="Models\AutoMapperConfiguration.cs" />
@@ -463,6 +487,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\About.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -635,7 +660,7 @@
     <Content Include="Content\script\Chart.js" />
     <Content Include="Content\script\GoToTop.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />
-    <Content Include="Content\script\PacjentAutoComplete.js" />
+    <Content Include="Content\script\AutoComplete.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <Content Include="Content\SilaHasla.css" />
     <Content Include="Content\TableStyle.css" />
@@ -1006,6 +1031,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807151738398_InitialMigrations.resx">
       <DependentUpon>201807151738398_InitialMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311649241_InitialCreate.resx">
+      <DependentUpon>201807311649241_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011418396_propZabieg.resx">
+      <DependentUpon>201808011418396_propZabieg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011419453_propZabieg2.resx">
+      <DependentUpon>201808011419453_propZabieg2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011421043_propZabieg4.resx">
+      <DependentUpon>201808011421043_propZabieg4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011433061_removeZabiegProperty.resx">
+      <DependentUpon>201808011433061_removeZabiegProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011435284_removeProp.resx">
+      <DependentUpon>201808011435284_removeProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

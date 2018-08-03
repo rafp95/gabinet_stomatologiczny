@@ -16,14 +16,16 @@ using static GabinetStomatologiczny.Startup;
 using System.Threading.Tasks;
 using Nexmo.Api;
 using System.Security.Claims;
+using GabinetStomatologiczny.Services;
 
 namespace GabinetStomatologiczny.Controllers
 {
     public class WizytasController : BaseController
     {
-        public WizytasController(GabinetContext db) : base(db)
+        private IUserRoleService _userRoleService;
+        public WizytasController(GabinetContext db, IUserRoleService userRoleService) : base(db)
         {
-
+            this._userRoleService = userRoleService;
         }
 
         // GET: Wizytas
@@ -48,7 +50,7 @@ namespace GabinetStomatologiczny.Controllers
             }
 
             var isLogedin = User.Identity.IsAuthenticated;
-
+            var r = this._userRoleService.GetUserRole((ClaimsIdentity)User.Identity);
             var u = new { Name = User.Identity.Name  };
             var events = await eventsQuery.Select(_ =>
            new
@@ -62,7 +64,8 @@ namespace GabinetStomatologiczny.Controllers
                     {
                         _.Pacjent.NrTelefonu,
                         _.Pacjent.Email,
-                        activeUser = new { u.Name }
+                        activeUser = new { u.Name },
+                        role = r
                     } : 
                     null,
            }).ToListAsync();
@@ -116,8 +119,16 @@ namespace GabinetStomatologiczny.Controllers
                     {
                         w.LekarzID = v.LekarzID;
                         w.PacjentID = v.PacjentID;
+                        if (!string.IsNullOrEmpty(v.Tytul))
+                        {
+                            w.Tytul = v.Tytul;
+                        }
                         var m = Mapper.Map<Wizyta, Wizyta>(w, v);
-                        m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                        if (string.IsNullOrEmpty(m.Tytul))
+                        {
+                            m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                        }
+                       
                         db.Entry(m).State = EntityState.Modified;
                     }
 

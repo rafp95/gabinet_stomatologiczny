@@ -55,6 +55,7 @@
     <Compile Include="SortLekarzService.cs" />
     <Compile Include="SortPacjentService.cs" />
     <Compile Include="SugestionService.cs" />
+    <Compile Include="UserRoleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">

@@ -10,7 +10,7 @@
 }
 
 #myImg:hover {
-    opacity: 0.7;
+    transform: scale(0.9);
 }
 
 /* The Modal (background) */
@@ -83,8 +83,8 @@
 /* The Close Button */
 .close {
     position: absolute;
-    top: 5px;
-    right: 35px;
+    top: 2px;
+    right: 20px;
     color: white;
     font-size: 40px;
     font-weight: bold;

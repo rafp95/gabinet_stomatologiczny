@@ -109,11 +109,8 @@ namespace GabinetStomatologiczny.Controllers
             if (lekarz == null)
             {
                 return HttpNotFound();
-            }else if ((User.Identity.IsAuthenticated && User.Identity.Name == lekarz.Email) || User.IsInRole("Administrator"))
-            {
-                return View(lekarz);
             }
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            return View(lekarz);
         }
 
         // POST: Lekarzs/Edit/5

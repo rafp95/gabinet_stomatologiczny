@@ -95,7 +95,8 @@
                         end: v.Koniec != null ? moment(v.Koniec) : null,
                         phone: v.p != null ? v.p.NrTelefonu : null,
                         email: v.p != null ? v.p.Email : null,
-                        activeUser: v.p != null ? v.p.activeUser.Name : null
+                        activeUser: v.p != null ? v.p.activeUser.Name : null,
+                        role: v.p != null ?  v.p.role : null
                     });
                 })
                 GenerateCalender(events);
@@ -148,12 +149,13 @@
                                append("<div> <b> Koniec: </b> " + calEvent.end.format("HH:mm") + "</div>").
                                append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>").
                                append("<div> <b>Tel:</b> " + tel + "</div>");
-                if (calEvent.activeUser != calEvent.email) {
-                    $('#btnEdit').hide();
-                    $('#btnDelete').hide();
-                } else {
+                if (calEvent.activeUser === calEvent.email ||
+                    calEvent.role === "Administrator") {
                     $('#btnEdit').show();
                     $('#btnDelete').show();
+                } else {
+                    $('#btnEdit').hide();
+                    $('#btnDelete').hide();
                 }
 
                 $('#myModal').modal();

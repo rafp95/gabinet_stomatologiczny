@@ -657,6 +657,7 @@
     <Content Include="Content\LoginInput.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PginationPosition.css" />
+    <Content Include="Content\script\AutoComplSearchWizyta.js" />
     <Content Include="Content\script\Chart.js" />
     <Content Include="Content\script\GoToTop.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />

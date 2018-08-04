@@ -41,7 +41,7 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent") ||
-                     User.IsInRole("Administrator"))
+                 User.IsInRole("Administrator"))
                 {
                     {
                         <div id="action">
@@ -50,9 +50,9 @@
                             </button>
                             <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
                                 <span class="glyphicon glyphicon-pencil"></span> Edytuj
-                            </button>                            
+                            </button>
                             @if (User.IsInRole("Lekarz") ||
-                                 User.IsInRole("Administrator"))
+                         User.IsInRole("Administrator"))
                             {
                                 <button id="btnSms" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
                                     <span class="glyphicon glyphicon-pencil"></span> Sms
@@ -73,8 +73,8 @@
 
 <!--End about-->
 @if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
-                 || User.IsInRole("Administrator")
-                 || User.IsInRole("Lekarz"))
+                             || User.IsInRole("Administrator")
+                             || User.IsInRole("Lekarz"))
 {
     <!--Eror-->
     <div id="myModalError" class="modal fade" role="dialog">
@@ -109,7 +109,7 @@
                         <input type="text" class="form-control" id="inputDo" placeholder="Nr telefonu" />
                         <div id="errorSmsTo"></div>
                         <label for="inputDo">Wiadomość : </label>
-                        <textarea type="text" class="form-control" id="inputWiadomosc" placeholder="Wiadomość" ></textarea>
+                        <textarea type="text" class="form-control" id="inputWiadomosc" placeholder="Wiadomość"></textarea>
                         <div id="errorSmsWiadom"></div>
                     </form>
                 </div>
@@ -153,7 +153,7 @@
                     <h4 class="modal-title text-center">Zapisz</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="col-md-12 form-horizontal">
+                    <form class="col-md-12 form-horizontal" data-ajax="true">
                         <input type="hidden" id="hdEventID" value="0" />
                         <div class="form-group">
                             <label>Początek</label>
@@ -164,6 +164,21 @@
                                 </span>
                             </div>
                         </div>
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Lekarz"))
+                        {
+                            <div class="form-group">
+                                <label>Imię nazwisko</label>
+                                <div class="input-group" id="dtp2">
+                                    <input type="text" id="tytul" 
+                                           data-autocomplete-source="@Url.Action("Sugestions","Pacjents")"
+                                           class="form-control"
+                                           placeholder="Wyszukaj pacjęta" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        }
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -184,7 +199,6 @@
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Content/script/KalendarzWizyt.js"></script>
+    <script src="~/Content/script/AutoComplete.js"></script>
+    <script src="~/Content/script/AutoComplSearchWizyta.js"></script>
 }
-
-
-

@@ -17,6 +17,7 @@ table tbody tr {
 
 input#txtStart,
 input#txtDescription,
+input#tytul,
 select#txtSelect,
 textarea#txtDescription {
     max-width: 100%;
@@ -114,3 +115,6 @@ tr:hover {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+.ui-autocomplete { z-index:2147483647; }
+

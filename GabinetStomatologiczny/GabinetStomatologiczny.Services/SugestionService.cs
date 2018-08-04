@@ -32,6 +32,8 @@ namespace GabinetStomatologiczny.Services
                 .Take(5)
                 .Select(p => new { label = p.Imie + " " + p.Nazwisko });
 
+
+
             return personList;
         }
 
@@ -42,6 +44,9 @@ namespace GabinetStomatologiczny.Services
                 .ToLower().Contains(sugestion.term.ToLower()))
                 .Take(5)
                 .Select(p =>  new { label = p.Imie + " " + p.Nazwisko } );
+
+            personList = personList.Count() == 0 ? personList.DefaultIfEmpty().
+                Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : personList;
 
             return personList;
         }

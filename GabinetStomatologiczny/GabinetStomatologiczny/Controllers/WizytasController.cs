@@ -138,7 +138,17 @@ namespace GabinetStomatologiczny.Controllers
                     w.PacjentID = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.ID).FirstOrDefault();
                     w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
                     var m = Mapper.Map<Wizyta, Wizyta>(w);
-                    m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                   
+                    if (m.Tytul != null)
+                    {
+                        var pacjent = db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul) ).FirstOrDefault();
+                        m.PacjentID = pacjent.ID;
+                    }else
+                    {
+                        m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                    }
+                  
+                    
                     db.Wizyta.Add(m);
 
                 }

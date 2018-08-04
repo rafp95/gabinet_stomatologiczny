@@ -75,6 +75,7 @@
     //Aktualna data do sprawdzania czy wprowadzona data nie jest wcześniejsza
 
     var now = moment(new Date(), "DD-MM-YYYY HH:mm");
+
     //Get all events
     var events = [];
     var selectedEvent = null;
@@ -172,9 +173,7 @@
                     end: end,
                 };
                 var dataStart = new Date(moment(start, "DD-MM-YYYY HH:mm"));
-                if (dataStart >= now
-                    || start.format("DD-MM-YYYY")
-                    === now.format("DD-MM-YYYY")) {
+                if (dataStart >= now) {
                     openAddEditForm();
                 } else {
                     $("#myModalError").modal();
@@ -187,7 +186,7 @@
             eventDrop: function (event) {
                 var data = {
                     EventID: event.eventID,
-                    Start: event.start.format('DD/MM/YYYY HH:mm'),
+                    Start: event.start.format('DD-MMYYYY HH:mm'),
                     Description: event.description,
                 };
                 SaveEvent(data);
@@ -302,7 +301,7 @@
 
 
     //Date time picker
-    $('#dtp1,#dtp2').datetimepicker({
+    $('#dtp1').datetimepicker({
         stepping: '30',
         enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16],
         minDate: new Date(),
@@ -316,6 +315,7 @@
         if (selectedEvent != null) {
             $('#hdEventID').val(selectedEvent.eventID);
             $('#txtStart').val(selectedEvent.start.format('DD.MM.YYYY HH:mm'));
+            $('#tytul').length > 0 ?  $('#tytul').val(selectedEvent.title) : "";
         }
         $('#myModal').modal('hide');
         $('#myModalSave').modal();
@@ -341,19 +341,31 @@
 
         //Check date and time
         if (new Date(now) <= new Date(clickTime)
-            && clickTime.format("HH:mm") >= minTime
-            && clickTime.format("HH:mm") < maxTime) {
+           && clickTime.format("HH:mm") >= minTime
+           && clickTime.format("HH:mm") < maxTime) {
             $("#txtStart").css('border', '');
             errorTime.html("");
-        } else {
+        }
+        else {
             $("#txtStart").css('border', '1px solid red').parent().
                after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
             return;
         }
 
+        var t = $("#tytul");
+        if (t.length > 0 ) {
+            if (t.val().length == 0) {
+                 t.css('border', '1px solid red').parent().
+                 after("<div class='errorTime'>Pole nie może być puste</div>").next().css("color", "red");
+                 return;
+            }
+        }
+
+       
         var data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
+            Tytul: $("#tytul").length > 0 ? $("#tytul").val().trim() : null
         }
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie </div> <div class='loader' style='float:left;'></div>");
         SaveEvent(data);
@@ -391,6 +403,7 @@
         $("div.errorTime").html("");
         $("div#errorSms").html("");
         $("#txtStart").css('border', '');
+        $("#tytul").css('border', '');
     }
 
 
@@ -399,6 +412,7 @@
 function pokazAktualnyCzas() {
     var aktualny = setInterval(() => {
         var aktualntCzas = moment(new Date());
+        now = moment(aktualntCzas, "DD-MM-YYYY HH:mm");
         $("div#aktualnyCzas").html(aktualntCzas.format("DD-MMM-YYYY HH:mm:ss"));
     }, 1000);
 }

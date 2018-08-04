@@ -10,6 +10,7 @@ body {
     font-family: Open Sans,'Times New Roman', Times, serif;
     height: 100%;
     margin-bottom: 100px; /* wysokość stopki */
+    overflow-x: hidden;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -57,7 +58,7 @@ div.wysrodkowanieLoginForm {
 
 /*end center form*/
 
-a,input,img {
+a,input,img,p,canvas,div.ui-menu-item-wrapper {
     -moz-transition: 0.9s ease;
     -o-transition: 0.9s ease;
     transition: 0.9s ease;
@@ -76,3 +77,12 @@ footer {
     height: 100px;
     overflow-y: hidden;
 }
+
+
+/*Modal animation*/
+.modal.fade .modal-dialog {
+  -moz-transition: 0.9s ease;
+  -o-transition: 0.9s ease;
+  transition: 0.9s ease;
+}
+/*End modal animation*/

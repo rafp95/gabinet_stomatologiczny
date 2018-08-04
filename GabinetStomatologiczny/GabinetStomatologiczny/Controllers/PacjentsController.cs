@@ -61,6 +61,7 @@ namespace GabinetStomatologiczny.Controllers
         {
             var list = this.sugestionService.SugestionPacjent(sugestion);
 
+            
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

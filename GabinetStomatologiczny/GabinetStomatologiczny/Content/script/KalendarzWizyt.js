@@ -330,6 +330,7 @@
         var clickTime = moment($("#txtStart").val().trim(), 'DD.MM.YYYY HH:mm');
         var minTime = moment("8:00", 'HH:mm').format("HH:mm");
 
+        //check hours is empty
         for (var i = 0; i < events.length; i++) {
             if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
                 $("#txtStart").css('border', '1px solid red').parent().
@@ -338,9 +339,21 @@
             }
             
         }
+        //end check hours
+
+        //Check title is empty
+        var t = $("#tytul");
+        if (t.length > 0) {
+            if (t.val().length == 0) {
+                t.css('border', '1px solid red').parent().
+                after("<div class='errorTime'>Pole nie może być puste</div>").next().css("color", "red");
+                return;
+            }
+        }
+        //end check title is empty
 
         //Check date and time
-        if (new Date(now) <= new Date(clickTime)
+        else if (new Date(now) <= new Date(clickTime)
            && clickTime.format("HH:mm") >= minTime
            && clickTime.format("HH:mm") < maxTime) {
             $("#txtStart").css('border', '');
@@ -351,17 +364,8 @@
                after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
             return;
         }
+        //End check date
 
-        var t = $("#tytul");
-        if (t.length > 0 ) {
-            if (t.val().length == 0) {
-                 t.css('border', '1px solid red').parent().
-                 after("<div class='errorTime'>Pole nie może być puste</div>").next().css("color", "red");
-                 return;
-            }
-        }
-
-       
         var data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),

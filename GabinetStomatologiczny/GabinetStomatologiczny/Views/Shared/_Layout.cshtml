@@ -10,6 +10,7 @@
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/Wlidacja.css" rel="stylesheet" />
     <link href="~/Content/ToTopPage.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #000080;">
@@ -33,9 +34,9 @@
                                 Osoby <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Pacjenci", "Index", "Pacjents")</li>
-                                <li>@Html.ActionLink("Zabiegi", "Index", "Zabiegs")</li>
-                                <li>@Html.ActionLink("Lekarze", "Index", "Lekarzs")</li>
+                                <li class="@(ViewBag.Title == "Pacjenci" ? "active" : "")">@Html.ActionLink("Pacjenci", "Index", "Pacjents")</li>
+                                <li class="@(ViewBag.Title == "Zabiegi" ? "active" : "")">@Html.ActionLink("Zabiegi", "Index", "Zabiegs")</li>
+                                <li class="@(ViewBag.Title == "Lekarze" ? "active" : "")">@Html.ActionLink("Lekarze", "Index", "Lekarzs")</li>
                             </ul>
                         </li>
                     }

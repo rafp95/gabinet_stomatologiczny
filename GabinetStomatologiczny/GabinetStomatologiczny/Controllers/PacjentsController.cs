@@ -128,6 +128,7 @@ namespace GabinetStomatologiczny.Controllers
             if (ModelState.IsValid)
             {
                 this.pacjentsService.Edit(pacjent);
+                TempData["editPacjent"] = "done";
                 return RedirectToAction("Index");
             }
             return View(pacjent);

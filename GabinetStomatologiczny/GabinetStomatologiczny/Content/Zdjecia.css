@@ -81,20 +81,20 @@
 }
 
 /* The Close Button */
-.close {
+div#myModal span.close {
     position: absolute;
     top: 2px;
     right: 20px;
     color: white;
     font-size: 40px;
     font-weight: bold;
-    transition: 0.3s;
+    transition: all .3s;
     z-index: 9999;
     opacity: 10;
 }
 
-    .close:hover,
-    .close:focus {
+    div#myModal span.close:hover,
+    div#myModal span.close:focus {
         color: #bbb;
         text-decoration: none;
         cursor: pointer;

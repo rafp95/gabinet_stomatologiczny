@@ -59,9 +59,9 @@ div.wysrodkowanieLoginForm {
 /*end center form*/
 
 a,input,img,p,canvas,div.ui-menu-item-wrapper {
-    -moz-transition: 0.9s ease;
-    -o-transition: 0.9s ease;
-    transition: 0.9s ease;
+    -moz-transition: all 0.9s ease;
+    -o-transition: all 0.9s ease;
+    transition: all 0.9s ease;
 }
 
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=tel]:focus {
@@ -81,8 +81,8 @@ footer {
 
 /*Modal animation*/
 .modal.fade .modal-dialog {
-  -moz-transition: 0.9s ease;
-  -o-transition: 0.9s ease;
-  transition: 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -o-transition: all 0.9s ease;
+  transition: all 0.9s ease;
 }
 /*End modal animation*/

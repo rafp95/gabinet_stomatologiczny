@@ -12,6 +12,14 @@
 
 <h2>Pacjenci</h2>
 
+@if (TempData["editPacjent"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Pomyślnie edytowano
+    </div>
+}
+
 <div class="form-group">
     <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
         <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextPacjent"></span>

@@ -1,9 +1,10 @@
-﻿.field-validation-error{
+﻿span.field-validation-error{
     color:red;
     font-weight: bold;
+    font-family: Open Sans,'Times New Roman', Times, serif;
 }
 
-.input-validation-error{
+span.input-validation-error{
     background: pink;
     border: 1px solid red;
 }

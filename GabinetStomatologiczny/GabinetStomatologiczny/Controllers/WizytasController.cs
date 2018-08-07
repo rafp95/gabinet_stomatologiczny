@@ -85,7 +85,7 @@ namespace GabinetStomatologiczny.Controllers
                 Take(5).
                 Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
 
-            events = events.Count() == 0 ? db.Wizyta.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;
+            events = events.Count() == 0 ? events.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }

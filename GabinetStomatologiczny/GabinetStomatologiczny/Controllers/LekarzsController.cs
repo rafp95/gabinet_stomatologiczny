@@ -133,6 +133,7 @@ namespace GabinetStomatologiczny.Controllers
                 }
 
                 this._lekarzservice.Edit(lekarz);
+                TempData["editLekarz"] = "done";
                 return RedirectToAction("Index");
             }
             return View(lekarz);

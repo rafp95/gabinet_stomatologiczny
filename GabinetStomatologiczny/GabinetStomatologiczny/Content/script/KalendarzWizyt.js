@@ -114,6 +114,8 @@
     function GenerateCalender(events) {
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
+            theme: true,
+            themeSystem: 'bootstrap4',
             weekNumbers: true,
             navLinks: true,
             slotMinutes: 30,

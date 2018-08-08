@@ -10,9 +10,8 @@
 <link href="~/Content/Wizyta.css" rel="stylesheet" />
 <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
 
+<div id="saveDatabaseInfo">Zapisano zmiany....</div>
 
-<div id="successSave">Zapisano zmiany....</div>
-<div id="errorSave">Wystąpił problem....</div>
 <div class="ladowanie"></div>
 
 <!--Search form-->
@@ -44,12 +43,12 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent") ||
-                 User.IsInRole("Administrator") ||
-                 User.IsInRole("Lekarz"))
+             User.IsInRole("Administrator") ||
+             User.IsInRole("Lekarz"))
                 {
                     {
                         <div id="action">
-                            <button id="btnDelete" class="btn btn-default btn-sm pull-right">
+                            <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
                                 <span class="glyphicon glyphicon-remove"></span> Kasuj
                             </button>
                             <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
@@ -57,7 +56,7 @@
                             </button>
                             @if (User.IsInRole("Administrator"))
                             {
-                                <button id="btnSms" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
+                                <button id="btnSms" class="btn btn-primary btn-sm pull-right" style="margin-right: 5px;">
                                     <span class="glyphicon glyphicon-pencil"></span> Sms
                                 </button>
                             }
@@ -66,7 +65,7 @@
                 }
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
             </div>
         </div>
     </div>
@@ -76,8 +75,8 @@
 
 <!--End about-->
 @if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
-                             || User.IsInRole("Administrator")
-                             || User.IsInRole("Lekarz"))
+                                         || User.IsInRole("Administrator")
+                                         || User.IsInRole("Lekarz"))
 {
     <!--Eror-->
     <div id="myModalError" class="modal fade" role="dialog">
@@ -91,7 +90,7 @@
                     <h4 style="color:red;">Wybrana data musi być późniejsza</h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
                 </div>
             </div>
         </div>
@@ -172,7 +171,7 @@
                             <div class="form-group">
                                 <label>Imię nazwisko</label>
                                 <div class="input-group" id="dtp2">
-                                    <input type="text" id="tytul" 
+                                    <input type="text" id="tytul"
                                            data-autocomplete-source="@Url.Action("Sugestions","Pacjents")"
                                            class="form-control"
                                            placeholder="Wyszukaj pacjęta" />
@@ -185,7 +184,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
                     <button type="button" id="btnSave"
                             class="btn btn-success float-right" data-loading-text="Zapisywanie...">
                         Zapisz

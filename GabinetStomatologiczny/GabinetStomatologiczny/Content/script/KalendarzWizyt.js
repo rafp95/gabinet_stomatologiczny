@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
 
-    let zapisSucces = $("div#successSave");
-    let zapisError = $("div#errorSave");
+    let zapisSucces = $("div#saveDatabaseInfo");
     let ladowanie = $("div.ladowanie");
     let widok = 'month';
     ladowanie.css('display', 'block');
@@ -298,7 +297,7 @@
                     }
                 },
                 error: function () {
-                    zapisError.fadeIn('slow').delay(1000).fadeOut('slow');
+                    zapisSucces.text("Wystąpił problem......").css("background","red").fadeIn('slow').delay(1000).fadeOut('slow');
                 }
             })
         }
@@ -396,7 +395,7 @@
                 }
             },
             error: function () {
-                zapisError.fadeIn('slow').delay(1000).fadeOut('slow');
+                zapisSucces.text("Wystąpił problem......").css("background", "red").fadeIn('slow').delay(1000).fadeOut('slow');
             }
         })
     }

@@ -127,7 +127,7 @@ tr:hover {
 }
 /*end ui z index*/
 
-/*Info succes save to database*/
+/*Info save to database*/
 
 div#successSave {
     position: absolute;
@@ -159,7 +159,7 @@ div#errorSave {
     display: none;
 }
 
-/* End info succes save to database*/
+/* End info save to database*/
 
 /*Overlload kalendar styles*/
 .fc-popover .fc-header {

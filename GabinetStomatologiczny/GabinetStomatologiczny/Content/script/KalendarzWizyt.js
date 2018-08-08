@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
 
+    let zapisSucces = $("div#successSave");
     let ladowanie = $("div.ladowanie");
     let widok = 'month';
     ladowanie.css('display', 'block');
@@ -153,7 +154,8 @@
                                append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>").
                                append("<div> <b>Tel:</b> " + tel + "</div>");
                 if (calEvent.activeUser === calEvent.email ||
-                    calEvent.role === "Administrator") {
+                    calEvent.role === "Administrator" || 
+                    calEvent.role === "Lekarz") {
                     $('#btnEdit').show();
                     $('#btnDelete').show();
                 } else {
@@ -290,6 +292,7 @@
                     if (data.status) {
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
+                        zapisSucces.fadeIn('slow').delay(1000).fadeOut('slow');
                         $('#myModal').modal('hide');
                     }
                 },
@@ -387,6 +390,7 @@
                 if (data.status) {
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
+                    zapisSucces.fadeIn('slow').delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
                 }
             },
@@ -419,7 +423,7 @@ function pokazAktualnyCzas() {
     var aktualny = setInterval(() => {
         var aktualntCzas = moment(new Date());
         now = moment(aktualntCzas, "DD-MM-YYYY HH:mm");
-        $("div#aktualnyCzas").html(aktualntCzas.format("DD-MMM-YYYY HH:mm:ss"));
+        $("div#aktualnyCzas").html(aktualntCzas.format("DD MMMM YYYY HH:mm:ss"));
     }, 1000);
 }
 

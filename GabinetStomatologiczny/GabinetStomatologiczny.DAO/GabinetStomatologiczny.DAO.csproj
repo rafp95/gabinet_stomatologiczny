@@ -159,6 +159,18 @@
     <Compile Include="Migrations\201808011509084_removePacjentProp.Designer.cs">
       <DependentUpon>201808011509084_removePacjentProp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808080841349_pacjentPhoneMaxLengt.cs" />
+    <Compile Include="Migrations\201808080841349_pacjentPhoneMaxLengt.Designer.cs">
+      <DependentUpon>201808080841349_pacjentPhoneMaxLengt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808080907486_pacjentStringLength.cs" />
+    <Compile Include="Migrations\201808080907486_pacjentStringLength.Designer.cs">
+      <DependentUpon>201808080907486_pacjentStringLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808080916302_LekarzNumberLengty.cs" />
+    <Compile Include="Migrations\201808080916302_LekarzNumberLengty.Designer.cs">
+      <DependentUpon>201808080916302_LekarzNumberLengty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -214,6 +226,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808011509084_removePacjentProp.resx">
       <DependentUpon>201808011509084_removePacjentProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080841349_pacjentPhoneMaxLengt.resx">
+      <DependentUpon>201808080841349_pacjentPhoneMaxLengt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080907486_pacjentStringLength.resx">
+      <DependentUpon>201808080907486_pacjentStringLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080916302_LekarzNumberLengty.resx">
+      <DependentUpon>201808080916302_LekarzNumberLengty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

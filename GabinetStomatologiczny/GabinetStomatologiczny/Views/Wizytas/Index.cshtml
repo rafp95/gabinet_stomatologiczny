@@ -10,6 +10,8 @@
 <link href="~/Content/Wizyta.css" rel="stylesheet" />
 <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
 
+
+<div id="successSave">Zapisano zmiany....</div>
 <div class="ladowanie"></div>
 
 <!--Search form-->
@@ -41,7 +43,8 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent") ||
-                 User.IsInRole("Administrator"))
+                 User.IsInRole("Administrator") ||
+                 User.IsInRole("Lekarz"))
                 {
                     {
                         <div id="action">
@@ -51,8 +54,7 @@
                             <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
                                 <span class="glyphicon glyphicon-pencil"></span> Edytuj
                             </button>
-                            @if (User.IsInRole("Lekarz") ||
-                         User.IsInRole("Administrator"))
+                            @if (User.IsInRole("Administrator"))
                             {
                                 <button id="btnSms" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
                                     <span class="glyphicon glyphicon-pencil"></span> Sms

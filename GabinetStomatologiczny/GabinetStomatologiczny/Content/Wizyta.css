@@ -121,3 +121,16 @@ tr:hover {
     font-size: 16px;
     transition: all .3s ease;
 }
+
+div#successSave{
+    position: absolute;
+    z-index: 999;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    background: lime;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: none;
+}

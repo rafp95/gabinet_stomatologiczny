@@ -34,6 +34,7 @@ namespace GabinetStomatologiczny.DAO.Models
         [Phone]
         [RegularExpression(@"([\+]){0,1}([0-9]{2})?[\-\s]?[-]?([0-9]{3})\-?[-\s]?([0-9]{3})[-\s]\-?([0-9]{3})$",
             ErrorMessage = "Numer musi być zapisany w formacie 123-123-123")]
+        [StringLength(11)]
         public string NrTelefonu { get; set; }
 
         [Required(ErrorMessage = "Pole email jest wymagane")]

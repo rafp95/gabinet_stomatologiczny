@@ -23,7 +23,12 @@ namespace GabinetStomatologiczny.DAO.Models
         [Display(Name = "Data dodania")]
         public DateTime DataDodania { get; set; }
 
+        [Required(ErrorMessage = "Pole numer telefonu jest wymagane")]
         [Display(Name = "Numer telefonu")]
+        [Phone]
+        [RegularExpression(@"([\+]){0,1}([0-9]{2})?[\-\s]?[-]?([0-9]{3})\-?[-\s]?([0-9]{3})[-\s]\-?([0-9]{3})$",
+            ErrorMessage = "Numer musi być zapisany w formacie 123-123-123")]
+        [StringLength(11)]
         public string NrTelefonu { get; set; }
 
         [Display(Name = "Typ pracownika")]

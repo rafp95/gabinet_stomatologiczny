@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
     let zapisSucces = $("div#successSave");
+    let zapisError = $("div#errorSave");
     let ladowanie = $("div.ladowanie");
     let widok = 'month';
     ladowanie.css('display', 'block');
@@ -297,7 +298,7 @@
                     }
                 },
                 error: function () {
-                    alert('Failed');
+                    zapisError.fadeIn('slow').delay(1000).fadeOut('slow');
                 }
             })
         }
@@ -395,7 +396,7 @@
                 }
             },
             error: function () {
-                alert('Failed');
+                zapisError.fadeIn('slow').delay(1000).fadeOut('slow');
             }
         })
     }

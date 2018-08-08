@@ -144,6 +144,21 @@ div#successSave {
     display: none;
 }
 
+div#errorSave {
+    position: absolute;
+    z-index: 9999;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    background: red;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
 /* End info succes save to database*/
 
 /*Overlload kalendar styles*/

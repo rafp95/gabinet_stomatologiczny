@@ -59,9 +59,9 @@ div.wysrodkowanieLoginForm {
 /*end center form*/
 
 a,input[type=text],img,p,canvas,div.ui-menu-item-wrapper,button,div.fc-content,select {
-    -moz-transition: all 0.9s ease-out;
-    -o-transition: all 0.9s ease-out;
-    transition: all 0.9s ease-out;
+    -moz-transition: all 0.9s ease;
+    -o-transition: all 0.9s ease;
+    transition: all 0.9s ease;
 }
 
 

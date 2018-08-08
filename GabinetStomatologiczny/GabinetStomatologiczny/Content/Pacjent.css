@@ -81,6 +81,7 @@ div.ladowanie {
     border-radius: 50%;
     overflow: hidden;
     display: none;
+    box-sizing: border-box;
 }
 
 @keyframes rotate {

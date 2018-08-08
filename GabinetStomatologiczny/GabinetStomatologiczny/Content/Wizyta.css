@@ -81,6 +81,7 @@ div.ladowanie {
     overflow: hidden;
     display: none;
     z-index: 99999;
+    box-sizing: border-box;
 }
 
 
@@ -116,21 +117,50 @@ tr:hover {
     transition: all 0.3s ease;
 }
 
-.ui-autocomplete { 
-    z-index:2147483647;
+
+/*Ui z index*/
+
+.ui-autocomplete {
+    z-index: 2147483647;
     font-size: 16px;
     transition: all .3s ease;
 }
+/*end ui z index*/
 
-div#successSave{
+/*Info succes save to database*/
+
+div#successSave {
     position: absolute;
-    z-index: 999;
+    z-index: 9999;
     margin: auto;
     width: 50%;
     text-align: center;
     background: lime;
     top: 50%;
+    transform: translateY(-50%);
+    right: 0;
     left: 0;
     right: 0;
     display: none;
 }
+
+/* End info succes save to database*/
+
+/*Overlload kalendar styles*/
+.fc-popover .fc-header {
+    background: #428bca;
+    color: white;
+}
+
+.fc-event-container {
+    z-index: 9999999;
+    background: white;
+}
+
+@media only screen and (max-width: 600px) {
+   .fc-content{
+      letter-spacing: 2px; 
+   }
+}
+
+/*end kalendar styles*/

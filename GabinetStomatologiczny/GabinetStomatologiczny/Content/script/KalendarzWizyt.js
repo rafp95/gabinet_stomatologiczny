@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    let zapisSucces = $("div#saveDatabaseInfo");
+    let zapisInfo = $("div#saveDatabaseInfo");
     let ladowanie = $("div.ladowanie");
     let widok = 'month';
     ladowanie.css('display', 'block');
@@ -292,12 +292,12 @@
                     if (data.status) {
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
-                        zapisSucces.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                        zapisInfo.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                         $('#myModal').modal('hide');
                     }
                 },
                 error: function () {
-                    zapisSucces.text("Wystąpił problem......").css("background", "red").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                    zapisInfo.text("Wystąpił problem......").css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").css("color","white").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                 }
             })
         }
@@ -395,12 +395,12 @@
                 if (data.status) {
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
-                    zapisSucces.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                    zapisInfo.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
                 }
             },
             error: function () {
-                zapisSucces.text("Wystąpił problem").css("background", "red").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                zapisInfo.text("Wystąpił problem").css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
             }
         })
     }
@@ -409,7 +409,7 @@
 
     function appendText() {
         var interval = setInterval(() => {
-            zapisSucces.append(".");
+            zapisInfo.append(".");
             if (interval > 200) {
                 clearInterval(interval);
                 console.log(interval);

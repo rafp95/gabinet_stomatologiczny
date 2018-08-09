@@ -292,12 +292,12 @@
                     if (data.status) {
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
-                        zapisSucces.fadeIn('slow').delay(1000).fadeOut('slow');
+                        zapisSucces.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                         $('#myModal').modal('hide');
                     }
                 },
                 error: function () {
-                    zapisSucces.text("Wystąpił problem......").css("background","red").fadeIn('slow').delay(1000).fadeOut('slow');
+                    zapisSucces.text("Wystąpił problem......").css("background", "red").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                 }
             })
         }
@@ -310,7 +310,12 @@
         stepping: '30',
         enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16],
         minDate: new Date(),
-        daysOfWeekDisabled: [0, 6]
+        daysOfWeekDisabled: [0, 6],
+        sideBySide: true,
+        widgetPositioning: {
+            horizontal: 'right',
+            vertical: 'bottom'
+        }
     });
     //End datetime picker
 
@@ -390,15 +395,31 @@
                 if (data.status) {
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
-                    zapisSucces.fadeIn('slow').delay(1000).fadeOut('slow');
+                    zapisSucces.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
                 }
             },
             error: function () {
-                zapisSucces.text("Wystąpił problem......").css("background", "red").fadeIn('slow').delay(1000).fadeOut('slow');
+                zapisSucces.text("Wystąpił problem").css("background", "red").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
             }
         })
     }
+
+    //append text
+
+    function appendText() {
+        var interval = setInterval(() => {
+            zapisSucces.append(".");
+            if (interval > 200) {
+                clearInterval(interval);
+                console.log(interval);
+                return;
+            }
+        }, 500);
+
+    }
+
+    //end append text
 
     //Change text in button
     function buttonInfo(button, text) {

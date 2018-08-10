@@ -161,11 +161,6 @@ div#saveDatabaseInfo {
     background: white;
 }
 
-@media only screen and (max-width: 600px) {
-   .fc-content{
-      letter-spacing: 2px; 
-   }
-}
 
 /*end kalendar styles*/
 

@@ -72,6 +72,11 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, inp
     box-shadow: 0 0 15px 1px dodgerBlue;
 }
 
+
+button:hover{
+    opacity: .8;
+}
+
 footer {
     position: absolute;
     top: 100%;

@@ -7,13 +7,14 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/fullcalendarcss")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/Wlidacja.css" rel="stylesheet" />
     <link href="~/Content/ToTopPage.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #000080;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -59,10 +60,9 @@
     </div>
 
     <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button"
-       title="Do góry" data-toggle="tooltip" data-placement="left">
+       title="Do góry" data-placement="left">
         <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendarjs")

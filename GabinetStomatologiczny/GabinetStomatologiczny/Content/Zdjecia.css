@@ -29,6 +29,7 @@
 }
 
 /* Modal Content (image) */
+
 .modal-content {
     position: absolute;
     top: 50%;
@@ -38,6 +39,7 @@
     display: block;
     width: 80%;
     max-height: 90%;
+    overflow: hidden;
 }
 
 /* Caption of Modal Image */

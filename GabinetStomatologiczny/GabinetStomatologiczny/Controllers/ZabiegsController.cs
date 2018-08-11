@@ -35,7 +35,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zabieg zabieg = db.Zabieg.Find(id);
+            Zabieg zabieg = db.Zabieg.Include(w => w.Wizyta).Where(_ => _.ID == id).FirstOrDefault();
             if (zabieg == null)
             {
                 return HttpNotFound();
@@ -128,7 +128,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zabieg zabieg = db.Zabieg.Find(id);
+            Zabieg zabieg = db.Zabieg.Include(_ => _.Wizyta).Where(_ => _.ID == id).FirstOrDefault();
             if (zabieg == null)
             {
                 return HttpNotFound();

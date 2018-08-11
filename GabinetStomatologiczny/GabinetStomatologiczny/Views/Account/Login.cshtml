@@ -5,7 +5,7 @@
     ViewBag.Active = "Zaloguj";
 }
 <div class="row wysrodkowanieLoginForm">
-    <div class="col-md-4 col-md-push-4 center-block loginForm modal-info" >
+    <div class="col-md-4 col-md-push-4 center-block loginForm modal-info">
         <h2>@ViewBag.Title.</h2>
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -15,7 +15,9 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group has-feedback">
                     <span class="form-control-feedback col-md-2 control-label">
-                        <span class="glyphicon glyphicon-user"></span>
+                        <a data-toggle="tooltip" class="tooltipLink" data-original-title="Podaj email">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
                     </span>
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
@@ -24,10 +26,12 @@
                 </div>
                 <div class="form-group has-feedback">
                     <span class="form-control-feedback col-md-2 control-label">
-                        <span class="glyphicon glyphicon-lock"></span>
+                        <a data-toggle="tooltip" class="tooltipLink" data-original-title="Podaj hasło">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </a>
                     </span>
                     <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control",placeholder="Hasło" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Hasło" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>

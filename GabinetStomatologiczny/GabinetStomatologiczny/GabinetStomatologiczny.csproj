@@ -465,6 +465,10 @@
     <Compile Include="Migrations\201808011435284_removeProp.Designer.cs">
       <DependentUpon>201808011435284_removeProp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808121240456_removeP.cs" />
+    <Compile Include="Migrations\201808121240456_removeP.Designer.cs">
+      <DependentUpon>201808121240456_removeP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AutoMapperAdmin.cs" />
     <Compile Include="Models\AutoMapperConfiguration.cs" />
@@ -1099,6 +1103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808011435284_removeProp.resx">
       <DependentUpon>201808011435284_removeProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121240456_removeP.resx">
+      <DependentUpon>201808121240456_removeP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -111,6 +111,7 @@ namespace GabinetStomatologiczny.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Pacjent pacjent = await this.pacjentsService.Find(id);
+      
             if (pacjent == null)
             {
                 return HttpNotFound();

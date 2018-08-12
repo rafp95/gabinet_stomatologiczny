@@ -171,6 +171,22 @@
     <Compile Include="Migrations\201808080916302_LekarzNumberLengty.Designer.cs">
       <DependentUpon>201808080916302_LekarzNumberLengty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808121211036_removeMyProperyPacjent.cs" />
+    <Compile Include="Migrations\201808121211036_removeMyProperyPacjent.Designer.cs">
+      <DependentUpon>201808121211036_removeMyProperyPacjent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121216177_removeMyProp.cs" />
+    <Compile Include="Migrations\201808121216177_removeMyProp.Designer.cs">
+      <DependentUpon>201808121216177_removeMyProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121236117_pacejtnRemo.cs" />
+    <Compile Include="Migrations\201808121236117_pacejtnRemo.Designer.cs">
+      <DependentUpon>201808121236117_pacejtnRemo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121251400_rP.cs" />
+    <Compile Include="Migrations\201808121251400_rP.Designer.cs">
+      <DependentUpon>201808121251400_rP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -235,6 +251,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808080916302_LekarzNumberLengty.resx">
       <DependentUpon>201808080916302_LekarzNumberLengty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121211036_removeMyProperyPacjent.resx">
+      <DependentUpon>201808121211036_removeMyProperyPacjent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121216177_removeMyProp.resx">
+      <DependentUpon>201808121216177_removeMyProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121236117_pacejtnRemo.resx">
+      <DependentUpon>201808121236117_pacejtnRemo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121251400_rP.resx">
+      <DependentUpon>201808121251400_rP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

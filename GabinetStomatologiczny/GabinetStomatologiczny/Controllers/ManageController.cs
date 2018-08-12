@@ -9,6 +9,8 @@ using Microsoft.Owin.Security;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.Utils;
 using GabinetStomatologiczny.DAL;
+using GabinetStomatologiczny.Services;
+using System.Security.Claims;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -17,9 +19,11 @@ namespace GabinetStomatologiczny.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IUserRoleService _userService;
 
-        public ManageController()
+        public ManageController(IUserRoleService userService)
         {
+            _userService = userService;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -72,8 +76,11 @@ namespace GabinetStomatologiczny.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                Rola = _userService.GetUserRole((ClaimsIdentity)User.Identity)
             };
+
+           
             return View(model);
         }
 

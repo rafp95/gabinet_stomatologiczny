@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/fullcalendarcss")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/DLandDDstyle.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/Wlidacja.css" rel="stylesheet" />
@@ -26,7 +27,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="@(ViewBag.Active=="Home"? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="@(ViewBag.Active=="Home"? "active" : "")"><a href="/Home/Index"><i class="glyphicon glyphicon-home" style="font-size:14px;"></i> Home</a>
+                    </li>
                     <li class="@(ViewBag.Active == "About" ? "active" : "")">@Html.ActionLink("About", "About", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {

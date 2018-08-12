@@ -7,7 +7,7 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li class="@(ViewBag.Active=="Zarządzanie" ? "active" : "")">
                 @Html.ActionLink("Witaj " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Zarządzaj" })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Wyloguj</a></li>

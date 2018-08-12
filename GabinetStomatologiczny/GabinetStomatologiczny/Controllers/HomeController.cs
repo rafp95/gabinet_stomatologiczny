@@ -16,7 +16,6 @@ namespace GabinetStomatologiczny.Controllers
     public class HomeController : BaseController
     {
         private readonly IPacjentsService pacjentsService = null;
-
         public HomeController(IPacjentsService pacjentsService)
         {
             this.pacjentsService = pacjentsService;

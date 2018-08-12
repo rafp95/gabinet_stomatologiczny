@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
+
 namespace GabinetStomatologiczny.Models
 {
     public class IndexViewModel
@@ -12,6 +13,8 @@ namespace GabinetStomatologiczny.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string Rola { get; set; }
+
     }
 
     public class ManageLoginsViewModel

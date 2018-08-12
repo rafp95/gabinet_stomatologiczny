@@ -1,5 +1,5 @@
-﻿*{
-   box-sizing: border-box;
+﻿* {
+    box-sizing: border-box;
 }
 
 html {
@@ -12,8 +12,11 @@ body {
     padding-bottom: 20px;
     font-size: 16.8px;
     font-family: 'Open Sans',Arial, sans-serif;
-    height: 100%;
-    box-sizing: border-box;
+    margin-bottom: 100px;
+}
+
+.body-content {
+    margin-top: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,7 +25,7 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
-*
+*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -39,30 +42,29 @@ textarea {
     max-width: 280px;
 }
 
-input[type=text], input[type=password], input[type=submit], img, p, canvas, div.ui-menu-item-wrapper, button, div.fc-content, select {
-    -moz-transition: all 0.9s ease;
-    -o-transition: all 0.9s ease;
-    transition: all 0.9s ease;
-}
-
-
-
-    input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=tel]:focus {
-        background-color: #ddd;
-        outline: none;
-        border-color: dodgerBlue;
-        box-shadow: 0 0 15px 1px dodgerBlue;
+    input[type=text], input[type=password], input[type=submit], img, p, canvas, div.ui-menu-item-wrapper, button, div.fc-content, select {
+        -moz-transition: all 0.9s ease;
+        -o-transition: all 0.9s ease;
+        transition: all 0.9s ease;
     }
 
 
-    button:hover, input[type="submit"]:hover {
-        opacity: .8;
-    }
+
+        input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=tel]:focus {
+            background-color: #ddd;
+            outline: none;
+            border-color: dodgerBlue;
+            box-shadow: 0 0 15px 1px dodgerBlue;
+        }
+
+
+        button:hover, input[type="submit"]:hover {
+            opacity: .8;
+        }
 
 footer {
     position: absolute;
-    top: 100%;
-    transform: translateY(-100%);
+    bottom: 0;
 }
 
 
@@ -138,6 +140,20 @@ footer {
 /*end modal style*/
 @media screen and (min-width: 700px) and (max-width: 1200px) {
     body {
-        padding-top: 100px;
+        padding-top: 80px;
     }
 }
+
+
+/*Pagination hover styles*/
+.pagination > li:first-child > a, .pagination > li:first-child > span {
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+
+    .pagination > li:first-child > a:hover, .pagination > li:first-child > span:hover {
+        opacity: .9;
+    }
+
+/*end pagination hover styles*/

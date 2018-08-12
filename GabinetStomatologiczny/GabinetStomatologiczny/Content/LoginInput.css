@@ -1,5 +1,5 @@
 ﻿.loginForm {
-    box-shadow: 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
+    box-shadow: 2px 4px 4px rgba(0,0,0,0.16),2px 2px 2px 0 rgba(0,0,0,0.12) !important;
     padding: 10px 10px;
 }
 
@@ -13,7 +13,35 @@ input[type=text], input[type=password] {
 }
 
 span.control-label span.glyphicon {
-    padding-top: 7px;
+    padding-top: 6px;
     font-size: 20px;
     color: black;
 }
+
+
+
+/*center form*/
+
+div.wysrodkowanieLoginForm {
+    width: 100%;
+    margin: auto;
+    margin-top: 6%;
+    text-align: left;
+}
+
+div.wysrodkowanieLoginForm > div > h2{
+    text-align: center;
+}
+
+@media only screen and (max-width: 1100px) {
+    div.wysrodkowanieLoginForm form input, div.wysrodkowanieLoginForm button {
+        margin: auto;
+    }
+
+    div.wysrodkowanieLoginForm {
+        margin-top: 5%;
+        text-align: center;
+    }
+}
+
+/*end center form*/

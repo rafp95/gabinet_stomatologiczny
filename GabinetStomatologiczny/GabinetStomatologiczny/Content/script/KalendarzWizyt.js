@@ -144,6 +144,7 @@
             eventLimit: 3,
             events: events,
             eventClick: function (calEvent, jsEvent, view) {
+                ErorMessage();
                 selectedEvent = calEvent;
                 //budowanie modal
                 var tel = calEvent.phone != null ? calEvent.phone : " *";
@@ -228,12 +229,12 @@
         };
 
         if (data.to.length === 0) {
-            $("#inputDo").css('border', '1px solid red');
+            $("#inputDo").css({ 'border': '1px solid red', 'background': 'pink' });
             $("#errorSmsTo").text("Pole wymagane").css("color", "red");
             return;
         } else if (data.text.length === 0) {
-            $("#inputWiadomosc").css('border', '1px solid red');
-            $("#errorSmsWiadomosc").text("Pole wymagane").css("color", "red");;
+            $("#inputWiadomosc").css({'border' : '1px solid red', 'background' : 'pink'});
+            $("#errorSmsWiadom").text("Pole wymagane").css("color", "red");;
             return;
         }
         
@@ -343,7 +344,7 @@
         //check hours is empty
         for (var i = 0; i < events.length; i++) {
             if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
-                $("#txtStart").css('border', '1px solid red').parent().
+                $("#txtStart").css({'border': '1px solid red','background': 'pink'}).parent().
                 after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
                 return;
             }
@@ -355,7 +356,7 @@
         var t = $("#tytul");
         if (t.length > 0) {
             if (t.val().length == 0) {
-                t.css('border', '1px solid red').parent().
+                t.css({ 'border': '1px solid red', 'background': 'pink' }).parent().
                 after("<div class='errorTime'>Pole nie może być puste</div>").next().css("color", "red");
                 return;
             }
@@ -370,7 +371,7 @@
             errorTime.html("");
         }
         else {
-            $("#txtStart").css('border', '1px solid red').parent().
+        $("#txtStart").css({'border': '1px solid red', 'background': 'pink' }).parent().
                after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
             return;
         }
@@ -430,10 +431,14 @@
     function ErorMessage() {
         $("#errorSmsTo").html("");
         $("#errorSmsWiadom").html("");
+        $("#inputDo").css({ 'background': '', 'border': '' });
+        $("#inputWiadomosc").css({ 'background': '', 'border': '' });
+
         $("div.error").html("");
         $("div.errorTime").html("");
         $("div#errorSms").html("");
         $("#txtStart").css('border', '');
+        $("#txtStart").css('background', '');
         $("#tytul").css('border', '');
     }
 

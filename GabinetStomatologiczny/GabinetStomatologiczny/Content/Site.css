@@ -157,3 +157,40 @@ footer {
     }
 
 /*end pagination hover styles*/
+
+/*Top page style*/
+.back-to-top {
+    cursor: pointer;
+    padding: 10px 12px;
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    display: none;
+    background: #0086dc;
+    z-index: 999;
+    -webkit-transition: 0.9s ease;
+    -moz-transition: 0.9s ease;
+    -o-transition: 0.9s ease;
+    transition: 0.9s ease;
+}
+
+.glyphicon-chevron-up:before {
+    -webkit-transition: 0.9s ease;
+    -moz-transition: 0.9s ease;
+    -o-transition: 0.9s ease;
+    transition: 0.9s ease;
+}
+
+/*End top page style*/
+
+/*Wlidation input style*/
+span.field-validation-error{
+    color:red;
+    font-weight: bold;
+}
+
+.input-validation-error{
+    background: pink;
+    border: 1px solid red;
+}
+/*End input walidation style*/

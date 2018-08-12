@@ -24,7 +24,7 @@ _UpgradeReport_Files/
 ###############
 bin/
 obj/
-Content/
+
 Scripts/
 fonts/
 TestResults/
@@ -80,3 +80,6 @@ _[Ss]cripts
 *.ncrunchsolution
 *.dot[Cc]over
 /GabinetStomatologiczny/GabinetStomatologiczny/Obrazki/PPr Egzamin[8850].pdf
+/GabinetStomatologiczny/GabinetStomatologiczny/Content/DataTables/css
+/GabinetStomatologiczny/GabinetStomatologiczny/Content/DataTables
+/GabinetStomatologiczny/GabinetStomatologiczny/Content/themes/base

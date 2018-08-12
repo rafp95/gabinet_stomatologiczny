@@ -154,6 +154,7 @@ footer {
 
     .pagination > li:first-child > a:hover, .pagination > li:first-child > span:hover {
         opacity: .9;
+        cursor: pointer;
     }
 
 /*end pagination hover styles*/

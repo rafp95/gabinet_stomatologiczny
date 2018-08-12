@@ -21,106 +21,41 @@ namespace GabinetStomatologiczny.Controllers
     {
 
         private readonly ILekarzService _lekarzservice;
-        public LekarzsController(ILekarzService lekarzservice)
+        private readonly ISortLekarzService _lekarzSortService;
+        private readonly ISugestionService _sugestionService;
+        public LekarzsController(ILekarzService lekarzservice, ISortLekarzService lekarzSortService,ISugestionService sugestionService)
         {
             this._lekarzservice = lekarzservice;
+            this._lekarzSortService = lekarzSortService;
+            this._sugestionService = sugestionService;
         }
 
         // GET: Lekarzs
-        public ActionResult Index(string sortOrder,string currentFilter,string searchString,int? page)
+        public ActionResult Index(LekarzSort lekarzSort)
         {
-            ViewBag.CurrentSort = sortOrder;
-
-            if (!string.IsNullOrEmpty(searchString))
+            ViewBag.CurrentSort = lekarzSort.sortOrder;
+            if (string.IsNullOrEmpty(lekarzSort.searchString))
             {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
+                lekarzSort.searchString = lekarzSort.currentFilter;
             }
 
-            ViewBag.CurrentFilter = searchString;
+            ViewBag.CurrentFilter = lekarzSort.searchString;
+            var lekarz = this._lekarzSortService.SortAndPaginate(lekarzSort);
+            ViewBag.ActiveClass = this._lekarzSortService.RodzajSort;
 
-            var lekarz = this._lekarzservice.getAllLekarz();
-            if (!string.IsNullOrEmpty(searchString))
+
+            if (Request.IsAjaxRequest())
             {
-                lekarz = lekarz.Where(_ => (_.Imie + " "  + _.Nazwisko).ToLower().Contains(searchString.ToLower()));
+                return PartialView("_LekarzsParts", lekarz);
             }
-
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    {
-                        lekarz = lekarz.OrderByDescending(p => p.Imie);
-                        break;
-                    }
-                case "name_asc":
-                    {
-                        lekarz = lekarz.OrderBy(p => p.Imie);
-                        break;
-
-                    }
-                case "surname_desc":
-                    {
-                        lekarz = lekarz.OrderByDescending(p => p.Nazwisko);
-                        break;
-                    }
-                case "surname_asc":
-                    {
-                        lekarz = lekarz.OrderBy(p => p.Nazwisko);
-                        break;
-
-                    }
-                case "nrtel_desc":
-                    {
-                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu);
-                        break;
-                    }
-                case "nrtel_asc":
-                    {
-                        lekarz = lekarz.OrderBy(p => p.NrTelefonu);
-                        break;
-                        
-                    }
-                case "email_desc":
-                    {
-                        lekarz = lekarz.OrderByDescending(p => p.NrTelefonu);
-                        break;
-                    }
-                case "email_asc":
-                    {
-                        lekarz = lekarz.OrderBy(p => p.NrTelefonu);
-                        break;
-                    }
-
-
-                default:
-                    {
-                        lekarz = lekarz.OrderBy(p => p.Imie);
-                        break;
-                    }
-            }
-
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-
-           if (Request.IsAjaxRequest())
-            {
-                return PartialView("_LekarzsParts",lekarz.ToPagedList(pageNumber,pageSize));
-            }
-
-            return View(lekarz.ToPagedList(pageNumber,pageSize));
+            return View(lekarz);
         }
 
-        public async Task<ActionResult> SugestionsLekarzs(string term)
+        public ActionResult SugestionsLekarzs(Sugestion sugestion)
         {
-            var personList = await this.db.Lekarz.AsQueryable()
-                .Where(p => (p.Imie + " " + p.Nazwisko).ToLower().Contains(term.ToLower()))
-                .Take(5).Select(p => new { label = p.Imie + " " + p.Nazwisko }).ToListAsync();
+            var list = this._sugestionService.SugestionLekarz(sugestion);
 
-            return Json(personList, JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -174,11 +109,8 @@ namespace GabinetStomatologiczny.Controllers
             if (lekarz == null)
             {
                 return HttpNotFound();
-            }else if ((User.Identity.IsAuthenticated && User.Identity.Name == lekarz.Email) || User.IsInRole("Administrator"))
-            {
-                return View(lekarz);
             }
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            return View(lekarz);
         }
 
         // POST: Lekarzs/Edit/5
@@ -201,6 +133,7 @@ namespace GabinetStomatologiczny.Controllers
                 }
 
                 this._lekarzservice.Edit(lekarz);
+                TempData["editLekarz"] = "done";
                 return RedirectToAction("Index");
             }
             return View(lekarz);

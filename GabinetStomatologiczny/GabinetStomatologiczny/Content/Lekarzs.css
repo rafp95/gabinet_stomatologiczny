@@ -60,11 +60,12 @@ div.ladowanie {
     height: 50px;
     width: 50px;
     animation: rotate 0.8s infinite linear;
-    border: 2px solid #3498db;
+    border: 10px solid #3498db;
     border-right-color: transparent;
     border-radius: 50%;
     overflow: hidden;
     display: none;
+    box-sizing: border-box;
 }
 
 @keyframes rotate {
@@ -79,3 +80,10 @@ div.ladowanie {
 
 
 /*End preloader*/
+
+/*Active sort*/
+div.data-select a.active {
+    color: black;
+    border-bottom: 1px solid black;
+}
+/*end active sort*/

@@ -14,22 +14,29 @@ using System.Diagnostics;
 using AutoMapper;
 using static GabinetStomatologiczny.Startup;
 using System.Threading.Tasks;
+using Nexmo.Api;
+using System.Security.Claims;
+using GabinetStomatologiczny.Services;
 
 namespace GabinetStomatologiczny.Controllers
 {
     public class WizytasController : BaseController
     {
-        public WizytasController(GabinetContext db) : base(db)
+        private IUserRoleService _userRoleService;
+        public WizytasController(GabinetContext db, IUserRoleService userRoleService) : base(db)
         {
-
+            this._userRoleService = userRoleService;
         }
 
         // GET: Wizytas
         public ActionResult Index()
         {
-            ViewBag.User = User.Identity.Name;
-            var wizyta = db.Wizyta.Include(w => w.Lekarz).Include(w => w.Pacjent);
-            return View(wizyta.ToList());
+            var userIdentity = (ClaimsIdentity)User.Identity;
+            var claims = userIdentity.Claims;
+            var roleClaimType = userIdentity.RoleClaimType;
+            var roles = claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+           
+            return View();
         }
 
         public async Task<JsonResult> GetEvents(string searchQuery)
@@ -43,11 +50,12 @@ namespace GabinetStomatologiczny.Controllers
             }
 
             var isLogedin = User.Identity.IsAuthenticated;
-
+            var r = this._userRoleService.GetUserRole((ClaimsIdentity)User.Identity);
             var u = new { Name = User.Identity.Name  };
             var events = await eventsQuery.Select(_ =>
            new
            {
+               _.ID,
                _.Koniec,
                _.Poczatek,
                Tytul = isLogedin ? _.Tytul : "*",
@@ -56,7 +64,8 @@ namespace GabinetStomatologiczny.Controllers
                     {
                         _.Pacjent.NrTelefonu,
                         _.Pacjent.Email,
-                        activeUser = new { u.Name }
+                        activeUser = new { u.Name },
+                        role = r
                     } : 
                     null,
            }).ToListAsync();
@@ -70,14 +79,32 @@ namespace GabinetStomatologiczny.Controllers
         {
             var events = db.Wizyta.ToList().
                 Where(p => p.Tytul.ToLower().
-                Contains(term.ToLower())).
-                Take(5).OrderByDescending(p => p.Poczatek).
+                Contains(term.ToLower()) &&
+                p.Poczatek >= DateTime.Now).
+                OrderBy(p => p.Poczatek).
+                Take(5).
                 Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
 
-            events = events.Count() == 0 ? db.Wizyta.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;
+            events = events.Count() == 0 ? events.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult Sms(string to, string text)
+        {
+            var status = false;
+            var results = SMS.Send(new SMS.SMSRequest
+            {
+                from = Configuration.Instance.Settings["appsettings:NEXMO_FROM_NUMBER"],
+                to = to,
+                text = text
+              
+            });
+            status = true;
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost]
         public JsonResult SaveEvent(Wizyta w)
@@ -92,8 +119,16 @@ namespace GabinetStomatologiczny.Controllers
                     {
                         w.LekarzID = v.LekarzID;
                         w.PacjentID = v.PacjentID;
+                        if (!string.IsNullOrEmpty(v.Tytul))
+                        {
+                            w.Tytul = v.Tytul;
+                        }
                         var m = Mapper.Map<Wizyta, Wizyta>(w, v);
-                        m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                        if (string.IsNullOrEmpty(m.Tytul))
+                        {
+                            m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                        }
+                       
                         db.Entry(m).State = EntityState.Modified;
                     }
 
@@ -103,7 +138,17 @@ namespace GabinetStomatologiczny.Controllers
                     w.PacjentID = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.ID).FirstOrDefault();
                     w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
                     var m = Mapper.Map<Wizyta, Wizyta>(w);
-                    m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                   
+                    if (m.Tytul != null)
+                    {
+                        var pacjent = db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul) ).FirstOrDefault();
+                        m.PacjentID = pacjent.ID;
+                    }else
+                    {
+                        m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                    }
+                  
+                    
                     db.Wizyta.Add(m);
 
                 }

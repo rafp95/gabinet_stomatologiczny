@@ -1,19 +1,19 @@
 ﻿/*wyszukaj*/
 
-form#wyslij{
+form#wyslij {
     position: relative;
 }
 
-span.kasujText{
+span.kasujText {
     position: absolute;
     left: 250px;
     top: 7px;
     display: none;
 }
 
-span.kasujText:hover{
-    cursor: pointer;
-}
+    span.kasujText:hover {
+        cursor: pointer;
+    }
 
 form.wyszukiwarka {
     margin-bottom: 20px;
@@ -22,7 +22,7 @@ form.wyszukiwarka {
     form.wyszukiwarka input[type=text] {
         padding: 8px;
         padding-right: 35px;
-        font-size: 17px;
+        font-size: 14px;
         border: 1px solid grey;
         float: left;
         width: 60%;
@@ -43,6 +43,10 @@ form.wyszukiwarka {
 
         form.wyszukiwarka button:hover {
             background: #0b7dda;
+            -webkit-transition: 0.3s ease;
+            -moz-transition: 0.3s ease;
+            -o-transition: 0.3s ease;
+            transition: 0.3s ease;
         }
 
     form.wyszukiwarka::after {
@@ -62,7 +66,7 @@ p a.dodajNowegoPacjenta {
         width: 40%;
     }
 
-    span.kasujText{
+    span.kasujText {
         left: 50%;
         top: 7px;
         display: none;
@@ -70,7 +74,7 @@ p a.dodajNowegoPacjenta {
 }
 
 @media only screen (min-width: 501px) and (max-width: 1200px) {
-    span.kasujText{
+    span.kasujText {
         left: 255px;
         top: 7px;
         display: none;

@@ -13,6 +13,14 @@
 
 <h2>Lekarze</h2>
 
+@if (TempData["editLekarz"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Pomyślnie edytowano
+    </div>
+}
+
 <div class="form-group">
     <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
         <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextLekarz"></span>
@@ -29,23 +37,5 @@
     <script src="~/Content/script/Zdjecia.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-
-    <script>
-        function setupAutoComplete() {
-            var input = $("#searchQuery");
-
-            var options = {
-                source: input.attr("data-autocomplete-source"),
-                select: function (event, ui) {
-                    input.val(ui.label);
-                    var form = input.parents("form:first");
-                    form.submit();
-                }
-            };
-
-            input.autocomplete(options);
-        };
-
-        setupAutoComplete();
-    </script>
+    <script src="~/Content/script/AutoComplete.js"></script>
 }

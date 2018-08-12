@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
 
+    let zapisInfo = $("div#saveDatabaseInfo");
     let ladowanie = $("div.ladowanie");
+    let widok = 'month';
     ladowanie.css('display', 'block');
     //Czas
 
@@ -71,8 +73,10 @@
             console.log(size);
         }
     });
-    //Akttuana data do sprawdzania czy wprowadzona data nie jest wcześniejsza
+    //Aktualna data do sprawdzania czy wprowadzona data nie jest wcześniejsza
+
     var now = moment(new Date(), "DD-MM-YYYY HH:mm");
+
     //Get all events
     var events = [];
     var selectedEvent = null;
@@ -93,7 +97,8 @@
                         end: v.Koniec != null ? moment(v.Koniec) : null,
                         phone: v.p != null ? v.p.NrTelefonu : null,
                         email: v.p != null ? v.p.Email : null,
-                        activeUser: v.p != null ? v.p.activeUser.Name : null
+                        activeUser: v.p != null ? v.p.activeUser.Name : null,
+                        role: v.p != null ?  v.p.role : null
                     });
                 })
                 GenerateCalender(events);
@@ -108,12 +113,14 @@
 
     //Generate calandar
     function GenerateCalender(events) {
-        let widok = 'month';
         $('#calender').fullCalendar('destroy');
         $('#calender').fullCalendar({
-            themeSystem: 'jquery-ui',
-            groupByResource: true,
+            theme: true,
+            themeSystem: 'bootstrap4',
+            weekNumbers: true,
+            navLinks: true,
             slotMinutes: 30,
+            slotLabelInterval: 30,
             slotEventOverlap: false,
             nowIndicator: true,
             aspectRatio: () => { size },
@@ -122,40 +129,38 @@
             minTime: "08:00:00",
             maxTime: "17:00:00",
             defaultView: widok,
-            success: function(events)
-            {
-                $('#calendar').fullCalendar('refetchEvents');
-            },
             header: {
-                left: 'prev,next,today',
+                left: 'prev,next today',
                 center: 'title',
-                right: 'month,agenda,agendaFourDay'
+                right: 'month,agendaDay,agendaFourDay'
             },
             views: {
                 agendaFourDay: {
                     type: 'agenda',
-                    dayCount: 4,
-                    buttonText: '4 dni'
+                    dayCount: 5,
+                    buttonText: '5 dni'
                 }
             },
             eventLimit: 3,
-            eventColor: '#378006',
             events: events,
             eventClick: function (calEvent, jsEvent, view) {
                 selectedEvent = calEvent;
                 //budowanie modal
                 var tel = calEvent.phone != null ? calEvent.phone : " *";
+
                 $("#myModal #eventTitle").text(calEvent.title);
                 $('#myModal #pDetails').html("<div> <b>Początek : </b> " + calEvent.start.format('HH:mm') + "</div>").
                                append("<div> <b> Koniec: </b> " + calEvent.end.format("HH:mm") + "</div>").
                                append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>").
                                append("<div> <b>Tel:</b> " + tel + "</div>");
-                if (calEvent.activeUser != calEvent.email) {
-                    $('#btnEdit').hide();
-                    $('#btnDelete').hide();
-                } else {
+                if (calEvent.activeUser === calEvent.email ||
+                    calEvent.role === "Administrator" || 
+                    calEvent.role === "Lekarz") {
                     $('#btnEdit').show();
                     $('#btnDelete').show();
+                } else {
+                    $('#btnEdit').hide();
+                    $('#btnDelete').hide();
                 }
 
                 $('#myModal').modal();
@@ -163,6 +168,7 @@
             },
             selectable: true,
             select: function (start, end) {
+
                 ErorMessage();
                 selectedEvent = {
                     eventID: 0,
@@ -171,9 +177,7 @@
                     end: end,
                 };
                 var dataStart = new Date(moment(start, "DD-MM-YYYY HH:mm"));
-                if (dataStart >= now
-                    || start.format("DD-MM-YYYY")
-                    === now.format("DD-MM-YYYY")) {
+                if (dataStart >= now) {
                     openAddEditForm();
                 } else {
                     $("#myModalError").modal();
@@ -186,7 +190,7 @@
             eventDrop: function (event) {
                 var data = {
                     EventID: event.eventID,
-                    Start: event.start.format('DD/MM/YYYY HH:mm'),
+                    Start: event.start.format('DD-MMYYYY HH:mm'),
                     Description: event.description,
                 };
                 SaveEvent(data);
@@ -205,6 +209,67 @@
     }
     //End generate calendar
 
+    //Send sms
+    $("#btnSms").click(() => {
+        czyscSmsInput();
+        ErorMessage();
+        $("#inputDo").val('+48' + getPhoneNumber());
+        $("#inputWiadomosc").val("Przypomnienie o wizycie dnia "  + selectedEvent.start.format("DD-MMM-YYYY HH:mm"));
+        buttonInfo($("#btnSmsSend"), "Wyślij");
+        $("#myModalSendSms").modal();
+    });
+
+
+    $("#btnSmsSend").click(() => {
+
+        let data = {
+            to: $("#inputDo").val(),
+            text: $("#inputWiadomosc").val()
+        };
+
+        if (data.to.length === 0) {
+            $("#inputDo").css('border', '1px solid red');
+            $("#errorSmsTo").text("Pole wymagane").css("color", "red");
+            return;
+        } else if (data.text.length === 0) {
+            $("#inputWiadomosc").css('border', '1px solid red');
+            $("#errorSmsWiadomosc").text("Pole wymagane").css("color", "red");;
+            return;
+        }
+        
+        sendSmsToApi(data);
+
+        buttonInfo($("#btnSmsSend"), "<div class='btnSmsSend' style='float:left; '>Wysyłanie </div> <div class='loader' style='float:left;'></div>");
+        $("#myModalSendSms").modal('hide');
+    });
+
+    function czyscSmsInput() {
+        $("#inputDo").val("");
+        $("#inputWiadomosc").val("");
+    }
+
+    function sendSmsToApi(data) {
+        $.ajax({
+            type: "POST",
+            url: '/Wizytas/Sms',
+            data: data
+        });
+    }
+
+    function getPhoneNumber() {
+        let phone = selectedEvent.phone.trim();
+        let pomPhone = '';
+        for (var i = 0; i < phone.length; i++) {
+            
+            if (phone.charAt(i) != '-') {
+                pomPhone += phone.charAt(i);
+            }
+        }
+        return pomPhone;
+    }
+
+    //End send sms
+
     $('#btnEdit').click(function () {
         //Open modal dialog for edit event
         openAddEditForm();
@@ -218,7 +283,6 @@
 
     $("#kasujElement").click(function () {
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie </div> <div class='loader' style='float:left;'></div>");
-
         if (selectedEvent != null) {
             $.ajax({
                 type: "POST",
@@ -228,11 +292,12 @@
                     if (data.status) {
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
+                        zapisInfo.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                         $('#myModal').modal('hide');
                     }
                 },
                 error: function () {
-                    alert('Failed');
+                    zapisInfo.text("Wystąpił problem......").css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").css("color","white").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                 }
             })
         }
@@ -241,11 +306,16 @@
 
 
     //Date time picker
-    $('#dtp1,#dtp2').datetimepicker({
+    $('#dtp1').datetimepicker({
         stepping: '30',
         enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16],
         minDate: new Date(),
-        daysOfWeekDisabled: [0, 6]
+        daysOfWeekDisabled: [0, 6],
+        sideBySide: true,
+        widgetPositioning: {
+            horizontal: 'right',
+            vertical: 'bottom'
+        }
     });
     //End datetime picker
 
@@ -255,6 +325,7 @@
         if (selectedEvent != null) {
             $('#hdEventID').val(selectedEvent.eventID);
             $('#txtStart').val(selectedEvent.start.format('DD.MM.YYYY HH:mm'));
+            $('#tytul').length > 0 ?  $('#tytul').val(selectedEvent.title) : "";
         }
         $('#myModal').modal('hide');
         $('#myModalSave').modal();
@@ -269,30 +340,46 @@
         var clickTime = moment($("#txtStart").val().trim(), 'DD.MM.YYYY HH:mm');
         var minTime = moment("8:00", 'HH:mm').format("HH:mm");
 
+        //check hours is empty
         for (var i = 0; i < events.length; i++) {
             if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
                 $("#txtStart").css('border', '1px solid red').parent().
-               after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
+                after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
                 return;
             }
             
         }
+        //end check hours
+
+        //Check title is empty
+        var t = $("#tytul");
+        if (t.length > 0) {
+            if (t.val().length == 0) {
+                t.css('border', '1px solid red').parent().
+                after("<div class='errorTime'>Pole nie może być puste</div>").next().css("color", "red");
+                return;
+            }
+        }
+        //end check title is empty
 
         //Check date and time
-        if (new Date(now) <= new Date(clickTime)
-            && clickTime.format("HH:mm") >= minTime
-            && clickTime.format("HH:mm") < maxTime) {
+        else if (new Date(now) <= new Date(clickTime)
+           && clickTime.format("HH:mm") >= minTime
+           && clickTime.format("HH:mm") < maxTime) {
             $("#txtStart").css('border', '');
             errorTime.html("");
-        } else {
+        }
+        else {
             $("#txtStart").css('border', '1px solid red').parent().
                after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
             return;
         }
+        //End check date
 
         var data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
+            Tytul: $("#tytul").length > 0 ? $("#tytul").val().trim() : null
         }
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie </div> <div class='loader' style='float:left;'></div>");
         SaveEvent(data);
@@ -308,14 +395,31 @@
                 if (data.status) {
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
+                    zapisInfo.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
                 }
             },
             error: function () {
-                alert('Failed');
+                zapisInfo.text("Wystąpił problem").css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
             }
         })
     }
+
+    //append text
+
+    function appendText() {
+        var interval = setInterval(() => {
+            zapisInfo.append(".");
+            if (interval > 200) {
+                clearInterval(interval);
+                console.log(interval);
+                return;
+            }
+        }, 500);
+
+    }
+
+    //end append text
 
     //Change text in button
     function buttonInfo(button, text) {
@@ -324,9 +428,13 @@
 
     //Validate massage
     function ErorMessage() {
+        $("#errorSmsTo").html("");
+        $("#errorSmsWiadom").html("");
         $("div.error").html("");
         $("div.errorTime").html("");
+        $("div#errorSms").html("");
         $("#txtStart").css('border', '');
+        $("#tytul").css('border', '');
     }
 
 
@@ -335,7 +443,8 @@
 function pokazAktualnyCzas() {
     var aktualny = setInterval(() => {
         var aktualntCzas = moment(new Date());
-        $("div#aktualnyCzas").html(aktualntCzas.format("HH:mm:ss"));
+        now = moment(aktualntCzas, "DD-MM-YYYY HH:mm");
+        $("div#aktualnyCzas").html(aktualntCzas.format("DD MMMM YYYY HH:mm:ss"));
     }, 1000);
 }
 

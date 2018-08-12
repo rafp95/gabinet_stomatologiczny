@@ -1,0 +1,44 @@
+﻿@model List<GabinetStomatologiczny.Models.LiczbaPacjentow>
+
+@{
+    Layout = null;
+    ViewBag.Active = "About";
+    ViewBag.Title = "Statystki";
+}
+
+<link href="~/Content/PdfStyle.css" rel="stylesheet" />
+
+<h2>Statystki rejestracji / edycji pacjętów</h2>
+
+
+@if (Model.Count() > 0)
+{
+
+    <table class="table">
+        <tr>
+            <th>
+                Data rejestracji
+            </th>
+            <th>
+                Liczba pacjentów
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataRejestracji)
+                </td>
+                <td>
+                    <span class="badge"> @item.Pacjentow </span>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>Jeszcze żaden pacjent się nie zarejestrował </div>
+}
+

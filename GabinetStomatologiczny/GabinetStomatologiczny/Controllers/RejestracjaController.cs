@@ -18,7 +18,7 @@ namespace GabinetStomatologiczny.Controllers
     [Authorize(Roles = "Administrator,Lekarz")]
     public class RejestracjaController : BaseController
     {
-        private readonly GabinetContext db;
+        private readonly new GabinetContext db;
         private readonly ISendEmailService se;
         private readonly IPacjentsService ps;
         private readonly ILekarzService ls;
@@ -60,8 +60,8 @@ namespace GabinetStomatologiczny.Controllers
                     roleUser.Create(new IdentityRole(o.TypPracownika.ToString()));
 
 
-                    var user = new ApplicationUser { UserName = o.Email };
-                    user.EmailConfirmed = true;
+                    var user = new ApplicationUser { UserName = o.Email,Email = o.Email,EmailConfirmed = true };
+
                     var pass = o.Haslo;
 
                     createUser.Create(user, pass);

@@ -1,6 +1,10 @@
-﻿div#aktualnyCzas::before {
+﻿body{
+    margin: 0;
+}
+
+div#aktualnyCzas::before {
     font-weight: bold;
-    content: "Godzina: ";
+    content: "Dziś: ";
 }
 
 div#aktualnyCzas {
@@ -13,42 +17,30 @@ table tbody tr {
     height: 5px;
 }
 
-.modal {
-    text-align: center;
-    padding: 0 !important;
-}
 
-    .modal::before {
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-        margin-right: -4px;
-        content: " ";
-    }
-
-.modal-dialog {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: left;
-}
 
 input#txtStart,
 input#txtDescription,
+input#tytul,
 select#txtSelect,
 textarea#txtDescription {
     max-width: 100%;
 }
 
 .fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
-    background: aqua;
-    border-radius: 50%;
-    padding: 4px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 td.fc-event-container:hover, div.fc-event-container a:hover {
     opacity: 0.8;
     cursor: pointer;
+}
+
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
 }
 
 @media only screen and (max-width: 760px) {
@@ -66,8 +58,6 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
     }
 
     .fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
-        background: aqua;
-        border-radius: 50%;
         padding: 2px;
         font-size: 10px;
     }
@@ -89,11 +79,13 @@ div.ladowanie {
     height: 50px;
     width: 50px;
     animation: rotate 0.8s infinite linear;
-    border: 2px solid #3498db;
+    border: 10px solid #3498db;
     border-right-color: transparent;
     border-radius: 50%;
     overflow: hidden;
     display: none;
+    z-index: 99999;
+    box-sizing: border-box;
 }
 
 
@@ -108,6 +100,7 @@ div.loader {
     border: 2px solid white;
     border-right-color: transparent;
     border-radius: 50%;
+    overflow: hidden;
 }
 
 
@@ -123,3 +116,55 @@ div.loader {
 
 /*End loading*/
 
+tr:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+/*Ui z index*/
+
+.ui-autocomplete {
+    z-index: 2147483647;
+    font-size: 16px;
+    transition: all .3s ease;
+}
+/*end ui z index*/
+
+/*Info save to database*/
+
+div#saveDatabaseInfo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%, -50%);
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */	
+    background: linear-gradient(to bottom, #33cc33 0%, #66ff33 100%);
+    width: 50%;
+    z-index: 99999999;
+    padding: 5px;
+    text-align: center;
+    display: none;
+}
+
+/* End info  save to database*/
+
+/*Overlload kalendar styles*/
+.fc-popover .fc-header {
+    background: #428bca;
+    color: white;
+}
+
+.fc-event-container {
+    z-index: 9999999;
+    background: white;
+}
+
+
+/*end kalendar styles*/
+
+.datepicker,
+.table-condensed {
+    z-index: 99999999;
+}

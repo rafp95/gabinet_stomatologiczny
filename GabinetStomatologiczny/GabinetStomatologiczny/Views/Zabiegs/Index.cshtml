@@ -8,16 +8,8 @@
 <link href="~/Content/TableStyle.css" rel="stylesheet" />
 <h2>Zabiegi</h2>
 
-@if (!User.Identity.IsAuthenticated)
-{
-    <div class="alert alert-danger" role="alert">
-        Do tej sekcji dostęp mają jedynie osoby zalogowane
-    </div>
-
-}
-
 @if (User.IsInRole("Administrator")
-                || User.IsInRole("Lekarz"))
+     || User.IsInRole("Lekarz"))
 {
     <p>
         @Html.ActionLink("Dodaj zabieg", "Create", null, new { @class = "btn btn-primary dodajNowyZabieg" })
@@ -64,13 +56,19 @@
                     @if (User.IsInRole("Lekarz"))
                     {
                         <td>
-                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit" }) |
-                            @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-info  glyphicon glyphicon-align-justify" }) |
-                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-trash" })
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title="Edycja" }) |
+                            @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-info  glyphicon glyphicon-align-justify", @title="Więcej" }) |
+                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-trash", @title="Kasuj" })
                         </td>
                     }
                 </tr>
             }
         }
     </table>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Do tej sekcji dostęp mają jedynie osoby zalogowane
+    </div>
 }

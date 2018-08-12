@@ -1,15 +1,11 @@
 ﻿@model GabinetStomatologiczny.DAO.Models.Lekarz
 
-@section scripts{
-    <script src="~/Content/script/Zdjecia.js"></script>
-}
-
 <link href="~/Content/Zdjecia.css" rel="stylesheet" />
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Więcej";
 }
 
-<h2>Details</h2>
+<h2>Więcej informacji</h2>
 
 <div>
     <h4>Lekarz</h4>
@@ -73,3 +69,7 @@
     }
     @Html.ActionLink(" Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
 </p>
+
+@section scripts{
+    <script src="~/Content/script/Zdjecia.js"></script>
+}

@@ -78,6 +78,10 @@
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="jose-jwt, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jose-jwt.2.3.0\lib\net461\jose-jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -139,12 +143,56 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration, Version=1.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.1.0.2\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.0.2\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.1.0.2\lib\net451\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=1.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.1.0.2\lib\net451\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.1.1.1\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.0.1\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.1.0.1\lib\net451\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.1.0.1\lib\net451\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.0.2\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.2\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Console, Version=1.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Console.1.0.2\lib\net451\Microsoft.Extensions.Logging.Console.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.0.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -207,6 +255,10 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Nexmo.Api, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nexmo.Csharp.Client.3.0.1\lib\net461\Nexmo.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c" />
     <Reference Include="NLogger, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NLogger.dll.1.0.4\lib\NLogger.dll</HintPath>
@@ -222,6 +274,10 @@
     </Reference>
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SendGrid, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
@@ -385,6 +441,34 @@
     <Compile Include="Migrations\201807151738398_InitialMigrations.Designer.cs">
       <DependentUpon>201807151738398_InitialMigrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807311649241_InitialCreate.cs" />
+    <Compile Include="Migrations\201807311649241_InitialCreate.Designer.cs">
+      <DependentUpon>201807311649241_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011418396_propZabieg.cs" />
+    <Compile Include="Migrations\201808011418396_propZabieg.Designer.cs">
+      <DependentUpon>201808011418396_propZabieg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011419453_propZabieg2.cs" />
+    <Compile Include="Migrations\201808011419453_propZabieg2.Designer.cs">
+      <DependentUpon>201808011419453_propZabieg2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011421043_propZabieg4.cs" />
+    <Compile Include="Migrations\201808011421043_propZabieg4.Designer.cs">
+      <DependentUpon>201808011421043_propZabieg4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011433061_removeZabiegProperty.cs" />
+    <Compile Include="Migrations\201808011433061_removeZabiegProperty.Designer.cs">
+      <DependentUpon>201808011433061_removeZabiegProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011435284_removeProp.cs" />
+    <Compile Include="Migrations\201808011435284_removeProp.Designer.cs">
+      <DependentUpon>201808011435284_removeProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121240456_removeP.cs" />
+    <Compile Include="Migrations\201808121240456_removeP.Designer.cs">
+      <DependentUpon>201808121240456_removeP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AutoMapperAdmin.cs" />
     <Compile Include="Models\AutoMapperConfiguration.cs" />
@@ -407,6 +491,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\About.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -568,6 +653,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
@@ -576,9 +663,12 @@
     <Content Include="Content\LoginInput.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PginationPosition.css" />
+    <Content Include="Content\script\AutoComplSearchWizyta.js" />
+    <Content Include="Content\script\Chart.js" />
+    <Content Include="Content\script\FormatMask.js" />
     <Content Include="Content\script\GoToTop.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />
-    <Content Include="Content\script\PacjentAutoComplete.js" />
+    <Content Include="Content\script\AutoComplete.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <Content Include="Content\SilaHasla.css" />
     <Content Include="Content\TableStyle.css" />
@@ -637,12 +727,27 @@
     <Content Include="Content\Zabieg.css" />
     <Content Include="Content\Zdjecia.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.svg" />
+    <Content Include="fonts\OpenSans\Bold\OpenSans-Bold.svg" />
+    <Content Include="fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.svg" />
+    <Content Include="fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.svg" />
+    <Content Include="fonts\OpenSans\Italic\OpenSans-Italic.svg" />
+    <Content Include="fonts\OpenSans\LightItalic\OpenSans-LightItalic.svg" />
+    <Content Include="fonts\OpenSans\Light\OpenSans-Light.svg" />
+    <Content Include="fonts\OpenSans\Regular\OpenSans-Regular.svg" />
+    <Content Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.svg" />
+    <Content Include="fonts\OpenSans\Semibold\OpenSans-Semibold.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Log\20180704 NLogTester.txt" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -732,26 +837,66 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
+    <Content Include="appsettings.json" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\OpenSans\Semibold\OpenSans-Semibold.woff" />
+    <Content Include="fonts\OpenSans\Semibold\OpenSans-Semibold.ttf" />
+    <Content Include="fonts\OpenSans\Semibold\OpenSans-Semibold.eot" />
+    <Content Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.woff" />
+    <Content Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.ttf" />
+    <Content Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.eot" />
+    <Content Include="fonts\OpenSans\Regular\OpenSans-Regular.woff" />
+    <Content Include="fonts\OpenSans\Regular\OpenSans-Regular.ttf" />
+    <Content Include="fonts\OpenSans\Regular\OpenSans-Regular.eot" />
+    <Content Include="fonts\OpenSans\Light\OpenSans-Light.woff" />
+    <Content Include="fonts\OpenSans\Light\OpenSans-Light.ttf" />
+    <Content Include="fonts\OpenSans\Light\OpenSans-Light.eot" />
+    <Content Include="fonts\OpenSans\LightItalic\OpenSans-LightItalic.woff" />
+    <Content Include="fonts\OpenSans\LightItalic\OpenSans-LightItalic.ttf" />
+    <Content Include="fonts\OpenSans\LightItalic\OpenSans-LightItalic.eot" />
+    <Content Include="fonts\OpenSans\Italic\OpenSans-Italic.woff" />
+    <Content Include="fonts\OpenSans\Italic\OpenSans-Italic.ttf" />
+    <Content Include="fonts\OpenSans\Italic\OpenSans-Italic.eot" />
+    <Content Include="fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.woff" />
+    <Content Include="fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.ttf" />
+    <Content Include="fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.eot" />
+    <Content Include="fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.woff" />
+    <Content Include="fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.ttf" />
+    <Content Include="fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.eot" />
+    <Content Include="fonts\OpenSans\Bold\OpenSans-Bold.woff" />
+    <Content Include="fonts\OpenSans\Bold\OpenSans-Bold.ttf" />
+    <Content Include="fonts\OpenSans\Bold\OpenSans-Bold.eot" />
+    <Content Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.woff" />
+    <Content Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.ttf" />
+    <Content Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.eot" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="packages.config" />
+    <None Include="Scripts\jquery-3.3.1-vsdoc.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />
     <Content Include="Scripts\gcal.min.js" />
-    <Content Include="packages.config" />
-    <None Include="Scripts\jquery-3.3.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.ajaxhelper.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -866,7 +1011,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -912,15 +1056,14 @@
     <Content Include="Views\Rejestracja\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Lekarzs\_LekarzsParts.cshtml" />
+    <Content Include="Views\Home\Statistic.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Obrazki\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
@@ -942,6 +1085,27 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807151738398_InitialMigrations.resx">
       <DependentUpon>201807151738398_InitialMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311649241_InitialCreate.resx">
+      <DependentUpon>201807311649241_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011418396_propZabieg.resx">
+      <DependentUpon>201808011418396_propZabieg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011419453_propZabieg2.resx">
+      <DependentUpon>201808011419453_propZabieg2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011421043_propZabieg4.resx">
+      <DependentUpon>201808011421043_propZabieg4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011433061_removeZabiegProperty.resx">
+      <DependentUpon>201808011433061_removeZabiegProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011435284_removeProp.resx">
+      <DependentUpon>201808011435284_removeProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121240456_removeP.resx">
+      <DependentUpon>201808121240456_removeP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,6 +12,14 @@
     <dl class="dl-horizontal">
 
         <dt>
+            @Html.Name("Imię i nazwisko")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wizyta.Tytul)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.TypZabiegu)
         </dt>
 
@@ -29,6 +37,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edycja", "Edit", new { id = Model.ID },new {@class= "btn btn-info" }) |
+    @Html.ActionLink("Wstecz", "Index",null,new {@class= "glyphicon glyphicon-hand-left" })
 </p>

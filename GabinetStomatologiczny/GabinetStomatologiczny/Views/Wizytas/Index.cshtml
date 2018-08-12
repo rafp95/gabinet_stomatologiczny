@@ -10,6 +10,8 @@
 <link href="~/Content/Wizyta.css" rel="stylesheet" />
 <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
 
+<div id="saveDatabaseInfo"></div>
+
 <div class="ladowanie"></div>
 
 <!--Search form-->
@@ -19,10 +21,10 @@
 {
     <div class="form-group">
         <form id="wyslij" class="wyszukiwarka" action="@Url.Action("GetEvents")" method="get" data-ajax="true">
-            <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
             <input type="text" id="searchQuery" name="searchQuery"
                    data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
                    class="form-control" />
+        <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
         </form>
     </div>
 }
@@ -33,42 +35,54 @@
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modal-info">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 style="text-align:center;">Informacje o wizycie</h1>
                 <h4 class="modal-title text-center"><span id="eventTitle"></span></h4>
             </div>
             <div class="modal-body">
-                @if (User.IsInRole("Pacjent")
-                    ||User.IsInRole("Lekarz")
-                    || User.IsInRole("Administrator"))
+                <p id="pDetails"></p>
+                @if (User.IsInRole("Pacjent") ||
+             User.IsInRole("Administrator") ||
+             User.IsInRole("Lekarz"))
                 {
                     {
-                        <button id="btnDelete" class="btn btn-default btn-sm pull-right">
-                            <span class="glyphicon glyphicon-remove"></span> Kasuj
-                        </button>
-                        <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
-                            <span class="glyphicon glyphicon-pencil"></span> Edytuj
-                        </button>
+                        <div id="action">
+                            <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
+                                <span class="glyphicon glyphicon-remove"></span> Kasuj
+                            </button>
+                            <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
+                                <span class="glyphicon glyphicon-pencil"></span> Edytuj
+                            </button>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <button id="btnSms" class="btn btn-primary btn-sm pull-right" style="margin-right: 5px;">
+                                    <span class="glyphicon glyphicon-pencil"></span> Sms
+                                </button>
+                            }
+                        </div>
                     }
                 }
-                <p id="pDetails"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
 <!--End about-->
 @if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
-     || User.IsInRole("Administrator")
-     || User.IsInRole("Lekarz"))
+                                         || User.IsInRole("Administrator")
+                                         || User.IsInRole("Lekarz"))
 {
     <!--Eror-->
     <div id="myModalError" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modal-warning">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h1 class="modal-title text-center"><span id="eventTitle">Błąd</span></h1>
                 </div>
@@ -76,17 +90,48 @@
                     <h4 style="color:red;">Wybrana data musi być późniejsza</h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
                 </div>
             </div>
         </div>
     </div>
     <!--End Eror-->
+
+    <!--Send sms-->
+    <div id="myModalSendSms" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-info">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Wyslij sms</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="col-md-12 form-horizontal">
+                        <label for="inputDo">Do : </label>
+                        <input type="text" class="form-control" id="inputDo" placeholder="Nr telefonu" />
+                        <div id="errorSmsTo"></div>
+                        <label for="inputDo">Wiadomość : </label>
+                        <textarea type="text" class="form-control" id="inputWiadomosc" placeholder="Wiadomość"></textarea>
+                        <div id="errorSmsWiadom"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" id="btnSmsSend"
+                            class="btn btn-success float-right" data-loading-text="Wysyłanie...">
+                        Wyslij
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End send sms-->
+
      <!-- Delete coonfirm modal -->
     <div class="modal fade" id="deleteConfirmModal" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modal-danger">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Kasowanie</h4>
                 </div>
@@ -105,12 +150,12 @@
     <div id="myModalSave" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modal-info">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title text-center">Zapisz</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="col-md-12 form-horizontal">
+                    <form class="col-md-12 form-horizontal" data-ajax="true">
                         <input type="hidden" id="hdEventID" value="0" />
                         <div class="form-group">
                             <label>Początek</label>
@@ -121,13 +166,25 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="form-group">
-
-                        </div>
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Lekarz"))
+                        {
+                            <div class="form-group">
+                                <label>Imię nazwisko</label>
+                                <div class="input-group" id="dtp2">
+                                    <input type="text" id="tytul"
+                                           data-autocomplete-source="@Url.Action("Sugestions","Pacjents")"
+                                           class="form-control"
+                                           placeholder="Wyszukaj pacjęta" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        }
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
                     <button type="button" id="btnSave"
                             class="btn btn-success float-right" data-loading-text="Zapisywanie...">
                         Zapisz
@@ -144,7 +201,6 @@
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Content/script/KalendarzWizyt.js"></script>
+    <script src="~/Content/script/AutoComplete.js"></script>
+    <script src="~/Content/script/AutoComplSearchWizyta.js"></script>
 }
-
-
-

@@ -11,7 +11,8 @@ namespace GabinetStomatologiczny.Services
 {
     public interface ISugestionService
     {
-        IEnumerable<object> SugestionAsync(Sugestion sugestion);
+        IQueryable<object> SugestionPacjent(Sugestion sugestion);
+        IQueryable<object> SugestionLekarz(Sugestion sugestion);
     }
     public class SugestionService : ISugestionService
     {
@@ -23,13 +24,30 @@ namespace GabinetStomatologiczny.Services
             this._db = db;
         }
 
-        public IEnumerable<object> SugestionAsync(Sugestion sugestion)
+        public IQueryable<object> SugestionLekarz(Sugestion sugestion)
+        {
+            var personList = _db.Lekarz
+                .Where(p => (p.Imie + " " + p.Nazwisko)
+                .ToLower().Contains(sugestion.term.ToLower()))
+                .Take(5)
+                .Select(p => new { label = p.Imie + " " + p.Nazwisko });
+
+            personList = personList.Count() == 0 ? personList.DefaultIfEmpty().
+               Select(p => new { label = "Nie znaleziono" }).Take(1) : personList;
+
+            return personList;
+        }
+
+        public IQueryable<object> SugestionPacjent(Sugestion sugestion)
         {
             var personList = _db.Pacjent
                 .Where(p => (p.Imie + " " + p.Nazwisko)
                 .ToLower().Contains(sugestion.term.ToLower()))
                 .Take(5)
                 .Select(p =>  new { label = p.Imie + " " + p.Nazwisko } );
+
+            personList = personList.Count() == 0 ? personList.DefaultIfEmpty().
+                Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : personList;
 
             return personList;
         }

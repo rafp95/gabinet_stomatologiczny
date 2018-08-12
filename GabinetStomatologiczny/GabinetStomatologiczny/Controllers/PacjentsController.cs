@@ -59,8 +59,9 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult Sugestions(Sugestion sugestion)
         {
-            var list = this.sugestionService.SugestionAsync(sugestion);
+            var list = this.sugestionService.SugestionPacjent(sugestion);
 
+            
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -110,6 +111,7 @@ namespace GabinetStomatologiczny.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Pacjent pacjent = await this.pacjentsService.Find(id);
+      
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -127,6 +129,7 @@ namespace GabinetStomatologiczny.Controllers
             if (ModelState.IsValid)
             {
                 this.pacjentsService.Edit(pacjent);
+                TempData["editPacjent"] = "done";
                 return RedirectToAction("Index");
             }
             return View(pacjent);

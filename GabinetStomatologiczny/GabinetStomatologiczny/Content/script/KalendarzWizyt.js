@@ -298,7 +298,9 @@
                     }
                 },
                 error: function () {
-                    zapisInfo.text("Wystąpił problem......").css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").css("color","white").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                    zapisInfo.text("Wystąpił problem......").
+                        css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
+                        fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                 }
             })
         }

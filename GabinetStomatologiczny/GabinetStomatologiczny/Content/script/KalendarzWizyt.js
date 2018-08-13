@@ -314,7 +314,7 @@
         enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16],
         minDate: new Date(),
         daysOfWeekDisabled: [0, 6],
-        sideBySide: true,
+        sideBySide: false,
         widgetPositioning: {
             horizontal: 'right',
             vertical: 'bottom'

@@ -17,7 +17,6 @@ namespace GabinetStomatologiczny.Utils
         protected GabinetContext db;
 
         protected readonly Logger logger = null;
-        
 
         public BaseController(GabinetContext db)
         {
@@ -33,12 +32,13 @@ namespace GabinetStomatologiczny.Utils
             Trace.WriteLine(this);
             logger.Info(this);
         }
-
-
+        
         protected override void OnException(ExceptionContext filterContext)
         {
-            logger.Info(filterContext.Exception);
-            Trace.WriteLine(filterContext.Exception);
+            var controllerName = filterContext.RouteData.Values["controller"];
+            var actionName = filterContext.RouteData.Values["action"];
+
+            logger.Info("Controller/Akcja " + controllerName + "/" + actionName + " Exception " +  filterContext.Exception);
             base.OnException(filterContext);
         }
 

@@ -226,6 +226,14 @@ footer {
     -o-transition: 0.9s ease;
     transition: 0.9s ease;
 }
+/*End top page style*/
+
+/*Glyphicon style*/
+
+span.glyphicon:hover{
+    cursor: pointer;
+    opacity: .8;
+}
 
 .glyphicon-chevron-up:before {
     -webkit-transition: 0.9s ease;
@@ -233,8 +241,8 @@ footer {
     -o-transition: 0.9s ease;
     transition: 0.9s ease;
 }
+/*Glyphicon style*/
 
-/*End top page style*/
 
 /*Wlidation input style*/
 span.field-validation-error {

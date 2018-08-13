@@ -168,17 +168,14 @@ div#saveDatabaseInfo {
     text-align: center;
 	z-index: 999999999;
 }
-.popover .arrow:after {
-  z-index: -1;
-  content: "";
-}
 
 .popover.top .arrow {
   bottom: -10px;
   left: 50%;
   margin-left: -10px;
-  border-top-color: #ffffff;
+  border-top-color: #fbfbfb;
   border-width: 10px 10px 0;
+  z-index: 9999999999;
 }
 
 .popover.top .arrow:after {

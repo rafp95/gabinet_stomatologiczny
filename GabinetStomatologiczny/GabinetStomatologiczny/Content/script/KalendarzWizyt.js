@@ -203,7 +203,7 @@
                     content: phone == null ? "Dla zalogowanych" : "tel. " + phone,
                     trigger: 'hover',
                     placement: 'top',
-                    container: 'body'
+                    container: 'body',
                 });
             }
         })

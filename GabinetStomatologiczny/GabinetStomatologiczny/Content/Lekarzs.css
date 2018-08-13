@@ -87,3 +87,10 @@ div.data-select a.active {
     border-bottom: 1px solid black;
 }
 /*end active sort*/
+
+/*Button succes stlye*/
+a.btn-success {
+    background: dodgerblue;
+}
+
+/*end style*/

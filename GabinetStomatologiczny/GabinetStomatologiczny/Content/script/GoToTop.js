@@ -1,6 +1,19 @@
 ﻿$(document).ready(function () {
    
-    $(".tooltipLink").tooltip();
+    $(".tooltipLink").tooltip({
+        position: {
+            my: "center bottom-20",
+            at: "center top",
+            using: function (position, feedback) {
+                $(this).css(position);
+                $("<div>")
+                  .addClass("arrow")
+                  .addClass(feedback.vertical)
+                  .addClass(feedback.horizontal)
+                  .appendTo(this);
+            }
+        }
+    });
 
     $('div.alert a.close').on('click', () => {
         $(".alert").alert('close');

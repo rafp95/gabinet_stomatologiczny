@@ -1,5 +1,7 @@
 ﻿h2{
     text-align: center;
+    letter-spacing: 3px;
+    font-size: 28px;
 }
 
 table{
@@ -14,6 +16,7 @@ table tr th,table tr td{
 
 table tr:first-child{
     background-color: aqua;
+    font-size: 22px;
 }
 
 table tr:nth-child(even){

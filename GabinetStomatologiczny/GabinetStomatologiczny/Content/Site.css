@@ -42,7 +42,7 @@ textarea {
     max-width: 280px;
 }
 
-    input[type=text], input[type=password], input[type=submit], img, p, canvas, div.ui-menu-item-wrapper, button, div.fc-content, select {
+    input[type=text], input[type=password], input[type=submit], img, p, canvas, div.ui-menu-item-wrapper, button, div.fc-content, select, ul.nav a {
         -moz-transition: all 0.9s ease;
         -o-transition: all 0.9s ease;
         transition: all 0.9s ease;
@@ -59,6 +59,10 @@ textarea {
 
 
         button:hover, input[type="submit"]:hover {
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
             opacity: .8;
         }
 
@@ -185,12 +189,12 @@ footer {
 /*End top page style*/
 
 /*Wlidation input style*/
-span.field-validation-error{
-    color:red;
+span.field-validation-error {
+    color: red;
     font-weight: bold;
 }
 
-.input-validation-error{
+.input-validation-error {
     background: pink;
     border: 1px solid red;
 }

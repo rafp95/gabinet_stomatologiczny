@@ -36,6 +36,7 @@ namespace GabinetStomatologiczny.Controllers
             var about = pacjentsService.Statistic().
                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
                OrderByDescending(p => p.DataRejestracji).ToList();
+            
             return Json(about, JsonRequestBehavior.AllowGet);
         }
 

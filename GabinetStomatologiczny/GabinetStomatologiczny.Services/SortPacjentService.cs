@@ -48,7 +48,6 @@ namespace GabinetStomatologiczny.Services
                 pacjent = pacjent.Where(s => (s.Imie + " " + s.Nazwisko + " " + s.NrTelefonu + " " + s.Email + " " + s.Plec)
                 .ToLower().Contains(ps.searchString.ToLower()));
             }
-
             switch (ps.sortOrder)
             {
                 case RodzajSort.name_asc:

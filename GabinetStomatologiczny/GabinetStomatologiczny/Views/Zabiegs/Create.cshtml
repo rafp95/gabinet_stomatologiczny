@@ -57,24 +57,5 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-
-    <script>
-        var setupAutoComplete = function () {
-            var input = $("#searchQuery");
-
-            var options = {
-                source: input.attr("data-autocomplete-source"),
-                select: function (event, ui) {
-                    var it = ui.item.label;
-                    input.val(it);
-                    var form = input.parents("form:first");
-                    form.submit();
-                }
-            };
-
-            input.autocomplete(options);
-        };
-
-        setupAutoComplete();
-    </script>
+    <script src="~/Content/script/AutoComplete.js"></script>
 }

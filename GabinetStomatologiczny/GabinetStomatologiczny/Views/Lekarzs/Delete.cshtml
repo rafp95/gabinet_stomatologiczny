@@ -41,8 +41,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            @Html.ActionLink("Wstecz", "Index",null,new {@class="fa fa-hand-o-left" })
         </div>
     }
 </div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

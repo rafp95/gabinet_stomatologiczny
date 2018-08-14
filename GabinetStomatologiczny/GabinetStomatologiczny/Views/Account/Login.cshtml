@@ -15,7 +15,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group has-feedback">
                     <span class="form-control-feedback col-md-2 control-label">
-                        <a data-toggle="tooltip" class="tooltipLink" data-original-title="Podaj email">
+                        <a class="tooltipLink" role="button" title="email" data-placement="Top" data-toggle="tooltip">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </span>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group has-feedback">
                     <span class="form-control-feedback col-md-2 control-label">
-                        <a data-toggle="tooltip" class="tooltipLink" data-original-title="Podaj hasło">
+                        <a class="tooltipLink" role="button" title="hasło" data-placement="Top" data-toggle="tooltip">
                             <span class="glyphicon glyphicon-lock"></span>
                         </a>
                     </span>
@@ -53,4 +53,6 @@
 <link href="~/Content/LoginInput.css" rel="stylesheet" />
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 }

@@ -18,13 +18,13 @@ namespace GabinetStomatologiczny.DAO.Models
         [Required(ErrorMessage = "Pole nazwisko jest wymagane")]
         public string Nazwisko { get; set; }
 
-        [RegularExpression(@"^\d{11}$",ErrorMessage = "Pesel nieprawidłowy")]
+        [RegularExpression(@"^\d{11}$", ErrorMessage = "Pesel nieprawidłowy")]
         public string Pesel { get; set; }
         public Plec Plec { get; set; }
 
         [DataType(DataType.Date)]
         [UIHint("DateTimePicker")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}",ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "datetime2")]
         [Display(Name = "Data urodzenia")]
         public DateTime? DataUrodzenia { get; set; }
@@ -44,7 +44,7 @@ namespace GabinetStomatologiczny.DAO.Models
 
         [RegularExpression(@"^\d{2}-\d{3}$",ErrorMessage = "Podany kod pocztowy jest nie poprawny")]
         public string Kod { get; set; }
-        public string Ulica { get; set; }
+        public string Ulica { get; set; } 
         public Wojewodztwo Wojewodztwo { get; set; }
         public string Kraj { get; set; }
 

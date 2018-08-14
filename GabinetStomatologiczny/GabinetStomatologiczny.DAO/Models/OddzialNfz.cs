@@ -8,6 +8,7 @@ namespace GabinetStomatologiczny.DAO.Models
 {
     public enum OddzialNfz
     {
+        __________,
         Luków,
         Warszawa,
         Siedlce,

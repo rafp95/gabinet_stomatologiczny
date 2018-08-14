@@ -83,6 +83,8 @@ textarea {
 
     input[type=text], input[type=password], input[type=submit], img, p, canvas, div.ui-menu-item-wrapper, button, div.fc-content, select, ul.nav a {
         -moz-transition: all 0.6s ease;
+        -webkit-transition: all 0.6s ease;
+        transition-duration: 0.6s inherit;
         -o-transition: all 0.6s ease;
         transition: all 0.6s ease;
     }

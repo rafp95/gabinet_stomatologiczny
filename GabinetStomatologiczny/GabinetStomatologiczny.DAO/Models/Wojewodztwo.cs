@@ -7,6 +7,7 @@ namespace GabinetStomatologiczny.DAO.Models
 {
     public enum Wojewodztwo
     {
+        __________,
         Lubelskie,
         Opolskie,
         Mazowieckie,

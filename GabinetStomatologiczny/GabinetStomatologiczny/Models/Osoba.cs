@@ -40,6 +40,7 @@ namespace GabinetStomatologiczny.Models
         public string NrTelefonu { get; set; }
         
         [Display(Name = "Płeć")]
+        [Range(1, int.MaxValue, ErrorMessage = "Wybierz płeć")]
         public Plec Plec { get; set; }
     }
 }

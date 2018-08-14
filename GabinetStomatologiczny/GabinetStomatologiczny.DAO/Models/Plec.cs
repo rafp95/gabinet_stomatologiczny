@@ -8,6 +8,7 @@ namespace GabinetStomatologiczny.DAO.Models
 {
     public enum Plec
     {
+        [Display(Name = " -- Wybierz płeć --")]
         __________,
         Mężczyzna,
         Kobieta

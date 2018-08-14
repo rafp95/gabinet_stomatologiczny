@@ -20,6 +20,8 @@ namespace GabinetStomatologiczny.DAO.Models
 
         [RegularExpression(@"^\d{11}$", ErrorMessage = "Pesel nieprawidłowy")]
         public string Pesel { get; set; }
+
+        [Range(1,int.MaxValue,ErrorMessage = "Wybierz płeć")]
         public Plec Plec { get; set; }
 
         [DataType(DataType.Date)]

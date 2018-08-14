@@ -39,7 +39,7 @@ namespace GabinetStomatologiczny.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "TypPracownika,Email,Haslo,PowtorzHaslo,Imie,Nazwisko,NrTelefonu")] Osoba o)
+        public ActionResult Index([Bind(Include = "TypPracownika,Email,Haslo,PowtorzHaslo,Imie,Nazwisko,NrTelefonu")] Models.Osoba o)
         {
             if (!o.Haslo.Equals(o.PowtorzHaslo))
             {
@@ -75,7 +75,7 @@ namespace GabinetStomatologiczny.Controllers
 
                         case TypPracownika.Administrator:
                             {
-                                var admin = Mapper.Map<Administrator>(o);
+                                var admin = Mapper.Map<DAO.Models.Administrator>(o);
                                 se.SendMail(o.Email, "Witaj, administrator " +
                                   o.Imie, "Twoje dane do logowania to \n"
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);

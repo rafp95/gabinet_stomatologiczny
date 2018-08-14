@@ -40,7 +40,6 @@
                     }, scales: {
                         yAxes: [{
                             ticks: {
-                                max: 5,
                                 min: 0,
                                 stepSize: 5
                             }

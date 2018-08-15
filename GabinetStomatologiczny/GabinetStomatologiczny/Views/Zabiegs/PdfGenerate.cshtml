@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GabinetStomatologiczny.DAO.Models.Zabieg>
+@{
+    ViewBag.Title = "RaportPdf";
+    Layout = null;
+}
+<link href="~/Content/PdfStyle.css" rel="stylesheet" />
+
+<h2>Podsumowanie wizyt</h2>
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Imie i Nazwisko")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypZabiegu)
+            </th>
+            <th colspan="2">
+                @Html.DisplayNameFor(model => model.CenaZabiegu)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypZabiegu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                </td>
+            </tr>
+        }
+        <tr class="last">
+            <td colspan="3">
+                <span class="sum">Suma</span> 
+                <span class="total"> @Model.Select(_ => _.CenaZabiegu).Sum().ToString("C2") </span>
+             </td>
+        </tr>
+    </table>
+}else{
+    <div style="font-size: 18px">Nie masz zdefiniowanych żadnych zabiegów</div>
+}

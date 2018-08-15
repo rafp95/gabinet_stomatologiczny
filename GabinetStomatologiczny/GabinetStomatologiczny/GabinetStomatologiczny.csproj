@@ -1057,6 +1057,7 @@
     <Content Include="Views\Lekarzs\_LekarzsParts.cshtml" />
     <Content Include="Views\Home\Statistic.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Zabiegs\PdfGenerate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

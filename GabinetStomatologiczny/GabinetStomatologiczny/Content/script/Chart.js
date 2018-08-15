@@ -29,6 +29,8 @@
             };
             var ctx = $("#myChart").get(0).getContext("2d");
             var myNewChart = new Chart(ctx, {
+                theme: "theme2",
+                animationEnabled: true,
                 type: 'bar',
                 data: dataT,
                 options: {

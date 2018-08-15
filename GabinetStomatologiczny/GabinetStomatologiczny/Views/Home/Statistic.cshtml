@@ -35,6 +35,12 @@
                 </td>
             </tr>
         }
+        <tr class="last">
+            <td colspan="3">
+                <span class="sum">Łącznie</span>
+                <span class="total"> @Model.Select(_ => _.Pacjentow).Sum() pacjętów </span>
+            </td>
+        </tr>
     </table>
 }
 else

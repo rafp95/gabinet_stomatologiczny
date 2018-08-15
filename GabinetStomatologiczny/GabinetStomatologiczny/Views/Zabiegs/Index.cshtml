@@ -8,6 +8,17 @@
 <link href="~/Content/TableStyle.css" rel="stylesheet" />
 <h2>Zabiegi</h2>
 
+@if (User.IsInRole("Pacjent") &&
+    Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() > 0)
+{
+    <div style="margin-bottom: 20px;">
+        Genruj PDF :
+        <a href="@Url.Action("/RaportPdf")"  target="_blank" class="btn btn-success">
+            <span class="glyphicon glyphicon-print"></span> Generuj raport
+        </a>
+    </div>
+}
+
 @if (User.IsInRole("Administrator")
      || User.IsInRole("Lekarz"))
 {

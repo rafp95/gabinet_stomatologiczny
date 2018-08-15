@@ -10,14 +10,20 @@ using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.Models;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
+using Rotativa;
+using GabinetStomatologiczny.Services;
 
 namespace GabinetStomatologiczny.Controllers
 {
     [Authorize]
     public class ZabiegsController : BaseController
     {
-        public ZabiegsController(GabinetContext db) : base(db)
+
+        private IGenerateZabiegsPdf _generatePdf;
+
+        public ZabiegsController(GabinetContext db, IGenerateZabiegsPdf generatePdf) : base(db)
         {
+            _generatePdf = generatePdf;
         }
 
         // GET: Zabiegs
@@ -26,6 +32,19 @@ namespace GabinetStomatologiczny.Controllers
             var zabieg = db.Zabieg.Include(z => z.Wizyta);
             zabieg.Include(p => p.Wizyta.Pacjent);
             return View(zabieg.ToList());
+        }
+
+        [AllowAnonymous]
+        public ActionResult PdfGenerate(string user)
+        {
+            return View(_generatePdf.GetPacjents(user));
+        }
+
+        [AllowAnonymous]
+        public ActionResult RaportPdf(string user)
+        {
+            var p = new ActionAsPdf("PdfGenerate", new {user = User.Identity.Name });
+            return p;
         }
 
         // GET: Zabiegs/Details/5

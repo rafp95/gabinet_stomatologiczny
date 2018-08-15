@@ -1,24 +1,32 @@
-﻿h2{
+﻿h2 {
     text-align: center;
     letter-spacing: 3px;
     font-size: 28px;
 }
 
-table{
+table {
     width: 100%;
 }
 
-table tr th,table tr td{
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
+    table tr th, table tr td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        font-size: 18px;
+    }
 
-table tr:first-child{
-    background-color: aqua;
-    font-size: 22px;
-}
+    table tr:first-child {
+        background-color: aqua;
+        font-size: 22px;
+    }
 
-table tr:nth-child(even){
-    background-color: #f2f2f2;
+    table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+table tr.last td{
+    text-align: right;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: bold;
 }

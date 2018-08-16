@@ -205,6 +205,14 @@
                     placement: 'top',
                     container: 'body',
                 });
+            }, dayRender: function (date, cell) {
+                var date = moment(date, "DD-MM-YYYY HH:mm")
+                var now = moment(new Date(), "DD-MM-YYYY HH:mm");
+                if (date >= now) {
+                    cell.addClass("modal-success");
+                } else {
+                    cell.addClass("modal-warning");
+                }
             }
         })
     }

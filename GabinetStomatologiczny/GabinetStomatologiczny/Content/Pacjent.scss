@@ -12,9 +12,9 @@
         display: block;
     }
 
-        table tr:first-child {
-            display: none;
-        }
+    table tr:first-child {
+        display: none;
+    }
 
     tr {
         border: 1px solid #ccc;
@@ -68,12 +68,11 @@ a.btn-success {
 
 @media screen and (min-width: 1100px) {
     div.ladowanie {
-        position: absolute;
         margin: auto;
+        position: absolute;
+        margin-top: 10%;
         left: 0;
         right: 0;
-        top: 0;
-        bottom: 0;
         width: 50px;
         height: 50px;
         animation: rotate 0.8s infinite linear;
@@ -87,10 +86,11 @@ a.btn-success {
     }
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 1100px) {
     div.ladowanie {
-        position: absolute;
         margin: auto;
+        position: absolute;
+        margin-top: 40%;
         left: 0;
         right: 0;
         width: 50px;
@@ -103,6 +103,26 @@ a.btn-success {
         box-sizing: border-box;
         z-index: 99999999;
         display: none;
+    }
+}
+
+@-moz-keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
 
@@ -125,3 +145,4 @@ div.data-select a.active {
     border-bottom: 1px solid black;
 }
 /*Active select sort*/
+

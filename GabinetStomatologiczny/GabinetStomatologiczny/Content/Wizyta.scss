@@ -105,6 +105,26 @@ div.loader {
 }
 
 
+@-moz-keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -138,9 +158,11 @@ div#saveDatabaseInfo {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateY(-50%, -50%);
+    -moz-transform: translateY(-50%, -50%);
+    -o-transform: translateY(-50%, -50%);
     -ms-transform: translate(-50%, -50%); /* IE 9 */
-    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */	
+    -webkit-transform: translate(-50%, -50%);
+    transform: translateY(-50%, -50%); /* Chrome, Safari, Opera */
     background: linear-gradient(to bottom, #33cc33 0%, #66ff33 100%);
     width: 50%;
     z-index: 99999999;

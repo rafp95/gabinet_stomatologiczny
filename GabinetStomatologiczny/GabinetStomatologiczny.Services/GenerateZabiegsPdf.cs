@@ -27,6 +27,9 @@ namespace GabinetStomatologiczny.Services
             var zabieg = _db.Zabieg.Include(z => z.Wizyta);
             zabieg.Include(p => p.Wizyta.Pacjent);
             zabieg = zabieg.Where(_ => _.Wizyta.Pacjent.Email == user);
+
+            zabieg = zabieg.Count() > 0 ? zabieg : null;
+
             return zabieg;
         }
     }

@@ -11,6 +11,10 @@
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    @if (IsSectionDefined("MyCustomStyle"))
+    {
+        @RenderSection("MyCustomStyle",required: false)
+    }
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

@@ -4,11 +4,6 @@
     ViewBag.Title = "Pacjenci";
     ViewBag.Active = "Pacjenci";
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="~/Content/TableStyle.css" rel="stylesheet" />
-<link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
-<link href="~/Content/Pacjent.css" rel="stylesheet" />
-<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 
 <h2>Pacjenci</h2>
 
@@ -32,6 +27,16 @@
 
 
 @Html.Partial("_PatiensParts")
+
+@section MyCustomStyle{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/TableStyle.css" rel="stylesheet" />
+    <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
+    <link href="~/Content/Pacjent.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/PginationPosition.css" rel="stylesheet" />
+}
+
 
 @section scripts{
     <script src="~/Content/script/WyszukiwanieAjaxowe.js"></script>

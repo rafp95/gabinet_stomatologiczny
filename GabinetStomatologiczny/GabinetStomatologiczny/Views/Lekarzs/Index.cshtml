@@ -4,13 +4,6 @@
     ViewBag.Active = "Pacjenci";
 }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="~/Content/Lekarzs.css" rel="stylesheet" />
-<link href="@Url.Content("~/Content/Zdjecia.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/TableStyle.css")" rel="stylesheet" />
-<link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
-<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-
 <h2>Lekarze</h2>
 
 @if (TempData["editLekarz"] != null)
@@ -31,6 +24,16 @@
 </div>
 
 @Html.Partial("_LekarzsParts")
+
+@section MyCustomStyle{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/Lekarzs.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Zdjecia.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/TableStyle.css")" rel="stylesheet" />
+    <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+}
+
 
 @section scripts{
     <script src="~/Content/script/WyszukiwanieAjaxowe.js"></script>

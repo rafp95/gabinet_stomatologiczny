@@ -206,6 +206,7 @@
                     container: 'body',
                 });
             }, dayRender: function (date, cell) {
+                $("table>thead.fc-head").addClass("modal-info");
                 var date = moment(date, "DD-MM-YYYY HH:mm")
                 var now = moment(new Date(), "DD-MM-YYYY HH:mm");
                 if (date >= now) {

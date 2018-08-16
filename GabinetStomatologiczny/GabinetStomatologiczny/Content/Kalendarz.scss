@@ -1,0 +1,33 @@
+﻿div.kalendarz {
+    position: relative;
+}
+
+    div.kalendarz span.kalendarz {
+        position: absolute;
+        top: 6.40px;
+        left: 250px;
+    }
+
+    .ui-datepicker {
+        width: 15.55em;
+    }
+
+@media only screen and (max-width: 300px) {
+
+    div.kalendarz span.kalendarz {
+        position: absolute;
+        left: 218px;
+    }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 320px) {
+
+    div.kalendarz span.kalendarz {
+        position: absolute;
+        left: 225px;
+    }
+
+    
+}
+
+

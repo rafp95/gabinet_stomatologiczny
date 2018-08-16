@@ -1,0 +1,70 @@
+﻿[
+  {
+    "outputFile": "Content/Site.css",
+    "inputFile": "Content/Site.scss"
+  },
+  {
+    "outputFile": "Content/SilaHasla.css",
+    "inputFile": "Content/SilaHasla.scss"
+  },
+  {
+    "outputFile": "Content/TableStyle.css",
+    "inputFile": "Content/TableStyle.scss"
+  },
+  {
+    "outputFile": "Content/Wizyta.css",
+    "inputFile": "Content/Wizyta.scss"
+  },
+  {
+    "outputFile": "Content/Wyszukiwarka.css",
+    "inputFile": "Content/Wyszukiwarka.scss"
+  },
+  {
+    "outputFile": "Content/PginationPosition.css",
+    "inputFile": "Content/PginationPosition.scss"
+  },
+  {
+    "outputFile": "Content/LoginInput.css",
+    "inputFile": "Content/LoginInput.scss"
+  },
+  {
+    "outputFile": "Content/Lekarzs.css",
+    "inputFile": "Content/Lekarzs.scss"
+  },
+  {
+    "outputFile": "Content/Kalendarz.css",
+    "inputFile": "Content/Kalendarz.scss"
+  },
+  {
+    "outputFile": "Content/Galeria.css",
+    "inputFile": "Content/Galeria.scss"
+  },
+  {
+    "outputFile": "Content/Pacjent.css",
+    "inputFile": "Content/Pacjent.scss"
+  },
+  {
+    "outputFile": "Content/PagedList.css",
+    "inputFile": "Content/PagedList.scss"
+  },
+  {
+    "outputFile": "Content/PdfStyle.css",
+    "inputFile": "Content/PdfStyle.scss"
+  },
+  {
+    "outputFile": "Content/About.css",
+    "inputFile": "Content/About.scss"
+  },
+  {
+    "outputFile": "Content/DLandDDstyle.css",
+    "inputFile": "Content/DLandDDstyle.scss"
+  },
+  {
+    "outputFile": "Content/Zabieg.css",
+    "inputFile": "Content/Zabieg.scss"
+  },
+  {
+    "outputFile": "Content/Zdjecia.css",
+    "inputFile": "Content/Zdjecia.scss"
+  }
+]

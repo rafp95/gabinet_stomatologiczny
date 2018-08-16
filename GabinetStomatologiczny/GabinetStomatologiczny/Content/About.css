@@ -1,46 +1,36 @@
 ﻿/*Preloader*/
-
 div.ladowanie {
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    height: 50px;
-    width: 50px;
-    animation: rotate 0.8s infinite linear;
-    border: 10px solid #3498db;
-    border-right-color: transparent;
-    border-radius: 50%;
-    overflow: hidden;
-    display: none;
-    box-sizing: border-box;
-}
-
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  width: 50px;
+  animation: rotate 0.8s infinite linear;
+  border: 10px solid #3498db;
+  border-right-color: transparent;
+  border-radius: 50%;
+  overflow: hidden;
+  display: none;
+  box-sizing: border-box; }
 
 /*End preloader*/
-
 /*Loading*/
-
 div.loader {
-    height: 18px;
-    width: 18px;
-    animation: rotate 0.8s infinite linear;
-    border: 2px solid white;
-    border-right-color: transparent;
-    border-radius: 50%;
-}
-
+  height: 18px;
+  width: 18px;
+  animation: rotate 0.8s infinite linear;
+  border: 2px solid white;
+  border-right-color: transparent;
+  border-radius: 50%; }
 
 @keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 
 /*End loading*/
+

@@ -1,0 +1,29 @@
+﻿/*DL, DT, DD TAGS LIST DATA*/
+dl {
+    margin-bottom:50px;
+}
+ 
+dl dt {
+    background:#5f9be3;
+    background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#d9edf7), to(#b9def0));
+    background-image: -webkit-linear-gradient(#d9edf7 0%, #b9def0 100%);
+    background-image: -moz-linear-gradient(#d9edf7 0%, #b9def0 100%);
+    background-image: -o-linear-gradient(#d9edf7 0%, #b9def0 100%);
+    background-image: linear-gradient(#d9edf7 0%, #b9def0 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9edf7', endColorstr='#ffb9def0', GradientType=0);
+    border-color: #9acfea;
+    border-radius: 6px 6px 0 0;
+    font-weight:bold; 
+    margin-right:10px; 
+    padding:5px;  
+}
+
+dt::after{
+    content: ":";
+} 
+
+dl dd {
+    margin:2px 0; 
+    padding:5px 0;
+}

@@ -1,0 +1,12 @@
+﻿span#InfoPassword {
+    position: absolute;
+    left: 300px;
+    top: 5px;
+}
+
+@media only screen and (max-width: 600px){
+    span#InfoPassword{
+        display: block;
+        position: static;
+    }
+}

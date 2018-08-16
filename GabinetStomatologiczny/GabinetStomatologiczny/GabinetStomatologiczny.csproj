@@ -491,7 +491,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\About.css" />
+    <None Include="Content\About.scss" />
+    <Content Include="Content\About.css">
+      <DependentUpon>About.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\About.min.css">
+      <DependentUpon>About.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -653,17 +659,65 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
-    <Content Include="Content\DLandDDstyle.css" />
+    <None Include="Content\DLandDDstyle.scss" />
+    <Content Include="Content\DLandDDstyle.css">
+      <DependentUpon>DLandDDstyle.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\DLandDDstyle.min.css">
+      <DependentUpon>DLandDDstyle.css</DependentUpon>
+    </Content>
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
-    <Content Include="Content\Lekarzs.css" />
-    <Content Include="Content\LoginInput.css" />
-    <Content Include="Content\PagedList.css" />
-    <Content Include="Content\PginationPosition.css" />
+    <None Include="Content\Lekarzs.scss" />
+    <None Include="Content\LoginInput.scss" />
+    <Content Include="Content\Galeria.css">
+      <DependentUpon>Galeria.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Galeria.min.css">
+      <DependentUpon>Galeria.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Kalendarz.css">
+      <DependentUpon>Kalendarz.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Kalendarz.min.css">
+      <DependentUpon>Kalendarz.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Lekarzs.css">
+      <DependentUpon>Lekarzs.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Lekarzs.min.css">
+      <DependentUpon>Lekarzs.css</DependentUpon>
+    </Content>
+    <Content Include="Content\LoginInput.css">
+      <DependentUpon>LoginInput.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\LoginInput.min.css">
+      <DependentUpon>LoginInput.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Pacjent.css">
+      <DependentUpon>Pacjent.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Pacjent.min.css">
+      <DependentUpon>Pacjent.css</DependentUpon>
+    </Content>
+    <None Include="Content\PagedList.scss" />
+    <None Include="Content\PginationPosition.scss" />
+    <Content Include="Content\PagedList.css">
+      <DependentUpon>PagedList.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\PagedList.min.css">
+      <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\PginationPosition.css">
+      <DependentUpon>PginationPosition.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\PginationPosition.min.css">
+      <DependentUpon>PginationPosition.css</DependentUpon>
+    </Content>
     <Content Include="Content\script\AutoComplSearchWizyta.js" />
     <Content Include="Content\script\Chart.js" />
     <Content Include="Content\script\FormatMask.js" />
@@ -671,15 +725,33 @@
     <Content Include="Content\script\KalendarzWizyt.js" />
     <Content Include="Content\script\AutoComplete.js" />
     <Content Include="Content\script\SilaHasla.js" />
-    <Content Include="Content\SilaHasla.css" />
-    <Content Include="Content\TableStyle.css" />
-    <Content Include="Content\Galeria.css" />
+    <None Include="Content\SilaHasla.scss" />
+    <Content Include="Content\SilaHasla.css">
+      <DependentUpon>SilaHasla.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\SilaHasla.min.css">
+      <DependentUpon>SilaHasla.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
+    <None Include="Content\TableStyle.scss" />
+    <None Include="Content\Galeria.scss" />
     <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\2.jpg" />
     <Content Include="Content\img\3.jpg" />
-    <Content Include="Content\Kalendarz.css" />
-    <Content Include="Content\Pacjent.css" />
+    <None Include="Content\Kalendarz.scss" />
+    <None Include="Content\Pacjent.scss" />
     <Content Include="Content\script\Zdjecia.js" />
+    <Content Include="Content\TableStyle.css">
+      <DependentUpon>TableStyle.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\TableStyle.min.css">
+      <DependentUpon>TableStyle.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -721,10 +793,34 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Content\Wizyta.css" />
-    <Content Include="Content\Wyszukiwarka.css" />
-    <Content Include="Content\Zabieg.css" />
-    <Content Include="Content\Zdjecia.css" />
+    <None Include="Content\Wizyta.scss" />
+    <Content Include="Content\Wizyta.css">
+      <DependentUpon>Wizyta.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Wizyta.min.css">
+      <DependentUpon>Wizyta.css</DependentUpon>
+    </Content>
+    <None Include="Content\Wyszukiwarka.scss" />
+    <Content Include="Content\Wyszukiwarka.css">
+      <DependentUpon>Wyszukiwarka.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Wyszukiwarka.min.css">
+      <DependentUpon>Wyszukiwarka.css</DependentUpon>
+    </Content>
+    <None Include="Content\Zabieg.scss" />
+    <Content Include="Content\Zabieg.css">
+      <DependentUpon>Zabieg.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Zabieg.min.css">
+      <DependentUpon>Zabieg.css</DependentUpon>
+    </Content>
+    <None Include="Content\Zdjecia.scss" />
+    <Content Include="Content\Zdjecia.css">
+      <DependentUpon>Zdjecia.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Zdjecia.min.css">
+      <DependentUpon>Zdjecia.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.svg" />
@@ -738,7 +834,11 @@
     <Content Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.svg" />
     <Content Include="fonts\OpenSans\Semibold\OpenSans-Semibold.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="Content\Site.scss" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

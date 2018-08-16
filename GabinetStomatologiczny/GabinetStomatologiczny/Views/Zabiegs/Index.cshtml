@@ -4,8 +4,7 @@
     ViewBag.Title = "Zabiegi";
     ViewBag.Active = "Pacjenci";
 }
-<link href="~/Content/Zabieg.css" rel="stylesheet" />
-<link href="~/Content/TableStyle.css" rel="stylesheet" />
+
 <h2>Zabiegi</h2>
 
 @if (User.IsInRole("Pacjent") &&
@@ -82,6 +81,11 @@ else
     <div class="alert alert-danger" role="alert">
         Do tej sekcji dostęp mają jedynie osoby zalogowane
     </div>
+}
+
+@section MyCustomStyle{
+    <link href="~/Content/Zabieg.css" rel="stylesheet" />
+    <link href="~/Content/TableStyle.css" rel="stylesheet" />
 }
 
 @section scripts{

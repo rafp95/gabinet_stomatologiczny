@@ -41,26 +41,32 @@ namespace GabinetStomatologiczny.Services
                 zabieg = zabieg.Where(s => (s.Wizyta.Tytul + " " + s.TypZabiegu + " " + s.CenaZabiegu)
                 .ToLower().Contains(ps.searchString.ToLower()));
             }
-            RodzajSort = ps.sortOrder;
+
             switch (ps.sortOrder)
             {
                 case RodzajSort.title_asc:
                     zabieg = zabieg.OrderBy(_ => _.Wizyta.Tytul);
+                    RodzajSort = ps.sortOrder;
                     break;
                 case RodzajSort.title_desc:
                     zabieg = zabieg.OrderByDescending(_ => _.Wizyta.Tytul);
+                    RodzajSort = ps.sortOrder;
                     break;
                 case RodzajSort.zabiegT_asc:
                     zabieg = zabieg.OrderBy(_ => _.TypZabiegu);
+                    RodzajSort = ps.sortOrder;
                     break;
                 case RodzajSort.zabiegT_desc:
                     zabieg = zabieg.OrderByDescending(_ => _.TypZabiegu);
+                    RodzajSort = ps.sortOrder;
                     break;
                 case RodzajSort.cenaZ_asc:
                     zabieg = zabieg.OrderBy(_ => _.CenaZabiegu);
+                    RodzajSort = ps.sortOrder;
                     break;
                 case RodzajSort.cenaZ_desc:
                     zabieg = zabieg.OrderByDescending(_ => _.CenaZabiegu);
+                    RodzajSort = ps.sortOrder;
                     break;
                 default:
                     zabieg = zabieg.OrderBy(_ => _.Wizyta.Tytul);

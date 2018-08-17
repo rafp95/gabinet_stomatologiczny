@@ -57,8 +57,6 @@ namespace GabinetStomatologiczny.Controllers
         public ActionResult Sugestions(Sugestion sugestion)
         {
             var list = _sugestionService.SugestionZabeg(sugestion);
-
-
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

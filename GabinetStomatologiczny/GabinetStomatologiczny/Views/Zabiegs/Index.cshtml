@@ -24,10 +24,7 @@
     <p>
         @Html.ActionLink("Dodaj zabieg", "Create", null, new { @class = "btn btn-primary dodajNowyZabieg" })
     </p>
-}
 
-@if (User.IsInRole("Lekarz"))
-{
     <div class="form-group">
         <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
             <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextZabieg"></span>
@@ -37,7 +34,6 @@
             <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajZabiegAjax form-control tooltipLink"><i class="fa fa-search"></i></button>
         </form>
     </div>
-
 }
 
 @Html.Partial("_ZabiegsPartial")

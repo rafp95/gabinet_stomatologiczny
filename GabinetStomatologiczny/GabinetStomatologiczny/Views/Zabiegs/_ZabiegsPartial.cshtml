@@ -66,7 +66,7 @@
                     Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
                 </div>
                 @Html.PagedListPager(Model, page => Url.Action("Index",
-                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        new { page, currentFilter = ViewBag.CurrentFilter }))
             </div>
 
             <div class="text-center">

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace GabinetStomatologiczny.Models
 {
-    public class PacjentSort
+    public class PaginationType
     {
         public RodzajSort sortOrder { get; set; }
         public string currentFilter { get; set; }

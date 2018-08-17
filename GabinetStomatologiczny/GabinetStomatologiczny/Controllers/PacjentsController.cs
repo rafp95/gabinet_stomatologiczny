@@ -36,7 +36,7 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Pacjents
-        public ActionResult Index(PacjentSort pacjentSort)
+        public ActionResult Index(PaginationType pacjentSort)
         {
             ViewBag.CurrentSort = pacjentSort.sortOrder;
             if (string.IsNullOrEmpty(pacjentSort.searchString))

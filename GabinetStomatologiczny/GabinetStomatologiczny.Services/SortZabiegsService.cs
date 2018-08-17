@@ -1,5 +1,6 @@
 ﻿using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
+using GabinetStomatologiczny.Models;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface ISortZabiegsService
     {
-        IEnumerable<Zabieg> SortAndPaginate(ZabiegsSort ps);
+        IEnumerable<Zabieg> SortAndPaginate(PaginationType ps);
         RodzajSort RodzajSort { get; }
     }
 
@@ -26,7 +27,7 @@ namespace GabinetStomatologiczny.Services
         }
         public RodzajSort RodzajSort { get; private set; } = RodzajSort.title_asc;
 
-        public IEnumerable<Zabieg> SortAndPaginate(ZabiegsSort ps)
+        public IEnumerable<Zabieg> SortAndPaginate(PaginationType ps)
         {
             if (!string.IsNullOrEmpty(ps.searchString))
             {

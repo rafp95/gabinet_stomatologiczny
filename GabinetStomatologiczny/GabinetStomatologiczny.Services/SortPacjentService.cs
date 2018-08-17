@@ -13,7 +13,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface ISortPacjentService
     {
-        IEnumerable<Pacjent> SortAndPaginate(PacjentSort ps);
+        IEnumerable<Pacjent> SortAndPaginate(PaginationType ps);
         RodzajSort RodzajSort { get; }
     }
 
@@ -34,7 +34,7 @@ namespace GabinetStomatologiczny.Services
             return rodzajSort;
         }
 
-        public IEnumerable<Pacjent> SortAndPaginate(PacjentSort ps)
+        public IEnumerable<Pacjent> SortAndPaginate(PaginationType ps)
         {
             if (!string.IsNullOrEmpty(ps.searchString))
             {

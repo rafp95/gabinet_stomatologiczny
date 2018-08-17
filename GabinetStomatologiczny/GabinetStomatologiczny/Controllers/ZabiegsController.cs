@@ -34,7 +34,7 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Zabiegs
-        public ActionResult Index(ZabiegsSort zabiegSort)
+        public ActionResult Index(PaginationType zabiegSort)
         {
 
             ViewBag.CurrentSort = zabiegSort.sortOrder;

@@ -13,6 +13,7 @@ using PagedList;
 using GabinetStomatologiczny.Utils;
 using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
+using GabinetStomatologiczny.Models;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -31,7 +32,7 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Lekarzs
-        public ActionResult Index(LekarzSort lekarzSort)
+        public ActionResult Index(PaginationType lekarzSort)
         {
             ViewBag.CurrentSort = lekarzSort.sortOrder;
             if (string.IsNullOrEmpty(lekarzSort.searchString))

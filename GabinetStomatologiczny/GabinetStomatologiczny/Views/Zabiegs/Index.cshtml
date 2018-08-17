@@ -25,70 +25,36 @@
         @Html.ActionLink("Dodaj zabieg", "Create", null, new { @class = "btn btn-primary dodajNowyZabieg" })
     </p>
 }
-@if (User.Identity.IsAuthenticated)
+
+@if (User.IsInRole("Lekarz"))
 {
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("Imie i Nazwisko")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypZabiegu)
-            </th>
-            <th colspan="2">
-                @Html.DisplayNameFor(model => model.CenaZabiegu)
-            </th>
-        </tr>
-        @if(Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() == 0 && User.IsInRole("Pacjent"))
-        {
-            <tr>
-                <td colspan="3" style="text-align:center;">
-                    Nie masz zdefiniowanych zabiegów
-                </td>
-            </tr>
-        }
-        @foreach (var item in Model)
-        {
-            if (User.IsInRole("Administrator")
-                || User.IsInRole("Lekarz")
-                || User.Identity.Name == item.Wizyta.Pacjent.Email)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TypZabiegu)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CenaZabiegu)
-                    </td>
-                    @if (User.IsInRole("Lekarz"))
-                    {
-                        <td>
-                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title="Edycja" }) |
-                            @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-info  glyphicon glyphicon-align-justify", @title="Więcej" }) |
-                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-trash", @title="Kasuj" })
-                        </td>
-                    }
-                </tr>
-            }
-        }
-    </table>
-}
-else
-{
-    <div class="alert alert-danger" role="alert">
-        Do tej sekcji dostęp mają jedynie osoby zalogowane
+    <div class="form-group">
+        <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
+            <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextZabieg"></span>
+            <input type="text" id="searchQuery" name="searchQuery"
+                   data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Wpisz min 1 znak"
+                   class="form-control zabieg-query" />
+            <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajZabiegAjax form-control tooltipLink"><i class="fa fa-search"></i></button>
+        </form>
     </div>
+
 }
+
+@Html.Partial("_ZabiegsPartial")
 
 @section MyCustomStyle{
-    <link href="~/Content/Zabieg.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/TableStyle.css" rel="stylesheet" />
+    <link href="~/Content/Wyszukiwarka.css" rel="stylesheet" />
+    <link href="~/Content/Zabieg.css" rel="stylesheet" />
+    <link href="~/Content/PginationPosition.css" rel="stylesheet" />
 }
 
+
 @section scripts{
+    <script src="~/Content/script/WyszukiwanieAjaxowe.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Content/script/AutoComplete.js"></script>
 }

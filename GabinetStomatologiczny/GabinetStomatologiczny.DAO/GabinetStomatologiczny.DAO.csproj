@@ -203,6 +203,7 @@
     <Compile Include="Models\Wizyta.cs" />
     <Compile Include="Models\Wojewodztwo.cs" />
     <Compile Include="Models\Zabieg.cs" />
+    <Compile Include="Models\ZabiegsSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

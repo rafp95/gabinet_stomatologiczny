@@ -13,6 +13,9 @@ namespace GabinetStomatologiczny.Services
     {
         IQueryable<object> SugestionPacjent(Sugestion sugestion);
         IQueryable<object> SugestionLekarz(Sugestion sugestion);
+
+        IQueryable<object> SugestionZabeg(Sugestion Sugestion);
+
     }
     public class SugestionService : ISugestionService
     {
@@ -50,6 +53,17 @@ namespace GabinetStomatologiczny.Services
                 Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : personList;
 
             return personList;
+        }
+
+        public IQueryable<object> SugestionZabeg(Sugestion Sugestion)
+        {
+            var zabieg = _db.Zabieg.Include(_ => _.Wizyta).
+                Where(z => z.Wizyta.Tytul.ToLower().Contains(Sugestion.term.ToLower())).
+                Take(5).Select(_ => new {label = _.Wizyta.Tytul});
+
+            zabieg = zabieg.Count() == 0 ? zabieg.DefaultIfEmpty().Select(p => new { label = "Brak danych" }).Take(1) : zabieg;
+
+            return zabieg;
         }
     }
 }

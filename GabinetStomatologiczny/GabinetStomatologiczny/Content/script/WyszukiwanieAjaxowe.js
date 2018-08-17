@@ -30,7 +30,18 @@
 
     //end lekarz
 
+    //zabieg
 
+    var szukaj = $(".szukajZabiegAjax").on('click', function () {
+        var pom = $("#searchQuery").val();
+        SzukajDane(pom, "Zabiegs/Index/");
+    });
+
+    $(".zabieg-query").bind('click keyup', function (event) {
+        SzukajDane("", "Zabiegs/Index/");
+    });
+
+    //end zabieg
 
     czyscText();
 
@@ -98,6 +109,13 @@
         kasuj.on("click", function () {
             $("#searchQuery").val("");
             SzukajDane("", "Lekarzs/Index/");
+            kasuj.css("display", "none");
+        });
+
+        var kasuj = $("span.kasujTextZabieg");
+        kasuj.on("click", function () {
+            $("#searchQuery").val("");
+            SzukajDane("", "Zabiegs/Index/");
             kasuj.css("display", "none");
         });
 

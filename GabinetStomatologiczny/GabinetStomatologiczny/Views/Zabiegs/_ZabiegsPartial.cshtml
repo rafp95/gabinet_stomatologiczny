@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<GabinetStomatologiczny.DAO.Models.Zabieg>
+@using PagedList.Mvc;
+@using Microsoft.AspNet.Identity
+@using GabinetStomatologiczny.DAO.Models;
+
+<div class="ladowanie"></div>
+
+@if (Model.Count > 0)
+{
+    <div class="data-select">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Imie i Nazwisko")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].TypZabiegu)
+                    </th>
+                    <th colspan="2">
+                        @Html.DisplayNameFor(model => model[0].CenaZabiegu)
+                    </th>
+                </tr>
+                @if (Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() == 0 && User.IsInRole("Pacjent"))
+                {
+                    <tr>
+                        <td colspan="3" style="text-align:center;">
+                            Nie masz zdefiniowanych zabiegów
+                        </td>
+                    </tr>
+                }
+                @foreach (var item in Model)
+                {
+                    if (User.IsInRole("Administrator")
+                        || User.IsInRole("Lekarz")
+                        || User.Identity.Name == item.Wizyta.Pacjent.Email)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypZabiegu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                            </td>
+                            @if (User.IsInRole("Lekarz"))
+                            {
+                                <td>
+                                    @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title = "Edycja" }) |
+                                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-info  glyphicon glyphicon-align-justify", @title = "Więcej" }) |
+                                    @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-trash", @title = "Kasuj" })
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+            </table>
+
+            <br />
+
+            <div id="pagination-postion">
+                <div class="count">
+                    Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
+                </div>
+                @Html.PagedListPager(Model, page => Url.Action("Index",
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            </div>
+
+            <div class="text-center">
+                Wszystkich: @Model.TotalItemCount
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                Do tej sekcji dostęp mają jedynie osoby zalogowane
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div> Nic nie znaleziono</div>
+}
+

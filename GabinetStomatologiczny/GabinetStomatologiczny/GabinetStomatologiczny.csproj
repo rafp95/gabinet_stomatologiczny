@@ -1158,6 +1158,7 @@
     <Content Include="Views\Home\Statistic.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Zabiegs\PdfGenerate.cshtml" />
+    <Content Include="Views\Zabiegs\_ZabiegsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

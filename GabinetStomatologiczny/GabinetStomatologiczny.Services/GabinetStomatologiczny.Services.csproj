@@ -55,6 +55,7 @@
     <Compile Include="SendEmailService.cs" />
     <Compile Include="SortLekarzService.cs" />
     <Compile Include="SortPacjentService.cs" />
+    <Compile Include="SortZabiegsService.cs" />
     <Compile Include="SugestionService.cs" />
     <Compile Include="UserRoleService.cs" />
   </ItemGroup>

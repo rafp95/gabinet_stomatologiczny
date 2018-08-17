@@ -20,18 +20,46 @@ namespace GabinetStomatologiczny.Controllers
     {
 
         private IGenerateZabiegsPdf _generatePdf;
+        private ISortZabiegsService _sortZabiegService;
+        private ISugestionService _sugestionService;
 
-        public ZabiegsController(GabinetContext db, IGenerateZabiegsPdf generatePdf) : base(db)
+        public ZabiegsController(GabinetContext db, 
+            IGenerateZabiegsPdf generatePdf,
+            ISortZabiegsService sortZabiegService,
+            ISugestionService sugestionService) : base(db)
         {
             _generatePdf = generatePdf;
+            _sortZabiegService = sortZabiegService;
+            _sugestionService = sugestionService;
         }
 
         // GET: Zabiegs
-        public ActionResult Index()
+        public ActionResult Index(ZabiegsSort zabiegSort)
         {
-            var zabieg = db.Zabieg.Include(z => z.Wizyta);
-            zabieg.Include(p => p.Wizyta.Pacjent);
-            return View(zabieg.ToList());
+
+            ViewBag.CurrentSort = zabiegSort.sortOrder;
+            if (string.IsNullOrEmpty(zabiegSort.searchString))
+            {
+                zabiegSort.searchString = zabiegSort.currentFilter;
+            }
+
+            ViewBag.CurrentFilter = zabiegSort.searchString;
+            var zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ZabiegsPartial", zabieg);
+
+            }
+            return View(zabieg);
+        }
+
+        public ActionResult Sugestions(Sugestion sugestion)
+        {
+            var list = _sugestionService.SugestionZabeg(sugestion);
+
+
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

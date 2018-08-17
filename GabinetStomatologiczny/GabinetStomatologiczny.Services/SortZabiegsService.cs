@@ -24,7 +24,7 @@ namespace GabinetStomatologiczny.Services
         {
             this._db = db;
         }
-        public RodzajSort RodzajSort { get; private set; } = RodzajSort.name_asc;
+        public RodzajSort RodzajSort { get; private set; } = RodzajSort.title_asc;
 
         public IEnumerable<Zabieg> SortAndPaginate(ZabiegsSort ps)
         {
@@ -41,8 +41,31 @@ namespace GabinetStomatologiczny.Services
                 zabieg = zabieg.Where(s => (s.Wizyta.Tytul + " " + s.TypZabiegu + " " + s.CenaZabiegu)
                 .ToLower().Contains(ps.searchString.ToLower()));
             }
-
-            zabieg = zabieg.OrderBy(_ => _.Wizyta.Tytul);
+            RodzajSort = ps.sortOrder;
+            switch (ps.sortOrder)
+            {
+                case RodzajSort.title_asc:
+                    zabieg = zabieg.OrderBy(_ => _.Wizyta.Tytul);
+                    break;
+                case RodzajSort.title_desc:
+                    zabieg = zabieg.OrderByDescending(_ => _.Wizyta.Tytul);
+                    break;
+                case RodzajSort.zabiegT_asc:
+                    zabieg = zabieg.OrderBy(_ => _.TypZabiegu);
+                    break;
+                case RodzajSort.zabiegT_desc:
+                    zabieg = zabieg.OrderByDescending(_ => _.TypZabiegu);
+                    break;
+                case RodzajSort.cenaZ_asc:
+                    zabieg = zabieg.OrderBy(_ => _.CenaZabiegu);
+                    break;
+                case RodzajSort.cenaZ_desc:
+                    zabieg = zabieg.OrderByDescending(_ => _.CenaZabiegu);
+                    break;
+                default:
+                    zabieg = zabieg.OrderBy(_ => _.Wizyta.Tytul);
+                    break;
+            }
 
             ps.pageSize = 10;
             ps.pageNumber = (ps.page ?? 1);

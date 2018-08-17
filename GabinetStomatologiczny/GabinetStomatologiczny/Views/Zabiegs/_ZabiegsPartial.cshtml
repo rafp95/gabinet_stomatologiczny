@@ -22,6 +22,26 @@
                         @Html.DisplayNameFor(model => model[0].CenaZabiegu)
                     </th>
                 </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.title_asc, currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.title_asc ? "active" : "", title = "Rosnąco" })
+                        @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.title_desc, currentFilter = ViewBag.CurrentFilter },
+                    new { @class = @ViewBag.ActiveClass == RodzajSort.title_desc ? "active" : "", title = "Malejąco" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.zabiegT_asc, currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.zabiegT_asc ? "active" : "", title = "Rosnąco" })
+                        @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.zabiegT_desc, currentFilter = ViewBag.CurrentFilter },
+                    new { @class = @ViewBag.ActiveClass == RodzajSort.zabiegT_desc ? "active" : "", title = "Malejąco" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.cenaZ_asc, currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.cenaZ_asc ? "active" : "", title = "Rosnąco" })
+                        @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.cenaZ_desc, currentFilter = ViewBag.CurrentFilter },
+                    new { @class = @ViewBag.ActiveClass == RodzajSort.cenaZ_desc ? "active" : "", title = "Malejąco" })
+                    </td>
+                </tr>
                 @if (Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() == 0 && User.IsInRole("Pacjent"))
                 {
                     <tr>
@@ -66,7 +86,7 @@
                     Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
                 </div>
                 @Html.PagedListPager(Model, page => Url.Action("Index",
-                        new { page, currentFilter = ViewBag.CurrentFilter }))
+                        new { page,sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
             </div>
 
             <div class="text-center">

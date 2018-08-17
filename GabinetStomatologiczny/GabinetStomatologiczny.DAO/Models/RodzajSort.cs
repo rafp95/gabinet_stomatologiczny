@@ -21,6 +21,12 @@ namespace GabinetStomatologiczny.DAO.Models
         nrtel_asc,
         nrtel_desc,
         datarejestracji_asc,
-        datarejestracji_desc
+        datarejestracji_desc,
+        title_asc,
+        title_desc,
+        zabiegT_asc,
+        zabiegT_desc,
+        cenaZ_asc,
+        cenaZ_desc
     }
 }

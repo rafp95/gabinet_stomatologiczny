@@ -45,6 +45,7 @@ namespace GabinetStomatologiczny.Controllers
 
             ViewBag.CurrentFilter = zabiegSort.searchString;
             var zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort);
+            ViewBag.ActiveClass = this._sortZabiegService.RodzajSort;
 
             if (Request.IsAjaxRequest())
             {

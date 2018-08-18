@@ -18,7 +18,9 @@ span.control-label span.glyphicon {
     color: black;
 }
 
-
+span.control-label span.glyphicon:hover{
+    cursor: pointer;
+}
 
 /*center form*/
 

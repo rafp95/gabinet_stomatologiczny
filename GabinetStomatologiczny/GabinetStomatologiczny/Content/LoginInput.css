@@ -15,6 +15,9 @@ span.control-label span.glyphicon {
   font-size: 20px;
   color: black; }
 
+span.control-label span.glyphicon:hover {
+  cursor: pointer; }
+
 /*center form*/
 div.wysrodkowanieLoginForm {
   width: 100%;

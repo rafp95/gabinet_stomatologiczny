@@ -35,6 +35,7 @@
                 data: dataT,
                 options: {
                     responsive: true,
+                    maintainAspectRatio: true,
                     title: { display: true, text: 'Statyski rejestracji / edycji pacjętów' },
                     scales: {
                         xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],

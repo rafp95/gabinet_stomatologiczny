@@ -365,6 +365,10 @@ namespace GabinetStomatologiczny.Controllers
                 }else if(error.Equals("Incorrect password."))
                 {
                     ModelState.AddModelError("Incorrect password.", "Obecne hasło jest nie poprawne");
+                }else if(error.Equals("Passwords must have at least one non letter or digit character."))
+                {
+                    ModelState.AddModelError("Passwords must have at least one non letter or digit character.",
+                        "Hasła muszą mieć co najmniej jedną literę bez litery lub cyfry.");
                 }
                 else
                 {

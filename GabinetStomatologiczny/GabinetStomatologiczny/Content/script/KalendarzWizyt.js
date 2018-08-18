@@ -169,7 +169,10 @@
             },
             selectable: true,
             select: function (start, end) {
-
+                //if user is not autenticated
+                let identity = $('#identity-Info');
+                identity = identity.length > 0 ? identity.modal() : "";
+                //end if user is not autenticated
                 ErorMessage();
                 selectedEvent = {
                     eventID: 0,

@@ -24,6 +24,28 @@
 
 <!--End search form-->
 <div id="calender"></div>
+<!--Idenntity info-->
+@if (!User.Identity.IsAuthenticated)
+{
+    <div id="identity-Info" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-warning">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title text-center"><span id="eventTitle">Błąd</span></h1>
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:red; text-align: center;">Dla zalogowanych</h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="/Account/Login" class="btn btn-primary">Zaloguj się</a>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!--End identity info-->
 <!--About-->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">

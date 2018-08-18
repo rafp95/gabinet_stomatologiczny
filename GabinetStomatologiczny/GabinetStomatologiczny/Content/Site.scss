@@ -9,7 +9,7 @@ body {
     padding-bottom: 20px;
     font-size: 16.8px;
     font-family: 'Open Sans',Arial, sans-serif;
-    margin-bottom: 100px;
+    margin-bottom: 100px; /* wysokość stopki */
 }
 
 .body-content {
@@ -22,40 +22,40 @@ body {
     background: transparent !important;
 }
 
-    .navbar-toggle:hover {
-        background: transparent !important;
-    }
+.navbar-toggle:hover {
+    background: transparent !important;
+}
 
-    .navbar-toggle .icon-bar {
-        width: 22px;
-        transition: all .6s;
-    }
+.navbar-toggle .icon-bar {
+    width: 22px;
+    transition: all .6s;
+}
 
-    .navbar-toggle .top-bar {
-        transform: rotate(45deg);
-        transform-origin: 10% 10%;
-    }
+.navbar-toggle .top-bar {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%;
+}
 
-    .navbar-toggle .middle-bar {
-        opacity: 0;
-    }
+.navbar-toggle .middle-bar {
+    opacity: 0;
+}
 
-    .navbar-toggle .bottom-bar {
-        transform: rotate(-45deg);
-        transform-origin: 10% 90%;
-    }
+.navbar-toggle .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+}
 
-    .navbar-toggle.collapsed .top-bar {
-        transform: rotate(0);
-    }
+.navbar-toggle.collapsed .top-bar {
+    transform: rotate(0);
+}
 
-    .navbar-toggle.collapsed .middle-bar {
-        opacity: 1;
-    }
+.navbar-toggle.collapsed .middle-bar {
+    opacity: 1;
+}
 
-    .navbar-toggle.collapsed .bottom-bar {
-        transform: rotate(0);
-    }
+.navbar-toggle.collapsed .bottom-bar {
+    transform: rotate(0);
+}
 /*end navbar aimation*/
 
 /* Set padding to keep content from hitting the edges */
@@ -81,36 +81,37 @@ textarea {
     max-width: 280px;
 }
 
-    input[type=text], input[type=password], input[type=submit], img, p, canvas, div.ui-menu-item-wrapper, button, div.fc-content, select, ul.nav a {
-        -moz-transition: all 0.6s ease;
-        -webkit-transition: all 0.6s ease;
-        transition-duration: 0.6s inherit;
-        -o-transition: all 0.6s ease;
-        transition: all 0.6s ease;
-    }
+input[type=text], input[type=password], input[type=submit], img, p, canvas, div.ui-menu-item-wrapper, button, div.fc-content, select, ul.nav a {
+    -moz-transition: all 0.6s ease;
+    -webkit-transition: all 0.6s ease;
+    transition-duration: 0.6s inherit;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
 
 
 
-        input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=tel]:focus {
-            background-color: #ddd;
-            outline: none;
-            border-color: dodgerBlue;
-            box-shadow: 0 0 15px 1px dodgerBlue;
-        }
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=tel]:focus {
+    background-color: #ddd;
+    outline: none;
+    border-color: dodgerBlue;
+    box-shadow: 0 0 15px 1px dodgerBlue;
+}
 
 
-        button:hover, input[type="submit"]:hover {
-            -webkit-transform: scale(1);
-            -moz-transform: scale(1);
-            -ms-transform: scale(1);
-            transform: scale(1);
-            opacity: .8;
-        }
+button:hover, input[type="submit"]:hover {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: .8;
+}
 
 footer {
     position: absolute;
     bottom: 0;
 }
+
 
 
 /*Modal animation*/
@@ -216,32 +217,32 @@ footer {
     bottom: -16px;
 }
 
-    .arrow.top {
-        top: -16px;
-        bottom: auto;
-    }
+.arrow.top {
+    top: -16px;
+    bottom: auto;
+}
 
-    .arrow.left {
-        left: 20%;
-    }
+.arrow.left {
+    left: 20%;
+}
 
-    .arrow:after {
-        content: "";
-        position: absolute;
-        left: 20px;
-        top: -20px;
-        width: 25px;
-        height: 25px;
-        box-shadow: 6px 5px 9px -9px black;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
+.arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 
-    .arrow.top:after {
-        bottom: -20px;
-        top: auto;
-    }
+.arrow.top:after {
+    bottom: -20px;
+    top: auto;
+}
 /*end tooltip style*/
 
 /*Pagination hover styles*/
@@ -251,10 +252,10 @@ footer {
     transition: all 0.6s ease;
 }
 
-    .pagination > li:first-child > a:hover, .pagination > li:first-child > span:hover {
-        opacity: .9;
-        cursor: pointer;
-    }
+.pagination > li:first-child > a:hover, .pagination > li:first-child > span:hover {
+    opacity: .9;
+    cursor: pointer;
+}
 
 /*end pagination hover styles*/
 
@@ -270,14 +271,14 @@ footer {
     z-index: 999;
     -webkit-transition: all 0.6s ease-out;
     -moz-transition: all 0.6s ease-out;
-    -o-transition:all 0.6s ease-out;
+    -o-transition: all 0.6s ease-out;
     transition: all 0.6s ease-out;
 }
 
-.back-to-top glyphicon-chevron-up::before{
+.back-to-top glyphicon-chevron-up::before {
     -webkit-transition: all 0.6s ease-out;
     -moz-transition: all 0.6s ease-out;
-    -o-transition:all 0.6s ease-out;
+    -o-transition: all 0.6s ease-out;
     transition: all 0.6s ease-out;
 }
 

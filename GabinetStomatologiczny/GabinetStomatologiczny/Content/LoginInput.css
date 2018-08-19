@@ -1,6 +1,11 @@
 ﻿.loginForm {
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.16), 2px 2px 2px 0 rgba(0, 0, 0, 0.12) !important;
-  padding: 10px 10px; }
+  padding: 10px 10px;
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s; }
 
 input[type=text], input[type=password] {
   width: 100%;
@@ -37,13 +42,6 @@ div.wysrodkowanieLoginForm > div > h2 {
 
 /*end center form*/
 /* Add animation to "page content" */
-.loginForm {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s; }
-
 @-webkit-keyframes animatebottom {
   from {
     bottom: -100px;

@@ -50,6 +50,7 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
 
 /*Preloader*/
 div.ladowanie {
+  border: 16px solid #f3f3f3;
   margin: auto;
   position: absolute;
   top: 0;
@@ -204,4 +205,38 @@ div#saveDatabaseInfo {
 .datepicker,
 .table-condensed {
   z-index: 99999999; }
+
+/* Add animation to "page content" */
+#calender {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s; }
+
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0px;
+    opacity: 1; } }
+
+@-moz-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
+
+/*End animation page content*/
 

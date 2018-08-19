@@ -7,29 +7,72 @@ table {
 }
 
 
-    table tr:first-child {
-        background-color: aqua;
-    }
+table tr:first-child {
+    background-color: aqua;
+}
 
-    table tr:nth-child(2n+2) {
-        background-color: azure;
-    }
+table tr:nth-child(2n+2) {
+    background-color: azure;
+}
 
-    table tr:not(:first-child):hover {
-        background-color: antiquewhite;
-    }
+table tr:not(:first-child):hover {
+    background-color: antiquewhite;
+}
 
-.table > tbody > tr{
+.table > tbody > tr {
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
-    -o-transition:  0.6s;
+    -o-transition: 0.6s;
     transition: 0.6s;
 }
 
-.table > tbody > tr > td{
+.table > tbody > tr > td {
     vertical-align: middle;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
-    -o-transition:  0.3s;
+    -o-transition: 0.3s;
     transition: 0.3s;
 }
+
+
+
+/* Add animation to "page content" */
+table {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s;
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes animatebottom {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/*End animation page content*/

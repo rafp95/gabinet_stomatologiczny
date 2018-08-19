@@ -1,6 +1,11 @@
 ﻿/*DL, DT, DD TAGS LIST DATA*/
 dl {
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s; }
 
 dl dt {
   background: #5f9be3;
@@ -23,4 +28,31 @@ dt::after {
 dl dd {
   margin: 2px 0;
   padding: 5px 0; }
+
+/* Add animation to "page content" */
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0px;
+    opacity: 1; } }
+
+@-moz-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
+
+/*End animation page content*/
 

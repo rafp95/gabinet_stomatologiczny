@@ -126,7 +126,8 @@ namespace GabinetStomatologiczny.Controllers
                         var m = Mapper.Map<Wizyta, Wizyta>(w, v);
                         if (string.IsNullOrEmpty(m.Tytul))
                         {
-                            m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                            m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).
+                                Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
                         }
                        
                         db.Entry(m).State = EntityState.Modified;

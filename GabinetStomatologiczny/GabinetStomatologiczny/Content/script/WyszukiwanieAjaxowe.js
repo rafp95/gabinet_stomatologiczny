@@ -11,10 +11,11 @@
         SzukajDane(pom, "Pacjents/Index/"); 
     });
 
-
+    /*
     $(".pacjent-query").bind('click keyup', function (event) {
         SzukajDane("", "Pacjents/Index/");
     });
+    */
 
     //End pacjent
 
@@ -24,9 +25,11 @@
         SzukajDane(pom,"Lekarzs/Index/");
     });
 
+    /*/
     $(".lekarz-query").bind('click keyup', function (event) {
         SzukajDane("", "Lekarzs/Index/");
     });
+    */
 
     //end lekarz
 
@@ -37,9 +40,11 @@
         SzukajDane(pom, "Zabiegs/Index/");
     });
 
+    /*
     $(".zabieg-query").bind('click keyup', function (event) {
         SzukajDane("", "Zabiegs/Index/");
     });
+    */
 
     //end zabieg
 

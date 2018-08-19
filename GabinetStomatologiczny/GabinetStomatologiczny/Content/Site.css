@@ -87,10 +87,6 @@ button:hover, input[type="submit"]:hover {
   transform: scale(1);
   opacity: .8; }
 
-footer {
-  position: absolute;
-  bottom: 0; }
-
 /*Modal animation*/
 .modal.fade .modal-dialog {
   -moz-transition: all 0.6s ease;

@@ -90,8 +90,9 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Zabiegs/Create
-        public ActionResult Create()
+        public ActionResult Create(string SearchQuery)
         {
+            ViewBag.name = SearchQuery;
             ViewBag.WizytaID = new SelectList(db.Wizyta.Include(p => p.Pacjent), "ID", "ID");
             return View();
         }

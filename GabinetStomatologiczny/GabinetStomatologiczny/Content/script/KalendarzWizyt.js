@@ -148,8 +148,10 @@
                 selectedEvent = calEvent;
                 //budowanie modal
                 var tel = calEvent.phone != null ? calEvent.phone : " *";
-
-                $("#myModal #eventTitle").text(calEvent.title);
+                let createZabiegsForPacjents = calEvent.role === "Lekarz" ?
+                    "<a href='/Zabiegs/Create?SearchQuery=" + calEvent.title + "' title='Dodaj zabieg'> " + calEvent.title + "  </a>" :
+                    calEvent.title;
+                $("#myModal #eventTitle").html(createZabiegsForPacjents);
                 $('#myModal #pDetails').html("<div> <b>Początek : </b> " + calEvent.start.format('HH:mm') + "</div>").
                                append("<div> <b> Koniec: </b> " + calEvent.end.format("HH:mm") + "</div>").
                                append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>").

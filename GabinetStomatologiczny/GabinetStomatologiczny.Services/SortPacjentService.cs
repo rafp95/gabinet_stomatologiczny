@@ -121,7 +121,7 @@ namespace GabinetStomatologiczny.Services
                     break;
             }
 
-            ps.pageSize = 1;
+            ps.pageSize = 10;
             ps.pageNumber = (ps.page ?? 1);
 
             return pacjent.ToPagedList(ps.pageNumber,ps.pageSize);

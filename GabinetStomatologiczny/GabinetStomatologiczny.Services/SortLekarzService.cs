@@ -37,6 +37,9 @@ namespace GabinetStomatologiczny.Services
             if (!string.IsNullOrEmpty(ls.searchString))
             {
                 ls.page = 1;
+            }else
+            {
+                ls.searchString = ls.currentFilter;
             }
 
             var lekarz = this._db.Lekarz.AsQueryable();

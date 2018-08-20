@@ -8,7 +8,7 @@
     var szukajL = $(".szukajPacjentAjax");
     szukajL.on('click', function () {
         var pom = $("#searchQuery").val();
-        SzukajDane(pom, "Pacjents/Index/"); 
+        SzukajDane(pom, "Pacjents/"); 
     });
 
     /*
@@ -82,6 +82,8 @@
                 setData.html(data);
                 console.log(data);
                 ladowanie.css("display", "none");
+                history.pushState({}, "", "");
+                history.pushState({}, "", "?sortOrder=" + param + "&" + "currentFilter=" + searchQuery);
             }, statusCode: {
                 404: function () {
                     alert("Nie ma takiej strony");

@@ -40,7 +40,11 @@ namespace GabinetStomatologiczny.Services
             {
                 ps.page = 1;
             }
-             
+            else
+            {
+                ps.searchString = ps.currentFilter;
+            }
+
             var pacjent = this._db.Pacjent.AsQueryable();
             if (!string.IsNullOrEmpty(ps.searchString))
             {
@@ -48,6 +52,12 @@ namespace GabinetStomatologiczny.Services
                 pacjent = pacjent.Where(s => (s.Imie + " " + s.Nazwisko + " " + s.NrTelefonu + " " + s.Email + " " + s.Plec)
                 .ToLower().Contains(ps.searchString.ToLower()));
             }
+
+            if (string.IsNullOrEmpty(ps.searchString))
+            {
+                ps.searchString = ps.currentFilter;
+            }
+
             switch (ps.sortOrder)
             {
                 case RodzajSort.name_asc:
@@ -111,7 +121,7 @@ namespace GabinetStomatologiczny.Services
                     break;
             }
 
-            ps.pageSize = 10;
+            ps.pageSize = 1;
             ps.pageNumber = (ps.page ?? 1);
 
             return pacjent.ToPagedList(ps.pageNumber,ps.pageSize);

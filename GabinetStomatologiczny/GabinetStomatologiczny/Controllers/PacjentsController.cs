@@ -39,13 +39,8 @@ namespace GabinetStomatologiczny.Controllers
         public ActionResult Index(PaginationType pacjentSort)
         {
             ViewBag.CurrentSort = pacjentSort.sortOrder;
-            if (string.IsNullOrEmpty(pacjentSort.searchString))
-            {
-                pacjentSort.searchString = pacjentSort.currentFilter;
-            }
-
-            ViewBag.CurrentFilter = pacjentSort.searchString;
             var pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort);
+            ViewBag.CurrentFilter = pacjentSort.searchString;
             ViewBag.ActiveClass = this.sortPacjentService.RodzajSort;
 
 

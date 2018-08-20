@@ -147,9 +147,10 @@
                 ErorMessage();
                 selectedEvent = calEvent;
                 //budowanie modal
-                var tel = calEvent.phone != null ? calEvent.phone : " *";
+                let tel = calEvent.phone != null ? calEvent.phone : " *";
                 let createZabiegsForPacjents = calEvent.role === "Lekarz" ?
-                    "<a href='/Zabiegs/Create?SearchQuery=" + calEvent.title + "' title='Dodaj zabieg'> " + calEvent.title + "  </a>" :
+                    "<a href='/Zabiegs/Create?SearchQuery=" + calEvent.title +
+                    "' title='Dodaj zabieg'> " + calEvent.title + "  </a>" :
                     calEvent.title;
                 $("#myModal #eventTitle").html(createZabiegsForPacjents);
                 $('#myModal #pDetails').html("<div> <b>Początek : </b> " + calEvent.start.format('HH:mm') + "</div>").

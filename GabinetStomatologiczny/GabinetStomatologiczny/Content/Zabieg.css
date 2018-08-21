@@ -83,7 +83,7 @@
 
 /*End preloader*/
 /*Kolory przyciski*/
-a.btn-success {
+table tr td a.btn-success {
   background: dodgerblue; }
 
 /*Active select sort*/

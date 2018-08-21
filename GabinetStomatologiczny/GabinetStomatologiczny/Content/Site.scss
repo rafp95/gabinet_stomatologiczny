@@ -1,7 +1,11 @@
-﻿
-html {
+﻿html {
     position: relative;
     min-height: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 body {
@@ -10,6 +14,8 @@ body {
     font-size: 16.8px;
     font-family: 'Open Sans',Arial, sans-serif;
     margin-bottom: 100px; /* wysokość stopki */
+    overflow-x: hidden;
+    
 }
 
 .body-content {

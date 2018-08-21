@@ -149,7 +149,7 @@
                 //budowanie modal
                 let tel = calEvent.phone != null ? calEvent.phone : " *";
                 let createZabiegsForPacjents = calEvent.role === "Lekarz" ?
-                    "<a href='/Zabiegs/Create?SearchQuery=" + calEvent.title +
+                    "<a href='/Zabiegs/Create?searchString=" + calEvent.title +
                     "' title='Dodaj zabieg'> " + calEvent.title + "  </a>" :
                     calEvent.title;
                 $("#myModal #eventTitle").html(createZabiegsForPacjents);

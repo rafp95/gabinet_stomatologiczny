@@ -208,7 +208,6 @@ div#saveDatabaseInfo {
 
 /* Add animation to "page content" */
 #calender {
-  position: relative;
   -webkit-animation-name: animatebottom;
   -webkit-animation-duration: 1s;
   animation-name: animatebottom;
@@ -216,26 +215,20 @@ div#saveDatabaseInfo {
 
 @-webkit-keyframes animatebottom {
   from {
-    bottom: -100px;
     opacity: 0; }
   to {
-    bottom: 0px;
     opacity: 1; } }
 
 @-moz-keyframes animatebottom {
   from {
-    bottom: -100px;
     opacity: 0; }
   to {
-    bottom: 0;
     opacity: 1; } }
 
 @keyframes animatebottom {
   from {
-    bottom: -100px;
     opacity: 0; }
   to {
-    bottom: 0;
     opacity: 1; } }
 
 /*End animation page content*/

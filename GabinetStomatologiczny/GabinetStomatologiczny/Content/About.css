@@ -46,8 +46,7 @@ div.loader {
 
 /*End loading*/
 /* Add animation to "page content" */
-#myChart {
-  position: relative;
+#statisticChart {
   -webkit-animation-name: animatebottom;
   -webkit-animation-duration: 1s;
   animation-name: animatebottom;
@@ -55,27 +54,24 @@ div.loader {
 
 @-webkit-keyframes animatebottom {
   from {
-    bottom: -100px;
     opacity: 0; }
   to {
-    bottom: 0px;
     opacity: 1; } }
 
 @-moz-keyframes animatebottom {
   from {
-    bottom: -100px;
     opacity: 0; }
   to {
-    bottom: 0;
     opacity: 1; } }
 
 @keyframes animatebottom {
   from {
-    bottom: -100px;
     opacity: 0; }
   to {
-    bottom: 0;
     opacity: 1; } }
 
 /*End animation page content*/
+/*Kolory przyciski*/
+a.btn-success {
+  background: dodgerblue; }
 

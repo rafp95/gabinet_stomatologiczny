@@ -82,6 +82,10 @@
     transform: rotate(360deg); } }
 
 /*End preloader*/
+/*Kolory przyciski*/
+a.btn-success {
+  background: dodgerblue; }
+
 /*Active select sort*/
 div.data-select a.active {
   color: black;

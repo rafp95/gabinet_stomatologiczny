@@ -35,7 +35,7 @@
                         @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.zabiegT_desc, currentFilter = ViewBag.CurrentFilter },
                     new { @class = @ViewBag.ActiveClass == RodzajSort.zabiegT_desc ? "active" : "", title = "Malejąco" })
                     </td>
-                    <td>
+                    <td colspan="2">
                         @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.cenaZ_asc, currentFilter = ViewBag.CurrentFilter }
                     , new { @class = @ViewBag.ActiveClass == RodzajSort.cenaZ_asc ? "active" : "", title = "Rosnąco" })
                         @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.cenaZ_desc, currentFilter = ViewBag.CurrentFilter },
@@ -70,8 +70,8 @@
                             {
                                 <td>
                                     @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title = "Edycja" }) |
-                                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-info  glyphicon glyphicon-align-justify", @title = "Więcej" }) |
-                                    @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-trash", @title = "Kasuj" })
+                                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success  glyphicon glyphicon-align-justify", @title = "Więcej" }) |
+                                    @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", @title = "Kasuj" })
                                 </td>
                             }
                         </tr>

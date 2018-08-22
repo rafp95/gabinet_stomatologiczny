@@ -414,6 +414,9 @@
                     FetchEventAndRenderCalendar();
                     zapisInfo.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
+                } else {
+                    $('#myModalSave').modal('hide');
+                    $("#myModalSaveToDataBaseError").modal();
                 }
             },
             error: function () {

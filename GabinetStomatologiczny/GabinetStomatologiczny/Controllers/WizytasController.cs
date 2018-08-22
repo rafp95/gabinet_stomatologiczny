@@ -158,7 +158,7 @@ namespace GabinetStomatologiczny.Controllers
             }
             catch (Exception)
             {
-
+                status = false;
             }
 
             return new JsonResult { Data = new { status } };

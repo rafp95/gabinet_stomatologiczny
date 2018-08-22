@@ -17,7 +17,7 @@
             <input type="text" id="searchQuery" name="searchQuery"
                    data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
                    class="form-control" />
-        <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
+            <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
         </form>
     </div>
 }
@@ -58,8 +58,8 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent") ||
-             User.IsInRole("Administrator") ||
-             User.IsInRole("Lekarz"))
+         User.IsInRole("Administrator") ||
+         User.IsInRole("Lekarz"))
                 {
                     {
                         <div id="action">
@@ -89,11 +89,29 @@
 
 
 <!--End about-->
-@if (User.Identity.IsAuthenticated && User.IsInRole("Pacjent")
-                                         || User.IsInRole("Administrator")
-                                         || User.IsInRole("Lekarz"))
+@if (User.IsInRole("Pacjent")
+      || User.IsInRole("Administrator")
+      || User.IsInRole("Lekarz"))
 {
-    <!--Eror-->
+    <!--Error save info-->
+    <div id="myModalSaveToDataBaseError" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-warning">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title text-center"><span id="eventTitle">Błąd</span></h1>
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:red;">Wystąpił problem z zapisaniem do bazy spróbuj ponownie</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end error save info-->
+    <!--Eror date info-->
     <div id="myModalError" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -110,7 +128,7 @@
             </div>
         </div>
     </div>
-    <!--End Eror-->
+    <!--End eror date info-->
 
     <!--Send sms-->
     <div id="myModalSendSms" class="modal fade" role="dialog">

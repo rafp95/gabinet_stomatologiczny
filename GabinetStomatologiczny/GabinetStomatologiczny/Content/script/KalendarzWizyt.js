@@ -368,16 +368,16 @@
         //end check hours
 
         //Check date and time
-        if (moment(new Date(now), "DD-MM-YYYY HH:mm") <=
-            moment(new Date(clickTime), "DD-MM-YYYY HH:mm")
-           && clickTime.format("HH:mm") >= minTime
-           && clickTime.format("HH:mm") < maxTime) {
-            $("#txtStart").css('border', '');
-            errorTime.html("");
-        }
-        else {
+
+        var check = ( moment(new Date(now), "DD-MM-YYYY HH:mm") <
+            moment( new Date(clickTime), "DD-MM-YYYY HH:mm") &&
+            ( clickTime.format("HH:mm") >= minTime &&
+             clickTime.format("HH:mm") < maxTime ))?
+        true : false;
+
+        if (!check) {
             $("#txtStart").css({ 'border': '1px solid red', 'background': 'pink' }).parent().
-                   after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
+                  after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
             return;
         }
         //End check date

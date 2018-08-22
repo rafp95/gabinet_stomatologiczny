@@ -75,8 +75,6 @@
     });
     //Aktualna data do sprawdzania czy wprowadzona data nie jest wcześniejsza
 
-    var now = moment(new Date(), "DD-MM-YYYY HH:mm");
-
     //Get all events
     var events = [];
     var selectedEvent = null;
@@ -183,8 +181,8 @@
                     start: start,
                     end: end,
                 };
-                var dataStart = new Date(moment(start, "DD-MM-YYYY HH:mm"));
-                if (dataStart >= now) {
+                var now = moment(new Date(), "DD-MM-YYYY HH:mm");
+                if (start >= now) {
                     openAddEditForm();
                 } else {
                     $("#myModalError").modal();

@@ -367,6 +367,21 @@
         }
         //end check hours
 
+        //Check date and time
+        if (moment(new Date(now), "DD-MM-YYYY HH:mm") <=
+            moment(new Date(clickTime), "DD-MM-YYYY HH:mm")
+           && clickTime.format("HH:mm") >= minTime
+           && clickTime.format("HH:mm") < maxTime) {
+            $("#txtStart").css('border', '');
+            errorTime.html("");
+        }
+        else {
+            $("#txtStart").css({ 'border': '1px solid red', 'background': 'pink' }).parent().
+                   after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
+            return;
+        }
+        //End check date
+
         //Check title is empty
         var t = $("#tytul");
         if (t.length > 0) {
@@ -377,20 +392,6 @@
             }
         }
         //end check title is empty
-
-        //Check date and time
-        else if (new Date(now) <= new Date(clickTime)
-           && clickTime.format("HH:mm") >= minTime
-           && clickTime.format("HH:mm") < maxTime) {
-            $("#txtStart").css('border', '');
-            errorTime.html("");
-        }
-        else {
-        $("#txtStart").css({'border': '1px solid red', 'background': 'pink' }).parent().
-               after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
-            return;
-        }
-        //End check date
 
         var data = {
             ID: $('#hdEventID').val(),
@@ -455,6 +456,7 @@
         $("#txtStart").css('border', '');
         $("#txtStart").css('background', '');
         $("#tytul").css('border', '');
+        $("#tytul").css('background', '');
     }
 
 

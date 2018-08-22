@@ -1,11 +1,10 @@
-﻿html {
-    position: relative;
-    min-height: 100%;
+﻿* {
     box-sizing: border-box;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+html {
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -15,7 +14,6 @@ body {
     font-family: 'Open Sans',Arial, sans-serif;
     margin-bottom: 100px; /* wysokość stopki */
     overflow-x: hidden;
-    
 }
 
 .body-content {
@@ -89,11 +87,11 @@ textarea {
 
 input[type=text], input[type=password], input[type=submit], img, p,
 canvas, div.ui-menu-item-wrapper, button, div.fc-content, select, ul.nav a {
-    -moz-transition: all 0.6s ease;
-    -webkit-transition: all 0.6s ease;
-    transition-duration: 0.6s inherit;
-    -o-transition: all 0.6s ease;
-    transition: all 0.6s ease;
+    -moz-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    transition-duration: 0.4s inherit;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 

@@ -126,13 +126,8 @@ namespace GabinetStomatologiczny.Controllers
             {
                 HttpPostedFileBase file = Request.Files["Zdjecie"];
                 UpdateModel(lekarz);
-                if (file != null && file.ContentLength > 0)
-                {
-                    lekarz.Zdjecie = System.Guid.NewGuid().ToString();
-                    lekarz.Zdjecie = file.FileName;
-                    file.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
-                }
-
+                this._lekarzservice.SaveFile(file, lekarz).
+                    SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
                 this._lekarzservice.Edit(lekarz);
                 TempData["editLekarz"] = "done";
                 return RedirectToAction("Index");

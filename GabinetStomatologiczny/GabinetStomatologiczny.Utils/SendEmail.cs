@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net.Configuration;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace GabinetStomatologiczny.Utils
@@ -11,7 +12,7 @@ namespace GabinetStomatologiczny.Utils
     public class SendEmail
     {
 
-        public void SendMail(string to, string subject, string body)
+        public async Task SendMail(string to, string subject, string body)
         {
 
             var smtpCli = new SmtpClient();
@@ -33,7 +34,7 @@ namespace GabinetStomatologiczny.Utils
 
             //Or your Smtp Email ID and Password
             smtp.EnableSsl = true;
-            smtp.Send(mail);
+            await smtp.SendMailAsync(mail);
 
         }
     }

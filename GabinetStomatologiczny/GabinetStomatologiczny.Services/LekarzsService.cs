@@ -3,9 +3,11 @@ using GabinetStomatologiczny.DAO.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace GabinetStomatologiczny.Services
 {
@@ -18,6 +20,7 @@ namespace GabinetStomatologiczny.Services
         Lekarz Find(int? id);
         void Remove(Lekarz lekarz);
         void CreateLekarz(Lekarz lekarz);
+        HttpPostedFileBase SaveFile(HttpPostedFileBase file,Lekarz lekarz);
     }
 
     public class LekarzsService : ILekarzService
@@ -67,6 +70,16 @@ namespace GabinetStomatologiczny.Services
                 this._db.Lekarz.Add(lekarz);
                 this._db.SaveChanges();
             }
+        }
+
+        public HttpPostedFileBase SaveFile(HttpPostedFileBase file,Lekarz lekarz)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                lekarz.Zdjecie = System.Guid.NewGuid().ToString();
+                lekarz.Zdjecie = file.FileName;
+            }
+            return file;
         }
     }
 }

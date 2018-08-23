@@ -95,7 +95,7 @@
                         end: v.Koniec != null ? moment(v.Koniec) : null,
                         phone: v.p != null ? v.p.NrTelefonu : null,
                         email: v.p != null ? v.p.Email : null,
-                        activeUser: v.p != null ? v.p.activeUser.Name : null,
+                        activeUser: v.p != null ? v.p.activeUser : null,
                         role: v.p != null ?  v.p.role : null
                     });
                 })

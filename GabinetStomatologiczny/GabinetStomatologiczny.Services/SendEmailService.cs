@@ -9,7 +9,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface ISendEmailService
     {
-        void SendMail(string to, string subject, string body);
+        Task SendMail(string to, string subject, string body);
     }
     public class SendEmailService : ISendEmailService
     {
@@ -28,10 +28,9 @@ namespace GabinetStomatologiczny.Services
             
         }
 
-
-        public void SendMail(string to, string subject, string body)
+        public async Task SendMail(string to, string subject, string body)
         {
-            this.se.SendMail(to,subject,body);
+            await this.se.SendMail(to, subject, body);
         }
     }
 }

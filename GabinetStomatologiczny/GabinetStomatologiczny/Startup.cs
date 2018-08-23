@@ -93,6 +93,7 @@ namespace GabinetStomatologiczny
             services.AddTransient<IUserRoleService, UserRoleService>();
             services.AddTransient<IGenerateZabiegsPdf, GenerateZabiegsPdf>();
             services.AddTransient<ISortZabiegsService, SortZabiegsService>();
+            services.AddTransient<IWizytService, WizytServie>();
         }
     }
 

@@ -240,7 +240,7 @@ namespace GabinetStomatologiczny.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                this.sendEmial.SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
+                await this.sendEmial.SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

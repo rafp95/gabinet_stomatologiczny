@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,7 @@
     <Compile Include="SortZabiegsService.cs" />
     <Compile Include="SugestionService.cs" />
     <Compile Include="UserRoleService.cs" />
+    <Compile Include="WizytService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">

@@ -126,4 +126,9 @@ div.loader {
     transform: rotate(360deg); } }
 
 /*End loading*/
+/*Input type file height*/
+input.editOraz {
+  height: auto; }
+
+/*End input type file*/
 

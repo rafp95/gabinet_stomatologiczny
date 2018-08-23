@@ -4,10 +4,6 @@
     ViewBag.Title = "Edycja";
 }
 
-
-<link href="~/Content/Zdjecia.css" rel="stylesheet" />
-
-
 <h2> @ViewBag.Title</h2>
 
 
@@ -79,6 +75,10 @@
 <div>
     @Html.ActionLink("Wstecz", "Index",null,new {@class= "glyphicon glyphicon-hand-left" })
 </div>
+
+@section MyCustomStyle{
+    <link href="~/Content/Zdjecia.css" rel="stylesheet" />
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

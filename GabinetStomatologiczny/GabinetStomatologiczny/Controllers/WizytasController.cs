@@ -22,70 +22,40 @@ namespace GabinetStomatologiczny.Controllers
 {
     public class WizytasController : BaseController
     {
-        private IUserRoleService _userRoleService;
-        public WizytasController(GabinetContext db, IUserRoleService userRoleService) : base(db)
+        private readonly IUserRoleService _userRoleService;
+        private readonly IWizytService _wizytService;
+        private readonly ISugestionService _sugestionService;
+        public WizytasController(GabinetContext db,
+            IUserRoleService userRoleService, 
+            IWizytService wizytService,
+            ISugestionService sugestionService) : base(db)
         {
             this._userRoleService = userRoleService;
+            this._wizytService = wizytService;
+            this._sugestionService = sugestionService;
         }
 
         // GET: Wizytas
         public ActionResult Index()
         {
-            var userIdentity = (ClaimsIdentity)User.Identity;
-            var claims = userIdentity.Claims;
-            var roleClaimType = userIdentity.RoleClaimType;
-            var roles = claims.Where(c => c.Type == ClaimTypes.Role).ToList();
-           
             return View();
         }
 
         public async Task<JsonResult> GetEvents(string searchQuery)
         {
-           
-            var eventsQuery = db.Wizyta.AsQueryable();
-
-            if (!string.IsNullOrEmpty(searchQuery))
-            {
-                eventsQuery = eventsQuery.Where(p => p.Tytul.Contains(searchQuery));
-            }
 
             var isLogedin = User.Identity.IsAuthenticated;
             var r = this._userRoleService.GetUserRole((ClaimsIdentity)User.Identity);
-            var u = new { Name = User.Identity.Name  };
-            var events = await eventsQuery.Select(_ =>
-           new
-           {
-               _.ID,
-               _.Koniec,
-               _.Poczatek,
-               Tytul = isLogedin ? _.Tytul : "*",
-               p = isLogedin ?
-                    new
-                    {
-                        _.Pacjent.NrTelefonu,
-                        _.Pacjent.Email,
-                        activeUser = new { u.Name },
-                        role = r
-                    } : 
-                    null,
-           }).ToListAsync();
+            var u =  User.Identity.Name;
 
-            
+            var events = await this._wizytService.GetEvents(searchQuery,isLogedin,r,u);
             
             return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        public JsonResult Sugestions(string term)
+        public JsonResult Sugestions(Sugestion sugestion)
         {
-            var events = db.Wizyta.ToList().
-                Where(p => p.Tytul.ToLower().
-                Contains(term.ToLower()) &&
-                p.Poczatek >= DateTime.Now).
-                OrderBy(p => p.Poczatek).
-                Take(5).
-                Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
-
-            events = events.Count() == 0 ? events.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;
+            var events = _sugestionService.SugestionWizyt(sugestion);
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }

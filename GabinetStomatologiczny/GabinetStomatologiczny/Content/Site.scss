@@ -191,6 +191,7 @@ button:hover, input[type="submit"]:hover {
 /*Tooltip style*/
 .ui-tooltip, .arrow:after {
     background: black;
+    opacity: .9;
     border: 2px solid white;
 }
 
@@ -211,7 +212,7 @@ button:hover, input[type="submit"]:hover {
     position: absolute;
     left: 55%;
     margin-left: -35px;
-    bottom: -16px;
+    bottom: -17px;
 }
 
 .arrow.top {

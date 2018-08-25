@@ -698,6 +698,12 @@
     <Content Include="Content\LoginInput.min.css">
       <DependentUpon>LoginInput.css</DependentUpon>
     </Content>
+    <Content Include="Content\ModelZebow.css">
+      <DependentUpon>ModelZebow.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\ModelZebow.min.css">
+      <DependentUpon>ModelZebow.css</DependentUpon>
+    </Content>
     <Content Include="Content\Pacjent.css">
       <DependentUpon>Pacjent.scss</DependentUpon>
     </Content>
@@ -724,6 +730,7 @@
     <Content Include="Content\script\GoToTop.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />
     <Content Include="Content\script\AutoComplete.js" />
+    <Content Include="Content\script\ModelZebow.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <None Include="Content\SilaHasla.scss" />
     <Content Include="Content\SilaHasla.css">
@@ -738,6 +745,7 @@
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Content\ModelZebow.scss" />
     <None Include="Content\TableStyle.scss" />
     <None Include="Content\Galeria.scss" />
     <Content Include="Content\img\1.jpg" />

@@ -66,5 +66,9 @@
   {
     "outputFile": "Content/Zdjecia.css",
     "inputFile": "Content/Zdjecia.scss"
+  },
+  {
+    "outputFile": "Content/ModelZebow.css",
+    "inputFile": "Content/ModelZebow.scss"
   }
 ]

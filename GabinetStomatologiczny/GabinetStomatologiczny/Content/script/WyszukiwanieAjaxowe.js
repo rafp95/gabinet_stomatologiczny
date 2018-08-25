@@ -90,7 +90,6 @@
                 }
             }
         });
-        event.preventDefault();
     }
 
     function getUrlParams(sParam) {

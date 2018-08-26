@@ -198,64 +198,6 @@ div#saveDatabaseInfo {
   margin-left: -10px;
   border-top-color: #fbfbfb;
   border-width: 10px 10px 0;
-  z-index: 9999999999;
-}
-
-.popover.top .arrow:after {
-  bottom: -4px;
-  left: -11px;
-  border-top-color: black;
-  border-width: 11px 11px 0;
-}
-
-.popover.right .arrow {
-  top: 50%;
-  left: -10px;
-  margin-top: -10px;
-  border-right-color: black;
-  border-width: 10px 10px 10px 0;
-}
-
-.popover.right .arrow:after {
-  bottom: -11px;
-  left: -4px;
-  border-right-color: black;
-  border-width: 11px 11px 11px 0;
-}
-
-.popover.bottom .arrow {
-  top: -10px;
-  left: 50%;
-  margin-left: -10px;
-  border-bottom-color: black;
-  border-width: 0 10px 10px;
-}
-
-.popover.bottom .arrow:after {
-  top: -4px;
-  left: -11px;
-  border-bottom-color: black;
-  border-width: 0 11px 11px;
-}
-
-.popover.left .arrow {
-  top: 50%;
-  right: -10px;
-  margin-top: -10px;
-  border-left-color: black;
-  border-width: 10px 0 10px 10px;
-}
-
-.popover.left .arrow:after {
-  right: -4px;
-  bottom: -11px;
-  border-left-color: black;
-  border-width: 11px 0 11px 11px;
-}
-
-.popover .arrow:after {
-  z-index: -1;
-  content: "";
 }
 
 /*end popover*/

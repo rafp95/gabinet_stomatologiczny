@@ -58,8 +58,8 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent") ||
-         User.IsInRole("Administrator") ||
-         User.IsInRole("Lekarz"))
+                User.IsInRole("Administrator") ||
+                User.IsInRole("Lekarz"))
                 {
                     {
                         <div id="action">
@@ -80,6 +80,10 @@
                 }
             </div>
             <div class="modal-footer">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Account/Login" class="btn btn-primary">Zaloguj się</a>
+                }
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
             </div>
         </div>
@@ -90,8 +94,8 @@
 
 <!--End about-->
 @if (User.IsInRole("Pacjent")
-      || User.IsInRole("Administrator")
-      || User.IsInRole("Lekarz"))
+                  || User.IsInRole("Administrator")
+                  || User.IsInRole("Lekarz"))
 {
     <!--Error save info-->
     <div id="myModalSaveToDataBaseError" class="modal fade" role="dialog">

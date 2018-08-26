@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-   
+   //tooltip
     $(".tooltipLink").tooltip({
         position: {
             my: "center-2 bottom-10",
@@ -14,11 +14,15 @@
             }
         }
     });
+    //end tooltip
 
+    //add close alert
     $('div.alert a.close').on('click', () => {
         $(".alert").alert('close');
     });
+    //end add close alert
 
+    //back to top page
     let top = $('#back-to-top');
     $(window).scroll(() => {
         if ($(this).scrollTop() > 50) {
@@ -35,4 +39,5 @@
         }, 700);
         return false;
     });
+    //end back to top page
 });

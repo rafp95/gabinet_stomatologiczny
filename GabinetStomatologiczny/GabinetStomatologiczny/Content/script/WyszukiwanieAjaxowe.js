@@ -56,13 +56,6 @@
 
     //end clear text with input
 
-
-    function tooltip() {
-        $("[data-toggle=tooltip]").tooltip({
-            placment: 'top'
-        });
-    }
-
     //method using ajax send data to controller
     function SzukajDane(pom,akcja) {
         ladowanie.css("display", "block");

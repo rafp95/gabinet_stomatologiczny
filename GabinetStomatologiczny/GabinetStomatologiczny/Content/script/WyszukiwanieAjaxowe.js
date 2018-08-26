@@ -11,11 +11,12 @@
         SzukajDane(pom, "Pacjents/"); 
     });
 
-    /*
+    
     $(".pacjent-query").bind('click keyup', function (event) {
-        SzukajDane("", "Pacjents/Index/");
+        var pom = $("#searchQuery").val();
+        showAndHideClearText(pom);
     });
-    */
+    
 
     //End pacjent
 
@@ -25,11 +26,12 @@
         SzukajDane(pom,"Lekarzs/Index/");
     });
 
-    /*/
+    
     $(".lekarz-query").bind('click keyup', function (event) {
-        SzukajDane("", "Lekarzs/Index/");
+        var pom = $("#searchQuery").val();
+        showAndHideClearText(pom);
     });
-    */
+    
 
     //end lekarz
 
@@ -40,15 +42,19 @@
         SzukajDane(pom, "Zabiegs/Index/");
     });
 
-    /*
+    
     $(".zabieg-query").bind('click keyup', function (event) {
-        SzukajDane("", "Zabiegs/Index/");
+        var pom = $("#searchQuery").val();
+        showAndHideClearText(pom);
     });
-    */
+    
 
     //end zabieg
 
+    //clear text with input
     czyscText();
+
+    //end clear text with input
 
 
     function tooltip() {
@@ -57,22 +63,15 @@
         });
     }
 
+    //method using ajax send data to controller
     function SzukajDane(pom,akcja) {
         ladowanie.css("display", "block");
         var searchQuery = $("#searchQuery").val();
         var setData = $(".data-select");
         var param = getUrlParams("sortOrder");
         var page = getUrlParams("page");
-
-        if (pom.length > 0) {
-            searchQuery = pom;
-        }
-
-        if (searchQuery.length > 0) {
-            $("span.kasujText").css("display", "block");
-        } else {
-            $("span.kasujText").css("display", "none");
-        }
+        
+        showAndHideClearText(pom);
 
         $.ajax({
             type: "GET",
@@ -91,7 +90,19 @@
             }
         });
     }
+    //end method using ajax send data to controller
 
+    //icon disable text
+    function showAndHideClearText(pom) {
+            if (pom.length > 0) {
+                $("span.kasujText").css("display", "block");
+            } else {
+                $("span.kasujText").css("display", "none");
+            }
+    }
+    //end disable icon clear text
+
+    //to param with url
     function getUrlParams(sParam) {
         var pageUrl = window.location.search.substring(1);
         var urlVar = pageUrl.split("&");
@@ -102,7 +113,9 @@
             }
         }
     }
+    //end param with url
 
+    //clear input
     function czyscText() {
         var kasuj = $("span.kasujTextPacjent");
         kasuj.on("click", function () {
@@ -126,5 +139,6 @@
         });
 
     }
+    //end clear input
 
 });

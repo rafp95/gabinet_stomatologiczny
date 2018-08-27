@@ -26,6 +26,13 @@
   td:hover {
     background-color: azure; } }
 
+/*Ui z index*/
+.ui-autocomplete {
+  z-index: 2147483647;
+  font-size: 16px;
+  transition: all .3s ease; }
+
+/*end ui z index*/
 /*Preloader*/
 @media screen and (min-width: 1100px) {
   div.ladowanie {

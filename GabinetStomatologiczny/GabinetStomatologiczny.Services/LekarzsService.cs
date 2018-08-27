@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -74,11 +75,14 @@ namespace GabinetStomatologiczny.Services
 
         public HttpPostedFileBase SaveFile(HttpPostedFileBase file,Lekarz lekarz)
         {
-            if (file != null && file.ContentLength > 0)
+            new Thread(() =>
             {
-                lekarz.Zdjecie = System.Guid.NewGuid().ToString();
-                lekarz.Zdjecie = file.FileName;
-            }
+                if (file != null && file.ContentLength > 0)
+                {
+                    lekarz.Zdjecie = System.Guid.NewGuid().ToString();
+                    lekarz.Zdjecie = file.FileName;
+                }
+            }).Start();
             return file;
         }
     }

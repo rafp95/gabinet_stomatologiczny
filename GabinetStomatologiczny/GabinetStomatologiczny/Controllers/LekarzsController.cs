@@ -124,13 +124,22 @@ namespace GabinetStomatologiczny.Controllers
             
             if (ModelState.IsValid)
             {
-                HttpPostedFileBase file = Request.Files["Zdjecie"];
-                UpdateModel(lekarz);
-                this._lekarzservice.SaveFile(file, lekarz).
-                    SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
-                this._lekarzservice.Edit(lekarz);
-                TempData["editLekarz"] = "done";
-                return RedirectToAction("Index");
+                try
+                {
+                    HttpPostedFileBase file = Request.Files["Zdjecie"];
+                    UpdateModel(lekarz);
+                    HttpPostedFileBase f = this._lekarzservice.SaveFile(file, lekarz);
+                    if(f.ContentLength > 0)
+                    {
+                        f.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
+                    }
+                    this._lekarzservice.Edit(lekarz);
+                    TempData["editLekarz"] = "done";
+                    return RedirectToAction("Index");
+                }catch(Exception)
+                {
+                    ViewBag.Error = "Sprawdź czy poprawnie wypełniłeś wszystkie wypełniłeś dane";
+                }
             }
             return View(lekarz);
         }

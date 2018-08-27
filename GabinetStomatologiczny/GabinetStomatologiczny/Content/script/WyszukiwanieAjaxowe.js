@@ -2,8 +2,6 @@
     
     let ladowanie = $("div.ladowanie");
 
-    tooltip();
-
     //Pacjent
     var szukajL = $(".szukajPacjentAjax");
     szukajL.on('click', function () {

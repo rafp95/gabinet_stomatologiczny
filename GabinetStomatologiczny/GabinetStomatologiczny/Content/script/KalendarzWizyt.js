@@ -381,22 +381,20 @@
             return;
         }
         //End check date
-
         //Check title is empty
-        var t = $("#tytul");
-        if (t.length > 0) {
-            if (t.val().length == 0) {
-                t.css({ 'border': '1px solid red', 'background': 'pink' }).parent().
+        var tytul = $("#tytul");
+        if (tytul.length > 0) {
+            if (tytul.val().length == 0) {
+                tytul.css({ 'border': '1px solid red', 'background': 'pink' }).parent().
                 after("<div class='errorTime'>Pole nie może być puste</div>").next().css("color", "red");
                 return;
             }
         }
         //end check title is empty
-
         var data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
-            Tytul: $("#tytul").length > 0 ? $("#tytul").val().trim() : null
+            Tytul: tytul.length > 0 ? tytul.val().trim() : null
         }
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie </div> <div class='loader' style='float:left;'></div>");
         SaveEvent(data);

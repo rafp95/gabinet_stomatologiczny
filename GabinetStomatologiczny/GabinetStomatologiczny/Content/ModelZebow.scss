@@ -27,6 +27,16 @@ div.centerPage{
         justify-content: center;
     }
 
+    div.centerPage div.form-group label.col-md-2{
+        display: flex;
+        justify-content: center;
+    }
+
+    div.centerPage div.form-group div.col-md-10{
+        min-width: 280px;
+        justify-content: center;
+    }
+
     div.formZabeig h2, div.formZabeig h4{
         text-align: center;
     }

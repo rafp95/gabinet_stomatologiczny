@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GabinetContext.cs" />
+    <Compile Include="Infrastucture\DatePacjentAttribute.cs" />
     <Compile Include="Migrations\201807151820346_InitialCreate.cs" />
     <Compile Include="Migrations\201807151820346_InitialCreate.Designer.cs">
       <DependentUpon>201807151820346_InitialCreate.cs</DependentUpon>
@@ -186,6 +187,18 @@
     <Compile Include="Migrations\201808121251400_rP.cs" />
     <Compile Include="Migrations\201808121251400_rP.Designer.cs">
       <DependentUpon>201808121251400_rP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301635536_AddMyCustomValidateAttributeToDateIsVlaid.cs" />
+    <Compile Include="Migrations\201808301635536_AddMyCustomValidateAttributeToDateIsVlaid.Designer.cs">
+      <DependentUpon>201808301635536_AddMyCustomValidateAttributeToDateIsVlaid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301651597_n1.cs" />
+    <Compile Include="Migrations\201808301651597_n1.Designer.cs">
+      <DependentUpon>201808301651597_n1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301717268_n11.cs" />
+    <Compile Include="Migrations\201808301717268_n11.Designer.cs">
+      <DependentUpon>201808301717268_n11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
@@ -262,6 +275,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808121251400_rP.resx">
       <DependentUpon>201808121251400_rP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301635536_AddMyCustomValidateAttributeToDateIsVlaid.resx">
+      <DependentUpon>201808301635536_AddMyCustomValidateAttributeToDateIsVlaid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301651597_n1.resx">
+      <DependentUpon>201808301651597_n1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301717268_n11.resx">
+      <DependentUpon>201808301717268_n11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

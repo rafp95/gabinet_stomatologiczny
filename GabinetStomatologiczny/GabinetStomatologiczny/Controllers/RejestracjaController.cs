@@ -39,80 +39,79 @@ namespace GabinetStomatologiczny.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "TypPracownika,Email,Haslo,PowtorzHaslo,Imie,Nazwisko,NrTelefonu")] Models.Osoba o)
+        public ActionResult Index(Osoba o)
         {
-            if (!o.Haslo.Equals(o.PowtorzHaslo))
+            try
             {
-                ModelState.AddModelError("Haslo", "Podane hasła są różne");
-            }
-            else if (ModelState.IsValid)
-            {
-                try
+                if (!o.Haslo.Equals(o.PowtorzHaslo))
                 {
-                    var roleUser = new RoleManager<IdentityRole>(
-                                 new RoleStore<IdentityRole>(
-                                 new ApplicationDbContext()));
+                    ModelState.AddModelError("Haslo", "Podane hasła są różne");
+                }
+                else if (ModelState.IsValid)
+                {
+                        var roleUser = new RoleManager<IdentityRole>(
+                                     new RoleStore<IdentityRole>(
+                                     new ApplicationDbContext()));
 
-                    var createUser = new UserManager<ApplicationUser>(
-                                      new UserStore<ApplicationUser>(
-                                      new ApplicationDbContext()));
+                        var createUser = new UserManager<ApplicationUser>(
+                                          new UserStore<ApplicationUser>(
+                                          new ApplicationDbContext()));
 
-                    roleUser.Create(new IdentityRole(o.TypPracownika.ToString()));
+                        roleUser.Create(new IdentityRole(o.TypPracownika.ToString()));
 
 
-                    var user = new ApplicationUser { UserName = o.Email,Email = o.Email,EmailConfirmed = true };
+                        var user = new ApplicationUser { UserName = o.Email,Email = o.Email,EmailConfirmed = true };
 
-                    var pass = o.Haslo;
+                        var pass = o.Haslo;
 
-                    createUser.Create(user, pass);
+                        createUser.Create(user, pass);
 
-                    createUser.AddToRole(user.Id, o.TypPracownika.ToString());
+                        createUser.AddToRole(user.Id, o.TypPracownika.ToString());
 
-                    TempData["ok"] = o.Imie + " typ konta " + o.TypPracownika;
+                        TempData["ok"] = o.Imie + " typ konta " + o.TypPracownika;
 
-                    switch (o.TypPracownika)
-                    {
+                        switch (o.TypPracownika)
+                        {
 
-                        case TypPracownika.Administrator:
-                            {
-                                var admin = Mapper.Map<DAO.Models.Administrator>(o);
-                                se.SendMail(o.Email, "Witaj, administrator " +
-                                  o.Imie, "Twoje dane do logowania to \n"
-                                   + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                db.Administrator.Add(admin);
-                                db.SaveChanges();
-                                break;
-                            }
-                        case TypPracownika.Lekarz:
-                            {
-                                var lekarz = Mapper.Map<Lekarz>(o);
-                                lekarz.DataDodania = DateTime.Now;
-                                se.SendMail(o.Email, "Witaj, lekarz " +
-                                    o.Imie, "Twoje dane do logowania to \n"
-                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                this.ls.CreateLekarz(lekarz);
-                                break;
-                            }
-                        case TypPracownika.Pacjent:
-                            {
-                                var pacjent = Mapper.Map<Pacjent>(o);
-                                pacjent.DataRejestracji = DateTime.Now;
-                                se.SendMail(o.Email, "Witaj, pacjencie " +
-                                   o.Imie, "Twoje dane do logowania to \n "
-                                   + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                ps.CreatePacjnt(pacjent);
-                                break;
-                            }
+                            case TypPracownika.Administrator:
+                                {
+                                    var admin = Mapper.Map<DAO.Models.Administrator>(o);
+                                    se.SendMail(o.Email, "Witaj, administrator " +
+                                      o.Imie, "Twoje dane do logowania to \n"
+                                       + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
+                                    db.Administrator.Add(admin);
+                                    db.SaveChanges();
+                                    break;
+                                }
+                            case TypPracownika.Lekarz:
+                                {
+                                    var lekarz = Mapper.Map<Lekarz>(o);
+                                    lekarz.DataDodania = DateTime.Now;
+                                    se.SendMail(o.Email, "Witaj, lekarz " +
+                                        o.Imie, "Twoje dane do logowania to \n"
+                                        + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
+                                    this.ls.CreateLekarz(lekarz);
+                                    break;
+                                }
+                            case TypPracownika.Pacjent:
+                                {
+                                    var pacjent = Mapper.Map<Pacjent>(o);
+                                    pacjent.DataRejestracji = DateTime.Now;
+                                    se.SendMail(o.Email, "Witaj, pacjencie " +
+                                       o.Imie, "Twoje dane do logowania to \n "
+                                       + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
+                                    ps.CreatePacjnt(pacjent);
+                                    break;
+                                }
+                        }
+                        return RedirectToAction("Index", "Rejestracja");
                     }
-                    return RedirectToAction("Index", "Rejestracja");
-                }
-
-                catch (InvalidOperationException)
-                {
-                    ModelState.AddModelError("Email", "Podany email jest już zajęty");
-                }
             }
-            
+            catch (InvalidOperationException)
+            {
+                ModelState.AddModelError("Email", "Podany email jest już zajęty");
+            }
+
             return View(o);
         }
     }

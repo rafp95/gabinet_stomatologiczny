@@ -39,8 +39,5 @@ namespace GabinetStomatologiczny.Models
             ErrorMessage = "Numer musi być zapisany w formacie 123-123-123")]
         public string NrTelefonu { get; set; }
         
-        [Display(Name = "Płeć")]
-        [Range(1, int.MaxValue, ErrorMessage = "Wybierz płeć")]
-        public Plec Plec { get; set; }
     }
 }

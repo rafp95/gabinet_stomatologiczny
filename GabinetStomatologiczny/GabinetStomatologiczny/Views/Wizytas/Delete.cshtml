@@ -27,21 +27,13 @@
             @Html.DisplayFor(model => model.Pacjent.Imie)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Kasuj" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

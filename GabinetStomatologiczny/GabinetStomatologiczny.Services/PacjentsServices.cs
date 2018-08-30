@@ -63,6 +63,7 @@ namespace GabinetStomatologiczny.Services
 
         public Pacjent CreatePacjnt(Pacjent pacjent)
         {
+            pacjent.Plec = pacjentPlec(pacjent) ? pacjent.Plec = Plec.Kobieta : Plec.Mężczyzna;
             Pacjent p = this._db.Pacjent.Add(pacjent);
             this._db.SaveChanges();
             return p;
@@ -71,6 +72,11 @@ namespace GabinetStomatologiczny.Services
         public Task<Pacjent> Find(int? id)
         {
             return this._db.Pacjent.FindAsync(id);
+        }
+
+        private bool pacjentPlec(Pacjent p)
+        {
+            return p.Imie.ElementAt(p.Imie.Length - 1).Equals('A');
         }
     }
 }

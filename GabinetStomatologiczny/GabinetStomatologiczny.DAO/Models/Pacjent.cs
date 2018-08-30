@@ -5,6 +5,7 @@ using System.Web;
 using GabinetStomatologiczny.DAO.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GabinetStomatologiczny.DAO.Infrastucture;
 
 namespace GabinetStomatologiczny.DAO.Models
 {
@@ -21,7 +22,6 @@ namespace GabinetStomatologiczny.DAO.Models
         [RegularExpression(@"^\d{11}$", ErrorMessage = "Pesel nieprawidłowy")]
         public string Pesel { get; set; }
 
-        [Range(1,int.MaxValue,ErrorMessage = "Wybierz płeć")]
         public Plec Plec { get; set; }
 
         [DataType(DataType.Date)]
@@ -29,6 +29,7 @@ namespace GabinetStomatologiczny.DAO.Models
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "datetime2")]
         [Display(Name = "Data urodzenia")]
+        [DatePacjent]
         public DateTime? DataUrodzenia { get; set; }
 
         [Required(ErrorMessage = "Pole numer telefonu jest wymagane")]
@@ -61,7 +62,6 @@ namespace GabinetStomatologiczny.DAO.Models
         public TypPracownika TypPracownika { get; set; }
 
         public virtual ICollection<Wizyta> Wizyty { get; set; }
-
 
     }
 }

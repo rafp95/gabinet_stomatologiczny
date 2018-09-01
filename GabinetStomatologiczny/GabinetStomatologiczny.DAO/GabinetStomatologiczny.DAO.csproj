@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201808301717268_n11.Designer.cs">
       <DependentUpon>201808301717268_n11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809010948246_ZebyZabieg.cs" />
+    <Compile Include="Migrations\201809010948246_ZebyZabieg.Designer.cs">
+      <DependentUpon>201809010948246_ZebyZabieg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -214,6 +218,7 @@
     <Compile Include="Models\TypZabiegu.cs" />
     <Compile Include="Models\Wizyta.cs" />
     <Compile Include="Models\Wojewodztwo.cs" />
+    <Compile Include="Models\Zab.cs" />
     <Compile Include="Models\Zabieg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -284,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808301717268_n11.resx">
       <DependentUpon>201808301717268_n11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809010948246_ZebyZabieg.resx">
+      <DependentUpon>201809010948246_ZebyZabieg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

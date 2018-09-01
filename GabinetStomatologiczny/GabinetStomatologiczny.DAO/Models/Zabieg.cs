@@ -21,6 +21,7 @@ namespace GabinetStomatologiczny.DAO.Models
         public int CenaZabiegu { get; set; }
 
         public virtual Wizyta Wizyta { get; set; }
+        public virtual ICollection<Zab> Zeby { get; set; }
 
         [NotMapped]
         public string SearchQuery { get; set; }

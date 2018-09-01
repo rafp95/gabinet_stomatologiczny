@@ -23,6 +23,7 @@ namespace GabinetStomatologiczny.DAL
         public DbSet<Lekarz> Lekarz { get; set; }
         public DbSet<Wizyta> Wizyta { get; set; }
         public DbSet<Administrator> Administrator { get; set; }
+        public DbSet<Zab> Zab { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -466,7 +466,6 @@
 function pokazAktualnyCzas() {
     var aktualny = setInterval(() => {
         var aktualntCzas = moment(new Date());
-        now = moment(aktualntCzas, "DD-MM-YYYY HH:mm");
         $("div#aktualnyCzas").html(aktualntCzas.format("DD MMMM YYYY HH:mm:ss"));
     }, 1000);
 }

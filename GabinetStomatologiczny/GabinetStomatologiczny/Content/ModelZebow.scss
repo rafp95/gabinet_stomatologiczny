@@ -1,4 +1,6 @@
 ﻿div.tooth-chart {
+    margin-left: auto;
+    margin-right: auto;
     max-width: 460px;
     height: auto;
 }
@@ -10,38 +12,6 @@ div polygon, path {
 }
 
 div polygon:hover, path:hover {
-    fill: red !important;
+    fill: #C0C0C0 !important;
     opacity: 0.7;
-}
-
-div.centerPage{
-  display: flex;
-  align-items: center;
-  min-width: 100%;
-}
-
-@media(max-width: 768px){
-    div.centerPage{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    div.centerPage h2#title{
-        text-align: center;
-    }
-
-    div.centerPage div.form-group label.col-md-2{
-        display: flex;
-        justify-content: center;
-    }
-
-    div.centerPage div.form-group div.col-md-10{
-        min-width: 280px;
-        justify-content: center;
-    }
-
-    div.formZabeig h2, div.formZabeig h4{
-        text-align: center;
-    }
 }

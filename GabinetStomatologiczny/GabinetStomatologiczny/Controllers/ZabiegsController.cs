@@ -81,7 +81,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zabieg zabieg = db.Zabieg.Include(w => w.Wizyta).Where(_ => _.ID == id).FirstOrDefault();
+            Zabieg zabieg = db.Zabieg.Include(w => w.Wizyta).First(_ => _.ID == id);
             if (zabieg == null)
             {
                 return HttpNotFound();
@@ -92,7 +92,8 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Zabiegs/Create
         public ActionResult Create(PaginationType search)
         {
-            ViewBag.name = search.searchString;
+            ViewBag.name = db.Pacjent.Where(_ => _.ID == search.ID).Select(_ => _.Imie + " " + _.Nazwisko).First();
+            Session["user"] = db.Pacjent.First(_ => _.ID == search.ID).ID;
             ViewBag.WizytaID = new SelectList(db.Wizyta.Include(p => p.Pacjent), "ID", "ID");
             return View();
         }
@@ -113,15 +114,15 @@ namespace GabinetStomatologiczny.Controllers
                 else if (ModelState.IsValid)
                 {
                     var pacjet = db.Pacjent.ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().
-                    Contains(zabieg.SearchQuery.ToLower())).Select(p => p.ID).FirstOrDefault();
+                    Contains(zabieg.SearchQuery.ToLower())).Select(p => p.ID).First();
 
                     var wizyta = db.Wizyta.ToList().
-                        Where(p => p.PacjentID == pacjet).Select(p => p.ID).FirstOrDefault();
+                        Where(p => p.PacjentID == pacjet).Select(p => p.ID).First();
 
                     zabieg.WizytaID = wizyta;
                     db.Zabieg.Add(zabieg);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ToothModel");
                 }
             }
             catch (Exception)
@@ -133,6 +134,64 @@ namespace GabinetStomatologiczny.Controllers
             return View(zabieg);
         }
 
+        public ActionResult ToothModel()
+        {
+            int id = (int)Session["user"];
+            ViewBag.User = db.Pacjent.Where(_ => _.ID == id).
+                Select(_ => _.Imie + " " + _.Nazwisko).First();
+            return View();
+        }
+
+        public ActionResult GetAllTooth()
+        {
+            int id = (int)Session["user"];
+            var idWizyta = db.Wizyta.First(_ => _.Pacjent.ID == id).ID;
+            var tooth = db.Zabieg.Where(_ => _.WizytaID == idWizyta).Select(_ => _.Zeby);
+
+            return new JsonResult{ Data = tooth, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+        }
+
+        public ActionResult SaveTooth(Zab zab)
+        {
+           
+            bool status = false;
+
+            if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth) == false)
+            {
+                var user = Session["user"];
+                var idWizyta = db.Wizyta.Include(_ => _.Zabiegi).First(_ => _.Pacjent.ID == (int)user).ID;
+                var tooth = db.Zabieg.Include(_ => _.Zeby).Where(_ => _.Wizyta.ID == idWizyta).Select(_ => _.Zeby);
+                var idZabieg = db.Zabieg.First(_ => _.Wizyta.ID == idWizyta).ID;
+
+                zab.ZabiegID = idZabieg;
+
+                db.Zab.Add(zab);
+                db.SaveChanges();
+                status = true;
+            }
+
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteTooth(Zab zab)
+        {
+
+            bool status = false;
+            if(db.Zab.Any(_ => _.IdTooth == zab.IdTooth))
+            {
+                var user = Session["user"];
+                var idWizyta = db.Wizyta.Include(_ => _.Zabiegi).First(_ => _.Pacjent.ID == (int)user).ID;
+                var idZabieg = db.Zabieg.First(_ => _.Wizyta.ID == idWizyta).ID;
+                Zab z = db.Zab.First(_ => _.IdTooth == zab.IdTooth);
+                db.Zab.Remove(z);
+                db.SaveChanges();
+                status = true;
+            }
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         // GET: Zabiegs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -141,7 +200,7 @@ namespace GabinetStomatologiczny.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Zabieg zabieg = db.Zabieg.Find(id);
+            Zabieg zabieg = db.Zabieg.Include(_=> _.Wizyta).First(_ => _.ID == id);
             
             if (zabieg == null)
             {
@@ -175,7 +234,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zabieg zabieg = db.Zabieg.Include(_ => _.Wizyta).Where(_ => _.ID == id).FirstOrDefault();
+            Zabieg zabieg = db.Zabieg.Include(_ => _.Wizyta).First(_ => _.ID == id);
             if (zabieg == null)
             {
                 return HttpNotFound();

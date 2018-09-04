@@ -822,6 +822,13 @@
     <Content Include="Content\Zabieg.min.css">
       <DependentUpon>Zabieg.css</DependentUpon>
     </Content>
+    <Content Include="Content\ZabiegCreate.css">
+      <DependentUpon>ZabiegCreate.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\ZabiegCreate.min.css">
+      <DependentUpon>ZabiegCreate.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ZabiegCreate.scss" />
     <None Include="Content\Zdjecia.scss" />
     <Content Include="Content\Zdjecia.css">
       <DependentUpon>Zdjecia.scss</DependentUpon>
@@ -1167,6 +1174,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Zabiegs\PdfGenerate.cshtml" />
     <Content Include="Views\Zabiegs\_ZabiegsPartial.cshtml" />
+    <Content Include="Views\Zabiegs\ToothModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

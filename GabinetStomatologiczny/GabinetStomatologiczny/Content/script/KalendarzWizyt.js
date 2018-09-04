@@ -88,7 +88,7 @@
                 $("div.loader").html("");
                 $.each(data, function (i, v) {
                     events.push({
-                        pacjentID: v.PacjentID,
+                        pacjentID: v.p.PacjentID,
                         eventID: v.ID,
                         title: v.Tytul,
                         start: moment(v.Poczatek),
@@ -147,7 +147,7 @@
                 //budowanie modal
                 let tel = calEvent.phone != null ? calEvent.phone : " *";
                 let createZabiegsForPacjents = calEvent.role === "Lekarz" ?
-                    "<a href='/Zabiegs/Create?searchString=" + calEvent.title +
+                    "<a href='/Zabiegs/Create?ID=" + calEvent.pacjentID +
                     "' title='Dodaj zabieg'> " + calEvent.title + "  </a>" :
                     calEvent.title;
                 $("#myModal #eventTitle").html(createZabiegsForPacjents);

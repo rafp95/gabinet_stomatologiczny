@@ -43,6 +43,7 @@ namespace GabinetStomatologiczny.Services
                     {
                         _.Pacjent.NrTelefonu,
                         _.Pacjent.Email,
+                        _.PacjentID,
                         activeUser = u,
                         role = r
                     } :

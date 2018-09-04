@@ -70,5 +70,9 @@
   {
     "outputFile": "Content/ModelZebow.css",
     "inputFile": "Content/ModelZebow.scss"
+  },
+  {
+    "outputFile": "Content/ZabiegCreate.css",
+    "inputFile": "Content/ZabiegCreate.scss"
   }
 ]

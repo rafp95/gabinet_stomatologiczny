@@ -14,5 +14,6 @@ namespace GabinetStomatologiczny.Models
         public int? page { get; set; }
         public int pageSize { get; set; }
         public int pageNumber { get; set; }
+        public int ID { get; set; }
     }
 }

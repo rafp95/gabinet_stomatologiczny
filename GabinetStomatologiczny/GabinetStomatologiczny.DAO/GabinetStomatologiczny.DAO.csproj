@@ -208,6 +208,10 @@
     <Compile Include="Migrations\201809031834524_renameNumerZebaToIdTooth.Designer.cs">
       <DependentUpon>201809031834524_renameNumerZebaToIdTooth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809041406273_PacjentInZob.cs" />
+    <Compile Include="Migrations\201809041406273_PacjentInZob.Designer.cs">
+      <DependentUpon>201809041406273_PacjentInZob.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -299,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809031834524_renameNumerZebaToIdTooth.resx">
       <DependentUpon>201809031834524_renameNumerZebaToIdTooth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809041406273_PacjentInZob.resx">
+      <DependentUpon>201809041406273_PacjentInZob.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -146,7 +146,7 @@ namespace GabinetStomatologiczny.Controllers
         {
             int id = (int)Session["user"];
             var idWizyta = db.Wizyta.First(_ => _.Pacjent.ID == id).ID;
-            var tooth = db.Zabieg.Where(_ => _.WizytaID == idWizyta).Select(_ => _.Zeby);
+            var tooth = db.Zabieg.Where(_ => _.WizytaID == idWizyta && _.Wizyta.PacjentID == id).Select(_ => _.Zeby);
 
             return new JsonResult{ Data = tooth, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }

@@ -94,6 +94,7 @@ namespace GabinetStomatologiczny
             services.AddTransient<IGenerateZabiegsPdf, GenerateZabiegsPdf>();
             services.AddTransient<ISortZabiegsService, SortZabiegsService>();
             services.AddTransient<IWizytService, WizytServie>();
+            services.AddTransient<IZabiegService, ZabiegService>();
         }
     }
 

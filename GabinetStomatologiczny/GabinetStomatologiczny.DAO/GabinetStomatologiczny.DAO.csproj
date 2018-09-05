@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201809041406273_PacjentInZob.Designer.cs">
       <DependentUpon>201809041406273_PacjentInZob.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809050835598_removePacjentIdProp.cs" />
+    <Compile Include="Migrations\201809050835598_removePacjentIdProp.Designer.cs">
+      <DependentUpon>201809050835598_removePacjentIdProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -306,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809041406273_PacjentInZob.resx">
       <DependentUpon>201809041406273_PacjentInZob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809050835598_removePacjentIdProp.resx">
+      <DependentUpon>201809050835598_removePacjentIdProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

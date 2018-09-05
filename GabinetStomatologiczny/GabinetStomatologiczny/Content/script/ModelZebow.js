@@ -27,19 +27,28 @@
     //set tooth
     //
     function SetTooth() {
+        let clicks = 0, timer = null, deley = 300;
         tooth.each(function (index) {
-            $(this).on('click', () => {
-                   $(this).css('fill', 'red');
-                   let tooth = {
-                      idTooth: $(this).attr('id')
-                   };
-                 addTooth(tooth);
-            }).on('dblclick', () => {
-               $(this).css('fill', '');
-               let tooth = {
-                  idTooth: $(this).attr('id')
-               };
-               deleteTooth(tooth);
+            $(this).on('click', function (e) {
+                clicks++;
+                if (clicks == 1) {
+                    timer = setTimeout(() => {
+                        $(this).css('fill', 'red');
+                        let tooth = {
+                            idTooth: $(this).attr('id')
+                        };
+                        addTooth(tooth);
+                        clicks = 0;
+                    }, deley)
+                } else {
+                    $(this).css('fill', '');
+                    let tooth = {
+                        idTooth: $(this).attr('id')
+                    };
+                    deleteTooth(tooth);
+                    clearTimeout(timer);
+                    clicks = 0;
+                }
             });
         });
     }
@@ -50,17 +59,23 @@
         $.ajax({
             type: 'GET',
             url: "/Zabiegs/SaveTooth",
-            data: data
+            data: data,
+            success: function (data) {
+                console.log(data.status);
+            }
         });
     }
     //end ajax save tooth to database
-    
+
     //ajax delete tooth
     function deleteTooth(data) {
         $.ajax({
             type: 'GET',
             url: "/Zabiegs/DeleteTooth",
-            data: data
+            data: data,
+            success: function (data) {
+                console.log(data.status);
+            }
         });
     }
     //end ajax delete tooth
@@ -68,15 +83,14 @@
     //set tooth color
     function toothColor(tab) {
         tooth.each(function () {
-        let id = $(this).attr('id');
-        for (let i = 0; i < tab.length; i++) {
-            console.log(tab[i].idT);
-            if (tab[i].idT === id) {
-                $(this).css('fill', 'red');
+            let id = $(this).attr('id');
+            for (let i = 0; i < tab.length; i++) {
+                if (tab[i].idT === id) {
+                    $(this).css('fill', 'red');
+                }
             }
-        }
-    });
+        });
     }
     //end set tooth color
-    
+
 });

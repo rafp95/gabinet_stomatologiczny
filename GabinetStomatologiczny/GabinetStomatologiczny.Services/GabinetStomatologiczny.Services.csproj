@@ -60,6 +60,7 @@
     <Compile Include="SugestionService.cs" />
     <Compile Include="UserRoleService.cs" />
     <Compile Include="WizytService.cs" />
+    <Compile Include="ZabiegService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">

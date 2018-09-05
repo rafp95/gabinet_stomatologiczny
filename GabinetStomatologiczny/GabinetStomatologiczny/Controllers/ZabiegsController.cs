@@ -159,11 +159,10 @@ namespace GabinetStomatologiczny.Controllers
         {
            
             bool status = false;
-
-            if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth) == false)
+            int id = (int)Session["user"];
+            if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
             {
-                var user = Session["user"];
-                _zabiegService.SaveTooth(zab, (int)user);
+                _zabiegService.SaveTooth(zab, id);
                 status = true;
             }
 
@@ -174,10 +173,10 @@ namespace GabinetStomatologiczny.Controllers
         {
 
             bool status = false;
-            if(db.Zab.Any(_ => _.IdTooth == zab.IdTooth))
+            int id = (int)Session["user"];
+            if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id))
             {
-                var user = Session["user"];
-                _zabiegService.DeleteTooth(zab, (int)user);
+                _zabiegService.DeleteTooth(zab, id);
                 status = true;
             }
             return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -194,7 +193,7 @@ namespace GabinetStomatologiczny.Controllers
             }
 
             Zabieg zabieg = db.Zabieg.Include(_=> _.Wizyta).First(_ => _.ID == id);
-            
+            Session["user"] = zabieg.Wizyta.PacjentID;
             if (zabieg == null)
             {
                 return HttpNotFound();

@@ -698,12 +698,6 @@
     <Content Include="Content\LoginInput.min.css">
       <DependentUpon>LoginInput.css</DependentUpon>
     </Content>
-    <Content Include="Content\ModelZebow.css">
-      <DependentUpon>ModelZebow.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\ModelZebow.min.css">
-      <DependentUpon>ModelZebow.css</DependentUpon>
-    </Content>
     <Content Include="Content\Pacjent.css">
       <DependentUpon>Pacjent.scss</DependentUpon>
     </Content>
@@ -745,7 +739,6 @@
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
-    <Content Include="Content\ModelZebow.scss" />
     <None Include="Content\TableStyle.scss" />
     <None Include="Content\Galeria.scss" />
     <Content Include="Content\img\1.jpg" />
@@ -1175,6 +1168,7 @@
     <Content Include="Views\Zabiegs\PdfGenerate.cshtml" />
     <Content Include="Views\Zabiegs\_ZabiegsPartial.cshtml" />
     <Content Include="Views\Zabiegs\ToothModel.cshtml" />
+    <Content Include="Views\Zabiegs\_ToothModelParital.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

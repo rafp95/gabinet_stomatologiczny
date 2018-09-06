@@ -88,7 +88,7 @@
                 $("div.loader").html("");
                 $.each(data, function (i, v) {
                     events.push({
-                        pacjentID: v.p.PacjentID,
+                        pacjentID: v.p != null ? v.p.PacjentID : null,
                         eventID: v.ID,
                         title: v.Tytul,
                         start: moment(v.Poczatek),
@@ -369,7 +369,7 @@
 
         //Check date and time
         var now = moment(new Date(), "DD-MM-YYYY HH:mm");
-        var check = ( now <
+        var check = ( moment(new Date(now), "DD-MM-YYYY HH:mm") <
             moment( new Date(clickTime), "DD-MM-YYYY HH:mm") &&
             ( clickTime.format("HH:mm") >= minTime &&
              clickTime.format("HH:mm") < maxTime ))?

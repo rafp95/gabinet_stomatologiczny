@@ -18,7 +18,6 @@
                     });
                 })
                 SetTooth();
-                toothColor(tab);
             }
         });
     }
@@ -51,6 +50,7 @@
                 }
             });
         });
+        toothColor(tab);
     }
     //end set tooth
 

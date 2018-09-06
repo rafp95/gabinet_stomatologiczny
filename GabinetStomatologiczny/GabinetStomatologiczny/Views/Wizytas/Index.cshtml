@@ -58,8 +58,8 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent") ||
-                User.IsInRole("Administrator") ||
-                User.IsInRole("Lekarz"))
+        User.IsInRole("Administrator") ||
+        User.IsInRole("Lekarz"))
                 {
                     {
                         <div id="action">
@@ -94,8 +94,8 @@
 
 <!--End about-->
 @if (User.IsInRole("Pacjent")
-                  || User.IsInRole("Administrator")
-                  || User.IsInRole("Lekarz"))
+                                          || User.IsInRole("Administrator")
+                                          || User.IsInRole("Lekarz"))
 {
     <!--Error save info-->
     <div id="myModalSaveToDataBaseError" class="modal fade" role="dialog">
@@ -189,7 +189,7 @@
             <div class="modal-content">
                 <div class="modal-header modal-info">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title text-center">Zapisz</h4>
+                    <h1 class="modal-title text-center">Zapisz</h1>
                 </div>
                 <div class="modal-body">
                     <form class="col-md-12 form-horizontal" data-ajax="true">

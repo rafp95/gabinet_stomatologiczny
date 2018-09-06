@@ -368,8 +368,8 @@
         //end check hours
 
         //Check date and time
-
-        var check = ( moment(new Date(now), "DD-MM-YYYY HH:mm") <
+        var now = moment(new Date(), "DD-MM-YYYY HH:mm");
+        var check = ( now <
             moment( new Date(clickTime), "DD-MM-YYYY HH:mm") &&
             ( clickTime.format("HH:mm") >= minTime &&
              clickTime.format("HH:mm") < maxTime ))?

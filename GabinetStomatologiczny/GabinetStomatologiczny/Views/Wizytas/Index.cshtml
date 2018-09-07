@@ -27,7 +27,7 @@
 <!--Idenntity info-->
 @if (!User.Identity.IsAuthenticated)
 {
-    <div id="identity-Info" class="modal fade" role="dialog">
+    <div id="identity-Info" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-danger">
@@ -47,7 +47,7 @@
 }
 <!--End identity info-->
 <!--About-->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-info">
@@ -98,7 +98,7 @@
                                           || User.IsInRole("Lekarz"))
 {
     <!--Error save info-->
-    <div id="myModalSaveToDataBaseError" class="modal fade" role="dialog">
+    <div id="myModalSaveToDataBaseError" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-warning">
@@ -116,7 +116,7 @@
     </div>
     <!--end error save info-->
     <!--Eror date info-->
-    <div id="myModalError" class="modal fade" role="dialog">
+    <div id="myModalError" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-warning">
@@ -135,7 +135,7 @@
     <!--End eror date info-->
 
     <!--Send sms-->
-    <div id="myModalSendSms" class="modal fade" role="dialog">
+    <div id="myModalSendSms" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-info">
@@ -165,7 +165,7 @@
     <!--End send sms-->
 
      <!-- Delete coonfirm modal -->
-    <div class="modal fade" id="deleteConfirmModal" role="dialog">
+    <div class="modal fade" id="deleteConfirmModal" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header modal-danger">
@@ -184,7 +184,7 @@
     </div>
     <!--  END Delete coonfirm modal -->
     <!--Add Edit-->
-    <div id="myModalSave" class="modal fade" role="dialog">
+    <div id="myModalSave" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-info">

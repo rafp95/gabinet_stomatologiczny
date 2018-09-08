@@ -8,6 +8,7 @@ namespace GabinetStomatologiczny.DAO.Models
 {
     public enum OddzialNfz
     {
+        [Display(Name = " -- Wybierz oddział NFZ --")]
         __________,
         Luków,
         Warszawa,

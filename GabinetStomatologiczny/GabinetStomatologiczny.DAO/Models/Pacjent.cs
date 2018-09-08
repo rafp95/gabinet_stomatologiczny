@@ -48,11 +48,11 @@ namespace GabinetStomatologiczny.DAO.Models
         [RegularExpression(@"^\d{2}-\d{3}$",ErrorMessage = "Podany kod pocztowy jest nie poprawny")]
         public string Kod { get; set; }
         public string Ulica { get; set; } 
-        public Wojewodztwo Wojewodztwo { get; set; }
+        public Wojewodztwo? Wojewodztwo { get; set; }
         public string Kraj { get; set; }
 
         [Display(Name = "Odział NFZ")]
-        public OddzialNfz OdzialNfz { get; set; }
+        public OddzialNfz? OdzialNfz { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data rejestracji")]

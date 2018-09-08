@@ -216,6 +216,14 @@
     <Compile Include="Migrations\201809050835598_removePacjentIdProp.Designer.cs">
       <DependentUpon>201809050835598_removePacjentIdProp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809081307493_enumFieldPacjent.cs" />
+    <Compile Include="Migrations\201809081307493_enumFieldPacjent.Designer.cs">
+      <DependentUpon>201809081307493_enumFieldPacjent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809081311544_plecRemove__________.cs" />
+    <Compile Include="Migrations\201809081311544_plecRemove__________.Designer.cs">
+      <DependentUpon>201809081311544_plecRemove__________.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -313,6 +321,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809050835598_removePacjentIdProp.resx">
       <DependentUpon>201809050835598_removePacjentIdProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809081307493_enumFieldPacjent.resx">
+      <DependentUpon>201809081307493_enumFieldPacjent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809081311544_plecRemove__________.resx">
+      <DependentUpon>201809081311544_plecRemove__________.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,23 +8,19 @@
 <h2>Zabiegi</h2>
 
 @if (User.IsInRole("Pacjent") &&
-    Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() > 0)
+                Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() > 0)
 {
     <div style="margin-bottom: 20px;">
         Genruj PDF :
-        <a href="@Url.Action("/RaportPdf")"  target="_blank" class="btn btn-success">
+        <a href="@Url.Action("/RaportPdf")" target="_blank" class="btn btn-success">
             <span class="glyphicon glyphicon-print"></span> Generuj raport
         </a>
     </div>
 }
 
 @if (User.IsInRole("Administrator")
-     || User.IsInRole("Lekarz"))
+                 || User.IsInRole("Lekarz"))
 {
-    <p>
-        @Html.ActionLink("Dodaj zabieg", "Create", null, new { @class = "btn btn-primary dodajNowyZabieg" })
-    </p>
-
     <div class="form-group">
         <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
             <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextZabieg"></span>

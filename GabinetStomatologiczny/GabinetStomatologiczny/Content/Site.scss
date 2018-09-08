@@ -343,10 +343,10 @@ span.field-validation-error {
 /*center form on smal screen*/
 @media(max-width: 768px){
     div.body-content form:not(.wyszukiwarka){
-        width: 300px;
-        text-align: center;
-        margin-left: auto;
-        margin-right:auto;
+       display: table;
+       margin: 0 auto;
+       width: 300px;
+       text-align: center;
     }
 }
 /*end center form*/

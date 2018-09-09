@@ -17,29 +17,19 @@ div polygon:hover, path:hover {
 /*end tooth model*/
 /*form center on fullscreen*/
 div.centerPage {
-  display: flex;
-  justify-content: center;
-  min-width: 100%; }
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto; }
 
-div.form-horizontal div.form-group .control-label {
-  display: flex;
-  justify-content: flex-end; }
+.form-horizontal .control-label {
+  width: 100%;
+  text-align: left;
+  margin-left: -15px; }
 
-/*end form center on fullscreen*/
-/*label position*/
-div.position-label .control-label {
-  padding-top: 0px; }
+div.zabiegAddEdit {
+  min-width: 100%;
+  margin-left: auto;
+  margin-right: auto; }
 
-/*label position*/
 /*form center on small screen*/
-@media (max-width: 1024px) {
-  div.centerPage div.form-group label.col-md-2 {
-    justify-content: center; }
-  div.centerPage div.form-group div.col-md-10 {
-    min-width: 280px;
-    justify-content: center; }
-  div.formZabeig h2, div.formZabeig h4 {
-    text-align: center; } }
-
-/*end form center on small screen*/
 

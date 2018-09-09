@@ -285,8 +285,7 @@ span.field-validation-error {
   div.body-content form:not(.wyszukiwarka) {
     display: table;
     margin: 0 auto;
-    width: 300px;
-    text-align: center; } }
+    width: 300px; } }
 
 /*end center form*/
 

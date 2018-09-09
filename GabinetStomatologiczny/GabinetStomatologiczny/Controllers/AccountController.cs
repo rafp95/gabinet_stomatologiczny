@@ -82,6 +82,12 @@ namespace GabinetStomatologiczny.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Login acount
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         //
         // POST: /Account/Login
         [HttpPost]
@@ -93,7 +99,16 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return View(model);
             }
-            
+
+            //var user = UserManager.Users.Where(u => u.UserName == model.Email).SingleOrDefault();
+            //if (user != null)
+            //{
+            //    if (user.LockoutEnabled)
+            //    {
+            //        return View("Lockout");
+            //    }
+            //}
+           
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);

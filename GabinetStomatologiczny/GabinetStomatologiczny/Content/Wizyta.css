@@ -29,8 +29,7 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
 div.body-content form:not(.wyszukiwarka) {
   display: table;
   margin: 0 auto;
-  width: 300px;
-  text-align: center; }
+  width: 300px; }
 
 /*end center form*/
 .modal-dialog {

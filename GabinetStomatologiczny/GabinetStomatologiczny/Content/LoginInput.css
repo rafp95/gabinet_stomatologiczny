@@ -64,4 +64,14 @@ span.control-label span.glyphicon:hover {
     opacity: 1; } }
 
 /*End animation page content*/
+/*hide loader i*/
+i.loginSpinner {
+  opacity: 0; }
+
+/*end hide loader i*/
+/*div list error page text*/
+div.validation-summary-errors ul li {
+  text-align: left; }
+
+/*end div list error page */
 

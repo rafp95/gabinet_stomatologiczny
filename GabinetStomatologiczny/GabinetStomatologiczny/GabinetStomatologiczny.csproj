@@ -721,9 +721,10 @@
     <Content Include="Content\script\AutoComplSearchWizyta.js" />
     <Content Include="Content\script\Chart.js" />
     <Content Include="Content\script\FormatMask.js" />
-    <Content Include="Content\script\GoToTop.js" />
+    <Content Include="Content\script\GlobalCustomScript.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />
     <Content Include="Content\script\AutoComplete.js" />
+    <Content Include="Content\script\ButtomSpinner.js" />
     <Content Include="Content\script\ModelZebow.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <None Include="Content\SilaHasla.scss" />

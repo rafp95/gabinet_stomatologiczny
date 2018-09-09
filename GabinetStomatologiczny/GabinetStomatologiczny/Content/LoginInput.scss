@@ -1,7 +1,25 @@
-﻿.loginForm {
+﻿div.wysrodkowanieLoginForm{
+    display: flex;
+    min-height: 70vh;
+    justify-content: center;
+    align-items: center;
+}
+
+div.wysrodkowanieLoginForm::after{
+    display: table;
+    content: "";
+    clear: both;
+    margin-bottom: 100px;
+}
+
+div.wysrodkowanieLoginForm div.loginForm{
+    max-width: 400px;
+}
+
+div.loginForm {
     box-shadow: 2px 4px 4px rgba(0,0,0,0.16),2px 2px 2px 0 rgba(0,0,0,0.12) !important;
     padding: 10px 10px;
-    position: relative;
+     text-align: center;
     -webkit-animation-name: animatebottom;
     -webkit-animation-duration: 1s;
     animation-name: animatebottom;
@@ -29,12 +47,6 @@ span.control-label span.glyphicon:hover {
 
 /*center form*/
 
-div.wysrodkowanieLoginForm {
-    width: 100%;
-    margin: auto;
-    margin-top: 6%;
-    text-align: left;
-}
 
 div.wysrodkowanieLoginForm > div > h2 {
     text-align: center;
@@ -57,18 +69,33 @@ div.wysrodkowanieLoginForm > div > h2 {
 /* Add animation to "page content" */
 
 @-webkit-keyframes animatebottom {
- from{ opacity:0 } 
-  to{ opacity:1 }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
-@-moz-keyframes animatebottom { 
-  from{ opacity:0 } 
-  to{ opacity:1 }
+@-moz-keyframes animatebottom {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
-@keyframes animatebottom { 
-  from{ opacity:0 } 
-  to{ opacity:1 }
+@keyframes animatebottom {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /*End animation page content*/

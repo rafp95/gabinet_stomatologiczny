@@ -52,7 +52,6 @@
             console.log(size);
         }
     });
-    //Aktualna data do sprawdzania czy wprowadzona data nie jest wcześniejsza
 
     //Get all events
     var events = [];

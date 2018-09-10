@@ -74,7 +74,7 @@
                         phone: v.p != null ? v.p.NrTelefonu : null,
                         email: v.p != null ? v.p.Email : null,
                         activeUser: v.p != null ? v.p.activeUser : null,
-                        role: v.p != null ?  v.p.role : null
+                        role: v.p != null ? v.p.role : null
                     });
                 })
                 GenerateCalender(events);
@@ -134,7 +134,7 @@
                                append("<div> <b>Data </b> " + calEvent.start.format("DD-MM-YYYY") + "</div>").
                                append("<div> <b>Tel:</b> " + tel + "</div>");
                 if (calEvent.activeUser === calEvent.email ||
-                    calEvent.role === "Administrator" || 
+                    calEvent.role === "Administrator" ||
                     calEvent.role === "Lekarz") {
                     $('#btnEdit').show();
                     $('#btnDelete').show();
@@ -206,7 +206,7 @@
         czyscSmsInput();
         ErorMessage();
         $("#inputDo").val('+48' + getPhoneNumber());
-        $("#inputWiadomosc").val("Przypomnienie o wizycie dnia "  + selectedEvent.start.format("DD-MMM-YYYY HH:mm"));
+        $("#inputWiadomosc").val("Przypomnienie o wizycie dnia " + selectedEvent.start.format("DD-MMM-YYYY HH:mm"));
         buttonInfo($("#btnSmsSend"), "Wyślij");
         $("#myModalSendSms").modal();
     });
@@ -224,11 +224,11 @@
             $("#errorSmsTo").text("Pole wymagane").css("color", "red");
             return;
         } else if (data.text.length === 0) {
-            $("#inputWiadomosc").css({'border' : '1px solid red', 'background' : 'pink'});
+            $("#inputWiadomosc").css({ 'border': '1px solid red', 'background': 'pink' });
             $("#errorSmsWiadom").text("Pole wymagane").css("color", "red");;
             return;
         }
-        
+
         sendSmsToApi(data);
 
         buttonInfo($("#btnSmsSend"), "<div class='btnSmsSend' style='float:left; '>Wysyłanie </div> <div class='loader' style='float:left;'></div>");
@@ -252,7 +252,7 @@
         let phone = selectedEvent.phone.trim();
         let pomPhone = '';
         for (var i = 0; i < phone.length; i++) {
-            
+
             if (phone.charAt(i) != '-') {
                 pomPhone += phone.charAt(i);
             }
@@ -319,7 +319,7 @@
         if (selectedEvent != null) {
             $('#hdEventID').val(selectedEvent.eventID);
             $('#txtStart').val(selectedEvent.start.format('DD.MM.YYYY HH:mm'));
-            $('#tytul').length > 0 ?  $('#tytul').val(selectedEvent.title) : "";
+            $('#tytul').length > 0 ? $('#tytul').val(selectedEvent.title) : "";
         }
         $('#myModal').modal('hide');
         $('#myModalSave').modal();
@@ -337,20 +337,20 @@
         //check hours is empty
         for (var i = 0; i < events.length; i++) {
             if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
-                $("#txtStart").css({'border': '1px solid red','background': 'pink'}).parent().
+                $("#txtStart").css({ 'border': '1px solid red', 'background': 'pink' }).parent().
                 after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
                 return;
             }
-            
+
         }
         //end check hours
 
         //Check date and time
         var now = moment(new Date(), "DD-MM-YYYY HH:mm");
-        var check = ( moment(new Date(now), "DD-MM-YYYY HH:mm") <
-            moment( new Date(clickTime), "DD-MM-YYYY HH:mm") &&
-            ( clickTime.format("HH:mm") >= minTime &&
-             clickTime.format("HH:mm") < maxTime ))?
+        var check = (moment(new Date(now), "DD-MM-YYYY HH:mm") <
+            moment(new Date(clickTime), "DD-MM-YYYY HH:mm") &&
+            (clickTime.format("HH:mm") >= minTime &&
+             clickTime.format("HH:mm") < maxTime)) ?
         true : false;
 
         if (!check) {

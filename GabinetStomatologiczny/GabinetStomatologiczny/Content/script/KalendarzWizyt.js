@@ -7,28 +7,9 @@
     //Czas
 
     pokazAktualnyCzas();
-
-    //Mechanizm autopodpowiedzi
-    var setupAutoComplete = function () {
-        var input = $("#searchQuery");
-
-        var options = {
-            source: input.attr("data-autocomplete-source"),
-            select: function (event, ui) {
-                input.val(ui.item.label);
-                var form = input.parents("form:first");
-                form.submit();
-            }
-        };
-
-        input.autocomplete(options);
-    };
-    setupAutoComplete();
-    //Koniec autopodpowiedzi
-
     //Czyszczenie
 
-    $("input[type=text]").bind('click keyup', function (event) {
+    $("input[type=text]").bind('click keyup', function () {
         szukajDane("");
     });
 
@@ -46,8 +27,6 @@
         } else {
             $("span.kasujText").css("display", "none");
         }
-
-        event.preventDefault();
     }
 
     function czyscText() {

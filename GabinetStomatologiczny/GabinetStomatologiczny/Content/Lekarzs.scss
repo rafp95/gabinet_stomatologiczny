@@ -1,21 +1,21 @@
 ﻿
 @media only screen and (max-width: 800px) {
 
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
-		display: block; 
-	}
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
 
-    table tr:first-child{
+    table tr:first-child {
         display: none;
     }
 
-	tr { 
-        border: 1px solid #ccc; 
+    tr {
+        border: 1px solid #ccc;
         margin-bottom: 10px;
-	}
+    }
 
-	/*
+    /*
 	Label the data
 	*/
     td:nth-of-type(1):before {
@@ -26,8 +26,8 @@
         content: "Nazwisko : ";
     }
 
-    td:nth-of-type(3):before{
-       content: "Zdjęcie : ";
+    td:nth-of-type(3):before {
+        content: "Zdjęcie : ";
     }
 
     td:nth-of-type(4):before {
@@ -41,11 +41,10 @@
     td:nth-of-type(6) {
         content: "Akcja : ";
     }
-    
-    td:hover{
+
+    td:hover {
         background-color: azure;
     }
-
 }
 
 /*Ui z index*/
@@ -64,17 +63,17 @@ div.ladowanie {
     position: fixed;
     width: 50px;
     height: 50px;
-    left: calc(50% - 20px);
-    top: calc(50%);
+    margin: -25px 0 0 -25px;
+    left: 50%;
+    top: 50%;
     transform: translate(-50%,-50%);
     animation: rotate 0.8s infinite linear;
     border: 10px solid #3498db;
     border-right-color: transparent;
     border-radius: 50%;
-    overflow: hidden;
     box-sizing: border-box;
     z-index: 99999999;
-    display: none;   
+    display: none;
 }
 
 

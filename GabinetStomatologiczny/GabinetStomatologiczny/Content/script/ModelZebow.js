@@ -37,6 +37,7 @@
             $(this).on('click', function (e) {
                 e.preventDefault();
                 clicks++;
+                console.log('kliknięcia ' +  clicks);
                 if (clicks == 1) {
                     timer = setTimeout(() => {
                         $(this).css('fill', 'red');
@@ -68,7 +69,9 @@
             url: "/Zabiegs/SaveTooth",
             data: data,
             success: function (data) {
-                console.log('Zapisano');
+                if (data.status) {
+                    console.log('Zapisano');
+                }
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
@@ -86,7 +89,9 @@
             url: "/Zabiegs/DeleteTooth",
             data: data,
             success: function (data) {
-                console.log('Zapisano');
+                if (data.status) {
+                    console.log('Zapisano');
+                }
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').

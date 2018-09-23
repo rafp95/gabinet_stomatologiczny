@@ -284,14 +284,17 @@
                     if (data.status) {
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
-                        zapisInfo.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                        zapisInfo.html("Zapisano zmiany").fadeIn('slow').
+                        append('<i class="fa fa-spinner fa-spin"></i>').
+                        delay(1000).fadeOut('slow');
                         $('#myModal').modal('hide');
                     }
                 },
                 error: function () {
-                    zapisInfo.text("Wystąpił problem......").
-                        css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
-                        fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                    zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
+                    append('<i class="fa fa-spinner fa-spin"></i>').
+                    css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
+                    fadeIn('slow').delay(1000).fadeOut('slow');
                 }
             })
         }
@@ -388,7 +391,8 @@
                 if (data.status) {
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
-                    zapisInfo.html("Zapisano zmiany").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                    zapisInfo.html("Zapisano zmiany ").append('<i class="fa fa-spinner fa-spin"></i>').
+                    fadeIn('slow').delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
                 } else {
                     $('#myModalSave').modal('hide');
@@ -396,26 +400,13 @@
                 }
             },
             error: function () {
-                zapisInfo.text("Wystąpił problem").css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").fadeIn('slow').append(appendText()).delay(1000).fadeOut('slow');
+                zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
+                append('<i class="fa fa-spinner fa-spin"></i>').
+                css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
+                fadeIn('slow').delay(1000).fadeOut('slow');
             }
         })
     }
-
-    //append text
-
-    function appendText() {
-        var interval = setInterval(() => {
-            zapisInfo.append(".");
-            if (interval > 200) {
-                clearInterval(interval);
-                console.log(interval);
-                return;
-            }
-        }, 500);
-
-    }
-
-    //end append text
 
     //Change text in button
     function buttonInfo(button, text) {

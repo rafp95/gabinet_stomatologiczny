@@ -32,4 +32,60 @@ div.zabiegAddEdit {
   margin-right: auto; }
 
 /*form center on small screen*/
+/*Preloader*/
+div.ladowanie {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  left: calc(50% - 20px);
+  top: calc(50%);
+  transform: translate(-50%, -50%);
+  animation: rotate 0.8s infinite linear;
+  border: 10px solid #3498db;
+  border-right-color: transparent;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 99999999;
+  display: none; }
+
+@-moz-keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+/*End loading*/
+/*Info save to database*/
+div#saveDatabaseInfo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateY(-50%, -50%);
+  -o-transform: translateY(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  /* IE 9 */
+  -webkit-transform: translate(-50%, -50%);
+  transform: translateY(-50%, -50%);
+  /* Chrome, Safari, Opera */
+  width: 50%;
+  z-index: 99999999;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  display: none; }
+
+/* End info  save to database*/
 

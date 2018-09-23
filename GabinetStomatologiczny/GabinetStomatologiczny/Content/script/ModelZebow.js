@@ -1,8 +1,13 @@
 ﻿$(function () {
 
-    var tooth = $("polygon,path");
+    let ladowanie = $("div.ladowanie");
+    let zapisInfo = $("div#saveDatabaseInfo");
+
+    ladowanie.css('display', 'block');
+
+    let tooth = $("polygon,path");
     //Get all tooth using ajax
-    var tab = [];
+    let tab = [];
     GetAllTooth();
     function GetAllTooth() {
         tab = [];
@@ -18,6 +23,7 @@
                     });
                 })
                 SetTooth();
+                ladowanie.css('display', 'none');
             }
         });
     }
@@ -61,7 +67,12 @@
             url: "/Zabiegs/SaveTooth",
             data: data,
             success: function (data) {
-                console.log(data.status);
+                console.log('Zapisano');
+            }, error: function () {
+                zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
+                append('<i class="fa fa-spinner fa-spin"></i>').
+                css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
+                fadeIn('slow').delay(1000).fadeOut('slow');
             }
         });
     }
@@ -74,7 +85,12 @@
             url: "/Zabiegs/DeleteTooth",
             data: data,
             success: function (data) {
-                console.log(data.status);
+                console.log('Zapisano');
+            }, error: function () {
+                zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
+                append('<i class="fa fa-spinner fa-spin"></i>').
+                css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
+                fadeIn('slow').delay(1000).fadeOut('slow');
             }
         });
     }
@@ -92,5 +108,4 @@
         });
     }
     //end set tooth color
-
 });

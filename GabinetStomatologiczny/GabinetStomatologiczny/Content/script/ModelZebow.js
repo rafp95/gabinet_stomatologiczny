@@ -32,9 +32,10 @@
     //set tooth
     //
     function SetTooth() {
-        let clicks = 0, timer = null, deley = 300;
+        let clicks = 0, timer = null, deley = 700;
         tooth.each(function (index) {
             $(this).on('click', function (e) {
+                e.preventDefault();
                 clicks++;
                 if (clicks == 1) {
                     timer = setTimeout(() => {

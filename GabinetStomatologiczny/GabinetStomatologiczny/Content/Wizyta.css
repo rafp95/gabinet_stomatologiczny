@@ -72,12 +72,14 @@ div.ladowanie {
 /*End preloader*/
 /*Loading*/
 div.loader {
-  height: 18px;
   width: 18px;
-  animation: rotate 0.8s infinite linear;
-  border: 2px solid white;
-  border-right-color: transparent;
+  height: 18px;
+  -webkit-animation: rotate .8s linear infinite;
+  /* Safari */
+  animation: rotate .8s linear infinite;
   border-radius: 50%;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
   overflow: hidden; }
 
 @-moz-keyframes rotate {

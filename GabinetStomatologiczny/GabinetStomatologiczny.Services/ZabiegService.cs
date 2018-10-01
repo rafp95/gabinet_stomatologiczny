@@ -2,6 +2,7 @@
 using GabinetStomatologiczny.DAO.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace GabinetStomatologiczny.Services
     public interface IZabiegService
     {
         IQueryable<object> GetAllTooth(int id);
-        Pacjent GetPacjentFullName(int id);
+        Task <Pacjent> GetPacjentById(int id);
         void SaveTooth(Zab zab,int userID);
         void DeleteTooth(Zab zab, int userID);
     }
@@ -24,29 +25,28 @@ namespace GabinetStomatologiczny.Services
             this._db = db;
         }
 
-        public void DeleteTooth(Zab zab, int userID)
+        public async void DeleteTooth(Zab zab, int userID)
         {
             var idWizyta = _db.Wizyta.FirstOrDefault(_ => _.Pacjent.ID == userID).ID;
             var idZabieg = _db.Zabieg.FirstOrDefault(_ => _.Wizyta.ID == idWizyta).ID;
             Zab z = _db.Zab.FirstOrDefault(_ => _.IdTooth == zab.IdTooth);
             _db.Zab.Remove(z);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
         public IQueryable<object> GetAllTooth(int id)
         {
             var idWizyta = _db.Wizyta.First(_ => _.Pacjent.ID == id).ID;
             var tooth = _db.Zabieg.Where(_ => _.WizytaID == idWizyta && _.Wizyta.PacjentID == id).Select(_ => _.Zeby);
-
             return tooth;
         }
 
-        public Pacjent GetPacjentFullName(int id)
+        public async Task<Pacjent> GetPacjentById(int id)
         {
-           return _db.Pacjent.FirstOrDefault(_ => _.ID == id);
+            return await _db.Pacjent.FirstOrDefaultAsync(_ => _.ID == id);
         }
 
-        public void SaveTooth(Zab zab,int userID)
+        public async void SaveTooth(Zab zab,int userID)
         {
             var idWizyta = _db.Wizyta.First(_ => _.Pacjent.ID == userID).ID;
             var tooth = _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta).Select(_ => _.Zeby);
@@ -55,7 +55,7 @@ namespace GabinetStomatologiczny.Services
             zab.ZabiegID = idZabieg;
 
             _db.Zab.Add(zab);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
     }
 }

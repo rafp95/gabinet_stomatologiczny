@@ -12,6 +12,7 @@ using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Utils;
 using Rotativa;
 using GabinetStomatologiczny.Services;
+using System.Threading.Tasks;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -137,10 +138,10 @@ namespace GabinetStomatologiczny.Controllers
             return View(zabieg);
         }
 
-        public ActionResult ToothModel()
+        public async Task<ActionResult> ToothModel()
         {
             int id = (int)Session["user"];
-            Pacjent p = _zabiegService.GetPacjentFullName(id);
+            Pacjent p = await _zabiegService.GetPacjentById(id);
             ViewBag.User = p.Imie + " " + p.Nazwisko;
             return View();
         }
@@ -155,28 +156,28 @@ namespace GabinetStomatologiczny.Controllers
             return new JsonResult{ Data = tooth, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
 
-        public ActionResult SaveTooth(Zab zab)
+        public async Task<ActionResult> SaveTooth(Zab zab)
         {
            
             bool status = false;
             int id = (int)Session["user"];
             if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
             {
-                _zabiegService.SaveTooth(zab, id);
+                await Task.Run(() => _zabiegService.SaveTooth(zab, id));
                 status = true;
             }
 
             return new JsonResult { Data = new { status },JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        public ActionResult DeleteTooth(Zab zab)
+        public async Task<ActionResult> DeleteTooth(Zab zab)
         {
 
             bool status = false;
             int id = (int)Session["user"];
             if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id))
             {
-                _zabiegService.DeleteTooth(zab, id);
+                await Task.Run(() => _zabiegService.DeleteTooth(zab, id));
                 status = true;
             }
             return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };

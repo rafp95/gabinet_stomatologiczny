@@ -60,7 +60,7 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult Sugestions(Sugestion sugestion)
         {
-            var list = _sugestionService.SugestionZabeg(sugestion);
+            var list = _sugestionService.SugestionZabeg(sugestion).Distinct();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

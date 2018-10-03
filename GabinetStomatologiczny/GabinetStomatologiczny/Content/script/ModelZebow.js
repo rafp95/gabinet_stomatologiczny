@@ -33,7 +33,7 @@
     //set tooth
     //
     function SetTooth() {
-        let clicks = 0, timer = null, deley = 300;
+        let clicks = 0, timer = null, deley = 200;
         tooth.each(function (index) {
             $(this).on('click', function (e) {
                 e.preventDefault();

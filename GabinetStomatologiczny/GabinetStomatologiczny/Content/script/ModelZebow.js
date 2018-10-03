@@ -22,6 +22,7 @@
                         });
                     });
                 })
+                console.log('pobrano tab ' + tab.length);
                 SetTooth();
                 ladowanie.css('display', 'none');
             }
@@ -32,27 +33,33 @@
     //set tooth
     //
     function SetTooth() {
-        let clicks = 0, timer = null, deley = 700;
+        let clicks = 0, timer = null, deley = 300;
         tooth.each(function (index) {
             $(this).on('click', function (e) {
                 e.preventDefault();
                 clicks++;
-                console.log('kliknięcia ' +  clicks);
+                console.log('kliknięcia ' + clicks);
                 if (clicks == 1) {
                     timer = setTimeout(() => {
-                        $(this).css('fill', 'red');
                         let tooth = {
                             idTooth: $(this).attr('id')
                         };
-                        addTooth(tooth);
+                        if (!idToohtExist(tooth.idTooth)) {
+                            //$(this).css('fill', 'red');
+                            ladowanie.css('display', 'block');
+                            addTooth(tooth);
+                        }
                         clicks = 0;
                     }, deley)
                 } else {
-                    $(this).css('fill', '');
                     let tooth = {
                         idTooth: $(this).attr('id')
                     };
-                    deleteTooth(tooth);
+                    if (idToohtExist(tooth.idTooth)) {
+                        $(this).css('fill', '');
+                        ladowanie.css('display', 'block');
+                        deleteTooth(tooth);
+                    }
                     clearTimeout(timer);
                     clicks = 0;
                 }
@@ -71,7 +78,9 @@
             success: function (data) {
                 if (data.status) {
                     console.log('Zapisano');
+                    GetAllTooth();
                 }
+                ladowanie.css('display', 'none');
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
@@ -91,7 +100,9 @@
             success: function (data) {
                 if (data.status) {
                     console.log('Zapisano');
+                    GetAllTooth();
                 }
+                ladowanie.css('display', 'none');
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
@@ -114,4 +125,14 @@
         });
     }
     //end set tooth color
+    //idTooth exist
+    function idToohtExist(id) {
+        for (var i = 0; i < tab.length; i++) {
+            if (tab[i].idT === id) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //end idTooth exist
 });

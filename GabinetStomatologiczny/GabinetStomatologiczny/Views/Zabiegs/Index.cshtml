@@ -16,9 +16,7 @@
             <span class="glyphicon glyphicon-print"></span> Generuj raport
         </a>
     </div>
-}
-
-@if (User.IsInRole("Administrator")
+}else if (User.IsInRole("Administrator")
                  || User.IsInRole("Lekarz"))
 {
     <div class="form-group">

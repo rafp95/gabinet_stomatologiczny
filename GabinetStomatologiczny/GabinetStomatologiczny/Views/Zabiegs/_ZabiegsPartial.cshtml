@@ -42,48 +42,30 @@
                     new { @class = @ViewBag.ActiveClass == RodzajSort.cenaZ_desc ? "active" : "", title = "Malejąco" })
                     </td>
                 </tr>
-                @if (Model.Where(m => m.Wizyta.Pacjent.Email == User.Identity.Name).ToList().Count() == 0 && User.IsInRole("Pacjent"))
+
+                @foreach (var item in Model)
                 {
                     <tr>
-                        <td colspan="3" style="text-align:center;">
-                            Nie masz zdefiniowanych zabiegów
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
                         </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypZabiegu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                        </td>
+                        @if (User.IsInRole("Lekarz"))
+                        {
+                            <td>
+                                @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title = "Edycja" }) |
+                                @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success  glyphicon glyphicon-align-justify", @title = "Więcej" }) |
+                                @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", @title = "Kasuj" })
+                            </td>
+                        }
                     </tr>
                 }
-                else
-                {
-                    foreach (var item in Model)
-                    {
-                        if (User.IsInRole("Administrator")
-                            || User.IsInRole("Lekarz")
-                            || User.Identity.Name == item.Wizyta.Pacjent.Email)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TypZabiegu)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CenaZabiegu)
-                                </td>
-                                @if (User.IsInRole("Lekarz"))
-                                {
-                                    <td>
-                                        @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title = "Edycja" }) |
-                                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success  glyphicon glyphicon-align-justify", @title = "Więcej" }) |
-                                        @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", @title = "Kasuj" })
-                                    </td>
-                                }
-                            </tr>
-                        }
-                    }
-                }
-
             </table>
-
-            <br />
 
             <div id="pagination-postion">
                 <div class="count">

@@ -13,6 +13,7 @@ using GabinetStomatologiczny.Utils;
 using Rotativa;
 using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -48,7 +49,7 @@ namespace GabinetStomatologiczny.Controllers
             }
 
             ViewBag.CurrentFilter = zabiegSort.searchString;
-            var zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort);
+            var zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort,(ClaimsIdentity)User.Identity);
             ViewBag.ActiveClass = this._sortZabiegService.RodzajSort;
 
             if (Request.IsAjaxRequest())

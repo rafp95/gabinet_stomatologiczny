@@ -50,33 +50,37 @@
                         </td>
                     </tr>
                 }
-                @foreach (var item in Model)
+                else
                 {
-                    if (User.IsInRole("Administrator")
-                        || User.IsInRole("Lekarz")
-                        || User.Identity.Name == item.Wizyta.Pacjent.Email)
+                    foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TypZabiegu)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CenaZabiegu)
-                            </td>
-                            @if (User.IsInRole("Lekarz"))
-                            {
+                        if (User.IsInRole("Administrator")
+                            || User.IsInRole("Lekarz")
+                            || User.Identity.Name == item.Wizyta.Pacjent.Email)
+                        {
+                            <tr>
                                 <td>
-                                    @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title = "Edycja" }) |
-                                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success  glyphicon glyphicon-align-justify", @title = "Więcej" }) |
-                                    @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", @title = "Kasuj" })
+                                    @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
                                 </td>
-                            }
-                        </tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TypZabiegu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                                </td>
+                                @if (User.IsInRole("Lekarz"))
+                                {
+                                    <td>
+                                        @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title = "Edycja" }) |
+                                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success  glyphicon glyphicon-align-justify", @title = "Więcej" }) |
+                                        @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", @title = "Kasuj" })
+                                    </td>
+                                }
+                            </tr>
+                        }
                     }
                 }
+
             </table>
 
             <br />
@@ -86,7 +90,7 @@
                     Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
                 </div>
                 @Html.PagedListPager(Model, page => Url.Action("Index",
-                        new { page,sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
             </div>
 
             <div class="text-center">
@@ -103,6 +107,6 @@
 }
 else
 {
-    <div> Nic nie znaleziono</div>
+    <div class="alert alert-info"> Nie masz zdefiniowanych zabiegów</div>
 }
 

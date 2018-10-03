@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,21 +14,23 @@ namespace GabinetStomatologiczny.Services
 {
     public interface ISortZabiegsService
     {
-        IEnumerable<Zabieg> SortAndPaginate(PaginationType ps);
+        IEnumerable<Zabieg> SortAndPaginate(PaginationType ps, ClaimsIdentity user);
         RodzajSort RodzajSort { get; }
     }
 
     public class SortZabiegsService : ISortZabiegsService
     {
         private readonly GabinetContext _db;
+        private readonly IUserRoleService _userRole;
 
-        public SortZabiegsService(GabinetContext db)
+        public SortZabiegsService(GabinetContext db, IUserRoleService userRole)
         {
             this._db = db;
+            this._userRole = userRole;
         }
         public RodzajSort RodzajSort { get; private set; } = RodzajSort.title_asc;
 
-        public IEnumerable<Zabieg> SortAndPaginate(PaginationType ps)
+        public IEnumerable<Zabieg> SortAndPaginate(PaginationType ps, ClaimsIdentity user)
         {
             if (!string.IsNullOrEmpty(ps.searchString))
             {
@@ -35,6 +38,13 @@ namespace GabinetStomatologiczny.Services
             }
 
             var zabieg = _db.Zabieg.Include(z => z.Wizyta).Include(p => p.Wizyta.Pacjent);
+
+            string role = this._userRole.GetUserRole(user);
+
+            if (role != null && role == "Pacjent")
+            {
+                zabieg = zabieg.Where(_ => _.Wizyta.Pacjent.Email == user.Name);
+            }
 
             if (!string.IsNullOrEmpty(ps.searchString))
             {

@@ -33,33 +33,34 @@
     //set tooth
     //
     function SetTooth() {
-        let clicks = 0, timer = null, deley = 200;
+        let clicks = 0, timer = null, deley = 500;
         tooth.each(function (index) {
             $(this).on('click', function (e) {
                 e.preventDefault();
                 clicks++;
                 console.log('kliknięcia ' + clicks);
+                ladowanie.css('display', 'block');
                 if (clicks == 1) {
                     timer = setTimeout(() => {
                         let tooth = {
                             idTooth: $(this).attr('id')
                         };
-                        if (!idToohtExist(tooth.idTooth)) {
-                            //$(this).css('fill', 'red');
-                            ladowanie.css('display', 'block');
+                        //if (!idToohtExist(tooth.idTooth)) {
+                            $(this).css('fill', 'red');
                             addTooth(tooth);
-                        }
+                            ladowanie.css('display', 'none');
+                        //}
                         clicks = 0;
                     }, deley)
                 } else {
                     let tooth = {
                         idTooth: $(this).attr('id')
                     };
-                    if (idToohtExist(tooth.idTooth)) {
+                    //if (idToohtExist(tooth.idTooth)) {
                         $(this).css('fill', '');
-                        ladowanie.css('display', 'block');
                         deleteTooth(tooth);
-                    }
+                        ladowanie.css('display', 'none');
+                    //}
                     clearTimeout(timer);
                     clicks = 0;
                 }
@@ -78,7 +79,7 @@
             success: function (data) {
                 if (data.status) {
                     console.log('Zapisano');
-                    GetAllTooth();
+                    //GetAllTooth();
                 }
                 ladowanie.css('display', 'none');
             }, error: function () {
@@ -100,9 +101,8 @@
             success: function (data) {
                 if (data.status) {
                     console.log('Zapisano');
-                    GetAllTooth();
+                    //GetAllTooth();
                 }
-                ladowanie.css('display', 'none');
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').

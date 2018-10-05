@@ -12,7 +12,7 @@ function silaHasla(pass, checkInfo) {
 
     pass.on('keyup', function () {
 
-        if ($(this).val().length <= 3) {
+        if ($(this).val().length <= 5) {
             checkInfo.text("Bardzo słabe");
             checkInfo.css("color", "red");
             return;

@@ -563,7 +563,6 @@
     </Content>
     <Content Include="Content\script\AutoComplSearchWizyta.js" />
     <Content Include="Content\script\Chart.js" />
-    <Content Include="Content\script\FormatMask.js" />
     <Content Include="Content\script\GlobalCustomScript.js" />
     <Content Include="Content\script\KalendarzWizyt.js" />
     <Content Include="Content\script\AutoComplete.js" />

@@ -43,19 +43,19 @@ namespace GabinetStomatologiczny.Services
             return this._db.Pacjent.ToList();
         }
 
-        public void Edit(Pacjent pacjent)
+        public async void Edit(Pacjent pacjent)
         {
-            pacjent.DataRejestracji = DateTime.Now;
+            pacjent.Plec = pacjentPlec(pacjent) ? Plec.Kobieta : Plec.Mężczyzna;
             this._db.Entry(pacjent).State = EntityState.Modified;
-            this._db.SaveChangesAsync();
+            await this._db.SaveChangesAsync();
         }
 
-        public void Remove(Pacjent pacjent)
+        public async void Remove(Pacjent pacjent)
         {
             if(pacjent != null)
             {
                 this._db.Pacjent.Remove(pacjent);
-                this._db.SaveChangesAsync();
+                await this._db.SaveChangesAsync();
             }
             
         }
@@ -63,7 +63,7 @@ namespace GabinetStomatologiczny.Services
 
         public Pacjent CreatePacjnt(Pacjent pacjent)
         {
-            pacjent.Plec = pacjentPlec(pacjent) ? pacjent.Plec = Plec.Kobieta : Plec.Mężczyzna;
+            pacjent.Plec = pacjentPlec(pacjent) ? Plec.Kobieta : Plec.Mężczyzna;
             Pacjent p = this._db.Pacjent.Add(pacjent);
             this._db.SaveChanges();
             return p;
@@ -76,7 +76,7 @@ namespace GabinetStomatologiczny.Services
 
         private bool pacjentPlec(Pacjent p)
         {
-            return p.Imie.ElementAt(p.Imie.Length - 1).Equals('A');
+            return char.ToLower(p.Imie.ElementAt(p.Imie.Length - 1)).Equals('a');
         }
     }
 }

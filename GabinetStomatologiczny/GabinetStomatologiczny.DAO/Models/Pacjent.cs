@@ -24,9 +24,8 @@ namespace GabinetStomatologiczny.DAO.Models
 
         public Plec Plec { get; set; }
 
-        [DataType(DataType.Date)]
         [UIHint("DateTimePicker")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "datetime2")]
         [Display(Name = "Data urodzenia")]
         [DatePacjent]
@@ -53,7 +52,7 @@ namespace GabinetStomatologiczny.DAO.Models
         [Display(Name = "Odział NFZ")]
         public OddzialNfz? OdzialNfz { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data rejestracji")]
         public DateTime DataRejestracji { get; set; }
 

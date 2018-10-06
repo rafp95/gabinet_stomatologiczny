@@ -6,17 +6,18 @@
 
 @Html.TextBox(
     string.Empty,
-    Model.HasValue ? Model.Value.ToString("yyyy-MM-dd") : string.Empty,
-    new { @id = uid, placeholder = "YYYY-MM-DD", autocomplete = "off" })
+    Model.HasValue ? Model.Value.ToString("dd.MM.yyyy") : string.Empty,
+    new { @id = uid, placeholder = "dd.mm.yyyy", autocomplete = "off" })
 <script type="text/javascript">
 
     function wypisz() {
         $("#@uid").datepicker(
            {
-               dateFormat: 'yy-mm-dd',
+               dateFormat: 'dd.mm.yy',
                yearRange: "-100:+0",
                changeMonth: true,
                changeYear: true,
+               selectOtherMonths: true,
                showAnim: 'slideDown'
            }
         ).addClass("form-control");

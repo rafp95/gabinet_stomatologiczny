@@ -86,12 +86,11 @@ namespace GabinetStomatologiczny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Imie,DrugieImie,Nazwisko,Pesel,Plec,DataUrodzenia,NrTelefonu,Email,Miejscowosc,Kod,Ulica,Wojewodztwo,Kraj,OdzialNfz,DataRejestracji")] Pacjent pacjent)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Imie,DrugieImie,Nazwisko,Pesel,Plec,DataUrodzenia,NrTelefonu,Email,Miejscowosc,Kod,Ulica,Wojewodztwo,Kraj,OdzialNfz,DataRejestracji")] Pacjent pacjent)
         {
             if (ModelState.IsValid)
             {
-                pacjent.DataRejestracji = DateTime.Now;
-                this.pacjentsService.CreatePacjnt(pacjent);
+                await Task.Run(() => this.pacjentsService.CreatePacjnt(pacjent));
                 return RedirectToAction("Index");
             }
 
@@ -119,11 +118,11 @@ namespace GabinetStomatologiczny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Imie,DrugieImie,Nazwisko,Pesel,Plec,DataUrodzenia,NrTelefonu,Email,Miejscowosc,Kod,Ulica,Wojewodztwo,Kraj,OdzialNfz,DataRejestracji")] Pacjent pacjent)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Imie,DrugieImie,Nazwisko,Pesel,Plec,DataUrodzenia,NrTelefonu,Email,Miejscowosc,Kod,Ulica,Wojewodztwo,Kraj,OdzialNfz,DataRejestracji")] Pacjent pacjent)
         {
             if (ModelState.IsValid)
             {
-                this.pacjentsService.Edit(pacjent);
+                await Task.Run(() => this.pacjentsService.Edit(pacjent));
                 TempData["editPacjent"] = "done";
                 return RedirectToAction("Index");
             }

@@ -36,7 +36,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
-                    title: { display: true, text: 'Statyski rejestracji / edycji pacjętów' },
+                    title: { display: true, text: 'Statyski rejestracji pacjętów' },
                     scales: {
                         xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
                         yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 5, beginAtZero: true } }]

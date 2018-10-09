@@ -11,11 +11,12 @@ div.wysrodkowanieLoginForm div.loginForm {
 div.loginForm {
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.16), 2px 2px 2px 0 rgba(0, 0, 0, 0.12) !important;
   padding: 10px 10px;
-  text-align: center;
   -webkit-animation-name: animatebottom;
   -webkit-animation-duration: 1s;
   animation-name: animatebottom;
   animation-duration: 1s; }
+  div.loginForm div.forgotPassword {
+    text-align: center; }
 
 div.wysrodkowanieLoginForm > div > h2 {
   text-align: center; }
@@ -74,4 +75,3 @@ div.validation-summary-errors ul li {
   text-align: left; }
 
 /*end div list error page */
-

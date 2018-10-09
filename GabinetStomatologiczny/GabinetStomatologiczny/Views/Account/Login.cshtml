@@ -7,7 +7,7 @@
 <div class="row wysrodkowanieLoginForm">
     <div class="col-sm-12 col-md-12 center-block loginForm modal-info">
         <h2>@ViewBag.Title.</h2>
-        <section id="loginForm">
+        <section>
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-12">
+                    <div class="col-md-12 forgotPassword">
                         @Html.ActionLink("Nie pamiętasz hasła?", "ForgotPassword")
                     </div>
                 </div>

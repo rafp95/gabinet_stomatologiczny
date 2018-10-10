@@ -72,9 +72,9 @@
                         // Make sure alignment settings are correct
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
-                        var padding = 1;
+                        var padding = -15;
                         var position = element.tooltipPosition();
-                        ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                        ctx.fillText(dataString, position.x, position.y - (fontSize /2) - padding);
                     });
                 }
             });

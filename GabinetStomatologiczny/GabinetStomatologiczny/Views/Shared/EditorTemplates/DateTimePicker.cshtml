@@ -6,14 +6,14 @@
 
 @Html.TextBox(
     string.Empty,
-    Model.HasValue ? Model.Value.ToString("dd.MM.yyyy") : string.Empty,
-    new { @id = uid, placeholder = "dd.mm.yyyy", autocomplete = "off" })
+    Model.HasValue ? Model.Value.ToString("yyyy.MM.dd") : string.Empty,
+    new { @id = uid, placeholder = "yyyy.mm.dd", autocomplete = "off" })
 <script type="text/javascript">
 
     function wypisz() {
         $("#@uid").datepicker(
            {
-               dateFormat: 'dd.mm.yy',
+               dateFormat: 'yy.mm.dd',
                yearRange: "-100:+0",
                changeMonth: true,
                changeYear: true,

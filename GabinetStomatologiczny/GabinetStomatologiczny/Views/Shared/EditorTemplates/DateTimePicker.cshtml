@@ -20,8 +20,18 @@
                selectOtherMonths: true,
                showAnim: 'slideDown'
            }
-        ).addClass("form-control");
+        ).addClass("form-control dataUrodzeniaPacjenta");
     }
     wypisz();
+
+    $(function () {
+
+        let error = $("input.dataUrodzeniaPacjenta");
+        error.bind('click focus blur keyup keydown keypress', function () {
+            if ($(this).hasClass('input-validation-error')) {
+                $(this).next().next().children().html('Data musi być poprawna');
+            }
+        })
+    });
 
 </script>

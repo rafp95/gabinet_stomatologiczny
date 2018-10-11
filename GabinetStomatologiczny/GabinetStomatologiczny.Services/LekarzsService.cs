@@ -21,7 +21,7 @@ namespace GabinetStomatologiczny.Services
         Lekarz Find(int? id);
         void Remove(Lekarz lekarz);
         void CreateLekarz(Lekarz lekarz);
-        HttpPostedFileBase SaveFile(HttpPostedFileBase file,Lekarz lekarz);
+        HttpPostedFileBase SaveFile(HttpPostedFileBase file, Lekarz lekarz);
     }
 
     public class LekarzsService : ILekarzService
@@ -73,16 +73,14 @@ namespace GabinetStomatologiczny.Services
             }
         }
 
-        public HttpPostedFileBase SaveFile(HttpPostedFileBase file,Lekarz lekarz)
+        public HttpPostedFileBase SaveFile(HttpPostedFileBase file, Lekarz lekarz)
         {
-            new Thread(() =>
+
+            if (file != null && file.ContentLength > 0)
             {
-                if (file != null && file.ContentLength > 0)
-                {
-                    lekarz.Zdjecie = System.Guid.NewGuid().ToString();
-                    lekarz.Zdjecie = file.FileName;
-                }
-            }).Start();
+                lekarz.Zdjecie = System.Guid.NewGuid().ToString();
+                lekarz.Zdjecie = file.FileName;
+            }
             return file;
         }
     }

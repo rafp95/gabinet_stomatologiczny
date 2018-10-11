@@ -86,16 +86,7 @@ namespace GabinetStomatologiczny.Controllers
         [HttpPost]
         public async Task<JsonResult> DeleteEvent(Wizyta w)
         {
-            var status = false;
-
-            var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
-            if (v != null)
-            {
-                db.Wizyta.Remove(v);
-                await db.SaveChangesAsync();
-                status = true;
-            }
-
+            var status = await this._wizytService.DeleteEvent(w);
             return new JsonResult { Data = new { status = status } };
         }
 

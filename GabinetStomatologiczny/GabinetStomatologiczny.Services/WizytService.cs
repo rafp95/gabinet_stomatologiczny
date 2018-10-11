@@ -16,6 +16,7 @@ namespace GabinetStomatologiczny.Services
     {
         Task<IEnumerable<object>> GetEvents(string searchQuery, bool isLogedin, string r, string u);
         Task <bool> SaveEvent(Wizyta w,string user);
+        Task<bool> DeleteEvent(Wizyta w);
     }
     public class WizytServie : IWizytService
     {
@@ -24,6 +25,20 @@ namespace GabinetStomatologiczny.Services
         public WizytServie(GabinetContext db)
         {
             this.db = db;
+        }
+
+        public async Task<bool> DeleteEvent(Wizyta w)
+        {
+            var status = false;
+
+            var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
+            if (v != null)
+            {
+                db.Wizyta.Remove(v);
+                await db.SaveChangesAsync();
+                status = true;
+            }
+            return status;
         }
 
         public async Task<IEnumerable<object>> GetEvents(string searchQuery, bool isLogedin, string r, string u)
@@ -55,6 +70,13 @@ namespace GabinetStomatologiczny.Services
             return events;
         }
 
+        /// <summary>
+        /// Save evnet
+        /// </summary>
+        /// <param name="w"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        #region Save event
         public async Task<bool> SaveEvent(Wizyta w, string user)
         {
             var status = false;
@@ -111,5 +133,6 @@ namespace GabinetStomatologiczny.Services
             }
             return status;
         }
+        #endregion
     }
 }

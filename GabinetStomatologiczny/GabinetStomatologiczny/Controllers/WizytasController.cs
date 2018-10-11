@@ -77,65 +77,14 @@ namespace GabinetStomatologiczny.Controllers
 
 
         [HttpPost]
-        public JsonResult SaveEvent(Wizyta w)
+        public async Task<JsonResult> SaveEvent(Wizyta w)
         {
-            var status = false;
-            try
-            {
-                if (w.ID > 0)
-                {
-                    var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
-                    if (v != null)
-                    {
-                        w.LekarzID = v.LekarzID;
-                        w.PacjentID = v.PacjentID;
-                        if (!string.IsNullOrEmpty(v.Tytul))
-                        {
-                            w.Tytul = v.Tytul;
-                        }
-                        var m = Mapper.Map<Wizyta, Wizyta>(w, v);
-                        if (string.IsNullOrEmpty(m.Tytul))
-                        {
-                            m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).
-                                Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
-                        }
-                       
-                        db.Entry(m).State = EntityState.Modified;
-                    }
-
-                }
-                else
-                {
-                    w.PacjentID = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.ID).FirstOrDefault();
-                    w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
-                    var m = Mapper.Map<Wizyta, Wizyta>(w);
-                   
-                    if (m.Tytul != null)
-                    {
-                        var pacjent = db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul) ).FirstOrDefault();
-                        m.PacjentID = pacjent.ID;
-                    }else
-                    {
-                        m.Tytul = db.Pacjent.Where(p => p.Email == User.Identity.Name).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
-                    }
-                  
-                    
-                    db.Wizyta.Add(m);
-
-                }
-                status = true;
-                db.SaveChanges();
-            }
-            catch (Exception)
-            {
-                status = false;
-            }
-
+            var status = await this._wizytService.SaveEvent(w, User.Identity.Name);
             return new JsonResult { Data = new { status } };
         }
 
         [HttpPost]
-        public JsonResult DeleteEvent(Wizyta w)
+        public async Task<JsonResult> DeleteEvent(Wizyta w)
         {
             var status = false;
 
@@ -143,7 +92,7 @@ namespace GabinetStomatologiczny.Controllers
             if (v != null)
             {
                 db.Wizyta.Remove(v);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 status = true;
             }
 

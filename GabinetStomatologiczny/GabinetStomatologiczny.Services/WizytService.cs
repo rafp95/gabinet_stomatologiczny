@@ -8,12 +8,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace GabinetStomatologiczny.Services
 {
     public interface IWizytService
     {
         Task<IEnumerable<object>> GetEvents(string searchQuery, bool isLogedin, string r, string u);
+        Task <bool> SaveEvent(Wizyta w,string user);
     }
     public class WizytServie : IWizytService
     {
@@ -51,6 +53,63 @@ namespace GabinetStomatologiczny.Services
             }).ToListAsync();
 
             return events;
+        }
+
+        public async Task<bool> SaveEvent(Wizyta w, string user)
+        {
+            var status = false;
+            try
+            {
+                if (w.ID > 0)
+                {
+                    var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
+                    if (v != null)
+                    {
+                        w.LekarzID = v.LekarzID;
+                        w.PacjentID = v.PacjentID;
+                        if (!string.IsNullOrEmpty(v.Tytul))
+                        {
+                            w.Tytul = v.Tytul;
+                        }
+                        var m = Mapper.Map<Wizyta, Wizyta>(w, v);
+                        if (string.IsNullOrEmpty(m.Tytul))
+                        {
+                            m.Tytul = db.Pacjent.Where(p => p.Email == user).
+                                Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                        }
+
+                        db.Entry(m).State = EntityState.Modified;
+                    }
+
+                }
+                else
+                {
+                    w.PacjentID = db.Pacjent.Where(p => p.Email == user).Select(p => p.ID).FirstOrDefault();
+                    w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
+                    var m = Mapper.Map<Wizyta, Wizyta>(w);
+
+                    if (m.Tytul != null)
+                    {
+                        var pacjent = db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul)).FirstOrDefault();
+                        m.PacjentID = pacjent.ID;
+                    }
+                    else
+                    {
+                        m.Tytul = db.Pacjent.Where(p => p.Email == user).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                    }
+
+
+                    db.Wizyta.Add(m);
+
+                }
+                status = true;
+                await this.db.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return status;
         }
     }
 }

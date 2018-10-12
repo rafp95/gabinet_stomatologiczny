@@ -67,9 +67,9 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult PdfGenerate(string user)
+        public async Task<ActionResult> PdfGenerate(string user)
         {
-            return View(_generatePdf.GetPacjents(user));
+            return View(await _generatePdf.GetPacjents(user));
         }
 
         [AllowAnonymous]

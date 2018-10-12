@@ -11,7 +11,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface IGenerateZabiegsPdf
     {
-        IQueryable<Zabieg> GetPacjents(string user);
+        Task<IEnumerable<Zabieg>> GetPacjents(string user);
     }
     public class GenerateZabiegsPdf : IGenerateZabiegsPdf
     {
@@ -22,11 +22,10 @@ namespace GabinetStomatologiczny.Services
             this._db = db;
         }
 
-        public IQueryable<Zabieg> GetPacjents(string user)
+        public async Task<IEnumerable<Zabieg>> GetPacjents(string user)
         {
-            var zabieg = _db.Zabieg.Include(z => z.Wizyta);
-            zabieg.Include(p => p.Wizyta.Pacjent);
-            zabieg = zabieg.Where(_ => _.Wizyta.Pacjent.Email == user);
+            var zabieg = await _db.Zabieg.Include(z => z.Wizyta)
+                .AsQueryable().Where(_ => _.Wizyta.Pacjent.Email == user).ToListAsync();
 
             zabieg = zabieg.Count() > 0 ? zabieg : null;
 

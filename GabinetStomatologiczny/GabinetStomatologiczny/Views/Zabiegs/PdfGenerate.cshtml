@@ -3,46 +3,56 @@
     ViewBag.Title = "RaportPdf";
     Layout = null;
 }
-<link href="~/Content/PdfStyle.css" rel="stylesheet" />
 
-<h2>Podsumowanie wizyt</h2>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Podsumowanie zabiegów</title>
+    <link href="~/Content/PdfStyle.css" rel="stylesheet" />
+</head>
+<body>
 
-@if (Model != null && Model.Count() > 0)
-{
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("Imie i Nazwisko")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypZabiegu)
-            </th>
-            <th colspan="2">
-                @Html.DisplayNameFor(model => model.CenaZabiegu)
-            </th>
-        </tr>
+    <h2>Podsumowanie wizyt</h2>
 
-        @foreach (var item in Model)
-        {
+    @if (Model != null && Model.Count() > 0)
+    {
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TypZabiegu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                <th>
+                    @Html.DisplayName("Imie i Nazwisko")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TypZabiegu)
+                </th>
+                <th colspan="2">
+                    @Html.DisplayNameFor(model => model.CenaZabiegu)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Wizyta.Tytul)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypZabiegu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                    </td>
+                </tr>
+            }
+            <tr class="last">
+                <td colspan="3">
+                    <span class="sum">Suma</span>
+                    <span class="total"> @Model.Select(_ => _.CenaZabiegu).Sum().ToString("C2") </span>
                 </td>
             </tr>
-        }
-        <tr class="last">
-            <td colspan="3">
-                <span class="sum">Suma</span> 
-                <span class="total"> @Model.Select(_ => _.CenaZabiegu).Sum().ToString("C2") </span>
-             </td>
-        </tr>
-    </table>
-}else{
-    <div style="font-size: 18px">Nie masz zdefiniowanych żadnych zabiegów</div>
-}
+        </table>
+    }
+    else
+    {
+        <div style="font-size: 18px">Nie masz zdefiniowanych żadnych zabiegów</div>
+    }
+</body>
+</html>

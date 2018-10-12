@@ -6,45 +6,51 @@
     ViewBag.Title = "Statystki";
 }
 
-<link href="~/Content/PdfStyle.css" rel="stylesheet" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Statystyki</title>
+    <link href="~/Content/PdfStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Statystki rejestracji / edycji pacjętów</h2>
 
-<h2>Statystki rejestracji / edycji pacjętów</h2>
 
+    @if (Model != null && Model.Count() > 0)
+    {
 
-@if (Model != null && Model.Count() > 0)
-{
-
-    <table class="table">
-        <tr>
-            <th>
-                Data rejestracji
-            </th>
-            <th>
-                Liczba pacjentów
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataRejestracji)
-                </td>
-                <td>
-                    <span class="badge"> @item.Pacjentow </span>
+                <th>
+                    Data rejestracji
+                </th>
+                <th>
+                    Liczba pacjentów
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataRejestracji)
+                    </td>
+                    <td>
+                        <span class="badge"> @item.Pacjentow </span>
+                    </td>
+                </tr>
+            }
+            <tr class="last">
+                <td colspan="3">
+                    <span class="sum">Łącznie</span>
+                    <span class="total"> @Model.Select(_ => _.Pacjentow).Sum() pacjętów </span>
                 </td>
             </tr>
-        }
-        <tr class="last">
-            <td colspan="3">
-                <span class="sum">Łącznie</span>
-                <span class="total"> @Model.Select(_ => _.Pacjentow).Sum() pacjętów </span>
-            </td>
-        </tr>
-    </table>
-}
-else
-{
-    <div>Jeszcze żaden pacjent się nie zarejestrował </div>
-}
+        </table>
+    }
+    else
+    {
+        <div>Jeszcze żaden pacjent się nie zarejestrował </div>
+    }
 
+</body>
+</html>

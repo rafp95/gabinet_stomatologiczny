@@ -2,12 +2,8 @@
 
 @{
     ViewBag.Title = "Edycja";
+    ViewBag.Active = "Pacjenci";
 }
-<script src="/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-<script src="~/Scripts/datepicker-pl.js"></script>
-<link href="~/Content/Kalendarz.css" rel="stylesheet" />
-
 
 <h2>Edycja</h2>
 
@@ -61,8 +57,8 @@
                 <div class="kalendarz">
                     <span class="glyphicon glyphicon-calendar kalendarz"></span>
                     @Html.EditorFor(model => model.DataUrodzenia,
-                    new { htmlAttributes = new { @class = "form-control"} })
-                    @Html.ValidationMessageFor(model => model.DataUrodzenia, "", new { @class = "text-danger"})
+                    new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DataUrodzenia, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -70,7 +66,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NrTelefonu, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NrTelefonu, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.EditorFor(model => model.NrTelefonu, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NrTelefonu, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -140,8 +136,15 @@
 }
 
 <div>
-    @Html.ActionLink("Wstecz", "Index",null, new { @class = "glyphicon glyphicon-hand-left" })
+    @Html.ActionLink("Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
 </div>
+
+@section MyCustomStyle{
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/datepicker-pl.js"></script>
+    <link href="~/Content/Kalendarz.css" rel="stylesheet" />
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

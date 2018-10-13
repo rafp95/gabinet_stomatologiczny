@@ -33,7 +33,7 @@
             <tr>
                 <td>
                     @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.name_asc, currentFilter = ViewBag.CurrentFilter }
-                    ,new {Class= @ViewBag.ActiveClass == RodzajSort.name_asc ? "active" : "", title="Rosnąco" })
+                    , new { Class = @ViewBag.ActiveClass == RodzajSort.name_asc ? "active" : "", title = "Rosnąco" })
                     @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.name_desc, currentFilter = ViewBag.CurrentFilter }
                     , new { Class = @ViewBag.ActiveClass == RodzajSort.name_desc ? "active" : "", title = "Malejąco" })
                 </td>
@@ -84,13 +84,13 @@
                     </td>
                     <td>
                         @if ((User.Identity.GetUserName() == item.Email && User.Identity.IsAuthenticated)
-                        || User.IsInRole("Administrator"))
+                || User.IsInRole("Administrator"))
                         {
-                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title="Edycja" }) <span> | </span>
-                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title="Kasuj" }) <span> | </span>
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title = "Edycja" }) <span> | </span>
+                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title = "Kasuj" }) <span> | </span>
                         }
 
-                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-align-justify", title="Więcej" })
+                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-align-justify", title = "Więcej" })
 
                     </td>
 
@@ -121,4 +121,7 @@ else
     <div>Nic nie znaleziono</div>
 }
 
-<link href="~/Content/PginationPosition.css" rel="stylesheet" />
+
+@section MyCustomStyle{
+    <link href="~/Content/PginationPosition.css" rel="stylesheet" />
+}

@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Lekarz</h4>
+        <h4>@Model.Imie @Model.Nazwisko</h4>
         <hr />
         
         @if (ViewBag.Error != null)

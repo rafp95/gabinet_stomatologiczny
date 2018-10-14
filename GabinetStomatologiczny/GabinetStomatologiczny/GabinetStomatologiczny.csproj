@@ -933,6 +933,7 @@
     <Content Include="Views\Zabiegs\_ZabiegsPartial.cshtml" />
     <Content Include="Views\Zabiegs\ToothModel.cshtml" />
     <Content Include="Views\Zabiegs\_ToothModelParital.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

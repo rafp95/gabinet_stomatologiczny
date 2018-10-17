@@ -1,6 +1,6 @@
 ﻿.noti-content {
     position: fixed;
-    right: 100px;
+    right: -8px;
     background: #e5e5e5;
     border-radius: 4px;
     top: 47px;
@@ -30,17 +30,24 @@ ul#notiContent li {
     border-width: 0 8.5px 8.5px;
     position: absolute;
     right: 32px;
-    top: -8px;
+    top: -10px;
 }
 
 span.noti {
     color: #FF2323;
     margin: 15px;
     position: fixed;
-    right: 100px;
-    font-size: 18px;
+    right: -8px;
+    font-size: 17px;
     cursor: pointer;
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+    &:hover{
+        opacity: 0.8;
+    }
 }
+
 
 span.count {
     position: relative;

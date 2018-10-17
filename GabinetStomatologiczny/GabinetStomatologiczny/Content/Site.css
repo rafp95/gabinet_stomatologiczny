@@ -18,7 +18,8 @@ body {
 /*Navbar animation*/
 .navbar-toggle {
   border: none;
-  background: transparent !important; }
+  background: transparent !important;
+  margin-right: 50px; }
 
 .navbar-toggle:hover {
   background: transparent !important; }

@@ -36,6 +36,12 @@ namespace GabinetStomatologiczny
                 cmd.Notification = null;
                 SqlDependency sqlDep = new SqlDependency(cmd);
                 sqlDep.OnChange += sqlDep_OnChange;
+                //read notyfications
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                   
+                }
+
             }
         }
 

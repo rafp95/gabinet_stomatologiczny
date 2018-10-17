@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
-    //carpet rotation
-    $(".dropdown-toggle").click(function () {
+    //carpet menu rotation
+    $(".dropdown-toggle").bind('mouseover', function () {
         $(".caret").toggleClass('rotate-180');
     });
-    //end carpet rotation
+    //end carpet menu rotation
 
    //tooltip
     $(".tooltipLink").tooltip({

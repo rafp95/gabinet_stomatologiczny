@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     //carpet menu rotation
-    $(".dropdown-toggle").bind('mouseover', function () {
+    $(".dropdown-toggle").bind('click', function () {
         $(".caret").toggleClass('rotate-180');
     });
     //end carpet menu rotation

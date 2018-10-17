@@ -29,7 +29,7 @@
                     $('#notiContent').append($('<li>Brak danych</li>'));
                 }
                 $.each(response, function (index, value) {
-                    $('#notiContent').append($('<li>Zapisał(a) się na wizytę : ' + value.Tytul + ' '
+                    $('#notiContent').append($('<li>Zapisał(a) się na ' + "<a href='/Wizytas'>" + ' wizytę : ' + '</a>' + ' ' + value.Tytul + ' '
                         + moment(value.Poczatek).format('DD-MMM-YYYY HH:mm') + '</li>'));
                 });
             },

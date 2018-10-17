@@ -289,3 +289,13 @@ span.field-validation-error {
     width: 300px; } }
 
 /*end center form*/
+/*caret rotation*/
+.caret {
+  -moz-transition: transform 1s;
+  -webkit-transition: transform 1s;
+  transition: transform 1s; }
+
+.rotate-180 {
+  transform: rotate(-180deg); }
+
+/*end caret rotation*/

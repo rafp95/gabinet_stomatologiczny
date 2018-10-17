@@ -1,4 +1,10 @@
 ﻿$(document).ready(function () {
+    //carpet rotation
+    $(".dropdown-toggle").click(function () {
+        $(".caret").toggleClass('rotate-180');
+    });
+    //end carpet rotation
+
    //tooltip
     $(".tooltipLink").tooltip({
         position: {

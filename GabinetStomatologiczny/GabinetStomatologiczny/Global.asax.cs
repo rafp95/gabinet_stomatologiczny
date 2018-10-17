@@ -15,11 +15,14 @@ using AutoMapper;
 using AutoMapper.Configuration;
 using System.Reflection;
 using WebGrease.Css.Extensions;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace GabinetStomatologiczny
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        string con = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ASPNET_GABINETSTOMATOLOGICZNY2_dabb89d6696748e496a6d3b4a582a5a0;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         protected void Application_Start()
         {
             /*
@@ -40,6 +43,22 @@ namespace GabinetStomatologiczny
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer(new GabinetInitializer());
+
+            SqlDependency.Start(con);
+
+        }
+
+        protected void Session_Start(object Sender, EventArgs e)
+        {
+            NotyficatorComponnets nc = new NotyficatorComponnets();
+            var currentTime = DateTime.Now;
+            HttpContext.Current.Session["LastUpdated"] = currentTime;
+            nc.RegisterNotyfication(currentTime);
+        }
+
+        protected void Application_End()
+        {
+            SqlDependency.Stop(con);
         }
 
        

@@ -74,5 +74,9 @@
   {
     "outputFile": "Content/ZabiegCreate.css",
     "inputFile": "Content/ZabiegCreate.scss"
+  },
+  {
+    "outputFile": "Content/Notyfication.css",
+    "inputFile": "Content/Notyfication.scss"
   }
 ]

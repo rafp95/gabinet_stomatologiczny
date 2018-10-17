@@ -1,0 +1,61 @@
+﻿$(function () {
+    // Click on notification icon for show notification
+    $('span.noti').click(function (e) {
+        e.stopPropagation();
+        $('.noti-content').show();
+        let count = 0;
+        count = parseInt($('span.count').html()) || 0;
+        //only load notification if not already loaded
+        if (count > 0) {
+            updateNotification();
+        }
+        $('span.count', this).html('&nbsp;');
+    })
+    // hide notifications
+    $('html').click(function () {
+        $('.noti-content').hide();
+    })
+    // update notification
+    function updateNotification() {
+        $('#notiContent').empty();
+        $('#notiContent').append($('<li>Ladownaie...</li>'));
+
+        $.ajax({
+            type: 'GET',
+            url: '/Home/GetNotyficationWizytas',
+            success: function (response) {
+                $('#notiContent').empty();
+                if (response.length == 0) {
+                    $('#notiContent').append($('<li>Brak danych</li>'));
+                }
+                $.each(response, function (index, value) {
+                    $('#notiContent').append($('<li>Zapisał(a) się na wizytę : ' + value.Tytul + ' '
+                        + moment(value.Poczatek).format('DD-MMM-YYYY HH:mm') + '</li>'));
+                });
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
+    // update notification count
+    function updateNotificationCount() {
+        let count = 0;
+        count = parseInt($('span.count').html()) || 0;
+        count++;
+        $('span.count').html(count);
+    }
+    // signalr js code for start hub and send receive notification
+    var notificationHub = $.connection.notyficationsHub;
+    $.connection.hub.start().done(function () {
+        console.log('Notification hub started');
+    });
+
+    //signalr method for push server message to client
+    notificationHub.client.notify = function (message) {
+        if (message && message.toLowerCase() == "added") {
+            updateNotificationCount();
+        }
+    }
+
+})

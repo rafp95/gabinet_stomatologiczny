@@ -80,57 +80,63 @@ namespace GabinetStomatologiczny.Services
         public async Task<bool> SaveEvent(Wizyta w, string user)
         {
             var status = false;
-            try
+            
+            if(!this.db.Wizyta.Any(_ => _.Poczatek == w.Poczatek))
             {
-                if (w.ID > 0)
+                try
                 {
-                    var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
-                    if (v != null)
+                    if (w.ID > 0)
                     {
-                        w.LekarzID = v.LekarzID;
-                        w.PacjentID = v.PacjentID;
-                        if (!string.IsNullOrEmpty(v.Tytul))
+                        var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
+                        if (v != null)
                         {
-                            w.Tytul = v.Tytul;
+                            w.LekarzID = v.LekarzID;
+                            w.PacjentID = v.PacjentID;
+                            if (!string.IsNullOrEmpty(v.Tytul))
+                            {
+                                w.Tytul = v.Tytul;
+                            }
+                            var m = Mapper.Map<Wizyta, Wizyta>(w, v);
+                            m.DataDodania = DateTime.Now;
+                            if (string.IsNullOrEmpty(m.Tytul))
+                            {
+                                m.Tytul = db.Pacjent.Where(p => p.Email == user).
+                                    Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                            }
+
+                            db.Entry(m).State = EntityState.Modified;
                         }
-                        var m = Mapper.Map<Wizyta, Wizyta>(w, v);
-                        if (string.IsNullOrEmpty(m.Tytul))
-                        {
-                            m.Tytul = db.Pacjent.Where(p => p.Email == user).
-                                Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
-                        }
 
-                        db.Entry(m).State = EntityState.Modified;
-                    }
-
-                }
-                else
-                {
-                    w.PacjentID = db.Pacjent.Where(p => p.Email == user).Select(p => p.ID).FirstOrDefault();
-                    w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
-                    var m = Mapper.Map<Wizyta, Wizyta>(w);
-
-                    if (m.Tytul != null)
-                    {
-                        var pacjent = db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul)).FirstOrDefault();
-                        m.PacjentID = pacjent.ID;
                     }
                     else
                     {
-                        m.Tytul = db.Pacjent.Where(p => p.Email == user).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                        w.PacjentID = db.Pacjent.Where(p => p.Email == user).Select(p => p.ID).FirstOrDefault();
+                        w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
+                        var m = Mapper.Map<Wizyta, Wizyta>(w);
+
+                        if (m.Tytul != null)
+                        {
+                            var pacjent = db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul)).FirstOrDefault();
+                            m.PacjentID = pacjent.ID;
+                        }
+                        else
+                        {
+                            m.Tytul = db.Pacjent.Where(p => p.Email == user).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                        }
+
+                        m.DataDodania = DateTime.Now;
+                        db.Wizyta.Add(m);
+
                     }
-
-
-                    db.Wizyta.Add(m);
-
+                    status = true;
+                    await this.db.SaveChangesAsync();
                 }
-                status = true;
-                await this.db.SaveChangesAsync();
+                catch (Exception)
+                {
+                    status = false;
+                }
             }
-            catch (Exception)
-            {
-                status = false;
-            }
+
             return status;
         }
         #endregion

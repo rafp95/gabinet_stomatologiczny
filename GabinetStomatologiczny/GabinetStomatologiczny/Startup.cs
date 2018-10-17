@@ -13,15 +13,17 @@ using System;
 using System.Collections.Generic;
 using GabinetStomatologiczny.Services;
 
-
 [assembly: OwinStartupAttribute(typeof(GabinetStomatologiczny.Startup))]
 namespace GabinetStomatologiczny
 {
     public partial class Startup
     {
+        private NotyficatorComponnets nc = new NotyficatorComponnets();
         // tedt
         public void Configuration(IAppBuilder app)
         {
+            //Add signalR to notyfication
+            app.MapSignalR();
             //We will use Dependency Injection for all controllers and other classes, so we'll need a service collection
 
            var services = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
@@ -95,6 +97,8 @@ namespace GabinetStomatologiczny
             services.AddTransient<ISortZabiegsService, SortZabiegsService>();
             services.AddTransient<IWizytService, WizytServie>();
             services.AddTransient<IZabiegService, ZabiegService>();
+            services.AddSingleton (typeof(NotyficatorComponnets), nc );
+            services.AddTransient<INotyficationService, NotyficationService>();
         }
     }
 

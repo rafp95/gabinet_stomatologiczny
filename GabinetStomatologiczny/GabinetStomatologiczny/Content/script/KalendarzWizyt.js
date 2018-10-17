@@ -10,6 +10,7 @@
     //Czyszczenie
 
     $("input[type=text]").bind('click keyup', function () {
+        ErorMessage();
         szukajDane("");
     });
 

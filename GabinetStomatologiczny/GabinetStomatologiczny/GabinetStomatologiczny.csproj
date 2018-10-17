@@ -134,6 +134,14 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.3.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.3.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.3\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
       <Private>True</Private>
@@ -487,6 +495,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Osoba.cs" />
+    <Compile Include="NotyficationsHub.cs" />
+    <Compile Include="NotyficatorComponnets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -541,6 +551,13 @@
     <Content Include="Content\LoginInput.min.css">
       <DependentUpon>LoginInput.css</DependentUpon>
     </Content>
+    <None Include="Content\Notyfication.scss" />
+    <Content Include="Content\Notyfication.css">
+      <DependentUpon>Notyfication.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Notyfication.min.css">
+      <DependentUpon>Notyfication.css</DependentUpon>
+    </Content>
     <Content Include="Content\Pacjent.css">
       <DependentUpon>Pacjent.scss</DependentUpon>
     </Content>
@@ -568,6 +585,7 @@
     <Content Include="Content\script\AutoComplete.js" />
     <Content Include="Content\script\ButtomSpinner.js" />
     <Content Include="Content\script\ModelZebow.js" />
+    <Content Include="Content\script\Notyfication.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <None Include="Content\SilaHasla.scss" />
     <Content Include="Content\SilaHasla.css">
@@ -765,6 +783,8 @@
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.ajaxhelper.js" />
+    <Content Include="Scripts\jquery.signalR-2.3.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.3.0.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

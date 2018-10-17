@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenerateZabiegsPdf.cs" />
+    <Compile Include="INotyficationService.cs" />
     <Compile Include="LekarzsService.cs" />
     <Compile Include="PacjentsServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

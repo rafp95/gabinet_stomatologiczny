@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201810061047302_PacjentDateFormat.Designer.cs">
       <DependentUpon>201810061047302_PacjentDateFormat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810161817041_addDataDodaniaWizyta.cs" />
+    <Compile Include="Migrations\201810161817041_addDataDodaniaWizyta.Designer.cs">
+      <DependentUpon>201810161817041_addDataDodaniaWizyta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -341,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810061047302_PacjentDateFormat.resx">
       <DependentUpon>201810061047302_PacjentDateFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810161817041_addDataDodaniaWizyta.resx">
+      <DependentUpon>201810161817041_addDataDodaniaWizyta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

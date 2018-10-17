@@ -23,7 +23,7 @@ namespace GabinetStomatologiczny.DAO.Models
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         [Column(TypeName = "datetime2")]
         public DateTime Koniec { get; set; }
-
+        public DateTime DataDodania { get; set; }
         public virtual Lekarz Lekarz { get; set; }
         public virtual Pacjent Pacjent { get; set; }
         public virtual ICollection<Zabieg> Zabiegi { get; set; }

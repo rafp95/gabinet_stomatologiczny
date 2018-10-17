@@ -10,20 +10,33 @@ using AutoMapper;
 using GabinetStomatologiczny.Services;
 using Rotativa;
 using Nexmo.Api;
+using System.Threading.Tasks;
 
 namespace GabinetStomatologiczny.Controllers
 {
     public class HomeController : BaseController
     {
         private readonly IPacjentsService pacjentsService = null;
-        public HomeController(IPacjentsService pacjentsService)
+        private readonly INotyficationService ns = null;
+        public HomeController(IPacjentsService pacjentsService, INotyficationService ns)
         {
             this.pacjentsService = pacjentsService;
+            this.ns = ns;
         }
         
         public ActionResult Index()
         {
             return View();
+        }
+
+        public  async Task<JsonResult> GetNotyficationWizytas()
+        {
+            var notyficationTime = Session["LastUpdated"] != null ?  Convert.ToDateTime(Session["LastUpdated"]) : DateTime.Now ;
+           
+            var list = await ns.GetWizyts(notyficationTime);
+            //update session for get only wizytas
+            Session["LastUpdated"] = DateTime.Now;
+            return new JsonResult { Data = list,JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public ActionResult About()
@@ -54,6 +67,6 @@ namespace GabinetStomatologiczny.Controllers
            
             return p;
         }
-   
+        
     }
 }

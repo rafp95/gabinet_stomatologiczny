@@ -10,12 +10,20 @@
             <li class="@(ViewBag.Active=="Zarządzanie" ? "active" : "")">
                 @Html.ActionLink("Witaj " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Zarządzaj" })
             </li>
+            <li>
+                <span class="noti glyphicon glyphicon-bell"><span class="count">&nbsp;</span></span>
+                <div class="noti-content">
+                    <div class="noti-top-arrow"></div>
+                    <ul id="notiContent"></ul>
+                </div>
+            </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Wyloguj</a></li>
         </ul>
     }
 }
 else
 {
+
     <ul class="nav navbar-nav navbar-right">
         <li class="@(ViewBag.Active == "Zaloguj" ? "active" : "")"> <a href="/Account/Login"> <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>  Zaloguj </a> </li>
     </ul>

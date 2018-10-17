@@ -82,7 +82,10 @@
                 ladowanie.css('display', 'none');
             },
             error: function (error) {
-                alert('failed');
+                zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
+                    append('<i class="fa fa-spinner fa-spin"></i>').
+                    css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
+                    fadeIn('slow').delay(1000).fadeOut('slow');
             }
         })
     }

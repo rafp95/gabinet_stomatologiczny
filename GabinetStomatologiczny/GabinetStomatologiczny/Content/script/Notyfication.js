@@ -52,9 +52,14 @@
     });
 
     //signalr method for push server message to client
+    var lastTime = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
     notificationHub.client.notify = function (message) {
-        if (message && message.toLowerCase() == "added") {
-            updateNotificationCount();
+        if (message && message.toLowerCase() === "added") {
+            console.log(lastTime != (new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds()));
+            if (lastTime != (new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds())) {
+                lastTime = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+                updateNotificationCount();
+            }
         }
     }
 

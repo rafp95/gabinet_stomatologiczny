@@ -26,7 +26,7 @@
             success: function (response) {
                 $('#notiContent').empty();
                 if (response.length == 0) {
-                    $('#notiContent').append($('<li> Odśwież listę <a href="/Wizytas"> ' + 'wizyt'  + '</a>' + '</li>'));
+                    $('#notiContent').append($('<li> Odśwież listę <a href="/Wizytas"> ' + 'wizyt' + '</a>' + '</li>'));
                 }
                 $.each(response, function (index, value) {
                     $('#notiContent').append($('<li>Zapisał(a) się na ' + "<a href='/Wizytas'>" + ' wizytę : ' + '</a>' + ' ' + value.Tytul + ' '
@@ -63,4 +63,4 @@
         }
     }
 
-})
+})();

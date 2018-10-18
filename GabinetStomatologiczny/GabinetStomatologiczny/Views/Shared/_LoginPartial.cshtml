@@ -10,19 +10,6 @@
             <li class="@(ViewBag.Active=="Zarządzanie" ? "active" : "")">
                 @Html.ActionLink("Witaj " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Zarządzaj" })
             </li>
-            <li class="mobile-notyfication desktop-notyfication">
-                <button type="button" class="btn navbar-btn card-notification-button noti">
-                    <i class="fa fa-bell"></i><span class="badge badge-light notification-count count">0</span>
-                </button>
-                <div class="card card-notification card-notification-desktop">
-                    <div class="noti-content">
-                        <div class="noti-top-arrow"></div>
-                        <ul id="notiContent">
-                            <li>Brak wydarzeń</li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Wyloguj</a></li>
         </ul>
     }

@@ -19,7 +19,7 @@ body {
 .navbar-toggle {
   border: none;
   background: transparent !important;
-  margin-right: 50px; }
+  margin-right: 5px; }
 
 .navbar-toggle:hover {
   background: transparent !important; }

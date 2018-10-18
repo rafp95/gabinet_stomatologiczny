@@ -1,18 +1,21 @@
 ﻿<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <div id="notyfication-pos">
-            <button type="button" class="btn navbar-btn card-notification-button noti">
-                <i class="fa fa-bell"></i><span class="badge badge-light notification-count count">0</span>
-            </button>
-            <div class="card card-notification card-notification-desktop">
-                <div class="noti-content">
-                    <div class="noti-top-arrow"></div>
-                    <ul id="notiContent">
-                        <li>Brak wydarzeń</li>
-                    </ul>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div id="notyfication-pos">
+                <button type="button" class="btn navbar-btn card-notification-button noti">
+                    <i class="fa fa-bell"></i><span class="badge badge-light notification-count count">0</span>
+                </button>
+                <div class="card card-notification card-notification-desktop">
+                    <div class="noti-content">
+                        <div class="noti-top-arrow"></div>
+                        <ul id="notiContent">
+                            <li>Brak wydarzeń</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="icon-bar top-bar"></span>

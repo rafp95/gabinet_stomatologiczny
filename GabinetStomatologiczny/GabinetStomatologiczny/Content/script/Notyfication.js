@@ -1,19 +1,19 @@
 ﻿$(function () {
     // Click on notification icon for show notification
-    $('span.noti').click(function (e) {
+    $('button.noti').click(function (e) {
         e.stopPropagation();
-        $('.noti-content').show();
+        $('.card-notification-desktop').fadeIn();
         let count = 0;
         count = parseInt($('span.count').html()) || 0;
         //only load notification if not already loaded
         if (count > 0) {
             updateNotification();
         }
-        $('span.count', this).html('&nbsp;');
+        $('span.count', this).html('0');
     })
     // hide notifications
     $('html').click(function () {
-        $('.noti-content').hide();
+        $('.card-notification-desktop').fadeOut();
     })
     // update notification
     function updateNotification() {

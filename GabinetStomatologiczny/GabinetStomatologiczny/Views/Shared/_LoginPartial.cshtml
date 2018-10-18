@@ -10,7 +10,7 @@
             <li class="@(ViewBag.Active=="Zarządzanie" ? "active" : "")">
                 @Html.ActionLink("Witaj " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Zarządzaj" })
             </li>
-            <li>
+            <li class="desktop-notyfication">
                 <button type="button" class="btn navbar-btn card-notification-button noti">
                     <i class="fa fa-bell"></i><span class="badge badge-light notification-count count">0</span>
                 </button>

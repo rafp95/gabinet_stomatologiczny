@@ -1,9 +1,17 @@
-﻿.card-notification-desktop{
+﻿.desktop-notyfication {
+    display: block;
+}
+
+.mobile-notyfication {
+    display: none;
+}
+
+.card-notification-desktop {
     position: absolute;
     background: #e5e5e5;
     border-radius: 4px;
     top: 50px;
-    right: -100px;
+    right: -105px;
     width: 250px;
     display: none;
     border: 1px solid #9E988B;
@@ -11,3 +19,21 @@
     overflow: auto;
     z-index: 9999999999999999;
 }
+
+
+@media (max-width: 1200px) {
+    .desktop-notyfication {
+        display: none;
+    }
+
+    .mobile-notyfication {
+        display: block;
+        float: right;
+        margin: 0;
+    }
+
+    .card-notification-desktop{
+        right: 10px;
+    }
+}
+

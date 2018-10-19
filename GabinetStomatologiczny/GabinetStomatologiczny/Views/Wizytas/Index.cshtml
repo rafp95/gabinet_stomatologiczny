@@ -58,8 +58,8 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent") ||
-        User.IsInRole("Administrator") ||
-        User.IsInRole("Lekarz"))
+    User.IsInRole("Administrator") ||
+    User.IsInRole("Lekarz"))
                 {
                     {
                         <div id="action">
@@ -94,8 +94,8 @@
 
 <!--End about-->
 @if (User.IsInRole("Pacjent")
-                                          || User.IsInRole("Administrator")
-                                          || User.IsInRole("Lekarz"))
+                                                      || User.IsInRole("Administrator")
+                                                      || User.IsInRole("Lekarz"))
 {
     <!--Error save info-->
     <div id="myModalSaveToDataBaseError" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
@@ -106,7 +106,10 @@
                     <h1 class="modal-title text-center"><span id="eventTitle">Błąd</span></h1>
                 </div>
                 <div class="modal-body">
-                    <h4 style="color:red;" class="text-center">Wybrany termin jest już zajęty, proszę odświeżyć aplikację "F5" i spróbować ponowanie</h4>
+                    <h4 style="color:red;" class="text-center">
+                        Wystąpił problem z zapisem, proszę zweryfikować poprawność
+                        danych i spróbowac ponownie
+                    </h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>

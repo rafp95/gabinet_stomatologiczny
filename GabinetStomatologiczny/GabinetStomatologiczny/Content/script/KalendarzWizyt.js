@@ -285,7 +285,7 @@
                     if (data.status) {
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
-                        zapisInfo.html("Zapisano zmiany").fadeIn('slow').
+                        zapisInfo.html("Zapisano zmiany ").fadeIn('slow').
                         append('<i class="fa fa-spinner fa-spin"></i>').
                         delay(1000).fadeOut('slow');
                         $('#myModal').modal('hide');

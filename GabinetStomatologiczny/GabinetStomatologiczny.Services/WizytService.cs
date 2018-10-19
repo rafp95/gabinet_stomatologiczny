@@ -80,8 +80,7 @@ namespace GabinetStomatologiczny.Services
         public async Task<bool> SaveEvent(Wizyta w, string user)
         {
             var status = false;
-            
-            if(!this.db.Wizyta.Any(_ => _.Poczatek == w.Poczatek))
+            if(!this.db.Wizyta.Any(_ => _.Poczatek.CompareTo(w.Poczatek) == 0))
             {
                 try
                 {

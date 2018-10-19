@@ -34,7 +34,8 @@
                 });
             },
             error: function (error) {
-                console.log(error);
+                $("#notiContent").empty();
+                $("#notiContent").append("<li>Wystąpił problem z połączeniem</li>");
             }
         })
     }

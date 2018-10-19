@@ -157,7 +157,7 @@ tr:hover {
 /*Info save to database*/
 
 div#saveDatabaseInfo {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     -moz-transform: translateY(-50%, -50%);

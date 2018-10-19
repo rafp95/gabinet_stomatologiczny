@@ -82,10 +82,7 @@
                 ladowanie.css('display', 'none');
             },
             error: function (error) {
-                zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
-                    append('<i class="fa fa-spinner fa-spin"></i>').
-                    css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
-                    fadeIn('slow').delay(1000).fadeOut('slow');
+                console.log(error);
             }
         })
     }
@@ -295,6 +292,8 @@
                     }
                 },
                 error: function () {
+                    console.log('error');
+                    $('#myModal').modal('hide');
                     zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                     append('<i class="fa fa-spinner fa-spin"></i>').
                     css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
@@ -404,9 +403,11 @@
                 }
             },
             error: function () {
+                console.log('error');
+                $('#myModalSave').modal('hide');
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
-                css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
+                css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
                 fadeIn('slow').delay(1000).fadeOut('slow');
             }
         })

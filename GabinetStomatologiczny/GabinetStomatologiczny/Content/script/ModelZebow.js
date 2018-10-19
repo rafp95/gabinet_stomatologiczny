@@ -36,7 +36,7 @@
         let clicks = 0, timer = null, deley = 500;
         tooth.each(function (index) {
             $(this).on('click', function (e) {
-                e.preventDefault();
+                e.stopPropagation();
                 clicks++;
                 console.log('kliknięcia ' + clicks);
                 ladowanie.css('display', 'block');

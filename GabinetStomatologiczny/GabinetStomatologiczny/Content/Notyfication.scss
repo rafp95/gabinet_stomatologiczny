@@ -15,4 +15,10 @@
     max-height: 200px;
     overflow: auto;
     z-index: 9999999999999999;
+    ul {
+        margin: 0;
+        li {
+            padding: 10px 0;
+        }
+    }
 }

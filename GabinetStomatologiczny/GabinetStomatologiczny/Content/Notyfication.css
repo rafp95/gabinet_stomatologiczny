@@ -14,3 +14,7 @@
   max-height: 200px;
   overflow: auto;
   z-index: 9999999999999999; }
+  .card-notification-desktop ul {
+    margin: 0; }
+    .card-notification-desktop ul li {
+      padding: 10px 0; }

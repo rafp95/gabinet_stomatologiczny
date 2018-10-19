@@ -18,14 +18,14 @@
     // update notification
     function updateNotification() {
         $('#notiContent').empty();
-        $('#notiContent').append($('<li>Ladownaie...</li>'));
+        $('#notiContent').append($('<li>Ladownaie <i class="fa fa-spinner fa-spin"></i></li>'));
 
         $.ajax({
             type: 'GET',
             url: '/Home/GetNotyficationWizytas',
             success: function (response) {
                 $('#notiContent').empty();
-                if (response.length == 0) {
+                if (response.length === 0) {
                     $('#notiContent').append($('<li> Odśwież listę <a href="/Wizytas"> ' + 'wizyt' + '</a>' + '</li>'));
                 }
                 $.each(response, function (index, value) {

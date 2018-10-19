@@ -3,17 +3,7 @@
         @if (User.Identity.IsAuthenticated)
         {
             <div id="notyfication-pos">
-                <button type="button" class="btn navbar-btn card-notification-button noti">
-                    <i class="fa fa-bell"></i><span class="badge badge-light notification-count count">0</span>
-                </button>
-                <div class="card card-notification card-notification-desktop">
-                    <div class="noti-content">
-                        <div class="noti-top-arrow"></div>
-                        <ul id="notiContent">
-                            <li>Brak wydarzeń</li>
-                        </ul>
-                    </div>
-                </div>
+                @Html.Partial("_NotyficationPartial")
             </div>
         }
         <div class="navbar-header">

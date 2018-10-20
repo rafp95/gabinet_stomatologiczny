@@ -23,7 +23,7 @@ namespace GabinetStomatologiczny
 
         public void RegisterNotyfication(DateTime currentTime)
         {
-            string conStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ASPNET_GABINETSTOMATOLOGICZNY2_dabb89d6696748e496a6d3b4a582a5a0;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string conStr = ConfigurationManager.ConnectionStrings["NotyficationConnection"].ConnectionString;
             string sqlCommand = @"SELECT [Tytul] FROM [dbo].[Wizyta]";
             using (SqlConnection con = new SqlConnection(conStr))
             {

@@ -29,7 +29,9 @@
                     $('#notiContent').append($('<li> Odśwież listę <a href="/Wizytas"> ' + 'wizyt' + '</a>' + '</li>'));
                 }
                 $.each(response, function (index, value) {
-                    $('#notiContent').append($('<li>Zapisał(a) się na ' + "<a href='/Wizytas'>" + ' wizytę : ' + '</a>' + ' ' + value.Tytul + ' '
+                    $('#notiContent').append($('<li>Zapisał(a) się na '
+                        + ' <a href="/Wizytas" title="Kliknij aby odświeżyć">'
+                        + ' wizytę : ' + '</a>' + ' ' + value.Tytul + ' '
                         + moment(value.Poczatek).format('DD-MMM-YYYY HH:mm') + '</li>'));
                 });
             },

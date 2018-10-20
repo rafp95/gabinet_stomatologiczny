@@ -185,3 +185,10 @@ div#saveDatabaseInfo {
     opacity: 1; } }
 
 /*End animation page content*/
+/*fullcalendar center element fc-content*/
+div.fc-content {
+  display: flex;
+  align-items: center;
+  min-height: 100%; }
+
+/*end fullcalendar center element fc-content*/

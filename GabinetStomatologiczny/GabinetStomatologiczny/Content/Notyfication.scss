@@ -15,10 +15,17 @@
     max-height: 200px;
     overflow: auto;
     z-index: 9999999999999999;
+
     ul {
         margin: 0;
+
         li {
-            padding: 10px 0;
+            padding: 10px 5px;
+            margin: 2px;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid black;
+            }
         }
     }
 }

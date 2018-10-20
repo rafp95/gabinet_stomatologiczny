@@ -17,4 +17,7 @@
   .card-notification-desktop ul {
     margin: 0; }
     .card-notification-desktop ul li {
-      padding: 10px 0; }
+      padding: 10px 5px;
+      margin: 2px; }
+      .card-notification-desktop ul li:not(:last-child) {
+        border-bottom: 1px solid black; }

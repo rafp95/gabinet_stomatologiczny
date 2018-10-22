@@ -156,10 +156,6 @@ namespace GabinetStomatologiczny.Controllers
             {
                 return HttpNotFound();
             }
-            else if (!User.Identity.IsAuthenticated)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             return View(lekarz);
         }
 

@@ -1,17 +1,13 @@
 ﻿div#notyfication-pos {
     float: right;
     margin-left: 10px;
-
-    .fa-bell {
-        color: maroon;
-    }
 }
 
 /*arrow*/
 .card-notification-desktop::before {
     content: " ";
     border-color: transparent;
-    border-bottom-color: maroon;
+    border-bottom-color: black;
     border-style: dashed dashed solid;
     border-width: 0 8.5px 8.5px;
     position: fixed;

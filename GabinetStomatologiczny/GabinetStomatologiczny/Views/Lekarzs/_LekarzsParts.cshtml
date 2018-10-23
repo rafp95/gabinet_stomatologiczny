@@ -84,7 +84,7 @@
                     </td>
                     <td>
                         @if ((User.Identity.GetUserName() == item.Email && User.Identity.IsAuthenticated)
-                || User.IsInRole("Administrator"))
+        || User.IsInRole("Administrator"))
                         {
                             @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title = "Edycja" }) <span> | </span>
                             @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title = "Kasuj" }) <span> | </span>

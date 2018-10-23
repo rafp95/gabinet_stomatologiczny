@@ -1,23 +1,38 @@
 ﻿div#notyfication-pos {
   float: right;
   margin-left: 10px; }
+  div#notyfication-pos .fa-bell {
+    color: maroon; }
 
+/*arrow*/
+.card-notification-desktop::before {
+  content: " ";
+  border-color: transparent;
+  border-bottom-color: maroon;
+  border-style: dashed dashed solid;
+  border-width: 0 8.5px 8.5px;
+  position: fixed;
+  right: 210px;
+  top: 52px;
+  max-width: 10px; }
+  @media screen and (max-width: 1200px) {
+    .card-notification-desktop::before {
+      right: 127px; } }
+
+/*end arrow*/
 .card-notification-desktop {
   position: absolute;
   background: #e5e5e5;
   border-radius: 4px;
-  top: 51px;
-  right: 2px;
-  width: 250px;
+  top: 61px;
+  right: 4px;
+  width: 255px;
   display: none;
   border: 1px solid #9E988B;
   max-height: 200px;
-  overflow: auto;
-  z-index: 9999999999999999; }
+  overflow: hidden auto; }
   .card-notification-desktop ul {
     margin: 0; }
     .card-notification-desktop ul li {
       padding: 10px 5px;
       margin: 2px; }
-      .card-notification-desktop ul li:not(:last-child) {
-        border-bottom: 1px solid black; }

@@ -192,3 +192,8 @@ div.fc-content {
   min-height: 100%; }
 
 /*end fullcalendar center element fc-content*/
+/*space betwwen time and title*/
+span.fc-time {
+  margin-right: 2px; }
+
+/*end space betwwen time and title*/

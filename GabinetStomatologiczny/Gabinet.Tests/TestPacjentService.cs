@@ -16,11 +16,12 @@ namespace Gabinet.Tests
         [TestMethod]
         public void TestPlec()
         {
-            Pacjent plec = new Pacjent() { Imie = "AnnA" };
+            Pacjent plec = new Pacjent() { Imie = "Anna" , Nazwisko = "Rafał"};
             var isValid = pacjentPlec(plec);
             Assert.AreEqual(true, isValid);
 
-            plec = new Pacjent() { Imie = "Patryk" };
+            plec.Imie = "Patryk";
+            plec.Nazwisko = "Kowal";
             isValid = pacjentPlec(plec);
             Assert.AreEqual(false, isValid);
 

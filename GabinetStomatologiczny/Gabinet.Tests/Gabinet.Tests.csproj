@@ -91,6 +91,7 @@
     <Compile Include="ControllerTest.cs" />
     <Compile Include="AutoMapperTest.cs" />
     <Compile Include="TestDataBase.cs" />
+    <Compile Include="TestPacjentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">

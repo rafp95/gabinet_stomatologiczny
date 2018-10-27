@@ -5,7 +5,7 @@
     });
     //end carpet menu rotation
 
-   //tooltip
+    //tooltip
     $(".tooltipLink").tooltip({
         position: {
             my: "center-2 bottom-10",
@@ -46,4 +46,24 @@
         return false;
     });
     //end back to top page
+    //decteded connection is online
+    let checkStatus = () => {
+        let con = ((navigator.onLine) ?
+            "online" : "offline");
+        if (con === "online") {
+            $("div#status").empty();
+        } else if (con === "offline") {
+            $("div#status").html('<div class="alert alert-danger text-center" role="alert"><strong>Brak połączenia!</strong> z siecią</div>');
+        }
+    }
+    checkStatus();
+    window.addEventListener("online", () => {
+        checkStatus();
+    });
+    console.log(window);
+    window.addEventListener("offline", () => {
+        checkStatus();
+    });
+
+    //end dected connection is online
 });

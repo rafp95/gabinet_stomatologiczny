@@ -1,6 +1,6 @@
 ﻿div#notyfication-pos {
     float: right;
-    margin-left: 25px;
+    margin-left: 10px;
 }
 
 /*arrow*/
@@ -11,12 +11,37 @@
     border-style: dashed dashed solid;
     border-width: 0 8.5px 8.5px;
     position: fixed;
-    right: 210px;
+    right: 215px;
     top: 52px;
     max-width: 10px;
-    @media screen and (max-width: 1200px) {
-        right: 127px;
+    /*media query*/
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        right: 8%;
     }
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+        right: 5%;
+    }
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        right: 8%;
+    }
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+        right: 5%;
+    }
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        right: 6.8%;
+    }
+    @media only screen and (min-width: 1300px) {
+        right: 7.8%;
+    }
+    @media only screen and (min-width: 1500px) {
+        right: 13.8%;
+    }
+    /*end media query*/
 }
 /*end arrow*/
 

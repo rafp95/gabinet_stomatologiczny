@@ -1,6 +1,6 @@
 ﻿div#notyfication-pos {
   float: right;
-  margin-left: 25px; }
+  margin-left: 10px; }
 
 /*arrow*/
 .card-notification-desktop::before {
@@ -10,12 +10,37 @@
   border-style: dashed dashed solid;
   border-width: 0 8.5px 8.5px;
   position: fixed;
-  right: 210px;
+  right: 215px;
   top: 52px;
-  max-width: 10px; }
-  @media screen and (max-width: 1200px) {
+  max-width: 10px;
+  /*media query*/
+  /* Extra small devices (phones, 600px and down) */
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  /* Medium devices (landscape tablets, 768px and up) */
+  /* Large devices (laptops/desktops, 992px and up) */
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  /*end media query*/ }
+  @media only screen and (max-width: 600px) {
     .card-notification-desktop::before {
-      right: 127px; } }
+      right: 8%; } }
+  @media only screen and (min-width: 600px) {
+    .card-notification-desktop::before {
+      right: 5%; } }
+  @media only screen and (min-width: 768px) {
+    .card-notification-desktop::before {
+      right: 8%; } }
+  @media only screen and (min-width: 992px) {
+    .card-notification-desktop::before {
+      right: 5%; } }
+  @media only screen and (min-width: 1200px) {
+    .card-notification-desktop::before {
+      right: 6.8%; } }
+  @media only screen and (min-width: 1300px) {
+    .card-notification-desktop::before {
+      right: 7.8%; } }
+  @media only screen and (min-width: 1500px) {
+    .card-notification-desktop::before {
+      right: 13.8%; } }
 
 /*end arrow*/
 .card-notification-desktop {

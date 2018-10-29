@@ -53,7 +53,8 @@
         if (con === "online") {
             $("div#status").empty();
         } else if (con === "offline") {
-            $("div#status").html('<div class="alert alert-danger text-center" role="alert"><strong>Brak połączenia!</strong> z siecią</div>');
+            $("div#status").html('<div class="alert alert-danger text-center" role="alert"><strong>Brak połączenia!</strong> z siecią '
+                + 'trwa próba połączenia <i class="fa fa-spinner fa-spin"></i>' + '</div>');
         }
     }
     checkStatus();

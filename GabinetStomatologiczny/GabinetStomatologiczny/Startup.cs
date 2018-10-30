@@ -99,6 +99,7 @@ namespace GabinetStomatologiczny
             services.AddTransient<IZabiegService, ZabiegService>();
             services.AddSingleton (typeof(NotyficatorComponnets), nc );
             services.AddTransient<INotyficationService, NotyficationService>();
+            services.AddTransient<IAdminService, AdminService>();
         }
     }
 

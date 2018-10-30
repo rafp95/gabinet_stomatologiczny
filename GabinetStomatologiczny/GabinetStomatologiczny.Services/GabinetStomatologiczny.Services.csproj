@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminService.cs" />
     <Compile Include="GenerateZabiegsPdf.cs" />
     <Compile Include="NotyficationService.cs" />
     <Compile Include="LekarzsService.cs" />

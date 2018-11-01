@@ -927,10 +927,6 @@
     <Content Include="Views\Pacjents\Details.cshtml" />
     <Content Include="Views\Pacjents\Edit.cshtml" />
     <Content Include="Views\Pacjents\Index.cshtml" />
-    <Content Include="Views\Wizytas\Create.cshtml" />
-    <Content Include="Views\Wizytas\Delete.cshtml" />
-    <Content Include="Views\Wizytas\Details.cshtml" />
-    <Content Include="Views\Wizytas\Edit.cshtml" />
     <Content Include="Views\Wizytas\Index.cshtml" />
     <Content Include="Views\Zabiegs\Create.cshtml" />
     <Content Include="Views\Zabiegs\Delete.cshtml" />

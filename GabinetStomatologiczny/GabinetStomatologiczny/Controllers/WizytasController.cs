@@ -25,10 +25,16 @@ namespace GabinetStomatologiczny.Controllers
         private readonly IUserRoleService _userRoleService;
         private readonly IWizytService _wizytService;
         private readonly ISugestionService _sugestionService;
-        public WizytasController(GabinetContext db,
-            IUserRoleService userRoleService, 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userRoleService"></param>
+        /// <param name="wizytService"></param>
+        /// <param name="sugestionService"></param>
+        public WizytasController(
+            IUserRoleService userRoleService,
             IWizytService wizytService,
-            ISugestionService sugestionService) : base(db)
+            ISugestionService sugestionService)
         {
             this._userRoleService = userRoleService;
             this._wizytService = wizytService;
@@ -41,18 +47,28 @@ namespace GabinetStomatologiczny.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="searchQuery"></param>
+        /// <returns></returns>
         public async Task<JsonResult> GetEvents(string searchQuery)
         {
 
             var isLogedin = User.Identity.IsAuthenticated;
             var r = this._userRoleService.GetUserRole((ClaimsIdentity)User.Identity);
-            var u =  User.Identity.Name;
+            var u = User.Identity.Name;
 
-            var events = await this._wizytService.GetEvents(searchQuery,isLogedin,r,u);
-            
+            var events = await this._wizytService.GetEvents(searchQuery, isLogedin, r, u);
+
             return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sugestion"></param>
+        /// <returns></returns>
         public JsonResult Sugestions(Sugestion sugestion)
         {
             var events = _sugestionService.SugestionWizyt(sugestion);
@@ -60,6 +76,12 @@ namespace GabinetStomatologiczny.Controllers
             return Json(events, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Sms(string to, string text)
         {
@@ -69,13 +91,17 @@ namespace GabinetStomatologiczny.Controllers
                 from = Configuration.Instance.Settings["appsettings:NEXMO_FROM_NUMBER"],
                 to = to,
                 text = text
-              
+
             });
             status = true;
             return Json(status, JsonRequestBehavior.AllowGet);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="w"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> SaveEvent(Wizyta w)
         {
@@ -83,6 +109,11 @@ namespace GabinetStomatologiczny.Controllers
             return new JsonResult { Data = new { status } };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="w"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<JsonResult> DeleteEvent(Wizyta w)
         {
@@ -90,117 +121,5 @@ namespace GabinetStomatologiczny.Controllers
             return new JsonResult { Data = new { status = status } };
         }
 
-
-        // GET: Wizytas/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Wizyta wizyta = db.Wizyta.Find(id);
-            if (wizyta == null)
-            {
-                return HttpNotFound();
-            }
-            return View(wizyta);
-        }
-
-        // GET: Wizytas/Create
-        public ActionResult Create()
-        {
-            ViewBag.LekarzID = new SelectList(db.Lekarz, "ID", "Imie");
-            ViewBag.PacjentID = new SelectList(db.Pacjent, "ID", "Imie");
-            return View();
-        }
-
-        // POST: Wizytas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,LekarzID,PacjentID,Data")] Wizyta wizyta)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Wizyta.Add(wizyta);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.LekarzID = new SelectList(db.Lekarz, "ID", "Imie", wizyta.LekarzID);
-            ViewBag.PacjentID = new SelectList(db.Pacjent, "ID", "Imie", wizyta.PacjentID);
-            return View(wizyta);
-        }
-
-        // GET: Wizytas/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Wizyta wizyta = db.Wizyta.Find(id);
-            if (wizyta == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.LekarzID = new SelectList(db.Lekarz, "ID", "Imie", wizyta.LekarzID);
-            ViewBag.PacjentID = new SelectList(db.Pacjent, "ID", "Imie", wizyta.PacjentID);
-            return View(wizyta);
-        }
-
-        // POST: Wizytas/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LekarzID,PacjentID,Data")] Wizyta wizyta)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(wizyta).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.LekarzID = new SelectList(db.Lekarz, "ID", "Imie", wizyta.LekarzID);
-            ViewBag.PacjentID = new SelectList(db.Pacjent, "ID", "Imie", wizyta.PacjentID);
-            return View(wizyta);
-        }
-
-        // GET: Wizytas/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Wizyta wizyta = db.Wizyta.Find(id);
-            if (wizyta == null)
-            {
-                return HttpNotFound();
-            }
-            return View(wizyta);
-        }
-
-        // POST: Wizytas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Wizyta wizyta = db.Wizyta.Find(id);
-            db.Wizyta.Remove(wizyta);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

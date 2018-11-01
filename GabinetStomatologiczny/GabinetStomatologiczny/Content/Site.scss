@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-html,body {
+html, body {
     position: relative;
     height: 100%;
 }
@@ -86,7 +86,7 @@ textarea {
 }
 
 input[type=text], input[type=password], input[type=submit], img, p,
-canvas,button, div.fc-content, select, ul.nav a {
+canvas, button, div.fc-content, select, ul.nav a {
     -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
     transition-duration: 0.4s inherit;
@@ -303,64 +303,76 @@ span.field-validation-error {
     border: 1px solid red;
 }
 /*End input walidation style*/
+.navbar-fixed-top {
+    text-align: center;
+}
 
 @media (max-width: 1200px) {
     .navbar-header {
         float: none;
     }
-    .navbar-left,.navbar-right {
+
+    .navbar-left, .navbar-right {
         float: none !important;
     }
+
     .navbar-toggle {
         display: block;
         border: none;
         outline: none;
     }
+
     .navbar-collapse {
         border-top: 1px solid transparent;
         box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
     }
+
     .navbar-fixed-top {
         top: 0;
         border-width: 0 0 1px;
     }
+
     .navbar-collapse.collapse {
-        display: none!important;
+        display: none !important;
     }
+
     .navbar-nav {
-        float: none!important;
+        float: none !important;
         margin-top: 7.5px;
     }
-    .navbar-nav>li {
+
+    .navbar-nav > li {
         float: none;
     }
-    .navbar-nav>li>a {
+
+    .navbar-nav > li > a {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    .collapse.in{
-        display:block !important;
+
+    .collapse.in {
+        display: block !important;
     }
-} 
+}
 
 /*center form on smal screen*/
-@media(max-width: 768px){
-    div.body-content form:not(.wyszukiwarka){
-       display: table;
-       margin: 0 auto;
-       width: 300px;
+@media(max-width: 768px) {
+    div.body-content form:not(.wyszukiwarka) {
+        display: table;
+        margin: 0 auto;
+        width: 300px;
     }
 }
 /*end center form*/
 
 /*caret rotation*/
 .caret {
-  -moz-transition: transform 1s;
-  -webkit-transition: transform 1s;
-  transition: transform 1s;
+    -moz-transition: transform 1s;
+    -webkit-transition: transform 1s;
+    transition: transform 1s;
 }
 
 .rotate-180 {
-  transform: rotate(-180deg);
+    transform: rotate(-180deg);
 }
 /*end caret rotation*/

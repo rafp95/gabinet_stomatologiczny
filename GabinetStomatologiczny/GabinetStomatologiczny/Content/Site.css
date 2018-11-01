@@ -255,6 +255,9 @@ span.field-validation-error {
   border: 1px solid red; }
 
 /*End input walidation style*/
+.navbar-fixed-top {
+  text-align: center; }
+
 @media (max-width: 1200px) {
   .navbar-header {
     float: none; }

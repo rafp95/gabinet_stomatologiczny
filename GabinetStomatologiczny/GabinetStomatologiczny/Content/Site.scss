@@ -303,10 +303,15 @@ span.field-validation-error {
     border: 1px solid red;
 }
 /*End input walidation style*/
-.navbar-fixed-top {
-    text-align: center;
+//navbar center
+@media(max-width: 760px) {
+    .navbar-fixed-top {
+        text-align: center;
+    }
 }
+//end navbar center
 
+//zwijanie navbar poniżej 1200px
 @media (max-width: 1200px) {
     .navbar-header {
         float: none;
@@ -354,7 +359,7 @@ span.field-validation-error {
         display: block !important;
     }
 }
-
+//zwijanie koniec
 /*center form on smal screen*/
 @media(max-width: 768px) {
     div.body-content form:not(.wyszukiwarka) {

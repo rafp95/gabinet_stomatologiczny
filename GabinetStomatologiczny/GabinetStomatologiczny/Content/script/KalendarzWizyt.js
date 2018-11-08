@@ -160,8 +160,9 @@
                     start: start,
                     end: end,
                 };
-                var now = moment(new Date(), "DD-MM-YYYY HH:mm");
-                if (start >= now) {
+                var now = moment(new Date(), "DD-MM-YYYY").format("DD-MM-YYYY");
+                console.log(start.format("DD-MM-YYYY") + ' ' + now);
+                if (start.format("DD-MM-YYYY") >= now) {
                     openAddEditForm();
                 } else {
                     $("#myModalError").modal();

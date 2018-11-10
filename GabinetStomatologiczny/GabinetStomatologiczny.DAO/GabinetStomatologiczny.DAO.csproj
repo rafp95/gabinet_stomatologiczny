@@ -236,6 +236,14 @@
     <Compile Include="Migrations\201810161817041_addDataDodaniaWizyta.Designer.cs">
       <DependentUpon>201810161817041_addDataDodaniaWizyta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811101827170_treatmentDate.cs" />
+    <Compile Include="Migrations\201811101827170_treatmentDate.Designer.cs">
+      <DependentUpon>201811101827170_treatmentDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811101833166_nullableTreatmentDateAllow.cs" />
+    <Compile Include="Migrations\201811101833166_nullableTreatmentDateAllow.Designer.cs">
+      <DependentUpon>201811101833166_nullableTreatmentDateAllow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -348,6 +356,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810161817041_addDataDodaniaWizyta.resx">
       <DependentUpon>201810161817041_addDataDodaniaWizyta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811101827170_treatmentDate.resx">
+      <DependentUpon>201811101827170_treatmentDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811101833166_nullableTreatmentDateAllow.resx">
+      <DependentUpon>201811101833166_nullableTreatmentDateAllow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

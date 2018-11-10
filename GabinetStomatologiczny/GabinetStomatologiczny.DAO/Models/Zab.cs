@@ -11,6 +11,7 @@ namespace GabinetStomatologiczny.DAO.Models
         public int ID { get; set; }
         public int ZabiegID { get; set; }
         public string IdTooth { get; set; }
+        public DateTime? TreatmentDate { get; set; }
 
         public virtual Zabieg Zabieg{ get; set; }
     }

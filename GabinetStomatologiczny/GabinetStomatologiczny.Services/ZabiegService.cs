@@ -53,6 +53,7 @@ namespace GabinetStomatologiczny.Services
             var idZabieg = _db.Zabieg.FirstOrDefault(_ => _.Wizyta.ID == idWizyta).ID;
 
             zab.ZabiegID = idZabieg;
+            zab.TreatmentDate = DateTime.Now;
 
             _db.Zab.Add(zab);
             await _db.SaveChangesAsync();

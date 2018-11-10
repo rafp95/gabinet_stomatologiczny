@@ -1,9 +1,7 @@
 ﻿$(function () {
     let ladowanie = $("div.ladowanie");
     let zapisInfo = $("div#saveDatabaseInfo");
-
     ladowanie.css('display', 'block');
-
     let tooth = $("polygon,path");
     //Get all tooth using ajax
     let tab = [];
@@ -81,7 +79,7 @@
             event.preventDefault();
             let color = $(this).attr('fill');
             let info = color === 'red' ? 'Ząb leczony ' + moment(getDateTreatment($(this).attr('id')))
-                .format("DD-MM-YYYY HH:mm") : 'brak ingerencji';
+                .format("DD-MM-YYYY") : 'brak ingerencji';
             $(this).tooltip({
                 items: $(this),
                 content: () => { return info },
@@ -117,7 +115,7 @@
                 }
                 ladowanie.css('display', 'none');
             }, error: function () {
-                zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
+                zapisInfo.text("Wystąpił problem z zapisem do bazy danych spróbuj odświeżyć przeglądarkę ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
                 css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
                 fadeIn('slow').delay(1000).fadeOut('slow');

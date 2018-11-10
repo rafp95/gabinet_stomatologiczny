@@ -148,7 +148,6 @@
     //set tooth color
     function toothColor(tab) {
         tooth.each(function () {
-            $(this).append('<div class="tooltip"><span class="tooltiptext">Tooltip text</span></div>');
             let id = $(this).attr('id');
             for (let i = 0; i < tab.length; i++) {
                 if (tab[i].idT === id) {

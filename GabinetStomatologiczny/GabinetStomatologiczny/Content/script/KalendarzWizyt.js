@@ -160,16 +160,15 @@
                     start: start,
                     end: end,
                 };
-                var now = moment(new Date(), "DD-MM-YYYY").format("DD-MM-YYYY");
-                console.log(start.format("DD-MM-YYYY") + ' ' + now);
-                if (start.format("DD-MM-YYYY") >= now) {
+                var pom = new Date(moment(start, "DD-MM-YYYY").format("YYYY-MM-DD"));
+                var now = new Date(moment(new Date(), "DD-MM-YYYY").format("YYYY-MM-DD"));
+                console.log(pom - now);
+                if ((pom - now) >= 0) {
                     openAddEditForm();
                 } else {
                     $("#myModalError").modal();
                     return false;
                 }
-
-                openAddEditForm();
                 $('#calendar').fullCalendar('unselect');
             },
             eventDrop: function (event) {

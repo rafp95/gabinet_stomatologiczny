@@ -1,5 +1,4 @@
 ﻿$(function () {
-
     let ladowanie = $("div.ladowanie");
     let zapisInfo = $("div#saveDatabaseInfo");
 
@@ -24,6 +23,7 @@
                 })
                 console.log('pobrano tab ' + tab.length);
                 SetTooth();
+                ToothHover();
                 ladowanie.css('display', 'none');
             }
         });
@@ -36,7 +36,6 @@
         let clicks = 0, timer = null, deley = 500;
         tooth.each(function (index) {
             $(this).on('click', function (e) {
-                e.stopPropagation();
                 clicks++;
                 console.log('kliknięcia ' + clicks);
                 ladowanie.css('display', 'block');
@@ -45,31 +44,52 @@
                         let tooth = {
                             idTooth: $(this).attr('id')
                         };
-                        //if (!idToohtExist(tooth.idTooth)) {
-                            $(this).css('fill', 'red');
-                            addTooth(tooth);
-                            ladowanie.css('display', 'none');
-                        //}
+                        $(this).attr('fill', 'red');
+                        addTooth(tooth);
+                        ladowanie.css('display', 'none');
                         clicks = 0;
+                        e.stopPropagation();
                     }, deley)
                 } else {
                     let tooth = {
                         idTooth: $(this).attr('id')
                     };
                     //if (idToohtExist(tooth.idTooth)) {
-                        $(this).css('fill', '');
-                        deleteTooth(tooth);
-                        ladowanie.css('display', 'none');
+                    console.log(tooth.idTooth.indexOf('XMLID'));
+                    if (tooth.idTooth.indexOf('XMLID') >= 0) {
+                        console.log(tooth.idTooth)
+                        $(this).attr('fill', 'black');
+                    } else {
+                        $(this).attr('fill', 'white');
+                    }
+                    deleteTooth(tooth);
+                    ladowanie.css('display', 'none');
                     //}
                     clearTimeout(timer);
                     clicks = 0;
+                    e.stopPropagation();
                 }
             });
         });
         toothColor(tab);
     }
     //end set tooth
-
+    //tooltip hover
+    function ToothHover() {
+        tooth.each(function (e) {
+            event.preventDefault();
+            let color = $(this).attr('fill');
+            let info = color === 'red' ? 'Ząb leczony' : 'ząb zdrowy';
+            $(this).tooltip({ 
+                items: $(this),
+                content: () => { return info },
+                track: true,
+                my: "left top+20 center",
+                at: "right center"
+            });
+        });
+    }
+    //tooltip hover
     //ajax save tooth to database
     function addTooth(data) {
         $.ajax({
@@ -79,7 +99,7 @@
             success: function (data) {
                 if (data.status) {
                     console.log('Zapisano');
-                    //GetAllTooth();
+                    GetAllTooth();
                 }
                 ladowanie.css('display', 'none');
             }, error: function () {
@@ -101,7 +121,7 @@
             success: function (data) {
                 if (data.status) {
                     console.log('Zapisano');
-                    //GetAllTooth();
+                    GetAllTooth();
                 }
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
@@ -116,10 +136,11 @@
     //set tooth color
     function toothColor(tab) {
         tooth.each(function () {
+            $(this).append('<div class="tooltip"><span class="tooltiptext">Tooltip text</span></div>');
             let id = $(this).attr('id');
             for (let i = 0; i < tab.length; i++) {
                 if (tab[i].idT === id) {
-                    $(this).css('fill', 'red');
+                    $(this).attr('fill', 'red');
                 }
             }
         });

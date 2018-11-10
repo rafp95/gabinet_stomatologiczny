@@ -79,13 +79,13 @@
             event.preventDefault();
             let color = $(this).attr('fill');
             let info = color === 'red' ? 'Ząb leczony ' + moment(getDateTreatment($(this).attr('id')))
-                .format("DD-MM-YYYY") : 'brak ingerencji';
+                .format("DD-MM-YYYY") : 'brak ingerencji lekarskiej';
             $(this).tooltip({
                 items: $(this),
                 content: () => { return info },
                 track: true,
                 my: "left top+20 center",
-                at: "right center", show: null, // show immediately
+                at: "right center", 
                 open: function (event, ui) {
                     if (typeof (event.originalEvent) === 'undefined') {
                         return false;

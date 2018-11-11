@@ -5,6 +5,14 @@
     ViewBag.Active = "Pacjenci";
 }
 
+@if (@TempData["editZabiegs"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Pomyślnie edytowano
+    </div>
+}
+
 <h2>Zabiegi</h2>
 
 @if (User.IsInRole("Pacjent") &&

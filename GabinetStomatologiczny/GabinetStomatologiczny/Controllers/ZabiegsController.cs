@@ -215,6 +215,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 db.Entry(zabieg).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["editZabiegs"] = "success";
                 return RedirectToAction("Index");
             }
             ViewBag.WizytaID = new SelectList(db.Wizyta, "ID", "ID", zabieg.WizytaID);

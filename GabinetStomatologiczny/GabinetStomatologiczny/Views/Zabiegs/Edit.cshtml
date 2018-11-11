@@ -8,56 +8,64 @@
 <div id="saveDatabaseInfo"></div>
 <div class="ladowanie"></div>
 
-<h2 class="text-center">Model zębów pacjęta @Model.Wizyta.Tytul</h2>
-<hr />
-<div class="row">
-    <div class="col-md-12">
-        @Html.Partial("_ToothModelParital")
-    </div>
-</div>
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Model zębów</a></li>
+    <li><a data-toggle="tab" href="#menu1">Zabiegi</a></li>
+</ul>
 
-<div class="row centerPage">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <h4>Zabieg</h4>
-            <hr />
-            <div class="form-horizontal position-label">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.ID)
-                @Html.HiddenFor(model => model.WizytaID)
-
-                <div class="form-group">
-                    <div class="col-md-12">
-                        @Html.LabelFor(model => model.Wizyta.Tytul, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Wizyta.Tytul, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                        @Html.ValidationMessageFor(model => model.Wizyta.Tytul, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-12">
-                        @Html.LabelFor(model => model.TypZabiegu, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EnumDropDownListFor(model => model.TypZabiegu, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.TypZabiegu, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-12">
-                        @Html.LabelFor(model => model.CenaZabiegu, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.CenaZabiegu, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CenaZabiegu, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10 zabiegAddEdit">
-                        <input type="submit" value="Zapisz" class="btn btn-block btn-default" />
-                    </div>
-                </div>
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <h2 class="text-center">Model zębów pacjęta @Model.Wizyta.Tytul</h2>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("_ToothModelParital")
             </div>
-    }
+        </div>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+        <div class="row centerPage">
+            <h3 class="text-center">Zabieg pacjęta @Model.Wizyta.Tytul</h3>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal position-label">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
+                    @Html.HiddenFor(model => model.WizytaID)
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.Wizyta.Tytul, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Wizyta.Tytul, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.Wizyta.Tytul, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.TypZabiegu, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EnumDropDownListFor(model => model.TypZabiegu, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TypZabiegu, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.CenaZabiegu, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.CenaZabiegu, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CenaZabiegu, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10 zabiegAddEdit">
+                            <input type="submit" value="Zapisz" class="btn btn-block btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
 
 <div>

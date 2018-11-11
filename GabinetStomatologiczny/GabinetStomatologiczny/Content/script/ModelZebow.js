@@ -80,12 +80,11 @@
                 .format("DD-MM-YYYY") : 'brak ingerencji lekarskiej';
             $(this).tooltip({
                 items: $(this),
+                effect: 'slide',
                 content: () => { return info },
                 track: true,
                 my: "left top+20 center",
                 at: "right center",
-                show: null,
-                autoHide: true,
                 open: function (event, ui) {
                     if (typeof (event.originalEvent) === 'undefined') {
                         return false;
@@ -93,7 +92,6 @@
                     let $id = $(ui.tooltip).attr('id');
                     // close any lingering tooltips
                     $('div.ui-tooltip').not('#' + $id).remove();
-
                 }
             });
         });

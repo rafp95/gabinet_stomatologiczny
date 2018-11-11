@@ -85,7 +85,8 @@
                 content: () => { return info },
                 track: true,
                 my: "left top+20 center",
-                at: "right center", 
+                at: "right center",
+                show: null,
                 open: function (event, ui) {
                     if (typeof (event.originalEvent) === 'undefined') {
                         return false;
@@ -96,7 +97,6 @@
                     // close any lingering tooltips
                     $('div.ui-tooltip').not('#' + $id).remove();
 
-                    // ajax function to pull in data and add it to the tooltip goes here
                 }
             });
         });

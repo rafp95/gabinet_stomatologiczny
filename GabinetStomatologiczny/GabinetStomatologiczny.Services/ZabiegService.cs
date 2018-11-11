@@ -11,7 +11,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface IZabiegService
     {
-        IQueryable<object> GetAllTooth(int id);
+        Task<IEnumerable<object>> GetAllTooth(int id);
         Task <Pacjent> GetPacjentById(int id);
         void SaveTooth(Zab zab,int userID);
         void DeleteTooth(Zab zab, int userID);
@@ -34,11 +34,12 @@ namespace GabinetStomatologiczny.Services
             await _db.SaveChangesAsync();
         }
 
-        public IQueryable<object> GetAllTooth(int id)
+        public async Task<IEnumerable<object>> GetAllTooth(int id)
         {
-            var idWizyta = _db.Wizyta.First(_ => _.Pacjent.ID == id).ID;
-            var tooth = _db.Zabieg.Where(_ => _.WizytaID == idWizyta && _.Wizyta.PacjentID == id).Select(_ => _.Zeby);
-            return tooth;
+            var idWizyta = await _db.Wizyta.FirstAsync(_ => _.Pacjent.ID == id);
+            var tooth = _db.Zabieg.Where(_ => _.WizytaID == idWizyta.ID && _.Wizyta.PacjentID == id).AsQueryable();
+            var getAllTooth = await tooth.Select(_ => _.Zeby).ToListAsync();
+            return getAllTooth;
         }
 
         public async Task<Pacjent> GetPacjentById(int id)

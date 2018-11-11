@@ -148,12 +148,12 @@ namespace GabinetStomatologiczny.Controllers
         }
 
 
-        public ActionResult GetAllTooth()
+        public async Task<ActionResult> GetAllTooth()
         {
             int id = (int)Session["user"];
             //var idWizyta = db.Wizyta.First(_ => _.Pacjent.ID == id).ID;
             //var tooth = db.Zabieg.Where(_ => _.WizytaID == idWizyta && _.Wizyta.PacjentID == id).Select(_ => _.Zeby);
-            var tooth = _zabiegService.GetAllTooth(id);
+            var tooth = await _zabiegService.GetAllTooth(id);
             return new JsonResult{ Data = tooth, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
 

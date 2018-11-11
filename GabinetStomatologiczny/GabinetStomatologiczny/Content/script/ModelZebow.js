@@ -32,9 +32,10 @@
     //set tooth
     //
     function SetTooth() {
-        let clicks = 0, timer = null, deley = 500;
+        let clicks = 0, timer = null, deley = 700;
         tooth.each(function (index) {
             $(this).on('click', function (e) {
+                e.stopPropagation();
                 clicks++;
                 console.log('kliknięcia ' + clicks);
                 ladowanie.css('display', 'block');
@@ -47,7 +48,6 @@
                         addTooth(tooth);
                         ladowanie.css('display', 'none');
                         clicks = 0;
-                        e.stopPropagation();
                     }, deley)
                 } else {
                     let tooth = {
@@ -66,7 +66,6 @@
                     //}
                     clearTimeout(timer);
                     clicks = 0;
-                    e.stopPropagation();
                 }
             });
         });
@@ -75,8 +74,7 @@
     //end set tooth
     //tooltip hover
     function ToothHover() {
-        tooth.each(function (e) {
-            event.preventDefault();
+        tooth.each(function () {
             let color = $(this).attr('fill');
             let info = color === 'red' ? 'Ząb leczony ' + moment(getDateTreatment($(this).attr('id')))
                 .format("DD-MM-YYYY") : 'brak ingerencji lekarskiej';
@@ -87,13 +85,12 @@
                 my: "left top+20 center",
                 at: "right center",
                 show: null,
+                autoHide: true,
                 open: function (event, ui) {
                     if (typeof (event.originalEvent) === 'undefined') {
                         return false;
                     }
-
-                    var $id = $(ui.tooltip).attr('id');
-
+                    let $id = $(ui.tooltip).attr('id');
                     // close any lingering tooltips
                     $('div.ui-tooltip').not('#' + $id).remove();
 

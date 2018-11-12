@@ -33,7 +33,7 @@
     //
     function SetTooth() {
         let clicks = 0, timer = null, deley = 700;
-        tooth.on('click', function (e) {
+        tooth.off('click').on('click', function (e) {
             event.preventDefault();
             clicks++;
             ladowanie.css('display', 'block');
@@ -42,8 +42,13 @@
                     let tooth = {
                         idTooth: $(this).attr('id')
                     };
-                    $(this).attr('fill', 'red');
-                    addTooth(tooth);
+                    if ($(this).attr('fill') === '#FFFFFF'
+                       || $(this).attr('fill') === '#010101') {
+                        let color = $(this).attr('fill');
+                        console.log(color);
+                        $(this).attr('fill', '#FF0000');
+                        addTooth(tooth);
+                    }
                     ladowanie.css('display', 'none');
                     clicks = 0;
                 }, deley)
@@ -53,13 +58,15 @@
                 };
                 //if (idToohtExist(tooth.idTooth)) {
                 console.log(tooth.idTooth.indexOf('XMLID'));
-                if (tooth.idTooth.indexOf('XMLID') >= 0) {
-                    console.log(tooth.idTooth)
-                    $(this).attr('fill', 'black');
-                } else {
-                    $(this).attr('fill', 'white');
+                if ($(this).attr('fill') === '#FF0000') {
+                    if (tooth.idTooth.indexOf('XMLID') >= 0) {
+                        console.log(tooth.idTooth)
+                        $(this).attr('fill', '#010101');
+                    } else {
+                        $(this).attr('fill', '#FFFFFF');
+                    }
+                    deleteTooth(tooth);
                 }
-                deleteTooth(tooth);
                 ladowanie.css('display', 'none');
                 //}
                 clearTimeout(timer);
@@ -74,7 +81,7 @@
     function ToothHover() {
         tooth.each(function () {
             let color = $(this).attr('fill');
-            let info = color === 'red' ? 'Ząb leczony ' + moment(getDateTreatment($(this).attr('id')))
+            let info = color === '#FF0000' ? 'Ząb leczony ' + moment(getDateTreatment($(this).attr('id')))
                 .format("DD-MM-YYYY") : 'brak ingerencji lekarskiej';
             $(this).tooltip({
                 items: $(this),
@@ -144,7 +151,7 @@
             let id = $(this).attr('id');
             for (let i = 0; i < tab.length; i++) {
                 if (tab[i].idT === id) {
-                    $(this).attr('fill', 'red');
+                    $(this).attr('fill', '#FF0000');
                 }
             }
         });

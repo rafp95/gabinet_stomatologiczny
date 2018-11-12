@@ -32,7 +32,6 @@
     //set tooth
     //
     function SetTooth() {
-        ToothHover();
         let clicks = 0, timer = null, deley = 700;
         tooth.on('click', function (e) {
             event.preventDefault();

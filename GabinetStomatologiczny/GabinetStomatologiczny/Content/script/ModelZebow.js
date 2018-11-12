@@ -32,43 +32,42 @@
     //set tooth
     //
     function SetTooth() {
+        ToothHover();
         let clicks = 0, timer = null, deley = 700;
-        tooth.each(function (index) {
-            $(this).on('click', function (e) {
-                e.stopPropagation();
-                clicks++;
-                console.log('kliknięcia ' + clicks);
-                ladowanie.css('display', 'block');
-                if (clicks == 1) {
-                    timer = setTimeout(() => {
-                        let tooth = {
-                            idTooth: $(this).attr('id')
-                        };
-                        $(this).attr('fill', 'red');
-                        addTooth(tooth);
-                        ladowanie.css('display', 'none');
-                        clicks = 0;
-                    }, deley)
-                } else {
+        tooth.on('click', function (e) {
+            event.preventDefault();
+            clicks++;
+            ladowanie.css('display', 'block');
+            if (clicks == 1) {
+                timer = setTimeout(() => {
                     let tooth = {
                         idTooth: $(this).attr('id')
                     };
-                    //if (idToohtExist(tooth.idTooth)) {
-                    console.log(tooth.idTooth.indexOf('XMLID'));
-                    if (tooth.idTooth.indexOf('XMLID') >= 0) {
-                        console.log(tooth.idTooth)
-                        $(this).attr('fill', 'black');
-                    } else {
-                        $(this).attr('fill', 'white');
-                    }
-                    deleteTooth(tooth);
+                    $(this).attr('fill', 'red');
+                    addTooth(tooth);
                     ladowanie.css('display', 'none');
-                    //}
-                    clearTimeout(timer);
                     clicks = 0;
+                }, deley)
+            } else {
+                let tooth = {
+                    idTooth: $(this).attr('id')
+                };
+                //if (idToohtExist(tooth.idTooth)) {
+                console.log(tooth.idTooth.indexOf('XMLID'));
+                if (tooth.idTooth.indexOf('XMLID') >= 0) {
+                    console.log(tooth.idTooth)
+                    $(this).attr('fill', 'black');
+                } else {
+                    $(this).attr('fill', 'white');
                 }
-            });
+                deleteTooth(tooth);
+                ladowanie.css('display', 'none');
+                //}
+                clearTimeout(timer);
+                clicks = 0;
+            }
         });
+
         toothColor(tab);
     }
     //end set tooth

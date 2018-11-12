@@ -152,7 +152,7 @@
     //end set tooth color
     //idTooth exist
     function idToohtExist(id) {
-        for (var i = 0; i < tab.length; i++) {
+        for (let i = 0; i < tab.length; i++) {
             if (tab[i].idT === id) {
                 return true;
             }
@@ -161,7 +161,7 @@
     }
     //end idTooth exist
     function getDateTreatment(id, date) {
-        for (var i = 0; i < tab.length; i++) {
+        for (let i = 0; i < tab.length; i++) {
             if (tab[i].idT === id && tab[i].dateT !== null) {
                 return tab[i].dateT;
             }

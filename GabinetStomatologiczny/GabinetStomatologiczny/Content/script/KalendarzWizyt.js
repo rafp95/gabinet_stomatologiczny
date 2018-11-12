@@ -344,7 +344,7 @@
         for (var i = 0; i < events.length; i++) {
             if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
                 $("#txtStart").css({ 'border': '1px solid red', 'background': 'pink' }).parent().
-                after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red");
+                after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red").hide().fadeIn();
                 return;
             }
 
@@ -361,7 +361,7 @@
 
         if (!check) {
             $("#txtStart").css({ 'border': '1px solid red', 'background': 'pink' }).parent().
-                  after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red");
+                  after("<div class='errorTime'>Nietety termin nie dostępny...</div>").next().css("color", "red").hide().fadeIn();
             return;
         }
         //End check date
@@ -370,7 +370,7 @@
         if (tytul.length > 0) {
             if (tytul.val().length == 0) {
                 tytul.css({ 'border': '1px solid red', 'background': 'pink' }).parent().
-                after("<div class='errorTime'>Pole nie może być puste</div>").next().css("color", "red");
+                after("<div class='errorTime'>Pole nie może być puste</div>").next().css("color", "red").hide().fadeIn();
                 return;
             }
         }
@@ -408,7 +408,7 @@
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
                 css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
-                fadeIn('slow').delay(1000).fadeOut('slow');
+                fadeIn().delay(1000).fadeOut();
             }
         })
     }

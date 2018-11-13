@@ -164,7 +164,7 @@ namespace GabinetStomatologiczny.Controllers
             int id = (int)Session["user"];
             if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
             {
-                await Task.Run(() => _zabiegService.SaveTooth(zab, id));
+                await  _zabiegService.SaveTooth(zab, id);
                 status = true;
             }
 

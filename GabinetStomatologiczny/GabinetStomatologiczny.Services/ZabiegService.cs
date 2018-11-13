@@ -13,7 +13,7 @@ namespace GabinetStomatologiczny.Services
     {
         Task<IEnumerable<object>> GetAllTooth(int id);
         Task <Pacjent> GetPacjentById(int id);
-        void SaveTooth(Zab zab,int userID);
+        Task <Zab> SaveTooth(Zab zab,int userID);
         void DeleteTooth(Zab zab, int userID);
     }
     public class ZabiegService : IZabiegService
@@ -47,17 +47,19 @@ namespace GabinetStomatologiczny.Services
             return await _db.Pacjent.FirstOrDefaultAsync(_ => _.ID == id);
         }
 
-        public async void SaveTooth(Zab zab,int userID)
+        public async Task<Zab> SaveTooth(Zab zab,int userID)
         {
-            var idWizyta = _db.Wizyta.First(_ => _.Pacjent.ID == userID).ID;
-            var tooth = _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta).Select(_ => _.Zeby);
-            var idZabieg = _db.Zabieg.FirstOrDefault(_ => _.Wizyta.ID == idWizyta).ID;
+            var idWizyta = await _db.Wizyta.FirstOrDefaultAsync(_ => _.Pacjent.ID == userID);
+            var tooth = _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta.ID).Select(_ => _.Zeby).AsQueryable();
+            var idZabieg = await _db.Zabieg.FirstOrDefaultAsync(_ => _.Wizyta.ID == idWizyta.ID);
 
-            zab.ZabiegID = idZabieg;
+            zab.ZabiegID = idZabieg.ID;
             zab.TreatmentDate = DateTime.Now;
 
             _db.Zab.Add(zab);
             await _db.SaveChangesAsync();
+            return zab;
+
         }
     }
 }

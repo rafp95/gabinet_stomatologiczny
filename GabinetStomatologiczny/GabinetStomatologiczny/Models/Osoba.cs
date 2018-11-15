@@ -24,6 +24,7 @@ namespace GabinetStomatologiczny.Models
         [Display(Name = "Powtórz hasło")]
         [Required]
         [DataType(DataType.Password)]
+        [Compare("Haslo", ErrorMessage = "Podane hasła są różne")]
         public string PowtorzHaslo { get; set; }
 
         [Required]

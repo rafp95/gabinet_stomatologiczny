@@ -23,17 +23,34 @@ function powieksznie() {
 }
 
 function miniaturka() {
-    var miniaturka = $(".editOraz");
-    var reader = new FileReader();
+    let miniaturka = $(".editOraz");
+    let reader = new FileReader();
+   
     miniaturka.change(function (event) {
-        var input = event.target;
-        var reader = new FileReader();
-        $("#miniaturka").html("<div class='loader'></div>");
+        let input = event.target;
+        let reader = new FileReader();
         reader.onload = function () {
+            move();
             var dataURL = reader.result;
             var output = $("#miniaturka");
             output.html("<img class='zdjecie' src='" + dataURL + "' />");
         };
         reader.readAsDataURL(input.files[0]);
     });
+}
+
+function move() {
+    let elem = $('#myBar');
+    $('#myProgress').css({ 'display': 'block' });
+    let width = 1;
+    let id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.css({ 'width': width + '%' });
+            elem.text(width + '%');
+        }
+    }
 }

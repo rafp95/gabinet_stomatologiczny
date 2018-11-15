@@ -131,4 +131,19 @@ input.editOraz {
   height: auto; }
 
 /*End input type file*/
+#myProgress {
+  display: none;
+  height: 30px;
+  margin-bottom: 10px;
+  max-width: 280px;
+  background-color: #ddd; }
 
+#myProgress #myBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1%;
+  height: 100%;
+  background-color: #4CAF50;
+  text-align: center;
+  color: white; }

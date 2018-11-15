@@ -40,7 +40,7 @@
     // scroll body to 0px on click
     top.click((e) => {
         e.preventDefault();
-        $('body,html').animate({
+        $('html,body').animate({
             scrollTop: 0
         }, 700);
         return false;

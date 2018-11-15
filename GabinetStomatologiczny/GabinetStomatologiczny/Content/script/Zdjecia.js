@@ -27,12 +27,12 @@ function miniaturka() {
     let reader = new FileReader();
    
     miniaturka.change(function (event) {
+        move();
         let input = event.target;
         let reader = new FileReader();
         reader.onload = function () {
-            move();
-            var dataURL = reader.result;
-            var output = $("#miniaturka");
+            let dataURL = reader.result;
+            let output = $("#miniaturka");
             output.html("<img class='zdjecie' src='" + dataURL + "' />");
         };
         reader.readAsDataURL(input.files[0]);

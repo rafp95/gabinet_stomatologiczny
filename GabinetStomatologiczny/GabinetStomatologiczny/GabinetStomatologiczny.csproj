@@ -533,6 +533,7 @@
     <Content Include="Content\Galeria.min.css">
       <DependentUpon>Galeria.css</DependentUpon>
     </Content>
+    <Content Include="Content\img\task.png" />
     <Content Include="Content\Kalendarz.css">
       <DependentUpon>Kalendarz.scss</DependentUpon>
     </Content>

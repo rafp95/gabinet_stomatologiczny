@@ -35,9 +35,11 @@
     @media only screen and (min-width: 1200px) {
         right: 6.8%;
     }
+
     @media only screen and (min-width: 1300px) {
         right: 7.8%;
     }
+
     @media only screen and (min-width: 1500px) {
         right: 13.8%;
     }
@@ -60,7 +62,8 @@
 
     ul {
         margin: 0;
-
+        list-style-image: url(../Content/img/task.png);
+        background-repeat: no-repeat;
         li {
             padding: 10px 5px;
             margin: 2px;

@@ -55,7 +55,9 @@
   max-height: 200px;
   overflow: hidden auto; }
   .card-notification-desktop ul {
-    margin: 0; }
+    margin: 0;
+    list-style-image: url(img/task.png);
+    background-repeat: no-repeat; }
     .card-notification-desktop ul li {
       padding: 10px 5px;
       margin: 2px; }

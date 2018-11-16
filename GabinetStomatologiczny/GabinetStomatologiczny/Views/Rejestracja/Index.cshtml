@@ -41,6 +41,9 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Haslo, new { htmlAttributes = new { @class = "form-control" } })
                 <span id="InfoPassword"></span>
+                <div id="myProgress">
+                    <div id="myBar"></div>
+                </div>                
                 @Html.ValidationMessageFor(model => model.Haslo, "", new { @class = "text-danger" })
             </div>
         </div>

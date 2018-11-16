@@ -11,7 +11,8 @@
 function silaHasla(pass, checkInfo) {
 
     pass.on('keyup', function () {
-
+        $('#myProgress').css({ 'display': 'block' });
+        move(0, 'red');
         if ($(this).val().length <= 5) {
             checkInfo.text("Bardzo słabe");
             checkInfo.css("color", "red");
@@ -42,30 +43,36 @@ function silaHasla(pass, checkInfo) {
         var silaHasla = "";
         switch (poprawnosc) {
             case 0:
+                move(0, 'red');
                 break;
             case 1:
                 silaHasla = "Bardzo słabe";
                 kolor = "red";
+                move(0, kolor);
                 console.log(poprawnosc);
                 break;
             case 2:
                 silaHasla = "Dobre";
                 kolor = "darkorange";
+                move(40,kolor);
                 console.log(poprawnosc);
                 break;
             case 3:
                 silaHasla = "Dobre";
                 kolor = "darkorange";
+                move(60, kolor);
                 console.log(poprawnosc);
                 break;
             case 4:
                 silaHasla = "Bardzo dobre";
                 kolor = "green";
+                move(80, kolor);
                 console.log(poprawnosc);
                 break;
-             case 5:
+            case 5:
                 silaHasla = "Silne";
                 kolor = "darkgreen";
+                move(100, kolor);
                 console.log(poprawnosc);
                 break;
         }
@@ -76,3 +83,10 @@ function silaHasla(pass, checkInfo) {
     });
 }
 //Koniec metody sprawdzania hasła
+
+function move(procent,kolor) {
+    let elem = $('#myBar');
+    let width = procent || 1;
+    elem.css({ 'width': width + '%','background': kolor });
+    elem.text(width + '%');
+}

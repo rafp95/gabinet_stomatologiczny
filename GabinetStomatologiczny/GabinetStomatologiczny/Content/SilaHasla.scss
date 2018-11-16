@@ -10,3 +10,25 @@
         position: static;
     }
 }
+
+//passord progress
+#myProgress {
+    display: none;
+    height: 30px;
+    margin-bottom: 10px;
+    max-width: 280px;
+    background-color: #ddd;
+}
+
+#myProgress #myBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    width: 1%;
+    height: 100%;
+    background-color: red;
+    text-align: center;
+    color: white;
+}
+//end password progress

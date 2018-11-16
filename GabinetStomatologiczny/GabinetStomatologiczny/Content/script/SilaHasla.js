@@ -19,15 +19,15 @@ function silaHasla(pass, checkInfo) {
             return;
         }
 
-        var wyrazenie = new Array();
+        let wyrazenie = new Array();
         wyrazenie.push("[A-Z]");
         wyrazenie.push("[a-z]");
         wyrazenie.push("[0-9]");
         wyrazenie.push("[$@$!%*#?&]");
         wyrazenie.push("[ąćźęółńĄĆŻĘÓŁŃ]");
 
-        var poprawnosc = 0;
-        for (var i = 0; i < wyrazenie.length; i++) {
+        let poprawnosc = 0;
+        for (let i = 0; i < wyrazenie.length; i++) {
             if ((new RegExp(wyrazenie[i])).test($(this).val())) {
                 poprawnosc++;
                 console.log(poprawnosc);
@@ -39,8 +39,8 @@ function silaHasla(pass, checkInfo) {
             console.log(poprawnosc);
         }
 
-        var kolor = "";
-        var silaHasla = "";
+        let kolor = "";
+        let silaHasla = "";
         switch (poprawnosc) {
             case 0:
                 move(0, 'red');

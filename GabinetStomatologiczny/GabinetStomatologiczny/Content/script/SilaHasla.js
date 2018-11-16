@@ -10,10 +10,10 @@
 //Funkcja sprawdzająca siłę hasła
 function silaHasla(pass, checkInfo) {
 
-    pass.on('keyup', function () {
+    pass.off().on('keyup', function () {
         $('#myProgress').css({ 'display': 'block' });
-        move(0, 'red');
         if ($(this).val().length <= 5) {
+            move(0, 'red');
             checkInfo.text("Bardzo słabe");
             checkInfo.css("color", "red");
             return;
@@ -84,9 +84,12 @@ function silaHasla(pass, checkInfo) {
 }
 //Koniec metody sprawdzania hasła
 
-function move(procent,kolor) {
+function move(procent, kolor) {
+    console.log('zmiana koloru '+kolor);
     let elem = $('#myBar');
     let width = procent || 1;
-    elem.css({ 'width': width + '%','background': kolor });
-    elem.text(width + '%');
+    elem.css({'background':kolor});
+    elem.animate({
+        width: width + '%'
+    },200);
 }

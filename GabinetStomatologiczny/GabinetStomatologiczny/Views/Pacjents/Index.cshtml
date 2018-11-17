@@ -15,16 +15,18 @@
     </div>
 }
 
-<div class="form-group">
-    <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
-        <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextPacjent"></span>
-        <input type="text" id="searchQuery" name="searchQuery"
-               data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Wpisz min 1 znak"
-               class="form-control pacjent-query" />
-        <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajPacjentAjax form-control tooltipLink"><i class="fa fa-search"></i></button>
-    </form>
-</div>
-
+@if (User.Identity.IsAuthenticated && (User.IsInRole("Lekarz") || User.IsInRole("Administrator")))
+{
+    <div class="form-group">
+        <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
+            <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextPacjent"></span>
+            <input type="text" id="searchQuery" name="searchQuery"
+                   data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Wpisz min 1 znak"
+                   class="form-control pacjent-query" />
+            <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajPacjentAjax form-control tooltipLink"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+}
 
 @Html.Partial("_PatiensParts")
 

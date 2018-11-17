@@ -954,6 +954,8 @@
     <Content Include="Views\Shared\_NotyficationPartial.cshtml" />
     <Content Include="Views\Wizytas\_WizytasModalDialog.cshtml" />
     <Content Include="Views\Zabiegs\_RefreshPage.cshtml" />
+    <Content Include="Views\Pacjents\_PacjentDetails.cshtml" />
+    <Content Include="Views\Pacjents\_PacejntTableHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -88,7 +88,7 @@ namespace GabinetStomatologiczny.Controllers
                                 await se.SendMail(o.Email, "Witaj, administrator " +
                                   o.Imie, "Twoje dane do logowania to \n"
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                this.adminS.CreateAdmin(admin);
+                                await this.adminS.CreateAdmin(admin);
                                 break;
                             }
                         case TypPracownika.Lekarz:
@@ -98,7 +98,7 @@ namespace GabinetStomatologiczny.Controllers
                                 await se.SendMail(o.Email, "Witaj, lekarz " +
                                     o.Imie, "Twoje dane do logowania to \n"
                                     + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                this.ls.CreateLekarz(lekarz);
+                                await this.ls.CreateLekarz(lekarz);
                                 break;
                             }
                         case TypPracownika.Pacjent:
@@ -108,7 +108,7 @@ namespace GabinetStomatologiczny.Controllers
                                 await se.SendMail(o.Email, "Witaj, pacjencie " +
                                    o.Imie, "Twoje dane do logowania to \n "
                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                ps.CreatePacjnt(pacjent);
+                                await ps.CreatePacjnt(pacjent);
                                 break;
                             }
                     }

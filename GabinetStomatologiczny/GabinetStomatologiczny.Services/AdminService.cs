@@ -10,7 +10,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface IAdminService
     {
-        void CreateAdmin(Administrator admin);
+        Task<Administrator> CreateAdmin(Administrator admin);
     }
     public class AdminService : IAdminService
     {
@@ -21,10 +21,14 @@ namespace GabinetStomatologiczny.Services
             this._db = db;
         }
 
-        public void CreateAdmin(Administrator admin)
+        public async Task<Administrator> CreateAdmin(Administrator admin)
         {
-            this._db.Administrator.Add(admin);
-            this._db.SaveChanges();
+            if (admin != null)
+            {
+                this._db.Administrator.Add(admin);
+                await this._db.SaveChangesAsync();
+            }
+            return admin;
         }
     }
 }

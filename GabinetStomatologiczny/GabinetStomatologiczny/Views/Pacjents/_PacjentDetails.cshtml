@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNet.Identity
+@using GabinetStomatologiczny.DAO.Models;
+
+<td>
+    @Model.Imie
+</td>
+<td>
+    @Model.Nazwisko
+</td>
+<td>
+    @Model.Pesel
+</td>
+<td>
+    @Model.Plec
+</td>
+<td>
+    @if (@Model.DataUrodzenia !=null )
+    {
+        @Model.DataUrodzenia.ToString("dd-MMM-yyyy")
+    }
+    else
+    {
+        @Model.DataUrodzenia
+    }
+</td>
+<td>
+    @Model.NrTelefonu
+</td>
+<td>
+    @Model.DataRejestracji
+</td>

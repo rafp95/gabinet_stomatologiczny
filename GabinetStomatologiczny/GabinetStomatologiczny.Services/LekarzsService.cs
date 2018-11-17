@@ -20,7 +20,7 @@ namespace GabinetStomatologiczny.Services
         void Edit(Lekarz lekarz);
         Lekarz Find(int? id);
         void Remove(Lekarz lekarz);
-        void CreateLekarz(Lekarz lekarz);
+        Task<Lekarz> CreateLekarz(Lekarz lekarz);
         HttpPostedFileBase SaveFile(HttpPostedFileBase file, Lekarz lekarz);
     }
 
@@ -64,13 +64,14 @@ namespace GabinetStomatologiczny.Services
             return this._db.Lekarz.Find(id);
         }
 
-        public void CreateLekarz(Lekarz lekarz)
+        public async Task<Lekarz> CreateLekarz(Lekarz lekarz)
         {
             if (lekarz != null)
             {
                 this._db.Lekarz.Add(lekarz);
-                this._db.SaveChanges();
+                await this._db.SaveChangesAsync();
             }
+            return lekarz;
         }
 
         public HttpPostedFileBase SaveFile(HttpPostedFileBase file, Lekarz lekarz)

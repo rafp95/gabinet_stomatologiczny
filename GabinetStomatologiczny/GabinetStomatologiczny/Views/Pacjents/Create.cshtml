@@ -2,12 +2,7 @@
 @{
     ViewBag.Title = "Utwórz";
 }
-<script src="~/Scripts/lib/jquery.min.js"></script>
-<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-<script src="~/Scripts/datepicker-pl.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-<link href="~/Content/Kalendarz.css" rel="stylesheet" />
+
 <h2>Dodaj</h2>
 
 @using (Html.BeginForm())
@@ -51,7 +46,7 @@
             <div class="col-md-10">
                 <div class="kalendarz">
                     <span class="glyphicon glyphicon-calendar kalendarz"></span>
-                    @Html.EditorFor(model => model.DataUrodzenia, new { htmlAttributes = new { @class = "form-control"} })
+                    @Html.EditorFor(model => model.DataUrodzenia, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
                 @Html.ValidationMessageFor(model => model.DataUrodzenia, "", new { @class = "text-danger" })
             </div>
@@ -122,8 +117,17 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section MyCustomStyle{
+    <link href="~/Content/Kalendarz.min.css" rel="stylesheet" />
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/lib/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/datepicker-pl.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 }

@@ -249,7 +249,7 @@ div#saveDatabaseInfo {
 /*End animation page content*/
 
 /*fullcalendar center element fc-content*/
-div.fc-content{
+div.fc-content {
     display: flex;
     align-items: center;
     min-height: 100%;
@@ -257,23 +257,32 @@ div.fc-content{
 /*end fullcalendar center element fc-content*/
 
 /*space betwwen time and title*/
-span.fc-time{
+span.fc-time {
     margin-right: 2px;
 }
 /*end space betwwen time and title*/
 //modal button position
-div#action{
+div#action {
     display: flex;
     justify-content: space-around;
     flex-direction: row-reverse;
-    button{
+
+    button {
         margin-left: 5px;
     }
 }
 //end modal button postion
 
 //modal mody padding
-.modal-body{
+.modal-body {
     padding: 5px 20px;
 }
 //end modal body
+@media (max-height: 400px) {
+    .bootstrap-datetimepicker-widget {
+        position: fixed;
+        overflow: hidden;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+}

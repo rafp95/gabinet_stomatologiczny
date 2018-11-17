@@ -1,14 +1,14 @@
 ﻿@model GabinetStomatologiczny.Models.Osoba
 
-@{ 
+@{
     ViewBag.Active = "Rejestracja";
 }
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h2>Dodaj nową osobę</h2>
         <hr />
@@ -23,7 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TypPracownika, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.TypPracownika, new {@class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.TypPracownika, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TypPracownika, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +43,7 @@
                 <span id="InfoPassword"></span>
                 <div id="myProgress">
                     <div id="myBar"></div>
-                </div>                
+                </div>
                 @Html.ValidationMessageFor(model => model.Haslo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -88,7 +88,9 @@
     </div>
 }
 
-<link href="~/Content/SilaHasla.css" rel="stylesheet" />
+@section MyCustomStyle{
+    <link href="~/Content/SilaHasla.min.css" rel="stylesheet" />
+}
 
 @section scripts{
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>

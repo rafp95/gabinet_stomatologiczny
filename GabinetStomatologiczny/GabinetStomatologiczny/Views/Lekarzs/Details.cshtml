@@ -1,13 +1,9 @@
 ﻿@model GabinetStomatologiczny.DAO.Models.Lekarz
-
-<link href="~/Content/Zdjecia.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Więcej";
     ViewBag.Active = "Pacjenci";
 }
-
 <h2>Więcej informacji</h2>
-
 <div>
     <h4>Lekarz</h4>
     <hr />
@@ -15,23 +11,18 @@
         <dt>
             @Html.DisplayNameFor(model => model.Imie)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Imie)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Nazwisko)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Nazwisko)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Zdjecie)
         </dt>
-
         <dd>
             @if (Model.Zdjecie != null)
             {
@@ -43,23 +34,18 @@
                 </div>
             }
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.NrTelefonu)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.NrTelefonu)
         </dd>
-
     </dl>
 </div>
 <p>
@@ -70,7 +56,9 @@
     }
     @Html.ActionLink(" Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
 </p>
-
+@section MyCustomStyle{
+    <link href="~/Content/Zdjecia.min.css" rel="stylesheet" />
+}
 @section scripts{
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>

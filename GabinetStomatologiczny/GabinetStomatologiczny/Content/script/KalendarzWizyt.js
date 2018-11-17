@@ -378,6 +378,7 @@
         minDate: new Date(),
         daysOfWeekDisabled: [0, 6],
         sideBySide: false,
+        showClose: true,
         widgetPositioning: {
             horizontal: 'right',
             vertical: 'bottom'

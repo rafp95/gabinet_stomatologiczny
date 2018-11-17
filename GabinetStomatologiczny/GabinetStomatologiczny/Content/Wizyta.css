@@ -206,3 +206,10 @@ div#action {
 
 .modal-body {
   padding: 5px 20px; }
+
+@media (max-height: 400px) {
+  .bootstrap-datetimepicker-widget {
+    position: fixed;
+    overflow: hidden;
+    left: 50% !important;
+    transform: translateX(-50%) !important; } }

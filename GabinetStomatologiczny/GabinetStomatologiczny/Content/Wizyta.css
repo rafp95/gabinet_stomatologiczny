@@ -203,3 +203,6 @@ div#action {
   flex-direction: row-reverse; }
   div#action button {
     margin-left: 5px; }
+
+.modal-body {
+  padding: 5px 20px; }

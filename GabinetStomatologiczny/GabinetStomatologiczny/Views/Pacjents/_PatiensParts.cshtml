@@ -94,7 +94,7 @@
                         {
                             @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title = "Edycja" })<span> | </span>
                         }
-                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Lekarz")))
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Administrator") || User.IsInRole("Lekarz")))
                         {
                             @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title = "Kasuj" })<span> | </span>
                         }

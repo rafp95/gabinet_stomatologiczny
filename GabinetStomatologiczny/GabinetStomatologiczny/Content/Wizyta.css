@@ -199,7 +199,7 @@ span.fc-time {
 /*end space betwwen time and title*/
 div#action {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: row-reverse; }
   div#action button {
     margin-left: 5px; }

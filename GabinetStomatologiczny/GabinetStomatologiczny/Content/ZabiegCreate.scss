@@ -4,6 +4,10 @@ div.tooth-chart {
     margin-right: auto;
     max-width: 460px;
     height: auto;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s;
 }
 
 div polygon, path {
@@ -111,3 +115,35 @@ div#saveDatabaseInfo {
 }
 
 /* End info  save to database*/
+/*animation page content*/
+@-webkit-keyframes animatebottom {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes animatebottom {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/*End animation page content*/

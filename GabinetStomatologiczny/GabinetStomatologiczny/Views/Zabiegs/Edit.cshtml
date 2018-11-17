@@ -17,10 +17,11 @@
     <div id="home" class="tab-pane fade in active">
         <h2 class="text-center">Model zębów pacjęta @Model.Wizyta.Tytul</h2>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12 col-md-12">
                 @Html.Partial("_ToothModelParital")
             </div>
         </div>
+        @Html.Partial("_RefreshPage")
     </div>
     <div id="menu1" class="tab-pane fade">
         <div class="row centerPage">

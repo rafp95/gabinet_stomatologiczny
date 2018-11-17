@@ -1,0 +1,259 @@
+﻿
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="form-group">
+        <form id="wyslij" class="wyszukiwarka" action="@Url.Action("GetEvents")" method="get" data-ajax="true">
+            <input type="text" id="searchQuery" name="searchQuery"
+                   data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
+                   class="form-control" />
+            <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText"></span>
+        </form>
+    </div>
+}
+
+<!--End search form-->
+<div id="calender"></div>
+<!--Idenntity info-->
+@if (!User.Identity.IsAuthenticated)
+{
+    <div id="identity-Info" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title text-center"><span id="eventTitle">Błąd uprawnień</span></h2>
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:red; text-align: center;">Sekcja dla zalogowanych</h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="/Account/Login" class="btn btn-primary">Zaloguj się</a>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!--End identity info-->
+<!--About-->
+<div id="myModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-info">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 style="text-align:center;">Informacje o wizycie</h1>
+                <h4 class="modal-title text-center"><span id="eventTitle"></span></h4>
+            </div>
+            <div class="modal-body">
+                <p id="pDetails"></p>
+                @if (User.IsInRole("Pacjent")
+        || User.IsInRole("Administrator")
+        || User.IsInRole("Lekarz"))
+                {
+                    {
+                        <div id="action">
+                            <button id="btnDelete" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove"></span> Kasuj
+                            </button>
+                            <button id="btnEdit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span> Edytuj
+                            </button>
+                            @if (User.IsInRole("Administrator")
+                      || User.IsInRole("Lekarz"))
+                            {
+                                <button id="btnSms" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span> Sms
+                                </button>
+                                <button id="btnEmail" class="btn btn-success btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span> Email
+                                </button>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+            <div class="modal-footer">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Account/Login" class="btn btn-primary">Zaloguj się</a>
+                }
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--End about-->
+@if (User.IsInRole("Pacjent")
+                          || User.IsInRole("Administrator")
+                          || User.IsInRole("Lekarz"))
+{
+    <!--Error save info-->
+    <div id="myModalSaveToDataBaseError" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-warning">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title text-center"><span id="eventTitle">Błąd</span></h1>
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:red;" class="text-center">
+                        Wystąpił problem z zapisem, proszę zweryfikować poprawność
+                        danych i spróbowac ponownie
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end error save info-->
+    <!--Eror date info-->
+    <div id="myModalError" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-warning">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title text-center"><span id="eventTitle">Błąd</span></h1>
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:red;">Wybrana data musi być późniejsza</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End eror date info-->
+
+    <!--Send sms-->
+    <div id="myModalSendSms" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-info">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Wyslij sms</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="col-md-12 form-horizontal">
+                        <label for="inputDo">Do : </label>
+                        <input type="text" class="form-control" id="inputDo" placeholder="Nr telefonu" />
+                        <div id="errorSmsTo"></div>
+                        <label for="inputDo">Wiadomość : </label>
+                        <textarea type="text" class="form-control" id="inputWiadomosc" placeholder="Wiadomość"></textarea>
+                        <div id="errorSmsWiadom"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" id="btnSmsSend"
+                            class="btn btn-success float-right" data-loading-text="Wysyłanie...">
+                        Wyslij
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End send sms-->
+    <!--Send Email-->
+    <div id="myModalSendEmail" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-info">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Wyslij Email</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="col-md-12 form-horizontal">
+                        <label for="inputDo">Do : </label>
+                        <input type="text" class="form-control" id="inputDoEmail" placeholder="Email" />
+                        <div id="errorEmailTo"></div>
+                        <label for="inputDo">Wiadomość : </label>
+                        <textarea type="text" class="form-control" id="inputWiadomoscEamil" placeholder="Wiadomość"></textarea>
+                        <div id="errorEamilWiadom"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" id="btnEmailSend"
+                            class="btn btn-success float-right" data-loading-text="Wysyłanie...">
+                        Wyslij
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End send email-->
+
+     <!-- Delete coonfirm modal -->
+    <div class="modal fade" id="deleteConfirmModal" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header modal-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Kasowanie</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Czy napewno chcesz skasować ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-danger" id="kasujElement" data-dismiss="modal" data-loading-text="Kasowanie...">Kasuj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  END Delete coonfirm modal -->
+    <!--Add Edit-->
+    <div id="myModalSave" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-info">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title text-center">Zapisz</h1>
+                </div>
+                <div class="modal-body">
+                    <form class="col-md-12 form-horizontal" data-ajax="true">
+                        <input type="hidden" id="hdEventID" value="0" />
+                        <div class="form-group">
+                            <label>Początek</label>
+                            <div class="input-group date" id="dtp1">
+                                <input type="text" id="txtStart" class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Lekarz"))
+                        {
+                            <div class="form-group">
+                                <label>Imię nazwisko</label>
+                                <div class="input-group" id="dtp2">
+                                    <input type="text" id="tytul"
+                                           data-autocomplete-source="@Url.Action("Sugestions","Pacjents")"
+                                           class="form-control"
+                                           placeholder="Wyszukaj pacjęta" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
+                    <button type="button" id="btnSave"
+                            class="btn btn-success float-right" data-loading-text="Zapisywanie...">
+                        Zapisz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Add Edit-->
+}

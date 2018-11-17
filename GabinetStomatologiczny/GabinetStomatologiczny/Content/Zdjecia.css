@@ -136,7 +136,8 @@ input.editOraz {
   height: 30px;
   margin-bottom: 10px;
   max-width: 280px;
-  background-color: #ddd; }
+  background-color: #ddd;
+  border-radius: 4px; }
 
 #myProgress #myBar {
   display: flex;
@@ -146,4 +147,5 @@ input.editOraz {
   height: 100%;
   background-color: #4CAF50;
   text-align: center;
-  color: white; }
+  color: white;
+  border-radius: 4px; }

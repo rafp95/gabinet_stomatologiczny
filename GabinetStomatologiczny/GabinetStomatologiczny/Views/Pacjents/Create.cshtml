@@ -3,6 +3,10 @@
     ViewBag.Title = "Utwórz";
 }
 
+<script src="/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/datepicker-pl.js"></script>
+
 <h2>Dodaj</h2>
 
 @using (Html.BeginForm())
@@ -32,13 +36,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Pesel, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Pesel, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Plec, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Plec, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Plec, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
@@ -109,7 +106,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Utwórz" class="btn btn-default" />
+                <input type="submit" value="Utwórz" class="btn btn-block btn-default" />
             </div>
         </div>
     </div>
@@ -123,7 +120,6 @@
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/lib/jquery.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>

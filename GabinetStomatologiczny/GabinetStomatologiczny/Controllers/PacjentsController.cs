@@ -76,6 +76,7 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Pacjents/Create
+        [Authorize(Roles = "Lekarz,Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -84,13 +85,14 @@ namespace GabinetStomatologiczny.Controllers
         // POST: Pacjents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Lekarz,Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ID,Imie,DrugieImie,Nazwisko,Pesel,Plec,DataUrodzenia,NrTelefonu,Email,Miejscowosc,Kod,Ulica,Wojewodztwo,Kraj,OdzialNfz,DataRejestracji")] Pacjent pacjent)
         {
             if (ModelState.IsValid)
             {
-                await Task.Run(() => this.pacjentsService.CreatePacjnt(pacjent));
+                await this.pacjentsService.CreatePacjnt(pacjent);
                 return RedirectToAction("Index");
             }
 
@@ -130,6 +132,7 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Pacjents/Delete/5
+        [Authorize(Roles = "Lekarz,Administrator")]
         public async Task <ActionResult> Delete(int? id)
         {
             if (id == null)

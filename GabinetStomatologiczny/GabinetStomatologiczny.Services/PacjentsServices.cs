@@ -19,7 +19,7 @@ namespace GabinetStomatologiczny.Services
         void Edit(Pacjent pacjent);
         Task<Pacjent> Find(int? id);
         void Remove(Pacjent pacjent);
-        Pacjent CreatePacjnt(Pacjent pacjent);
+        Task<Pacjent> CreatePacjnt(Pacjent pacjent);
         
     }
 
@@ -61,11 +61,11 @@ namespace GabinetStomatologiczny.Services
         }
 
 
-        public Pacjent CreatePacjnt(Pacjent pacjent)
+        public async Task<Pacjent> CreatePacjnt(Pacjent pacjent)
         {
             pacjent.Plec = pacjentPlec(pacjent) ? Plec.Kobieta : Plec.Mężczyzna;
             Pacjent p = this._db.Pacjent.Add(pacjent);
-            this._db.SaveChanges();
+            await this._db.SaveChangesAsync();
             return p;
         }
 

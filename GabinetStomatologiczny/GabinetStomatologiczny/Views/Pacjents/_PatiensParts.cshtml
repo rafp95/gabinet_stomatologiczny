@@ -89,13 +89,16 @@
                     </td>
                     <td>
                         @if ((User.Identity.IsAuthenticated && User.Identity.GetUserName() == item.Email)
-        || User.IsInRole("Administrator")
-        || User.IsInRole("Lekarz"))
+                || User.IsInRole("Administrator")
+                || User.IsInRole("Lekarz"))
                         {
                             @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title = "Edycja" })<span> | </span>
+                        }
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Lekarz")))
+                        {
                             @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title = "Kasuj" })<span> | </span>
                         }
-                        
+
                         @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success glyphicon glyphicon-align-justify", title = "Więcej" })
 
                     </td>

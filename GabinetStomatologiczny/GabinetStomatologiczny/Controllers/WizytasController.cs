@@ -25,6 +25,7 @@ namespace GabinetStomatologiczny.Controllers
         private readonly IUserRoleService _userRoleService;
         private readonly IWizytService _wizytService;
         private readonly ISugestionService _sugestionService;
+        private readonly ISendEmailService _sendEmailService;
         /// <summary>
         /// 
         /// </summary>
@@ -34,11 +35,13 @@ namespace GabinetStomatologiczny.Controllers
         public WizytasController(
             IUserRoleService userRoleService,
             IWizytService wizytService,
-            ISugestionService sugestionService)
+            ISugestionService sugestionService,
+            ISendEmailService sendEmailService)
         {
             this._userRoleService = userRoleService;
             this._wizytService = wizytService;
             this._sugestionService = sugestionService;
+            this._sendEmailService = sendEmailService;
         }
 
         // GET: Wizytas
@@ -86,16 +89,41 @@ namespace GabinetStomatologiczny.Controllers
         public ActionResult Sms(string to, string text)
         {
             var status = false;
-            var results = SMS.Send(new SMS.SMSRequest
+            try
             {
-                from = Configuration.Instance.Settings["appsettings:NEXMO_FROM_NUMBER"],
-                to = to,
-                text = text
+                var results = SMS.Send(new SMS.SMSRequest
+                {
+                    from = Configuration.Instance.Settings["appsettings:NEXMO_FROM_NUMBER"],
+                    to = to,
+                    text = text
 
-            });
-            status = true;
+                });
+                status = true;
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
             return Json(status, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> SendEmail(string to, string text)
+        {
+            var status = false;
+            try
+            {
+                await this._sendEmailService.SendMail(to, "Gabinet YourSmile przypomnienie o wizycie", text);
+                status = true;
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return Json(status, JsonRequestBehavior.AllowGet);
+
+        }
+
 
         /// <summary>
         /// 

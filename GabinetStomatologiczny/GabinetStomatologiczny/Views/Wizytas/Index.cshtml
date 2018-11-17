@@ -63,16 +63,19 @@
                 {
                     {
                         <div id="action">
-                            <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
+                            <button id="btnDelete" class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove"></span> Kasuj
                             </button>
-                            <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;">
+                            <button id="btnEdit" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span> Edytuj
                             </button>
                             @if (User.IsInRole("Administrator"))
                             {
-                                <button id="btnSms" class="btn btn-primary btn-sm pull-right" style="margin-right: 5px;">
+                                <button id="btnSms" class="btn btn-primary btn-sm">
                                     <span class="glyphicon glyphicon-pencil"></span> Sms
+                                </button>
+                                <button id="btnEmail" class="btn btn-success btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span> Email
                                 </button>
                             }
                         </div>
@@ -166,6 +169,35 @@
         </div>
     </div>
     <!--End send sms-->
+    <!--Send Email-->
+    <div id="myModalSendEmail" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-info">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Wyslij Email</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="col-md-12 form-horizontal">
+                        <label for="inputDo">Do : </label>
+                        <input type="text" class="form-control" id="inputDoEmail" placeholder="Email" />
+                        <div id="errorEmailTo"></div>
+                        <label for="inputDo">Wiadomość : </label>
+                        <textarea type="text" class="form-control" id="inputWiadomoscEamil" placeholder="Wiadomość"></textarea>
+                        <div id="errorEamilWiadom"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    <button type="button" id="btnEmailSend"
+                            class="btn btn-success float-right" data-loading-text="Wysyłanie...">
+                        Wyslij
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End send email-->
 
      <!-- Delete coonfirm modal -->
     <div class="modal fade" id="deleteConfirmModal" data-backdrop="static" data-keyboard="false" role="dialog">

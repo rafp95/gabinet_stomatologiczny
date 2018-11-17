@@ -197,3 +197,9 @@ span.fc-time {
   margin-right: 2px; }
 
 /*end space betwwen time and title*/
+div#action {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse; }
+  div#action button {
+    margin-left: 5px; }

@@ -261,3 +261,13 @@ span.fc-time{
     margin-right: 2px;
 }
 /*end space betwwen time and title*/
+//modal button position
+div#action{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    button{
+        margin-left: 5px;
+    }
+}
+//end modal button postion

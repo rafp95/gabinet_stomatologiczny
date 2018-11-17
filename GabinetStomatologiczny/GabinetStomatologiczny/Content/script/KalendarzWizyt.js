@@ -9,7 +9,7 @@
     pokazAktualnyCzas();
     //Czyszczenie
 
-    $("input[type=text]").bind('click keyup', function () {
+    $("input[type=text],textarea[type=text]").bind('click keyup', function () {
         ErorMessage();
         szukajDane("");
     });
@@ -203,7 +203,7 @@
     //End generate calendar
 
     //Send sms
-    $("#btnSms").click(() => {
+    $("#btnSms").off().click(() => {
         czyscSmsInput();
         ErorMessage();
         $("#inputDo").val('+48' + getPhoneNumber());
@@ -213,7 +213,7 @@
     });
 
 
-    $("#btnSmsSend").click(() => {
+    $("#btnSmsSend").off().click(() => {
 
         let data = {
             to: $("#inputDo").val(),
@@ -245,7 +245,19 @@
         $.ajax({
             type: "POST",
             url: '/Wizytas/Sms',
-            data: data
+            data: data,
+            success: function (data) {
+                if (data) {
+                    zapisInfo.html("Wysłano pomyślnie ").fadeIn('slow').
+                        append('<i class="fa fa-spinner fa-spin"></i>').
+                        delay(1000).fadeOut('slow');
+                } else {
+                    zapisInfo.html("Wystąpił problem z wysłaniem ").fadeIn('slow').
+                        append('<i class="fa fa-spinner fa-spin"></i>').
+                    css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
+                    fadeIn('slow').delay(1000).fadeOut('slow');
+                }
+            }
         });
     }
 
@@ -263,18 +275,72 @@
 
     //End send sms
 
-    $('#btnEdit').click(function () {
+    //Send email
+    $("#btnEmail").off().click(function () {
+        czyscEamilInput();
+        ErorMessage();
+
+        $("#inputDoEmail").val(selectedEvent.email);
+        $("#inputWiadomoscEamil").val("Przypomnienie o wizycie " + selectedEvent.start.format("DD-MMM-YYYY HH:mm"));
+
+        $("#myModalSendEmail").modal();
+    });
+    function czyscEamilInput() {
+        $("#inputDoEmail").val("");
+        $("#inputWiadomoscEamil").val("");
+    }
+    $("#btnEmailSend").click(function () {
+        let data = {
+            to: $("#inputDoEmail").val(),
+            text: $("#inputWiadomoscEamil").val()
+        };
+
+        if (data.to.length === 0) {
+            $("#inputDoEmail").css({ 'border': '1px solid red', 'background': 'pink' });
+            $("#errorEmailTo").hide().fadeIn().text("Pole wymagane").css("color", "red");
+            return;
+        } else if (data.text.length === 0) {
+            $("#inputWiadomoscEamil").css({ 'border': '1px solid red', 'background': 'pink' });
+            $("#errorEamilWiadom").hide().fadeIn().text("Pole wymagane").css("color", "red");;
+            return;
+        }
+        $("#myModalSendEmail").modal('hide');
+        sendEmailToApi(data);
+    });
+
+    function sendEmailToApi(data) {
+        $.ajax({
+            type: 'POST',
+            url: 'Wizytas/SendEmail',
+            data: data,
+            success: function (data) {
+                if (data) {
+                    zapisInfo.html("Wysłano pomyślnie ").fadeIn('slow').
+                        append('<i class="fa fa-spinner fa-spin"></i>').
+                        delay(1000).fadeOut('slow');
+                } else {
+                    zapisInfo.html("Wystąpił problem z wysłaniem ").fadeIn('slow').
+                        append('<i class="fa fa-spinner fa-spin"></i>').
+                    css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
+                    fadeIn('slow').delay(1000).fadeOut('slow');
+                }
+            }
+        });
+    }
+    //End send email
+
+    $('#btnEdit').off().click(function () {
         //Open modal dialog for edit event
         openAddEditForm();
     })
 
     //Dete element
-    $('#btnDelete').click(function () {
+    $('#btnDelete').off().click(function () {
         $("#deleteConfirmModal").modal();
         buttonInfo($("#kasujElement"), "Kasuj");
     })
 
-    $("#kasujElement").click(function () {
+    $("#kasujElement").off().click(function () {
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie </div> <div class='loader' style='float:left;'></div>");
         if (selectedEvent != null) {
             $.ajax({
@@ -331,7 +397,7 @@
         $('#myModalSave').modal();
     }
 
-    $('#btnSave').click(function () {
+    $('#btnSave').off().click(function () {
         //Validation/
         ErorMessage();
         var error = $("div.error");
@@ -422,12 +488,18 @@
     function ErorMessage() {
         $("#errorSmsTo").html("");
         $("#errorSmsWiadom").html("");
-        $("#inputDo").css({ 'background': '', 'border': '' });
-        $("#inputWiadomosc").css({ 'background': '', 'border': '' });
-
+        $("#errorEmailTo").html("");
+        $("#errorEamilWiadom").html("");
         $("div.error").html("");
         $("div.errorTime").html("");
         $("div#errorSms").html("");
+
+        $("#inputDo").css({ 'background': '', 'border': '' });
+        $("#inputWiadomosc").css({ 'background': '', 'border': '' });
+        $("#inputDoEmail").css({ 'background': '', 'border': '' });
+        $("#inputWiadomoscEamil").css({ 'background': '', 'border': '' });
+
+
         $("#txtStart").css('border', '');
         $("#txtStart").css('background', '');
         $("#tytul").css('border', '');

@@ -125,7 +125,7 @@ namespace GabinetStomatologiczny.Controllers
             if (ModelState.IsValid)
             {
                 await Task.Run(() => this.pacjentsService.Edit(pacjent));
-                TempData["editPacjent"] = "done";
+                TempData["editPacjent"] = "Pomyślnie edytowano " + pacjent.Imie + " " + pacjent.Nazwisko;
                 return RedirectToAction("Index");
             }
             return View(pacjent);
@@ -140,6 +140,7 @@ namespace GabinetStomatologiczny.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Pacjent pacjent = await this.pacjentsService.Find(id);
+            
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -153,7 +154,7 @@ namespace GabinetStomatologiczny.Controllers
         public async Task <ActionResult> DeleteConfirmed(int id)
         {
             Pacjent pacjent = await this.pacjentsService.Find(id);
-            this.pacjentsService.Remove(pacjent);
+            await Task.Run(() => this.pacjentsService.Remove(pacjent));
             return RedirectToAction("Index");
         }
 

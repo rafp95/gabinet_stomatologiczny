@@ -18,7 +18,7 @@ namespace GabinetStomatologiczny.Services
         IEnumerable<Lekarz> getAllLekarz();
         Lekarz About(int? id);
         void Edit(Lekarz lekarz);
-        Lekarz Find(int? id);
+        Task<Lekarz> Find(int? id);
         void Remove(Lekarz lekarz);
         Task<Lekarz> CreateLekarz(Lekarz lekarz);
         HttpPostedFileBase SaveFile(HttpPostedFileBase file, Lekarz lekarz);
@@ -50,18 +50,18 @@ namespace GabinetStomatologiczny.Services
             this._db.SaveChanges();
         }
 
-        public void Remove(Lekarz lekarz)
+        public async void Remove(Lekarz lekarz)
         {
             if (lekarz != null)
             {
                 this._db.Lekarz.Remove(lekarz);
-                this._db.SaveChanges();
+                await this._db.SaveChangesAsync();
             }
         }
 
-        public Lekarz Find(int? id)
+        public async Task<Lekarz> Find(int? id)
         {
-            return this._db.Lekarz.Find(id);
+            return await this._db.Lekarz.Where(_ => _.ID == id).FirstOrDefaultAsync(); 
         }
 
         public async Task<Lekarz> CreateLekarz(Lekarz lekarz)

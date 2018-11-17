@@ -69,9 +69,12 @@ namespace GabinetStomatologiczny.Services
             return p;
         }
 
-        public Task<Pacjent> Find(int? id)
+        public async Task<Pacjent> Find(int? id)
         {
-            return this._db.Pacjent.FindAsync(id);
+            var pacjent = await this._db.Pacjent.FindAsync(id);
+            pacjent.OdzialNfz = pacjent.OdzialNfz > 0 ? pacjent.OdzialNfz : null;
+            pacjent.Wojewodztwo = pacjent.Wojewodztwo > 0 ? pacjent.Wojewodztwo : null;
+            return pacjent;
         }
 
         private bool pacjentPlec(Pacjent p)

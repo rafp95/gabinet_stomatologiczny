@@ -61,13 +61,13 @@ namespace GabinetStomatologiczny.Controllers
 
 
         // GET: Lekarzs/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekarz lekarz = this._lekarzservice.Find(id);
+            Lekarz lekarz = await this._lekarzservice.Find(id);
             if (lekarz == null)
             {
                 return HttpNotFound();
@@ -99,13 +99,13 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Lekarzs/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekarz lekarz = this._lekarzservice.Find(id);
+            Lekarz lekarz = await this._lekarzservice.Find(id);
 
             if (lekarz == null)
             {
@@ -145,13 +145,13 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Lekarzs/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekarz lekarz = this._lekarzservice.Find(id);
+            Lekarz lekarz = await this._lekarzservice.Find(id);
             if (lekarz == null)
             {
                 return HttpNotFound();
@@ -162,15 +162,15 @@ namespace GabinetStomatologiczny.Controllers
         // POST: Lekarzs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Lekarz lekarz = db.Lekarz.Find(id);
+            Lekarz lekarz = await this._lekarzservice.Find(id);
             if(lekarz.Zdjecie != null)
             {
                 string path = Request.MapPath("~/Obrazki/" + lekarz.Zdjecie);
                 System.IO.File.Delete(path);
             }
-            this._lekarzservice.Remove(lekarz);
+            await Task.Run(() => this._lekarzservice.Remove(lekarz));
             return RedirectToAction("Index");
         }
 

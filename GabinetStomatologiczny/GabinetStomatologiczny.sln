@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gabinet.Tests", "Gabinet.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabinetStomatologiczny.Services", "GabinetStomatologiczny.Services\GabinetStomatologiczny.Services.csproj", "{904100E3-8B99-45A4-9D15-64E2ED0F829E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabinetStomatologiczny.ViewModel", "GabinetStomatologiczny.ViewModel\GabinetStomatologiczny.ViewModel.csproj", "{93A438E9-A148-4033-8F16-25F2E43E9CB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{904100E3-8B99-45A4-9D15-64E2ED0F829E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{904100E3-8B99-45A4-9D15-64E2ED0F829E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{904100E3-8B99-45A4-9D15-64E2ED0F829E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A438E9-A148-4033-8F16-25F2E43E9CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A438E9-A148-4033-8F16-25F2E43E9CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A438E9-A148-4033-8F16-25F2E43E9CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A438E9-A148-4033-8F16-25F2E43E9CB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

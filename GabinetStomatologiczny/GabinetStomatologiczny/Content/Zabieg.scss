@@ -40,6 +40,10 @@
         content: "Cena zabiegu : ";
     }
 
+    td:nth-of-type(4):before {
+        content: "Data zabiegu : ";
+    }
+
     td:hover {
         background-color: azure;
     }

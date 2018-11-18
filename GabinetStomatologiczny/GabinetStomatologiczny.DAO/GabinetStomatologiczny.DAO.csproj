@@ -244,6 +244,10 @@
     <Compile Include="Migrations\201811101833166_nullableTreatmentDateAllow.Designer.cs">
       <DependentUpon>201811101833166_nullableTreatmentDateAllow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811181756519_DateTimeZabiegs.cs" />
+    <Compile Include="Migrations\201811181756519_DateTimeZabiegs.Designer.cs">
+      <DependentUpon>201811181756519_DateTimeZabiegs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -362,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811101833166_nullableTreatmentDateAllow.resx">
       <DependentUpon>201811101833166_nullableTreatmentDateAllow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811181756519_DateTimeZabiegs.resx">
+      <DependentUpon>201811181756519_DateTimeZabiegs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,6 @@
 ﻿using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
+using GabinetStomatologiczny.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,6 +18,8 @@ namespace GabinetStomatologiczny.Services
         Task <Zab> DeleteTooth(Zab zab, int userID);
         Task<Zabieg> FindZabieg(int? id);
         Task<Zabieg> EditZabeg(Zabieg zabieg);
+        Task <IEnumerable<PacjentViewModelHistory>> PacejntZabiegHistory(int id);
+        Task<Zabieg> ZabiegCreate(Zabieg zabieg);
     }
     public class ZabiegService : IZabiegService
     {
@@ -61,6 +64,23 @@ namespace GabinetStomatologiczny.Services
             return await _db.Pacjent.FirstOrDefaultAsync(_ => _.ID == id);
         }
 
+        public async Task<IEnumerable<PacjentViewModelHistory>> PacejntZabiegHistory(int id)
+        {
+            var zabiegsQuery = _db.Zabieg.
+               Include(_ => _.Wizyta).Include(_ => _.Wizyta.Pacjent).
+               Where(_ => _.Wizyta.PacjentID == id).AsQueryable();
+            var zabiegs = await zabiegsQuery.Select(_ => new PacjentViewModelHistory
+            {
+                ID = _.ID,
+                CenaZabiegu = _.CenaZabiegu,
+                TypZabiegu = _.TypZabiegu,
+                Tytul = _.Wizyta.Tytul,
+                ZabiegDate = _.ZabiegDate
+
+            }).ToListAsync();
+            return zabiegs;
+        }
+
         public async Task<Zab> SaveTooth(Zab zab,int userID)
         {
             var idWizyta = await _db.Wizyta.FirstOrDefaultAsync(_ => _.Pacjent.ID == userID);
@@ -74,6 +94,21 @@ namespace GabinetStomatologiczny.Services
             await _db.SaveChangesAsync();
             return zab;
 
+        }
+
+        public async Task<Zabieg> ZabiegCreate(Zabieg zabieg)
+        {
+            var pacjet =await _db.Pacjent.Where(p => (p.Imie + " " + p.Nazwisko).ToLower().
+                    Contains(zabieg.SearchQuery.ToLower())).Select(p => p.ID).FirstOrDefaultAsync();
+
+            var wizyta = await _db.Wizyta.
+                Where(p => p.PacjentID == pacjet).Select(p => p.ID).FirstOrDefaultAsync();
+
+            zabieg.WizytaID = wizyta;
+            zabieg.ZabiegDate = DateTime.Now;
+            _db.Zabieg.Add(zabieg);
+            await _db.SaveChangesAsync();
+            return zabieg;
         }
     }
 }

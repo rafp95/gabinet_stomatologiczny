@@ -14,6 +14,7 @@ using Rotativa;
 using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using GabinetStomatologiczny.ViewModel;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -100,8 +101,9 @@ namespace GabinetStomatologiczny.Controllers
         // GET: Zabiegs/Create
         public async Task<ActionResult> Create(PaginationType search)
         {
+            var user = await _pacejntService.Find(search.ID);
             ViewBag.name = await db.Pacjent.Where(_ => _.ID == search.ID).Select(_ => _.Imie + " " + _.Nazwisko).FirstOrDefaultAsync();
-            Session["user"] = db.Pacjent.First(_ => _.ID == search.ID).ID;
+            Session["user"] = user.ID;
             ViewBag.WizytaID = new SelectList(db.Wizyta.Include(p => p.Pacjent), "ID", "ID");
             return View();
         }
@@ -111,7 +113,7 @@ namespace GabinetStomatologiczny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu,SearchQuery")] Zabieg zabieg)
+        public async Task<ActionResult> Create([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu,SearchQuery")] Zabieg zabieg)
         {
             try
             {
@@ -121,15 +123,7 @@ namespace GabinetStomatologiczny.Controllers
                 }
                 else if (ModelState.IsValid)
                 {
-                    var pacjet = db.Pacjent.ToList().Where(p => (p.Imie + " " + p.Nazwisko).ToLower().
-                    Contains(zabieg.SearchQuery.ToLower())).Select(p => p.ID).First();
-
-                    var wizyta = db.Wizyta.ToList().
-                        Where(p => p.PacjentID == pacjet).Select(p => p.ID).First();
-
-                    zabieg.WizytaID = wizyta;
-                    db.Zabieg.Add(zabieg);
-                    db.SaveChanges();
+                    await _zabiegService.ZabiegCreate(zabieg);
                     return RedirectToAction("ToothModel");
                 }
             }
@@ -147,7 +141,8 @@ namespace GabinetStomatologiczny.Controllers
             int id = (int)Session["user"];
             Pacjent p = await _zabiegService.GetPacjentById(id);
             ViewBag.User = p.Imie + " " + p.Nazwisko;
-            return View();
+            var pacejnt = await _zabiegService.PacejntZabiegHistory(id);
+            return View(pacejnt);
         }
 
 
@@ -212,7 +207,7 @@ namespace GabinetStomatologiczny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu")] Zabieg zabieg)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu,ZabiegDate")] Zabieg zabieg)
         {
             if (ModelState.IsValid)
             {

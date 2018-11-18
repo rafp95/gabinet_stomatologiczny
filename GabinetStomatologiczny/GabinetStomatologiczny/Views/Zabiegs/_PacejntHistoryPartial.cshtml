@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<GabinetStomatologiczny.ViewModel.PacjentViewModelHistory>
+@using GabinetStomatologiczny.DAO.Models;
+
+@if (Model.Count() > 0)
+{
+    <div class="data-select">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Imię i Nazwisko")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TypZabiegu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CenaZabiegu)
+                    </th>
+                    <th colspan="2">
+                        @Html.DisplayNameFor(model => model.ZabiegDate)
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tytul)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypZabiegu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ZabiegDate)
+                        </td>
+                        @if (User.IsInRole("Lekarz"))
+                        {
+                            <td>
+                                @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", @title = "Edycja" }) |
+                                @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-success  glyphicon glyphicon-align-justify", @title = "Więcej" }) |
+                                @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", @title = "Kasuj" })
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                Do tej sekcji dostęp mają jedynie osoby zalogowane
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info" role="alert"> Nie masz zdefiniowanych zabiegów</div>
+}
+

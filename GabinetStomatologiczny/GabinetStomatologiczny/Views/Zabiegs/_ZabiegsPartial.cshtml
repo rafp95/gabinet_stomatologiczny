@@ -18,29 +18,15 @@
                     <th>
                         @Html.DisplayNameFor(model => model[0].TypZabiegu)
                     </th>
-                    <th colspan="2">
+                    <th>
                         @Html.DisplayNameFor(model => model[0].CenaZabiegu)
+                    </th>
+                    <th colspan="2">
+                        @Html.DisplayNameFor(model => model[0].ZabiegDate)
                     </th>
                 </tr>
                 <tr>
-                    <td>
-                        @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.title_asc, currentFilter = ViewBag.CurrentFilter }
-                    , new { @class = @ViewBag.ActiveClass == RodzajSort.title_asc ? "active" : "", title = "Rosnąco" })
-                        @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.title_desc, currentFilter = ViewBag.CurrentFilter },
-                    new { @class = @ViewBag.ActiveClass == RodzajSort.title_desc ? "active" : "", title = "Malejąco" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.zabiegT_asc, currentFilter = ViewBag.CurrentFilter }
-                    , new { @class = @ViewBag.ActiveClass == RodzajSort.zabiegT_asc ? "active" : "", title = "Rosnąco" })
-                        @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.zabiegT_desc, currentFilter = ViewBag.CurrentFilter },
-                    new { @class = @ViewBag.ActiveClass == RodzajSort.zabiegT_desc ? "active" : "", title = "Malejąco" })
-                    </td>
-                    <td colspan="2">
-                        @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.cenaZ_asc, currentFilter = ViewBag.CurrentFilter }
-                    , new { @class = @ViewBag.ActiveClass == RodzajSort.cenaZ_asc ? "active" : "", title = "Rosnąco" })
-                        @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.cenaZ_desc, currentFilter = ViewBag.CurrentFilter },
-                    new { @class = @ViewBag.ActiveClass == RodzajSort.cenaZ_desc ? "active" : "", title = "Malejąco" })
-                    </td>
+                    @Html.Partial("_SortZabiegPartial")
                 </tr>
 
                 @foreach (var item in Model)
@@ -54,6 +40,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CenaZabiegu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ZabiegDate)
                         </td>
                         @if (User.IsInRole("Lekarz"))
                         {

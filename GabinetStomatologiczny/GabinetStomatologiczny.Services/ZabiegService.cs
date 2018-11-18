@@ -77,7 +77,8 @@ namespace GabinetStomatologiczny.Services
                 Tytul = _.Wizyta.Tytul,
                 ZabiegDate = _.ZabiegDate
 
-            }).ToListAsync();
+            }).OrderByDescending(_ => _.ZabiegDate).ToListAsync();
+            
             return zabiegs;
         }
 

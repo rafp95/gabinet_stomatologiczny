@@ -21,13 +21,13 @@
         }
     });
     //end tooltip
-
+    /*
     //add close alert
     $('div.alert a.close').on('click', () => {
         $(".alert").alert('close');
     });
     //end add close alert
-
+    */
     //back to top page
     let top = $('#back-to-top');
     $(window).scroll(() => {

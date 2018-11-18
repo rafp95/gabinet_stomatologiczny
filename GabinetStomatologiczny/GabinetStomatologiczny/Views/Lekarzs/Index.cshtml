@@ -4,12 +4,15 @@
     ViewBag.Active = "Pacjenci";
 }
 
-<h2>Lekarze</h2>
+
+<header class="alert alert-info headerInfo"><div>Lekarze</div></header>
 
 @if (TempData["editLekarz"] != null)
 {
     <div class="alert alert-success alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         Pomyślnie edytowano
     </div>
 }

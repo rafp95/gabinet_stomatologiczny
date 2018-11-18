@@ -5,15 +5,17 @@
     ViewBag.Active = "Pacjenci";
 }
 
+<header class="alert alert-info headerInfo"><div>Zabiegi</div></header>
+
 @if (TempData["zabiegOperationSucess"] != null)
 {
     <div class="alert alert-success alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         @TempData["zabiegOperationSucess"]
     </div>
 }
-
-<h2>Zabiegi</h2>
 
 @if (User.IsInRole("Pacjent") &&
                 Model.Any(m => m.Wizyta.Pacjent.Email == User.Identity.Name))

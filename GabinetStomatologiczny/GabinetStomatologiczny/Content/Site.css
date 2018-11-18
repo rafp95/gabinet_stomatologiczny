@@ -305,3 +305,14 @@ span.field-validation-error {
   transform: rotate(-180deg); }
 
 /*end caret rotation*/
+header.headerInfo {
+  display: flex;
+  font-size: 2em;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s; }
+  header.headerInfo div {
+    display: inherit;
+    justify-content: center;
+    width: 100%; }

@@ -8,7 +8,9 @@ namespace GabinetStomatologiczny.DAO.Models
 {
     public enum TypZabiegu
     {
-        Przegląd,
+        [Display(Name ="Usługa stomatologiczna")]
+        Usługa,
+        [Display(Name = "Konsultacja stomatologiczna")]
         Konsultacja
     }
 }

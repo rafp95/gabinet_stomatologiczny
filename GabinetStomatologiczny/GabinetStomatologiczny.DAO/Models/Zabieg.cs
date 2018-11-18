@@ -19,6 +19,8 @@ namespace GabinetStomatologiczny.DAO.Models
         [RegularExpression(@"^\s*(?=.*[1-9])\d*(?:\,\d{1,2})?\s*$", ErrorMessage = "Pole musi być liczbą")]
         [DataType(DataType.Currency)]
         public int CenaZabiegu { get; set; }
+
+        [Display(Name = "Data zabiegu")]
         public DateTime? ZabiegDate { get; set; }
 
         public virtual Wizyta Wizyta { get; set; }

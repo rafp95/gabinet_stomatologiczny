@@ -25,17 +25,20 @@ namespace GabinetStomatologiczny.Controllers
         private ISortZabiegsService _sortZabiegService;
         private ISugestionService _sugestionService;
         private IZabiegService _zabiegService;
+        private IPacjentsService _pacejntService;
 
-        public ZabiegsController(GabinetContext db, 
+        public ZabiegsController(GabinetContext db,
             IGenerateZabiegsPdf generatePdf,
             ISortZabiegsService sortZabiegService,
             ISugestionService sugestionService,
-            IZabiegService zabiegService) : base(db)
+            IZabiegService zabiegService,
+            IPacjentsService pacejntService) : base(db)
         {
             _generatePdf = generatePdf;
             _sortZabiegService = sortZabiegService;
             _sugestionService = sugestionService;
             _zabiegService = zabiegService;
+            _pacejntService = pacejntService;
         }
 
         // GET: Zabiegs
@@ -49,7 +52,7 @@ namespace GabinetStomatologiczny.Controllers
             }
 
             ViewBag.CurrentFilter = zabiegSort.searchString;
-            var zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort,(ClaimsIdentity)User.Identity);
+            var zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort, (ClaimsIdentity)User.Identity);
             ViewBag.ActiveClass = this._sortZabiegService.RodzajSort;
 
             if (Request.IsAjaxRequest())
@@ -75,7 +78,7 @@ namespace GabinetStomatologiczny.Controllers
         [AllowAnonymous]
         public ActionResult RaportPdf(string user)
         {
-            var p = new ActionAsPdf("PdfGenerate", new {user = User.Identity.Name });
+            var p = new ActionAsPdf("PdfGenerate", new { user = User.Identity.Name });
             return p;
         }
 
@@ -95,9 +98,9 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Zabiegs/Create
-        public ActionResult Create(PaginationType search)
+        public async Task<ActionResult> Create(PaginationType search)
         {
-            ViewBag.name = db.Pacjent.Where(_ => _.ID == search.ID).Select(_ => _.Imie + " " + _.Nazwisko).First();
+            ViewBag.name = await db.Pacjent.Where(_ => _.ID == search.ID).Select(_ => _.Imie + " " + _.Nazwisko).FirstOrDefaultAsync();
             Session["user"] = db.Pacjent.First(_ => _.ID == search.ID).ID;
             ViewBag.WizytaID = new SelectList(db.Wizyta.Include(p => p.Pacjent), "ID", "ID");
             return View();
@@ -110,7 +113,7 @@ namespace GabinetStomatologiczny.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu,SearchQuery")] Zabieg zabieg)
         {
-           try
+            try
             {
                 if (string.IsNullOrEmpty(zabieg.SearchQuery))
                 {
@@ -154,21 +157,21 @@ namespace GabinetStomatologiczny.Controllers
             //var idWizyta = db.Wizyta.First(_ => _.Pacjent.ID == id).ID;
             //var tooth = db.Zabieg.Where(_ => _.WizytaID == idWizyta && _.Wizyta.PacjentID == id).Select(_ => _.Zeby);
             var tooth = await _zabiegService.GetAllTooth(id);
-            return new JsonResult{ Data = tooth, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+            return new JsonResult { Data = tooth, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public async Task<ActionResult> SaveTooth(Zab zab)
         {
-           
+
             bool status = false;
             int id = (int)Session["user"];
             if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
             {
-                await  _zabiegService.SaveTooth(zab, id);
+                await _zabiegService.SaveTooth(zab, id);
                 status = true;
             }
 
-            return new JsonResult { Data = new { status },JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public async Task<ActionResult> DeleteTooth(Zab zab)
@@ -178,7 +181,7 @@ namespace GabinetStomatologiczny.Controllers
             int id = (int)Session["user"];
             if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id))
             {
-                await Task.Run(() => _zabiegService.DeleteTooth(zab, id));
+                await _zabiegService.DeleteTooth(zab, id);
                 status = true;
             }
             return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -187,14 +190,14 @@ namespace GabinetStomatologiczny.Controllers
 
 
         // GET: Zabiegs/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Zabieg zabieg = db.Zabieg.Include(_=> _.Wizyta).First(_ => _.ID == id);
+            Zabieg zabieg = await _zabiegService.FindZabieg(id);
             Session["user"] = zabieg.Wizyta.PacjentID;
             if (zabieg == null)
             {
@@ -209,13 +212,12 @@ namespace GabinetStomatologiczny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu")] Zabieg zabieg)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu")] Zabieg zabieg)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(zabieg).State = EntityState.Modified;
-                db.SaveChanges();
-                TempData["editZabiegs"] = "success";
+                await _zabiegService.EditZabeg(zabieg);
+                TempData["zabiegOperationSucess"] = "Pomyślnie edytowano ";
                 return RedirectToAction("Index");
             }
             ViewBag.WizytaID = new SelectList(db.Wizyta, "ID", "ID", zabieg.WizytaID);
@@ -245,6 +247,7 @@ namespace GabinetStomatologiczny.Controllers
             Zabieg zabieg = db.Zabieg.Find(id);
             db.Zabieg.Remove(zabieg);
             db.SaveChanges();
+            TempData["zabiegOperationSucess"] = "Pomyślnie skasowano ";
             return RedirectToAction("Index");
         }
 

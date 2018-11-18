@@ -7,11 +7,11 @@
 
 <h2>Pacjenci</h2>
 
-@if (TempData["editPacjent"] != null)
+@if (TempData["sucessOperation"] != null)
 {
     <div class="alert alert-success alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        @TempData["editPacjent"]
+        @TempData["sucessOperation"]
     </div>
 }
 

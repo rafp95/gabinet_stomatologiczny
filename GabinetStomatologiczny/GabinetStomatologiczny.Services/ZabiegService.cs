@@ -14,7 +14,9 @@ namespace GabinetStomatologiczny.Services
         Task<IEnumerable<object>> GetAllTooth(int id);
         Task <Pacjent> GetPacjentById(int id);
         Task <Zab> SaveTooth(Zab zab,int userID);
-        void DeleteTooth(Zab zab, int userID);
+        Task <Zab> DeleteTooth(Zab zab, int userID);
+        Task<Zabieg> FindZabieg(int? id);
+        Task<Zabieg> EditZabeg(Zabieg zabieg);
     }
     public class ZabiegService : IZabiegService
     {
@@ -25,13 +27,25 @@ namespace GabinetStomatologiczny.Services
             this._db = db;
         }
 
-        public async void DeleteTooth(Zab zab, int userID)
+        public async Task<Zab> DeleteTooth(Zab zab, int userID)
         {
-            var idWizyta = _db.Wizyta.FirstOrDefault(_ => _.Pacjent.ID == userID).ID;
-            var idZabieg = _db.Zabieg.FirstOrDefault(_ => _.Wizyta.ID == idWizyta).ID;
+            var idWizyta = await _db.Wizyta.Where(_ => _.Pacjent.ID == userID).FirstOrDefaultAsync();
             Zab z = _db.Zab.FirstOrDefault(_ => _.IdTooth == zab.IdTooth);
             _db.Zab.Remove(z);
             await _db.SaveChangesAsync();
+            return z;
+        }
+
+        public async Task<Zabieg> EditZabeg(Zabieg zabieg)
+        {
+            _db.Entry(zabieg).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return zabieg;
+        }
+
+        public async Task<Zabieg> FindZabieg(int? id)
+        {
+            return await _db.Zabieg.Include(_ => _.Wizyta).Where(_ => _.ID == id).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<object>> GetAllTooth(int id)

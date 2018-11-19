@@ -71,7 +71,7 @@ namespace GabinetStomatologiczny.Services
         }
 
         /// <summary>
-        /// Save evnet
+        /// Save event
         /// </summary>
         /// <param name="w"></param>
         /// <param name="user"></param>

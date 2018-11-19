@@ -1,8 +1,17 @@
 ﻿$(document).ready(function () {
     //carpet menu rotation
-    $(".dropdown-toggle").bind('click', function () {
-        $(".caret").toggleClass('rotate-180');
+    let caret = $(".caret");
+    $("a.dropdown-toggle").off().on('click', function () {
+        if(!caret.hasClass('rotate-180')) {
+            caret.toggleClass('rotate-180');
+        }
     });
+    $("li.dropdown").off().on('mouseleave', function () {
+        if (caret.hasClass('rotate-180')) {
+            caret.toggleClass('rotate-180');
+        }
+    });
+        
     //end carpet menu rotation
 
     //tooltip

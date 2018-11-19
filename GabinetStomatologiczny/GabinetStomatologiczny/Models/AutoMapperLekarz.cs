@@ -16,6 +16,13 @@ namespace GabinetStomatologiczny.Models
                 .ForMember(src => src.ID, opt => opt.Ignore())
                 .ForMember(src => src.Zdjecie, opt => opt.Ignore())
                 .ForMember(src => src.DataDodania, opt => opt.Ignore());
+
+            CreateMap<Lekarz, Lekarz>()
+                .ForMember(src => src.Wiztyty, opt => opt.Ignore())
+                .ForMember(src => src.ID, opt => opt.Ignore())
+                .ForMember(src => src.Zdjecie, opt => opt.MapFrom(src => src.Zdjecie))
+                .ForMember(src => src.DataDodania, opt => opt.Ignore());
+
         }
     }
 }

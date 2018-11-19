@@ -22,20 +22,7 @@ namespace GabinetStomatologiczny.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private SendEmail _sendEmial;
-
-        private SendEmail sendEmial
-        {
-            get
-            {
-                if(_sendEmial == null)
-                {
-                    this._sendEmial = new SendEmail();
-                }
-                return _sendEmial;
-            }
-        }
-
+        private ISendEmailService _se;
 
 
         public AccountController()
@@ -43,10 +30,11 @@ namespace GabinetStomatologiczny.Controllers
             
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ISendEmailService se)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _se = se;
         }
 
         public ApplicationSignInManager SignInManager
@@ -256,7 +244,7 @@ namespace GabinetStomatologiczny.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await this.sendEmial.SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
+                await this._se.SendMail(user.Email, "Resetowanie hasła", "Kliknij w link aby zmienić hasło <a href=\"" + callbackUrl + "\">tutaj</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

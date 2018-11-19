@@ -86,7 +86,7 @@ namespace GabinetStomatologiczny.Services
                 {
                     if (w.ID > 0)
                     {
-                        var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
+                        var v = await db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefaultAsync();
                         if (v != null)
                         {
                             w.LekarzID = v.LekarzID;
@@ -99,8 +99,8 @@ namespace GabinetStomatologiczny.Services
                             m.DataDodania = DateTime.Now;
                             if (string.IsNullOrEmpty(m.Tytul))
                             {
-                                m.Tytul = db.Pacjent.Where(p => p.Email == user).
-                                    Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                                m.Tytul =await db.Pacjent.Where(p => p.Email == user).
+                                    Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
                             }
 
                             db.Entry(m).State = EntityState.Modified;
@@ -109,18 +109,18 @@ namespace GabinetStomatologiczny.Services
                     }
                     else
                     {
-                        w.PacjentID = db.Pacjent.Where(p => p.Email == user).Select(p => p.ID).FirstOrDefault();
-                        w.LekarzID = db.Lekarz.Select(p => p.ID).FirstOrDefault();
+                        w.PacjentID = await db.Pacjent.Where(p => p.Email == user).Select(p => p.ID).FirstOrDefaultAsync();
+                        w.LekarzID = await db.Lekarz.Select(p => p.ID).FirstOrDefaultAsync();
                         var m = Mapper.Map<Wizyta, Wizyta>(w);
 
                         if (m.Tytul != null)
                         {
-                            var pacjent = db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul)).FirstOrDefault();
+                            var pacjent = await db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul)).FirstOrDefaultAsync();
                             m.PacjentID = pacjent.ID;
                         }
                         else
                         {
-                            m.Tytul = db.Pacjent.Where(p => p.Email == user).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefault();
+                            m.Tytul = await db.Pacjent.Where(p => p.Email == user).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
                         }
 
                         m.DataDodania = DateTime.Now;

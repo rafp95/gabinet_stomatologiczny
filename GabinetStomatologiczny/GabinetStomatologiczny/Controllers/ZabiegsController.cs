@@ -84,13 +84,13 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Zabiegs/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zabieg zabieg = db.Zabieg.Include(w => w.Wizyta).First(_ => _.ID == id);
+            Zabieg zabieg = await _zabiegService.FindZabieg(id);// db.Zabieg.Include(w => w.Wizyta).First(_ => _.ID == id);
             if (zabieg == null)
             {
                 return HttpNotFound();
@@ -139,7 +139,7 @@ namespace GabinetStomatologiczny.Controllers
         public async Task<ActionResult> ToothModel()
         {
             int id = (int)Session["user"];
-            Pacjent p = await _zabiegService.GetPacjentById(id);
+            Pacjent p = await _pacejntService.GetPacjentById(id);
             ViewBag.User = p.Imie + " " + p.Nazwisko;
             var pacejnt = await _zabiegService.PacejntZabiegHistory(id);
             return View(pacejnt);
@@ -212,7 +212,8 @@ namespace GabinetStomatologiczny.Controllers
             if (ModelState.IsValid)
             {
                 await _zabiegService.EditZabeg(zabieg);
-                TempData["zabiegOperationSucess"] = "Pomyślnie edytowano ";
+                var z = await _zabiegService.FindZabieg(zabieg.ID);
+                TempData["zabiegOperationSucess"] = "Pomyślnie edytowano " + z.Wizyta.Tytul;
                 return RedirectToAction("Index");
             }
             ViewBag.WizytaID = new SelectList(db.Wizyta, "ID", "ID", zabieg.WizytaID);
@@ -220,13 +221,13 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Zabiegs/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zabieg zabieg = db.Zabieg.Include(_ => _.Wizyta).First(_ => _.ID == id);
+            Zabieg zabieg = await _zabiegService.FindZabieg(id); //db.Zabieg.Include(_ => _.Wizyta).First(_ => _.ID == id);
             if (zabieg == null)
             {
                 return HttpNotFound();
@@ -237,12 +238,11 @@ namespace GabinetStomatologiczny.Controllers
         // POST: Zabiegs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Zabieg zabieg = db.Zabieg.Find(id);
-            db.Zabieg.Remove(zabieg);
-            db.SaveChanges();
-            TempData["zabiegOperationSucess"] = "Pomyślnie skasowano ";
+            var z = await _zabiegService.FindZabieg(id);
+            TempData["zabiegOperationSucess"] = "Pomyślnie skasowano " + z.Wizyta.Tytul;
+            await _zabiegService.DeleteZabieg(id);
             return RedirectToAction("Index");
         }
 

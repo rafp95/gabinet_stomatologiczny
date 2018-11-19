@@ -20,7 +20,7 @@ namespace GabinetStomatologiczny.Services
         Task<Pacjent> Find(int? id);
         void Remove(Pacjent pacjent);
         Task<Pacjent> CreatePacjnt(Pacjent pacjent);
-        
+        Task<Pacjent> GetPacjentById(int? id);
     }
 
 
@@ -71,7 +71,7 @@ namespace GabinetStomatologiczny.Services
 
         public async Task<Pacjent> Find(int? id)
         {
-            var pacjent = await this._db.Pacjent.FindAsync(id);
+            var pacjent = await GetPacjentById(id);
             pacjent.OdzialNfz = pacjent.OdzialNfz > 0 ? pacjent.OdzialNfz : null;
             pacjent.Wojewodztwo = pacjent.Wojewodztwo > 0 ? pacjent.Wojewodztwo : null;
             return pacjent;
@@ -80,6 +80,11 @@ namespace GabinetStomatologiczny.Services
         private bool pacjentPlec(Pacjent p)
         {
             return char.ToLower(p.Imie.ElementAt(p.Imie.Length - 1)).Equals('a');
+        }
+
+        public async Task<Pacjent> GetPacjentById(int? id)
+        {
+            return await _db.Pacjent.Where(_ => _.ID == id).FirstOrDefaultAsync();
         }
     }
 }

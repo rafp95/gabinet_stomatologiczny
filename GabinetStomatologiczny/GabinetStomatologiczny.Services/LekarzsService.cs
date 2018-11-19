@@ -1,4 +1,5 @@
-﻿using GabinetStomatologiczny.DAL;
+﻿using AutoMapper;
+using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
 using System;
 using System.Collections.Generic;
@@ -43,11 +44,17 @@ namespace GabinetStomatologiczny.Services
             return this._db.Lekarz.Find(id);
         }
 
-        public void Edit(Lekarz lekarz)
+        public async void Edit(Lekarz lekarz)
         {
+            var lekarzBuf = await _db.Lekarz.Where(_ => _.Email == lekarz.Email).FirstOrDefaultAsync();
             lekarz.DataDodania = DateTime.Now;
-            this._db.Entry(lekarz).State = EntityState.Modified;
-            this._db.SaveChanges();
+            if (string.IsNullOrEmpty(lekarz.Zdjecie))
+            {
+                lekarz.Zdjecie = lekarzBuf.Zdjecie;
+            }
+            var l = Mapper.Map<Lekarz, Lekarz>(lekarz, lekarzBuf);
+            this._db.Entry(l).State = EntityState.Modified;
+            await this._db.SaveChangesAsync();
         }
 
         public async void Remove(Lekarz lekarz)

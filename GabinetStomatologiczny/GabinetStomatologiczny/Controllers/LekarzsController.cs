@@ -119,7 +119,7 @@ namespace GabinetStomatologiczny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Imie,Nazwisko,Zdjecie,Email,NrTelefonu")] Lekarz lekarz)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Imie,Nazwisko,Zdjecie,Email,NrTelefonu")] Lekarz lekarz)
         {
             
             if (ModelState.IsValid)
@@ -129,11 +129,13 @@ namespace GabinetStomatologiczny.Controllers
                     HttpPostedFileBase file = Request.Files["Zdjecie"];
                     UpdateModel(lekarz);
                     HttpPostedFileBase f = this._lekarzservice.SaveFile(file, lekarz);
-                    if(f.ContentLength > 0)
+
+                    if (f.ContentLength > 0)
                     {
                         f.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
                     }
-                    this._lekarzservice.Edit(lekarz);
+                    
+                    await Task.Run(() => this._lekarzservice.Edit(lekarz));
                     TempData["editLekarz"] = "done";
                     return RedirectToAction("Index");
                 }catch(Exception)

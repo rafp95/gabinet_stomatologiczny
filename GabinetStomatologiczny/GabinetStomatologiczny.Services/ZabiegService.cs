@@ -13,13 +13,13 @@ namespace GabinetStomatologiczny.Services
     public interface IZabiegService
     {
         Task<IEnumerable<object>> GetAllTooth(int id);
-        Task <Pacjent> GetPacjentById(int id);
         Task <Zab> SaveTooth(Zab zab,int userID);
         Task <Zab> DeleteTooth(Zab zab, int userID);
         Task<Zabieg> FindZabieg(int? id);
         Task<Zabieg> EditZabeg(Zabieg zabieg);
         Task <IEnumerable<PacjentViewModelHistory>> PacejntZabiegHistory(int id);
         Task<Zabieg> ZabiegCreate(Zabieg zabieg);
+        Task<Zabieg> DeleteZabieg(int zabieg);
     }
     public class ZabiegService : IZabiegService
     {
@@ -37,6 +37,14 @@ namespace GabinetStomatologiczny.Services
             _db.Zab.Remove(z);
             await _db.SaveChangesAsync();
             return z;
+        }
+
+        public async Task<Zabieg> DeleteZabieg(int id)
+        {
+            var zabieg = await FindZabieg(id);
+            _db.Zabieg.Remove(zabieg);
+            await _db.SaveChangesAsync();
+            return zabieg;
         }
 
         public async Task<Zabieg> EditZabeg(Zabieg zabieg)
@@ -57,11 +65,6 @@ namespace GabinetStomatologiczny.Services
             var tooth = _db.Zabieg.Where(_ => _.WizytaID == idWizyta.ID && _.Wizyta.PacjentID == id).AsQueryable();
             var getAllTooth = await tooth.Select(_ => _.Zeby).ToListAsync();
             return getAllTooth;
-        }
-
-        public async Task<Pacjent> GetPacjentById(int id)
-        {
-            return await _db.Pacjent.FirstOrDefaultAsync(_ => _.ID == id);
         }
 
         public async Task<IEnumerable<PacjentViewModelHistory>> PacejntZabiegHistory(int id)

@@ -1,12 +1,12 @@
 ﻿$(document).ready(function () {
     //carpet menu rotation
     let caret = $(".caret");
-    $("a.dropdown-toggle").off().on('click', function () {
+    $("ul.nav a.dropdown-toggle").off().on('click', function () {
         if(!caret.hasClass('rotate-180')) {
             caret.toggleClass('rotate-180');
         }
     });
-    $("li.dropdown").off().on('mouseleave', function () {
+    $("ul.nav li.dropdown").off().on('mouseleave', function () {
         if (caret.hasClass('rotate-180')) {
             caret.toggleClass('rotate-180');
         }

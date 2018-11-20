@@ -128,11 +128,11 @@ namespace GabinetStomatologiczny.Controllers
                 {
                     HttpPostedFileBase file = Request.Files["Zdjecie"];
                     UpdateModel(lekarz);
-                    HttpPostedFileBase f = this._lekarzservice.SaveFile(file, lekarz);
+                    HttpPostedFileBase f = await this._lekarzservice.SaveFile(file, lekarz);
 
                     if (f.ContentLength > 0)
                     {
-                        f.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
+                        await Task.Run(() => f.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie));
                     }
                     
                     await Task.Run(() => this._lekarzservice.Edit(lekarz));

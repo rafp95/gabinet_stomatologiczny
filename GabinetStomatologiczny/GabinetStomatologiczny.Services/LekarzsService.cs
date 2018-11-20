@@ -22,7 +22,7 @@ namespace GabinetStomatologiczny.Services
         Task<Lekarz> Find(int? id);
         void Remove(Lekarz lekarz);
         Task<Lekarz> CreateLekarz(Lekarz lekarz);
-        HttpPostedFileBase SaveFile(HttpPostedFileBase file, Lekarz lekarz);
+        Task<HttpPostedFileBase> SaveFile(HttpPostedFileBase file, Lekarz lekarz);
     }
 
     public class LekarzsService : ILekarzService
@@ -81,14 +81,17 @@ namespace GabinetStomatologiczny.Services
             return lekarz;
         }
 
-        public HttpPostedFileBase SaveFile(HttpPostedFileBase file, Lekarz lekarz)
+        public async Task<HttpPostedFileBase> SaveFile(HttpPostedFileBase file, Lekarz lekarz)
         {
 
-            if (file != null && file.ContentLength > 0)
+            await Task.Run(() =>
             {
-                lekarz.Zdjecie = System.Guid.NewGuid().ToString();
-                lekarz.Zdjecie = file.FileName;
-            }
+                if (file != null && file.ContentLength > 0)
+                {
+                    lekarz.Zdjecie = System.Guid.NewGuid().ToString();
+                    lekarz.Zdjecie = file.FileName;
+                }
+            });
             return file;
         }
     }

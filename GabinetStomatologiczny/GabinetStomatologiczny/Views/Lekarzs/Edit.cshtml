@@ -5,9 +5,7 @@
     ViewBag.Active = "Pacjenci";
 }
 
-<h2> @ViewBag.Title</h2>
-
-
+<header class="alert alert-info headerInfo"><div>@ViewBag.Title</div></header>
 
 @using (Html.BeginForm("Edit", "Lekarzs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

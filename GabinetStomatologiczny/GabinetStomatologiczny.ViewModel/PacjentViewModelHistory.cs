@@ -12,9 +12,12 @@ namespace GabinetStomatologiczny.ViewModel
     {
         public int ID { get; set; }
         public string Tytul { get; set; }
+        [Display(Name ="Typ zabiegu")]
         public TypZabiegu TypZabiegu { get; set; }
         [DataType(DataType.Currency)]
+        [Display(Name = "Cena zabiegu")]
         public int CenaZabiegu { get; set; }
+        [Display(Name = "Data zabiegu")]
         public DateTime? ZabiegDate { get; set; }
     }
 }

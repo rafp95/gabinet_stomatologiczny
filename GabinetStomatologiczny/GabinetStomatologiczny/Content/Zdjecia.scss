@@ -103,18 +103,25 @@ div#myModal span.close:focus {
     cursor: pointer;
 }
 
+img.zdjecie {
+    width: 40%;
+    height: 40%;
+    border: 1px solid transparent;
+    border-radius: 20px;
+}
+
+
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px) {
     .modal-content {
         width: 100%;
     }
-}
 
-img.zdjecie {
-    width: 40%;
-    height: 40%;
+    img.zdjecie {
+        width: 94%;
+        height: 40%;
+    }
 }
-
 
 /*Loading*/
 

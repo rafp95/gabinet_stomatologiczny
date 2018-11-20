@@ -88,7 +88,8 @@ function move(procent, kolor) {
     console.log('zmiana koloru '+kolor);
     let elem = $('#myBar');
     let width = procent || 1;
-    elem.css({'background':kolor});
+    elem.css({ 'background': kolor });
+    elem.text(width + ' %');
     elem.animate({
         width: width + '%'
     },200);

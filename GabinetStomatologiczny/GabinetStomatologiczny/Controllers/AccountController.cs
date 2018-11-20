@@ -481,7 +481,7 @@ namespace GabinetStomatologiczny.Controllers
             { 
                 if(error.Equals("Invalid token."))
                 {
-                    ModelState.AddModelError("Invalid token.", "Upewnij się czy wprowadzasz poprawny email bądź kod aktywacyjny został już użyty");
+                    ModelState.AddModelError("Invalid token.", "Upewnij się czy wprowadzasz poprawny email, bądź kod aktywacyjny został już użyty");
                 }else
                 {
                     ModelState.AddModelError("", error);

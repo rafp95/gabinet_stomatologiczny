@@ -251,12 +251,12 @@
                     zapisInfo.html("Wysłano pomyślnie ").fadeIn('slow').
                         append('<i class="fa fa-spinner fa-spin"></i>').
                         delay(1000).fadeOut('slow');
-                } else {
-                    zapisInfo.html("Wystąpił problem z wysłaniem ").fadeIn('slow').
+                }
+            }, error: function () {
+                zapisInfo.html("Wystąpił problem z wysłaniem ").fadeIn('slow').
                         append('<i class="fa fa-spinner fa-spin"></i>').
                     css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
                     fadeIn('slow').delay(1000).fadeOut('slow');
-                }
             }
         });
     }
@@ -318,12 +318,13 @@
                     zapisInfo.html("Wysłano pomyślnie ").fadeIn('slow').
                         append('<i class="fa fa-spinner fa-spin"></i>').
                         delay(1000).fadeOut('slow');
-                } else {
-                    zapisInfo.html("Wystąpił problem z wysłaniem ").fadeIn('slow').
+                }
+            },
+            error: function () {
+                zapisInfo.html("Wystąpił problem z wysłaniem ").fadeIn('slow').
                         append('<i class="fa fa-spinner fa-spin"></i>').
                     css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
                     fadeIn('slow').delay(1000).fadeOut('slow');
-                }
             }
         });
     }

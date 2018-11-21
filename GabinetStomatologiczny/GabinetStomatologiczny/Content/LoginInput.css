@@ -6,11 +6,12 @@ div.wysrodkowanieLoginForm {
   align-items: center; }
 
 div.wysrodkowanieLoginForm div.loginForm {
-  max-width: 400px; }
+  max-width: 400px;
+  border-radius: 1em; }
 
 div.loginForm {
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.16), 2px 2px 2px 0 rgba(0, 0, 0, 0.12) !important;
-  padding: 10px 10px;
+  padding: 20px 30px;
   -webkit-animation-name: animatebottom;
   -webkit-animation-duration: 1s;
   animation-name: animatebottom;

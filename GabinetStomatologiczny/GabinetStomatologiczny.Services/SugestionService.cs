@@ -14,7 +14,7 @@ namespace GabinetStomatologiczny.Services
     {
         IQueryable<object> SugestionPacjent(Sugestion sugestion);
         IQueryable<object> SugestionLekarz(Sugestion sugestion);
-        IQueryable<object> SugestionZabeg(Sugestion Sugestion);
+        IEnumerable<object> SugestionZabeg(Sugestion Sugestion);
         IEnumerable<object> SugestionWizyt(Sugestion sugestion);
     }
     public class SugestionService : ISugestionService
@@ -29,11 +29,11 @@ namespace GabinetStomatologiczny.Services
 
         public IQueryable<object> SugestionLekarz(Sugestion sugestion)
         {
-            var personList = _db.Lekarz
-                .Where(p => (p.Imie + " " + p.Nazwisko)
-                .ToLower().Contains(sugestion.term.ToLower()))
-                .Take(5)
-                .Select(p => new { label = p.Imie + " " + p.Nazwisko });
+            var personQuery = _db.Lekarz.AsQueryable();
+            var personList = personQuery.Where(p => (p.Imie + " " + p.Nazwisko)
+              .ToLower().Contains(sugestion.term.ToLower()))
+              .Take(5)
+              .Select(p => new { label = p.Imie + " " + p.Nazwisko });
 
             personList = personList.Count() == 0 ? personList.DefaultIfEmpty().
                Select(p => new { label = "Nie znaleziono" }).Take(1) : personList;
@@ -43,11 +43,11 @@ namespace GabinetStomatologiczny.Services
 
         public IQueryable<object> SugestionPacjent(Sugestion sugestion)
         {
-            var personList = _db.Pacjent
-                .Where(p => (p.Imie + " " + p.Nazwisko)
-                .ToLower().Contains(sugestion.term.ToLower()))
-                .Take(5)
-                .Select(p =>  new { label = p.Imie + " " + p.Nazwisko } );
+            var personQuery = _db.Pacjent.AsQueryable();
+            var personList = personQuery.Where(p => (p.Imie + " " + p.Nazwisko)
+            .ToLower().Contains(sugestion.term.ToLower()))
+            .Take(5)
+            .Select(p => new { label = p.Imie + " " + p.Nazwisko });
 
             personList = personList.Count() == 0 ? personList.DefaultIfEmpty().
                 Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : personList;
@@ -57,7 +57,7 @@ namespace GabinetStomatologiczny.Services
 
         public IEnumerable<object> SugestionWizyt(Sugestion sugestion)
         {
-             var events = _db.Wizyta.ToList().
+            var events = _db.Wizyta.AsEnumerable().
                  Select(_ => new
                  {
                      _.Tytul,
@@ -68,18 +68,21 @@ namespace GabinetStomatologiczny.Services
                  p.Poczatek >= DateTime.Now).
                  OrderBy(p => p.Poczatek).
                  Take(5).
-                 Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, H:mm") });
+                 Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, HH:mm") ?? "" });
             events = events.Count() == 0 ? events.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;
             return events;
         }
 
-        public IQueryable<object> SugestionZabeg(Sugestion Sugestion)
+        public IEnumerable<object> SugestionZabeg(Sugestion Sugestion)
         {
-            var zabieg = _db.Zabieg.Include(_ => _.Wizyta).
-                Where(z => z.Wizyta.Tytul.ToLower().Contains(Sugestion.term.ToLower())).
-                Take(5).Select(_ => new {label = _.Wizyta.Tytul});
+            var zabiegQuery = _db.Zabieg.Include(_ => _.Wizyta).AsQueryable();
 
-            zabieg = zabieg.Count() == 0 ? zabieg.DefaultIfEmpty().Select(p => new { label = "Brak danych" }).Take(1) : zabieg;
+            var zabieg = zabiegQuery.Where(z => z.Wizyta.Pacjent.Imie.ToLower().Contains(Sugestion.term.ToLower()) ||
+              z.Wizyta.Pacjent.Nazwisko.ToLower().Contains(Sugestion.term.ToLower()))
+                .GroupBy(_ => new { _.Wizyta.Tytul }).Take(5).
+               Select(_ => new { label = _.Key.Tytul });
+
+            zabieg = zabieg.Count() == 0 ? zabieg.DefaultIfEmpty().Select(z => new { label = "Brak danych" }).Take(1) : zabieg;
 
             return zabieg;
         }

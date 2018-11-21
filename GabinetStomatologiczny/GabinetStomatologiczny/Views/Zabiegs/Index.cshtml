@@ -18,7 +18,7 @@
 }
 
 @if (User.IsInRole("Pacjent") &&
-                Model.Any(m => m.Wizyta.Pacjent.Email == User.Identity.Name))
+                                        Model.Any(m => m.Wizyta.Pacjent.Email == User.Identity.Name))
 {
     <div style="margin-bottom: 20px;">
         Genruj PDF :
@@ -26,9 +26,10 @@
             <span class="glyphicon glyphicon-print"></span> Generuj raport
         </a>
     </div>
-}else if (User.IsInRole("Administrator")
-                 || User.IsInRole("Lekarz") 
-                 && Model.Count() > 0)
+}
+else if (User.IsInRole("Administrator")
+                || User.IsInRole("Lekarz")
+                && Model.Count() > 0)
 {
     <div class="form-group">
         <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">

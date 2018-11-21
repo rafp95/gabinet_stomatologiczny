@@ -46,13 +46,8 @@ namespace GabinetStomatologiczny.Controllers
         {
 
             ViewBag.CurrentSort = zabiegSort.sortOrder;
-            if (string.IsNullOrEmpty(zabiegSort.searchString))
-            {
-                zabiegSort.searchString = zabiegSort.currentFilter;
-            }
-
-            ViewBag.CurrentFilter = zabiegSort.searchString;
             var zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort, (ClaimsIdentity)User.Identity);
+            ViewBag.CurrentFilter = zabiegSort.searchString;
             ViewBag.ActiveClass = this._sortZabiegService.RodzajSort;
 
             if (Request.IsAjaxRequest())
@@ -65,7 +60,7 @@ namespace GabinetStomatologiczny.Controllers
 
         public ActionResult Sugestions(Sugestion sugestion)
         {
-            var list = _sugestionService.SugestionZabeg(sugestion).Distinct();
+            var list = _sugestionService.SugestionZabeg(sugestion);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

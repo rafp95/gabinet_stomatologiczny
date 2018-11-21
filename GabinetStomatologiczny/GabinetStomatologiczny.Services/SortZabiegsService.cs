@@ -36,6 +36,10 @@ namespace GabinetStomatologiczny.Services
             {
                 ps.page = 1;
             }
+            else
+            {
+                ps.searchString = ps.currentFilter;
+            }
 
             var zabieg = _db.Zabieg.Include(z => z.Wizyta).Include(p => p.Wizyta.Pacjent);
 
@@ -51,6 +55,11 @@ namespace GabinetStomatologiczny.Services
 
                 zabieg = zabieg.Where(s => (s.Wizyta.Tytul + " " + s.TypZabiegu + " " + s.CenaZabiegu)
                 .ToLower().Contains(ps.searchString.ToLower()));
+            }
+
+            if (string.IsNullOrEmpty(ps.searchString))
+            {
+                ps.searchString = ps.currentFilter;
             }
 
             switch (ps.sortOrder)

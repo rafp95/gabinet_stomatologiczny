@@ -217,7 +217,8 @@
 
         let data = {
             to: $("#inputDo").val(),
-            text: $("#inputWiadomosc").val()
+            text: $("#inputWiadomosc").val(),
+            __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
         };
 
         if (data.to.length === 0) {
@@ -292,7 +293,8 @@
     $("#btnEmailSend").click(function () {
         let data = {
             to: $("#inputDoEmail").val(),
-            text: $("#inputWiadomoscEamil").val()
+            text: $("#inputWiadomoscEamil").val(),
+            __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
         };
 
         if (data.to.length === 0) {
@@ -347,7 +349,10 @@
             $.ajax({
                 type: "POST",
                 url: '/Wizytas/DeleteEvent',
-                data: { 'ID': selectedEvent.eventID },
+                data: {
+                    'ID': selectedEvent.eventID,
+                    __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
+                },
                 success: function (data) {
                     if (data.status) {
                         //Refresh the calender
@@ -446,7 +451,8 @@
         var data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
-            Tytul: tytul.length > 0 ? tytul.val().trim() : null
+            Tytul: tytul.length > 0 ? tytul.val().trim() : null,
+            __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
         }
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie </div> <div class='loader' style='float:left;'></div>");
         SaveEvent(data);

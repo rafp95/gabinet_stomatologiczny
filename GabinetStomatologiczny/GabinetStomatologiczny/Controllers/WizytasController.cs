@@ -86,6 +86,7 @@ namespace GabinetStomatologiczny.Controllers
         /// <param name="text"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Sms(string to, string text)
         {
             var status = false;
@@ -108,6 +109,7 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendEmail(string to, string text)
         {
             var status = false;
@@ -131,6 +133,7 @@ namespace GabinetStomatologiczny.Controllers
         /// <param name="w"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<JsonResult> SaveEvent(Wizyta w)
         {
             var status = await this._wizytService.SaveEvent(w, User.Identity.Name);
@@ -143,6 +146,7 @@ namespace GabinetStomatologiczny.Controllers
         /// <param name="w"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<JsonResult> DeleteEvent(Wizyta w)
         {
             var status = await this._wizytService.DeleteEvent(w);

@@ -12,9 +12,15 @@
     @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.zabiegT_desc, currentFilter = ViewBag.CurrentFilter },
                     new { @class = @ViewBag.ActiveClass == RodzajSort.zabiegT_desc ? "active" : "", title = "Malejąco" })
 </td>
-<td colspan="3">
+<td>
     @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.cenaZ_asc, currentFilter = ViewBag.CurrentFilter }
                     , new { @class = @ViewBag.ActiveClass == RodzajSort.cenaZ_asc ? "active" : "", title = "Rosnąco" })
     @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.cenaZ_desc, currentFilter = ViewBag.CurrentFilter },
                     new { @class = @ViewBag.ActiveClass == RodzajSort.cenaZ_desc ? "active" : "", title = "Malejąco" })
+</td>
+<td colspan="2">
+    @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.dataZ_asc, currentFilter = ViewBag.CurrentFilter }
+                    , new { @class = @ViewBag.ActiveClass == RodzajSort.dataZ_asc ? "active" : "", title = "Rosnąco" })
+    @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.dataZ_desc, currentFilter = ViewBag.CurrentFilter },
+                    new { @class = @ViewBag.ActiveClass == RodzajSort.dataZ_desc ? "active" : "", title = "Malejąco" })
 </td>

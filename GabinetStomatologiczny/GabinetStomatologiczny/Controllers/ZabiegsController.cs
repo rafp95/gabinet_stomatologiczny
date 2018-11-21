@@ -14,7 +14,6 @@ using Rotativa;
 using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
 using System.Security.Claims;
-using GabinetStomatologiczny.ViewModel;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -136,12 +135,12 @@ namespace GabinetStomatologiczny.Controllers
             return View(zabieg);
         }
 
-        public async Task<ActionResult> ToothModel()
+        public async Task<ActionResult> ToothModel(PaginationType pt)
         {
             int id = (int)Session["user"];
             Pacjent p = await _pacejntService.GetPacjentById(id);
             ViewBag.User = p.Imie + " " + p.Nazwisko;
-            var pacejnt = await _zabiegService.PacejntZabiegHistory(id);
+            var pacejnt = await _zabiegService.PacejntZabiegHistory(pt,id);
             return View(pacejnt);
         }
 

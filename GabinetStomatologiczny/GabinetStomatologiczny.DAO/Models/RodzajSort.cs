@@ -27,6 +27,8 @@ namespace GabinetStomatologiczny.DAO.Models
         zabiegT_asc,
         zabiegT_desc,
         cenaZ_asc,
-        cenaZ_desc
+        cenaZ_desc,
+        dataZ_asc,
+        dataZ_desc
     }
 }

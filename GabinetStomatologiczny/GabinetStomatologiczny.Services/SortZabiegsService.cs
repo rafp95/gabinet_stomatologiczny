@@ -79,6 +79,14 @@ namespace GabinetStomatologiczny.Services
                     zabieg = zabieg.OrderByDescending(_ => _.CenaZabiegu);
                     RodzajSort = ps.sortOrder;
                     break;
+                case RodzajSort.dataZ_asc:
+                    zabieg = zabieg.OrderBy(_ => _.ZabiegDate);
+                    RodzajSort = ps.sortOrder;
+                    break;
+                case RodzajSort.dataZ_desc:
+                    zabieg = zabieg.OrderByDescending(_ => _.ZabiegDate);
+                    RodzajSort = ps.sortOrder;
+                    break;
                 default:
                     zabieg = zabieg.OrderBy(_ => _.Wizyta.Tytul);
                     break;

@@ -956,8 +956,8 @@
     <Content Include="Views\Zabiegs\_RefreshPage.cshtml" />
     <Content Include="Views\Pacjents\_PacjentDetails.cshtml" />
     <Content Include="Views\Pacjents\_PacejntTableHeader.cshtml" />
-    <Content Include="Views\Zabiegs\_PacejntHistoryPartial.cshtml" />
     <Content Include="Views\Zabiegs\_SortZabiegPartial.cshtml" />
+    <Content Include="Views\Zabiegs\_PacZabPaginationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -980,10 +980,6 @@
     <ProjectReference Include="..\GabinetStomatologiczny.Utils\GabinetStomatologiczny.Utils.csproj">
       <Project>{DED59786-9561-4530-943D-114C7446F95D}</Project>
       <Name>GabinetStomatologiczny.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GabinetStomatologiczny.ViewModel\GabinetStomatologiczny.ViewModel.csproj">
-      <Project>{93a438e9-a148-4033-8f16-25f2e43e9cb8}</Project>
-      <Name>GabinetStomatologiczny.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

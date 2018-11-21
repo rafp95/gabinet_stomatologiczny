@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GabinetStomatologiczny.ViewModel.PacjentViewModelHistory>
+﻿@model PagedList.IPagedList<GabinetStomatologiczny.DAO.Models.Zabieg>
 @{
     ViewBag.Title = "ToothModel";
     ViewBag.Active = "Pacjenci";
@@ -8,12 +8,19 @@
 <div class="ladowanie"></div>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Model zębów</a></li>
-    <li><a data-toggle="tab" href="#menu1">Historia leczenia </a></li>
+    <li class="active"><a data-toggle="tab" href="#home">Historia leczenia</a></li>
+    <li><a data-toggle="tab" href="#menu1">Model zębów </a></li>
 </ul>
 
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                @Html.Partial("_PacZabPaginationPartial")
+            </div>
+        </div>
+    </div>
+    <div id="menu1" class="tab-pane fade">
         <div class="row">
             <div class="col-md-12 text-center">
                 <!--tooth model-->
@@ -24,12 +31,10 @@
             </div>
         </div>
     </div>
-    <div id="menu1" class="tab-pane fade">
-        @Html.Partial("_PacejntHistoryPartial")
-    </div>
 </div>
 
 @section MyCustomStyle{
+    <link href="~/Content/PginationPosition.min.css" rel="stylesheet" />
     <link href="~/Content/ZabiegCreate.min.css" rel="stylesheet" />
     <link href="~/Content/TableStyle.min.css" rel="stylesheet" />
 }
@@ -39,4 +44,5 @@
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Content/script/ModelZebow.js"></script>
+
 }

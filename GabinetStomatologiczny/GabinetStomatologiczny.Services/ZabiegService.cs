@@ -1,6 +1,7 @@
 ﻿using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
-using GabinetStomatologiczny.ViewModel;
+using GabinetStomatologiczny.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,7 +18,7 @@ namespace GabinetStomatologiczny.Services
         Task <Zab> DeleteTooth(Zab zab, int userID);
         Task<Zabieg> FindZabieg(int? id);
         Task<Zabieg> EditZabeg(Zabieg zabieg);
-        Task <IEnumerable<PacjentViewModelHistory>> PacejntZabiegHistory(int id);
+        Task <IEnumerable<Zabieg>> PacejntZabiegHistory(PaginationType ps, int id);
         Task<Zabieg> ZabiegCreate(Zabieg zabieg);
         Task<Zabieg> DeleteZabieg(int zabieg);
     }
@@ -67,22 +68,17 @@ namespace GabinetStomatologiczny.Services
             return getAllTooth;
         }
 
-        public async Task<IEnumerable<PacjentViewModelHistory>> PacejntZabiegHistory(int id)
+        public async Task<IEnumerable<Zabieg>> PacejntZabiegHistory(PaginationType ps, int id)
         {
-            var zabiegsQuery = _db.Zabieg.
+            var zabiegs = await _db.Zabieg.
                Include(_ => _.Wizyta).Include(_ => _.Wizyta.Pacjent).
-               Where(_ => _.Wizyta.PacjentID == id).AsQueryable();
-            var zabiegs = await zabiegsQuery.Select(_ => new PacjentViewModelHistory
-            {
-                ID = _.ID,
-                CenaZabiegu = _.CenaZabiegu,
-                TypZabiegu = _.TypZabiegu,
-                Tytul = _.Wizyta.Tytul,
-                ZabiegDate = _.ZabiegDate
-
-            }).OrderByDescending(_ => _.ZabiegDate).ToListAsync();
+               Where(_ => _.Wizyta.PacjentID == id).
+               OrderByDescending(_ => _.ZabiegDate).ToListAsync();
             
-            return zabiegs;
+            ps.pageSize = 10;
+            ps.pageNumber = (ps.page ?? 1);
+
+            return zabiegs.ToPagedList(ps.pageNumber, ps.pageSize);
         }
 
         public async Task<Zab> SaveTooth(Zab zab,int userID)

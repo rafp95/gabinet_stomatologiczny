@@ -8,6 +8,12 @@ dl {
     animation-duration: 1s;
 }
 
+@media(max-width: 764px){
+    dl{
+        text-align: center;
+    }
+}
+
 dl dt {
     background: #5f9be3;
     background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#d9edf7), to(#b9def0));

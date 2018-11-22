@@ -5,6 +5,7 @@
     min-width: 100%; }
   /* Force table to not be like tables anymore */
   table, thead, tbody, th, td, tr {
+    text-align: center;
     display: block; }
   table tr:first-child {
     display: none; }

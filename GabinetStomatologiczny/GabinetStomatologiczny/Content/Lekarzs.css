@@ -1,7 +1,8 @@
 ﻿@charset "UTF-8";
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1200px), (min-device-width: 1200px) and (max-device-width: 1200px) {
   /* Force table to not be like tables anymore */
   table, thead, tbody, th, td, tr {
+    text-align: center;
     display: block; }
   table tr:first-child {
     display: none; }

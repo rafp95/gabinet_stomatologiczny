@@ -5,7 +5,7 @@
     ViewBag.Active = "Zaloguj";
 }
 <div class="row wysrodkowanieLoginForm">
-    <div class="col-sm-12 col-md-12 center-block loginForm modal-info">
+    <div class="col-sm-12 col-md-12 loginForm modal-info">
         <h2>@ViewBag.Title.</h2>
         <section>
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

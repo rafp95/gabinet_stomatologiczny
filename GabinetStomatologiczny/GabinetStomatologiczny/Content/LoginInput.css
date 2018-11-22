@@ -39,7 +39,7 @@ input[type=text], input[type=password] {
   height: 4em; }
 
 span.control-label span.glyphicon {
-  padding-top: 6px;
+  padding-top: 15px;
   font-size: 20px;
   color: black; }
 

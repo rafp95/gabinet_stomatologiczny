@@ -62,10 +62,10 @@
 || User.IsInRole("Lekarz"))
                             {
                                 <button id="btnSms" class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-pencil"></span> Sms
+                                    <span class="fa fa-paper-plane"></span> Sms
                                 </button>
                                 <button id="btnEmail" class="btn btn-success btn-sm">
-                                    <span class="glyphicon glyphicon-pencil"></span> Email
+                                    <span class="fa fa-envelope-o"></span> Email
                                 </button>
                             }
                         </div>
@@ -87,8 +87,8 @@
 
 <!--End about-->
 @if (User.IsInRole("Pacjent")
-                                                              || User.IsInRole("Administrator")
-                                                              || User.IsInRole("Lekarz"))
+                                                                                                  || User.IsInRole("Administrator")
+                                                                                                  || User.IsInRole("Lekarz"))
 {
     <!--Error save info-->
     <div id="myModalSaveToDataBaseError" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">

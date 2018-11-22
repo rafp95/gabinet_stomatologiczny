@@ -32,11 +32,11 @@ div.wysrodkowanieLoginForm > div > h2 {
 /*end center form*/
 input[type=text], input[type=password] {
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   margin: 5px 0 20px 0;
   border: none;
   background: #f1f1f1;
-  height: 4rem; }
+  height: 4em; }
 
 span.control-label span.glyphicon {
   padding-top: 6px;

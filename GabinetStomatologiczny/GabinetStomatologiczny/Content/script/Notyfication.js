@@ -32,7 +32,7 @@
                     $('#notiContent').append($('<li>Zapisał(a) się na '
                         + ' <a href="/Wizytas" title="Kliknij aby odświeżyć">'
                         + ' wizytę : ' + '</a>' + ' ' + value.Tytul + ' '
-                        + moment(value.Poczatek).format('DD-MMM-YYYY HH:mm') + '</li>'));
+                        + moment(value.Poczatek).format('DD-MM-YYYY HH:mm') + '</li>'));
                 });
             },
             error: function (error) {

@@ -24,7 +24,7 @@ namespace GabinetStomatologiczny.Controllers
         private readonly ILekarzService _lekarzservice;
         private readonly ISortLekarzService _lekarzSortService;
         private readonly ISugestionService _sugestionService;
-        public LekarzsController(ILekarzService lekarzservice, ISortLekarzService lekarzSortService,ISugestionService sugestionService)
+        public LekarzsController(ILekarzService lekarzservice, ISortLekarzService lekarzSortService, ISugestionService sugestionService)
         {
             this._lekarzservice = lekarzservice;
             this._lekarzSortService = lekarzSortService;
@@ -75,11 +75,11 @@ namespace GabinetStomatologiczny.Controllers
             return View(lekarz);
         }
 
-       
+
         // GET: Lekarzs/Create
         public ActionResult Create()
         {
-           return View();
+            return View();
         }
 
         // POST: Lekarzs/Create
@@ -87,11 +87,11 @@ namespace GabinetStomatologiczny.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Imie,Nazwisko,Zdjecie,Email,NrTelefonu")] Lekarz lekarz)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Imie,Nazwisko,Zdjecie,Email,NrTelefonu")] Lekarz lekarz)
         {
             if (ModelState.IsValid)
             {
-                this._lekarzservice.CreateLekarz(lekarz);
+                await this._lekarzservice.CreateLekarz(lekarz);
                 return RedirectToAction("Index");
             }
 
@@ -121,24 +121,25 @@ namespace GabinetStomatologiczny.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,Imie,Nazwisko,Zdjecie,Email,NrTelefonu")] Lekarz lekarz)
         {
-            
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     HttpPostedFileBase file = Request.Files["Zdjecie"];
                     UpdateModel(lekarz);
-                    HttpPostedFileBase f = await this._lekarzservice.SaveFile(file, lekarz);
+                    HttpPostedFileBase f = this._lekarzservice.SaveFile(file, lekarz);
 
                     if (f.ContentLength > 0)
                     {
-                        await Task.Run(() => f.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie));
+                        f.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
                     }
-                    
+
                     await Task.Run(() => this._lekarzservice.Edit(lekarz));
                     TempData["editLekarz"] = "done";
                     return RedirectToAction("Index");
-                }catch(Exception)
+                }
+                catch (Exception)
                 {
                     ViewBag.Error = "Sprawdź czy poprawnie wypełniłeś wszystkie wypełniłeś dane";
                 }
@@ -167,12 +168,12 @@ namespace GabinetStomatologiczny.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Lekarz lekarz = await this._lekarzservice.Find(id);
-            if(lekarz.Zdjecie != null)
+            if (lekarz.Zdjecie != null)
             {
                 string path = Request.MapPath("~/Obrazki/" + lekarz.Zdjecie);
                 System.IO.File.Delete(path);
             }
-            await Task.Run(() => this._lekarzservice.Remove(lekarz));
+            await this._lekarzservice.Remove(lekarz);
             return RedirectToAction("Index");
         }
 

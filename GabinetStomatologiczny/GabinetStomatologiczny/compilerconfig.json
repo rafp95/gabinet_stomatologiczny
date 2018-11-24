@@ -78,5 +78,9 @@
   {
     "outputFile": "Content/Notyfication.css",
     "inputFile": "Content/Notyfication.scss"
+  },
+  {
+    "outputFile": "Content/ErrorStylePage.css",
+    "inputFile": "Content/ErrorStylePage.scss"
   }
 ]

@@ -82,15 +82,20 @@
         tooth.each(function () {
             let color = $(this).attr('fill');
             let info = color === '#FF0000' ? 'Ząb leczony ' + moment(getDateTreatment($(this).attr('id')))
-                .format("DD-MM-YYYY") : 'brak ingerencji lekarskiej';
+                   .format("DD-MM-YYYY") : 'brak ingerencji lekarskiej';
             $(this).tooltip({
                 items: $(this),
                 trigger: 'hover',
                 effect: 'slide',
-                content: () => { return info },
+                content: () => {
+                    return info;
+                },
                 track: true,
                 my: "left top+20 center",
                 at: "right center",
+                onShow: function () {
+                    this.getTrigger().fadeTo("slow", 0.2);
+                },
                 open: function (event, ui) {
                     if (typeof (event.originalEvent) === 'undefined') {
                         return false;

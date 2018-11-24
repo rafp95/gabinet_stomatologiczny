@@ -519,6 +519,13 @@
     <Content Include="Content\DLandDDstyle.min.css">
       <DependentUpon>DLandDDstyle.css</DependentUpon>
     </Content>
+    <None Include="Content\ErrorStylePage.scss" />
+    <Content Include="Content\ErrorStylePage.css">
+      <DependentUpon>ErrorStylePage.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\ErrorStylePage.min.css">
+      <DependentUpon>ErrorStylePage.css</DependentUpon>
+    </Content>
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fullcalendar.css" />

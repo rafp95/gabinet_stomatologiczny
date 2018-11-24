@@ -33,8 +33,8 @@
     //
     function SetTooth() {
         let clicks = 0, timer = null, deley = 700;
-        tooth.off('click').on('click', function (e) {
-            event.preventDefault();
+        tooth.on('click', function (e) {
+            e.preventDefault();
             clicks++;
             ladowanie.css('display', 'block');
             if (clicks == 1) {

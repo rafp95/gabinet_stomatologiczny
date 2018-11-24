@@ -59,5 +59,18 @@
     list-style-image: url(img/task.png);
     background-repeat: no-repeat; }
     .card-notification-desktop ul li {
-      padding: 10px 5px;
-      margin: 2px; }
+      text-align: center;
+      padding: .1em;
+      margin: .3em 0;
+      border-left: 1px inset black;
+      position: relative;
+      left: -5px; }
+    .card-notification-desktop ul span {
+      display: inline-block; }
+      .card-notification-desktop ul span:not(:last-child)::after {
+        content: "*";
+        color: black;
+        font-size: 22px;
+        position: relative;
+        top: 4px;
+        left: -9px; }

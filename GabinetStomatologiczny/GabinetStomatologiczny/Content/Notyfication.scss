@@ -64,9 +64,27 @@
         margin: 0;
         list-style-image: url(../Content/img/task.png);
         background-repeat: no-repeat;
+
         li {
-            padding: 10px 5px;
-            margin: 2px;
+            text-align: center;
+            padding: .1em;
+            margin: .3em 0;
+            border-left: 1px inset black;
+            position: relative;
+            left: -5px;
+        }
+
+        span {
+            display: inline-block;
+
+            &:not(:last-child)::after {
+                content: "*";
+                color: black;
+                font-size: 22px;
+                position: relative;
+                top: 4px;
+                left: -9px;
+            }
         }
     }
 }

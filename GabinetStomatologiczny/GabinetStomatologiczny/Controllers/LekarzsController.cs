@@ -135,7 +135,7 @@ namespace GabinetStomatologiczny.Controllers
                         f.SaveAs(HttpContext.Server.MapPath("~/Obrazki/") + lekarz.Zdjecie);
                     }
 
-                    await Task.Run(() => this._lekarzservice.Edit(lekarz));
+                    await this._lekarzservice.Edit(lekarz);
                     TempData["editLekarz"] = "done";
                     return RedirectToAction("Index");
                 }

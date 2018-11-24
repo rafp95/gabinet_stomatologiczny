@@ -1,139 +1,118 @@
 ﻿@model GabinetStomatologiczny.DAO.Models.Pacjent
-
 @{
     ViewBag.Title = "Kasuj";
 }
+@if (User.IsInRole("Administrator") || User.IsInRole("Lekarz") || User.Identity.Name == Model.Email)
+{
+    <header class="alert alert-info headerInfo"><div>Kasuj</div></header>
+    <h3>Czy napewno chcesz skasować?</h3>
+    <div>
+        <h4>@Model.Imie @Model.Nazwisko</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Imie)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Imie)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nazwisko)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nazwisko)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Pesel)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Pesel)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Plec)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Plec)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DataUrodzenia)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataUrodzenia)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NrTelefonu)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NrTelefonu)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Miejscowosc)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Miejscowosc)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Kod)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Kod)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ulica)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ulica)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Wojewodztwo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Wojewodztwo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Kraj)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Kraj)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OdzialNfz)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OdzialNfz)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DataRejestracji)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataRejestracji)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-<header class="alert alert-info headerInfo"><div>Kasuj</div></header>
-<h3>Czy napewno chcesz skasować?</h3>
-<div>
-    <h4>@Model.Imie @Model.Nazwisko</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Imie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imie)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nazwisko)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nazwisko)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Pesel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pesel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Plec)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Plec)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataUrodzenia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataUrodzenia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NrTelefonu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NrTelefonu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Miejscowosc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Miejscowosc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Kod)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Kod)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ulica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ulica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Wojewodztwo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Wojewodztwo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Kraj)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Kraj)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OdzialNfz)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OdzialNfz)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataRejestracji)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataRejestracji)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Kasuj" class="btn btn-default" /> |
-            @Html.ActionLink(" Wstecz", "Index",null,new {@class="glyphicon glyphicon-hand-left" })
-        </div>
-    }
-</div>
-
+            <div class="form-actions no-color">
+                <input type="submit" value="Kasuj" class="btn btn-default" /> |
+                @Html.ActionLink(" Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        <h2>Nie posiadasz uprawień do tej strony</h2>
+    </div>
+    @Html.ActionLink(" Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
+}
 @section scripts{
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>

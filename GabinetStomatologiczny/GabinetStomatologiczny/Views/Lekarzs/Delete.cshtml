@@ -1,51 +1,53 @@
 ﻿@model GabinetStomatologiczny.DAO.Models.Lekarz
-
 @{
     ViewBag.Title = "Kasuj";
 }
 
-<header class="alert alert-info headerInfo"><div>Kasuj</div></header>
+@if (User.IsInRole("Lekarz") || User.IsInRole("Administrator"))
+{
+    <header class="alert alert-info headerInfo"><div>Kasuj</div></header>
 
-<h3>Napewno chcesz skasować?</h3>
-<div>
-    <h4>Lekarz</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Imie)
-        </dt>
+    <h3>Napewno chcesz skasować?</h3>
+    <div>
+        <h4>Lekarz</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Imie)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Imie)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nazwisko)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nazwisko)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Zdjecie)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Zdjecie)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.Imie)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nazwisko)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nazwisko)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Zdjecie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Zdjecie)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Kasuj" class="btn btn-default" /> 
-            @Html.ActionLink("Wstecz", "Index",null,new {@class="fa fa-hand-o-left" })
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Kasuj" class="btn btn-default" />
+                @Html.ActionLink("Wstecz", "Index", null, new { @class = "fa fa-hand-o-left" })
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        <h2>Nie posiadasz uprawień do tej strony</h2>
+    </div>
+}
 
 @section scripts{
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>

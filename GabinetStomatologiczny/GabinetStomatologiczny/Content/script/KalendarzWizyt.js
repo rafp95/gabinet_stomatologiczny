@@ -478,7 +478,7 @@
                 }
             },
             error: function (jqXHR, exception) {
-                console.log(jqXHR);
+                console.log(jqXHR.status);
                 $('#myModalSave').modal('hide');
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').

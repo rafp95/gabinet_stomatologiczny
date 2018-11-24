@@ -33,9 +33,9 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
 }
 
 //miesiąc w kalendarzu
-div{
-    &.fc-center{
-        h2{
+div {
+    &.fc-center {
+        h2 {
             font-size: 2em;
         }
     }
@@ -262,6 +262,12 @@ div.fc-content {
     display: flex;
     align-items: center;
     min-height: 100%;
+
+    .fc-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }
 /*end fullcalendar center element fc-content*/
 

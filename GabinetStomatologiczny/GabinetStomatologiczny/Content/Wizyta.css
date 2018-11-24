@@ -193,6 +193,10 @@ div.fc-content {
   display: flex;
   align-items: center;
   min-height: 100%; }
+  div.fc-content .fc-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; }
 
 /*end fullcalendar center element fc-content*/
 /*space betwwen time and title*/

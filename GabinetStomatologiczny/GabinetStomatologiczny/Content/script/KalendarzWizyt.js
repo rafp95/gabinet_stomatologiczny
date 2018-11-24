@@ -184,9 +184,11 @@
                 el.popover({
                     title: eventObj.title,
                     content: phone == null ? "Dla zalogowanych" : "tel. " + phone,
+                    effect: 'slide',
                     trigger: 'hover',
                     placement: 'top',
                     container: 'body',
+                    animation: true
                 });
             }, dayRender: function (date, cell) {
                 $("table>thead.fc-head").addClass("modal-info");
@@ -472,13 +474,10 @@
                     zapisInfo.html("Zapisano zmiany ").append('<i class="fa fa-spinner fa-spin"></i>').
                     fadeIn('slow').delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
-                } else {
-                    $('#myModalSave').modal('hide');
-                    $("#myModalSaveToDataBaseError").modal();
                 }
             },
             error: function (jqXHR, exception) {
-                console.log(jqXHR.status);
+                console.log('error ' + jqXHR.status);
                 $('#myModalSave').modal('hide');
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').

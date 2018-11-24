@@ -32,7 +32,7 @@
     //set tooth
     //
     function SetTooth() {
-        let clicks = 0, timer = null, deley = 700;
+        let clicks = 0, timer = null, deley = 300;
         tooth.on('click', function (e) {
             e.preventDefault();
             clicks++;
@@ -85,6 +85,7 @@
                 .format("DD-MM-YYYY") : 'brak ingerencji lekarskiej';
             $(this).tooltip({
                 items: $(this),
+                trigger: 'hover',
                 effect: 'slide',
                 content: () => { return info },
                 track: true,

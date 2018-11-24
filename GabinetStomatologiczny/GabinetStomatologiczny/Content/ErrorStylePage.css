@@ -8,5 +8,3 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center; }
-    html body div.serverResult, body body div.serverResult {
-      text-align: center; }

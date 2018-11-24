@@ -466,6 +466,7 @@
             data: data,
             success: function (data) {
                 if (data.status) {
+                    console.log(status);
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
                     zapisInfo.html("Zapisano zmiany ").append('<i class="fa fa-spinner fa-spin"></i>').
@@ -476,8 +477,8 @@
                     $("#myModalSaveToDataBaseError").modal();
                 }
             },
-            error: function () {
-                console.log('error');
+            error: function (jqXHR, exception) {
+                console.log(jqXHR);
                 $('#myModalSave').modal('hide');
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').

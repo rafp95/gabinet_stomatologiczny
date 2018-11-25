@@ -69,11 +69,13 @@
                     <td>
                         @if (item.Zdjecie != null)
                         {
-                            <img src="~/Obrazki/@Html.DisplayFor(modelItem => item.Zdjecie)" id="myImg" class="rozmiar" />
-                            <div id="myModal" class="modal">
-                                <span class="close">&times;</span>
-                                <img class="modal-content" id="img01">
-                            </div>
+                            <figure>
+                                <img src="~/Obrazki/@Html.DisplayFor(modelItem => item.Zdjecie)" id="myImg" class="rozmiar" />
+                                <div id="myModal" class="modal">
+                                    <span class="close">&times;</span>
+                                    <img class="modal-content" id="img01">
+                                </div>
+                            </figure>
                         }
                     </td>
                     <td>
@@ -84,7 +86,7 @@
                     </td>
                     <td>
                         @if ((User.Identity.GetUserName() == item.Email && User.Identity.IsAuthenticated)
-        || User.IsInRole("Administrator"))
+|| User.IsInRole("Administrator"))
                         {
                             @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-edit", title = "Edycja" }) <span> | </span>
                             @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-trash", title = "Kasuj" }) <span> | </span>

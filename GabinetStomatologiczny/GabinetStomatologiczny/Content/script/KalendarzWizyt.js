@@ -476,6 +476,7 @@
                     $('#myModalSave').modal('hide');
                 } else if (data && !data.status) {
                     //$('#myModalSave').modal('hide');
+                    $("#btnSave").text("Zapisz");
                     $("#btnSave>div.loader").css({ 'display': 'none' });
                     $("#myModalSaveToDataBaseError").modal();
                 }

@@ -102,7 +102,7 @@
     </dl>
 </div>
 <p>
-    @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Email)
+    @if (User.Identity.Name == Model.Email || User.IsInRole("Lekarz") || User.IsInRole("Administrator"))
     {
         @Html.ActionLink("Edycja", "Edit", new { id = Model.ID }, new { @class = "btn btn-info" })
         <span> | </span>

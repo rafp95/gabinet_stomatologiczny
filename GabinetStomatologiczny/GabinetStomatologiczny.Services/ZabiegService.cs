@@ -84,9 +84,8 @@ namespace GabinetStomatologiczny.Services
 
         public async Task<Zab> SaveTooth(Zab zab,int userID)
         {
-            var idWizyta = await _db.Wizyta.FirstOrDefaultAsync(_ => _.Pacjent.ID == userID);
-            var tooth = _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta.ID).Select(_ => _.Zeby).AsQueryable();
-            var idZabieg = await _db.Zabieg.FirstOrDefaultAsync(_ => _.Wizyta.ID == idWizyta.ID);
+            var idWizyta = await _db.Wizyta.Where(_ => _.Pacjent.ID == userID).FirstOrDefaultAsync();
+            var idZabieg = await _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta.ID).FirstOrDefaultAsync();
 
             zab.ZabiegID = idZabieg.ID;
             zab.TreatmentDate = DateTime.Now;

@@ -132,7 +132,6 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Pacjents/Delete/5
-        [Authorize(Roles = "Lekarz,Administrator")]
         public async Task <ActionResult> Delete(int? id)
         {
             if (id == null)

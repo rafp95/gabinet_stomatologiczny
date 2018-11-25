@@ -4,111 +4,124 @@
     ViewBag.Active = "Pacjenci";
 }
 
-<header class="alert alert-info headerInfo"><div>Więcej informacji</div></header>
-<div>
-    <h4>Pacjent</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Imie)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Imie)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Nazwisko)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nazwisko)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Pesel)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Pesel)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Plec)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Plec)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DataUrodzenia)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DataUrodzenia)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NrTelefonu)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NrTelefonu)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Miejscowosc)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Miejscowosc)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Kod)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Kod)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Ulica)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Ulica)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Wojewodztwo)
-        </dt>
-        <dd>
-            @if (Model.Wojewodztwo > 0)
-            {
-                @Html.DisplayFor(model => model.Wojewodztwo)
-            }
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Kraj)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Kraj)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OdzialNfz)
-        </dt>
-        <dd>
-            @if (Model.OdzialNfz > 0)
-            {
-                @Html.DisplayFor(model => model.OdzialNfz)
-            }
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DataRejestracji)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DataRejestracji)
-        </dd>
-    </dl>
-</div>
-<p>
-    @if (User.Identity.Name == Model.Email || User.IsInRole("Lekarz") || User.IsInRole("Administrator"))
-    {
+
+@if (User.Identity.Name == Model.Email || User.IsInRole("Lekarz") || User.IsInRole("Administrator"))
+{
+    <header class="alert alert-info headerInfo"><div>Więcej informacji</div></header>
+    <div>
+        <h4>Pacjent</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Imie)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Imie)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nazwisko)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nazwisko)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Pesel)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Pesel)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Plec)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Plec)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DataUrodzenia)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataUrodzenia)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NrTelefonu)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NrTelefonu)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Miejscowosc)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Miejscowosc)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Kod)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Kod)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ulica)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ulica)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Wojewodztwo)
+            </dt>
+            <dd>
+                @if (Model.Wojewodztwo > 0)
+                {
+                    @Html.DisplayFor(model => model.Wojewodztwo)
+                }
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Kraj)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Kraj)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OdzialNfz)
+            </dt>
+            <dd>
+                @if (Model.OdzialNfz > 0)
+                {
+                    @Html.DisplayFor(model => model.OdzialNfz)
+                }
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DataRejestracji)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataRejestracji)
+            </dd>
+        </dl>
+    </div>
+    <p>
+
         @Html.ActionLink("Edycja", "Edit", new { id = Model.ID }, new { @class = "btn btn-info" })
         <span> | </span>
-    }
-    @Html.ActionLink(" Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
-</p>
+        @Html.ActionLink(" Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
+    </p>
+
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        <h2>Nie posiadasz uprawień do tej strony</h2>
+    </div>
+    <div>
+        @Html.ActionLink(" Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
+    </div>
+}
+
 
 @section scripts{
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>

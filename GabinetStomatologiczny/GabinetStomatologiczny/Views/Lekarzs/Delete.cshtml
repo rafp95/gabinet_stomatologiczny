@@ -47,6 +47,9 @@ else
     <div class="alert alert-danger" role="alert">
         <h2>Nie posiadasz uprawień do tej strony</h2>
     </div>
+    <div>
+        @Html.ActionLink("Wstecz", "Index", null, new { @class = "fa fa-hand-o-left" })
+    </div>
 }
 
 @section scripts{

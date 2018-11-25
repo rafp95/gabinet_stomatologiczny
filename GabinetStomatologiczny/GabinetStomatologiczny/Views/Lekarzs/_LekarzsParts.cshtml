@@ -70,10 +70,10 @@
                         @if (item.Zdjecie != null)
                         {
                             <figure>
-                                <img src="~/Obrazki/@Html.DisplayFor(modelItem => item.Zdjecie)" id="myImg" class="rozmiar" />
+                                <img src="~/Obrazki/@Html.DisplayFor(modelItem => item.Zdjecie)" alt="Lekarz" id="myImg" class="rozmiar">
                                 <div id="myModal" class="modal">
                                     <span class="close">&times;</span>
-                                    <img class="modal-content" id="img01">
+                                    <img class="modal-content" id="img01" alt="Lekarz">
                                 </div>
                             </figure>
                         }

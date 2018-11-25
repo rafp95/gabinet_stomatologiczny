@@ -32,12 +32,12 @@
     //set tooth
     //
     function SetTooth() {
-        let clicks = 0, timer = null, deley = 300;
-        tooth.on('click', function (e) {
+        let clicks = 0, timer = null, deley = 400;
+        tooth.off('click').on('click', function (e) {
             e.preventDefault();
             clicks++;
-            ladowanie.css('display', 'block');
             if (clicks == 1) {
+                ladowanie.css('display', 'block');
                 timer = setTimeout(() => {
                     let tooth = {
                         idTooth: $(this).attr('id')
@@ -53,6 +53,7 @@
                     clicks = 0;
                 }, deley)
             } else {
+                clearTimeout(timer);
                 let tooth = {
                     idTooth: $(this).attr('id')
                 };
@@ -69,7 +70,6 @@
                 }
                 ladowanie.css('display', 'none');
                 //}
-                clearTimeout(timer);
                 clicks = 0;
             }
         });
@@ -88,7 +88,7 @@
                 trigger: 'hover',
                 placement: 'top',
                 container: 'body',
-                show: "fadeIn",
+                show: null,
                 content: () => {
                     return info;
                 },

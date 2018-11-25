@@ -22,7 +22,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        <h4>Zabieg</h4>
+        <h2 class="text-center">Zabieg</h2>
         <hr />
             <div class="form-horizontal position-label">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -63,7 +63,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
+    @Html.ActionLink("Wstecz", "","Wizytas", null, new { @class = "glyphicon glyphicon-hand-left" })
 </div>
 
 @section MyCustomStyle{

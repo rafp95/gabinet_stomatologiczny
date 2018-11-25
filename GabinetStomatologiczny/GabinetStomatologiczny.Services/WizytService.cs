@@ -15,7 +15,7 @@ namespace GabinetStomatologiczny.Services
     public interface IWizytService
     {
         Task<IEnumerable<object>> GetEvents(string searchQuery, bool isLogedin, string r, string u);
-        Task <bool> SaveEvent(Wizyta w,string user);
+        Task<bool> SaveEvent(Wizyta w, string user);
         Task<bool> DeleteEvent(Wizyta w);
     }
     public class WizytServie : IWizytService
@@ -80,7 +80,7 @@ namespace GabinetStomatologiczny.Services
         public async Task<bool> SaveEvent(Wizyta w, string user)
         {
             var status = false;
-            if(!this.db.Wizyta.Any(_ => _.Poczatek.CompareTo(w.Poczatek) == 0))
+            if (!this.db.Wizyta.Any(_ => _.Poczatek.CompareTo(w.Poczatek) == 0))
             {
                 try
                 {
@@ -99,7 +99,7 @@ namespace GabinetStomatologiczny.Services
                             m.DataDodania = DateTime.Now;
                             if (string.IsNullOrEmpty(m.Tytul))
                             {
-                                m.Tytul =await db.Pacjent.Where(p => p.Email == user).
+                                m.Tytul = await db.Pacjent.Where(p => p.Email == user).
                                     Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
                             }
 

@@ -105,7 +105,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 status = false;
             }
-            return Json(status, JsonRequestBehavior.AllowGet);
+            return new JsonResult { Data = new { status } };
         }
 
         [HttpPost]
@@ -122,7 +122,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 status = false;
             }
-            return Json(status, JsonRequestBehavior.AllowGet);
+            return new JsonResult { Data = new { status } };
 
         }
 

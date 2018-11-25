@@ -250,7 +250,7 @@
             url: '/Wizytas/Sms',
             data: data,
             success: function (data) {
-                if (data) {
+                if (data && data.status) {
                     zapisInfo.html("Wysłano pomyślnie ").fadeIn('slow').
                         append('<i class="fa fa-spinner fa-spin"></i>').
                         delay(1000).fadeOut('slow');
@@ -318,7 +318,7 @@
             url: 'Wizytas/SendEmail',
             data: data,
             success: function (data) {
-                if (data) {
+                if (data && data.status) {
                     zapisInfo.html("Wysłano pomyślnie ").fadeIn('slow').
                         append('<i class="fa fa-spinner fa-spin"></i>').
                         delay(1000).fadeOut('slow');
@@ -356,7 +356,7 @@
                     __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
                 },
                 success: function (data) {
-                    if (data.status) {
+                    if (data && data.status) {
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
                         zapisInfo.html("Zapisano zmiany ").fadeIn('slow').
@@ -467,13 +467,16 @@
             url: '/Wizytas/SaveEvent',
             data: data,
             success: function (data) {
-                if (data.status) {
+                if (data && data.status) {
                     console.log(status);
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
                     zapisInfo.html("Zapisano zmiany ").append('<i class="fa fa-spinner fa-spin"></i>').
                     fadeIn('slow').delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
+                } else if(data && !data.status) {
+                    $('#myModalSave').modal('hide');
+                    $("#myModalSaveToDataBaseError").modal();
                 }
             },
             error: function (jqXHR, exception) {

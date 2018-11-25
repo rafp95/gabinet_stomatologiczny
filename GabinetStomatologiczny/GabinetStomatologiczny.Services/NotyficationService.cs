@@ -11,7 +11,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface INotyficationService
     {
-        Task<List<Wizyta>> GetWizyts(DateTime afterDate);
+        Task<IEnumerable<object>> GetWizyts(DateTime afterDate);
     }
 
     public class NotyficationService : INotyficationService
@@ -21,11 +21,12 @@ namespace GabinetStomatologiczny.Services
         {
             this.db = db;
         }
-        public async Task<List<Wizyta>> GetWizyts(DateTime afterDate)
+        public async Task<IEnumerable<object>> GetWizyts(DateTime afterDate)
         {
-            var wizyta = db.Wizyta.AsQueryable().
-            Where(_ => _.DataDodania >= afterDate).OrderByDescending(_ => _.DataDodania);
-            return await wizyta.ToListAsync();
+            var wizytaQuery = db.Wizyta.AsQueryable();
+            var wizyta = await wizytaQuery.Where(_ => _.DataDodania >= afterDate).OrderByDescending(_ => _.DataDodania)
+                .Select(_ => new {_.Poczatek,_.Tytul }).ToListAsync();
+            return wizyta;
 
         }
 

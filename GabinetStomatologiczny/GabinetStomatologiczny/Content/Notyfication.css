@@ -52,25 +52,28 @@
   width: 255px;
   display: none;
   border: 1px solid #9E988B;
-  max-height: 200px;
+  max-height: 250px;
   overflow: hidden auto; }
   .card-notification-desktop ul {
-    margin: 0;
+    flex-direction: column;
     list-style-image: url(img/task.png);
     background-repeat: no-repeat;
-    text-align: center; }
+    justify-content: space-around;
+    align-items: center;
+    font-size: .9em;
+    word-break: break-word; }
     .card-notification-desktop ul li {
+      text-align: center;
       padding: .1em;
       margin: .3em 0;
       border-left: 1px inset black;
       position: relative;
-      left: -5px; }
-    .card-notification-desktop ul span {
-      display: inline-block; }
-      .card-notification-desktop ul span:not(:last-child)::after {
-        content: "*";
-        color: black;
-        font-size: 22px;
-        position: relative;
-        top: 4px;
-        left: -9px; }
+      left: -5px;
+      margin: 1em 0; }
+      .card-notification-desktop ul li:not(:last-child):after {
+        content: " ";
+        position: absolute;
+        margin: .6em 0;
+        border-top: 1px dotted black;
+        left: -15px;
+        min-width: 100%; }

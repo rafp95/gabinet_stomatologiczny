@@ -16,9 +16,9 @@ namespace GabinetStomatologiczny.Services
 
         IEnumerable<Pacjent> getAllPacjents();
         IEnumerable<IGrouping<DateTime, Pacjent>> Statistic();
-        void Edit(Pacjent pacjent);
+        Task<Pacjent> Edit(Pacjent pacjent);
         Task<Pacjent> Find(int? id);
-        void Remove(Pacjent pacjent);
+        Task<Pacjent> Remove(Pacjent pacjent);
         Task<Pacjent> CreatePacjnt(Pacjent pacjent);
         Task<Pacjent> GetPacjentById(int? id);
     }
@@ -33,31 +33,39 @@ namespace GabinetStomatologiczny.Services
             this._db = db;
         }
 
+        /// <summary>
+        /// Statystki rejestracji
+        /// </summary>
+        /// <returns></returns>
+        #region Statystki
+
         public IEnumerable<IGrouping<DateTime, Pacjent>> Statistic()
         {
             return this._db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date);
         }
+        #endregion
 
         public IEnumerable<Pacjent> getAllPacjents()
         {
             return this._db.Pacjent.ToList();
         }
 
-        public async void Edit(Pacjent pacjent)
+        public async Task<Pacjent> Edit(Pacjent pacjent)
         {
             pacjent.Plec = pacjentPlec(pacjent) ? Plec.Kobieta : Plec.Mężczyzna;
             this._db.Entry(pacjent).State = EntityState.Modified;
             await this._db.SaveChangesAsync();
+            return pacjent;
         }
 
-        public async void Remove(Pacjent pacjent)
+        public async Task<Pacjent> Remove(Pacjent pacjent)
         {
-            if(pacjent != null)
+            if (pacjent != null)
             {
                 this._db.Pacjent.Remove(pacjent);
                 await this._db.SaveChangesAsync();
             }
-            
+            return pacjent;
         }
 
 

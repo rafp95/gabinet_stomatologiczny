@@ -474,8 +474,9 @@
                     zapisInfo.html("Zapisano zmiany ").append('<i class="fa fa-spinner fa-spin"></i>').
                     fadeIn('slow').delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
-                } else if(data && !data.status) {
-                    $('#myModalSave').modal('hide');
+                } else if (data && !data.status) {
+                    //$('#myModalSave').modal('hide');
+                    $("#btnSave>div.loader").css({ 'display': 'none' });
                     $("#myModalSaveToDataBaseError").modal();
                 }
             },

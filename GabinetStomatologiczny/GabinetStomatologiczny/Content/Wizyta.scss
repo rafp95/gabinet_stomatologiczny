@@ -269,6 +269,11 @@ div.fc-content {
         white-space: nowrap;
     }
 }
+//not exist wizytas info modal
+#myModalSaveToDataBaseError{
+    z-index: 999999999999;
+}
+//end not exist wizytas 
 /*end fullcalendar center element fc-content*/
 
 /*space betwwen time and title*/

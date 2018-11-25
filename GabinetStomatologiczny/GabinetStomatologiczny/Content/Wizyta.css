@@ -198,6 +198,9 @@ div.fc-content {
     overflow: hidden;
     white-space: nowrap; }
 
+#myModalSaveToDataBaseError {
+  z-index: 999999999999; }
+
 /*end fullcalendar center element fc-content*/
 /*space betwwen time and title*/
 span.fc-time {

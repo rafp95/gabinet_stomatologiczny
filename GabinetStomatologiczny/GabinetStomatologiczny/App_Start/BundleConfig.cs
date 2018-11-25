@@ -24,13 +24,13 @@ namespace GabinetStomatologiczny
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/site.min.css"));
 
             //Calendar css file
             bundles.Add(new StyleBundle("~/Content/fullcalendarcss").Include(
                      "~/Content/themes/jquery.ui.all.css",
-                     "~/Content/fullcalendar.css"));
+                     "~/Content/fullcalendar.min.css"));
 
             //Calendar Script file
 

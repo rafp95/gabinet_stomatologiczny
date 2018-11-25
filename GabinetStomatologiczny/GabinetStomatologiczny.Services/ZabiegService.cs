@@ -34,7 +34,8 @@ namespace GabinetStomatologiczny.Services
         public async Task<Zab> DeleteTooth(Zab zab, int userID)
         {
             var idWizyta = await _db.Wizyta.Where(_ => _.Pacjent.ID == userID).FirstOrDefaultAsync();
-            Zab z = _db.Zab.FirstOrDefault(_ => _.IdTooth == zab.IdTooth);
+            var idZabeg = await _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta.ID).FirstOrDefaultAsync();
+            Zab z = await _db.Zab.Where(_ => _.IdTooth == zab.IdTooth && _.ZabiegID == idZabeg.ID).FirstOrDefaultAsync();
             _db.Zab.Remove(z);
             await _db.SaveChangesAsync();
             return z;

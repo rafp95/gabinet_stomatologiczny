@@ -82,58 +82,52 @@ namespace GabinetStomatologiczny.Services
             var status = false;
             if (!this.db.Wizyta.Any(_ => _.Poczatek.CompareTo(w.Poczatek) == 0))
             {
-                try
+                if (w.ID > 0)
                 {
-                    if (w.ID > 0)
+                    var v = await db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefaultAsync();
+                    if (v != null)
                     {
-                        var v = await db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefaultAsync();
-                        if (v != null)
+                        w.LekarzID = v.LekarzID;
+                        w.PacjentID = v.PacjentID;
+                        if (!string.IsNullOrEmpty(v.Tytul))
                         {
-                            w.LekarzID = v.LekarzID;
-                            w.PacjentID = v.PacjentID;
-                            if (!string.IsNullOrEmpty(v.Tytul))
-                            {
-                                w.Tytul = v.Tytul;
-                            }
-                            var m = Mapper.Map<Wizyta, Wizyta>(w, v);
-                            m.DataDodania = DateTime.Now;
-                            if (string.IsNullOrEmpty(m.Tytul))
-                            {
-                                m.Tytul = await db.Pacjent.Where(p => p.Email == user).
-                                    Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
-                            }
-
-                            db.Entry(m).State = EntityState.Modified;
+                            w.Tytul = v.Tytul;
+                        }
+                        var m = Mapper.Map<Wizyta, Wizyta>(w, v);
+                        m.DataDodania = DateTime.Now;
+                        if (string.IsNullOrEmpty(m.Tytul))
+                        {
+                            m.Tytul = await db.Pacjent.Where(p => p.Email == user).
+                                Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
                         }
 
+                        db.Entry(m).State = EntityState.Modified;
+                    }
+
+                }
+                else
+                {
+                    w.PacjentID = await db.Pacjent.Where(p => p.Email == user).Select(p => p.ID).FirstOrDefaultAsync();
+                    w.LekarzID = await db.Lekarz.Select(p => p.ID).FirstOrDefaultAsync();
+                    var m = Mapper.Map<Wizyta, Wizyta>(w);
+
+                    if (m.Tytul != null)
+                    {
+                        var pacjent = await db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul)).FirstOrDefaultAsync();
+                        m.PacjentID = pacjent.ID;
                     }
                     else
                     {
-                        w.PacjentID = await db.Pacjent.Where(p => p.Email == user).Select(p => p.ID).FirstOrDefaultAsync();
-                        w.LekarzID = await db.Lekarz.Select(p => p.ID).FirstOrDefaultAsync();
-                        var m = Mapper.Map<Wizyta, Wizyta>(w);
-
-                        if (m.Tytul != null)
-                        {
-                            var pacjent = await db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul)).FirstOrDefaultAsync();
-                            m.PacjentID = pacjent.ID;
-                        }
-                        else
-                        {
-                            m.Tytul = await db.Pacjent.Where(p => p.Email == user).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
-                        }
-
-                        m.DataDodania = DateTime.Now;
-                        db.Wizyta.Add(m);
-
+                        m.Tytul = await db.Pacjent.Where(p => p.Email == user).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
                     }
-                    status = true;
-                    await this.db.SaveChangesAsync();
+
+                    m.DataDodania = DateTime.Now;
+                    db.Wizyta.Add(m);
+
                 }
-                catch (Exception)
-                {
-                    status = false;
-                }
+
+                await this.db.SaveChangesAsync();
+                status = true;
             }
 
             return status;

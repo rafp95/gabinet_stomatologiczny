@@ -407,6 +407,7 @@
     }
 
     $('#btnSave').off().click(function () {
+
         //Validation/
         ErorMessage();
         var error = $("div.error");
@@ -468,7 +469,7 @@
             data: data,
             success: function (data) {
                 if (data && data.status) {
-                    console.log(status);
+                    console.log('ok');
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
                     zapisInfo.html("Zapisano zmiany ").append('<i class="fa fa-spinner fa-spin"></i>').
@@ -476,6 +477,7 @@
                     $('#myModalSave').modal('hide');
                 } else if (data && !data.status) {
                     //$('#myModalSave').modal('hide');
+                    console.log('bład');
                     $("#btnSave").text("Zapisz");
                     $("#btnSave>div.loader").css({ 'display': 'none' });
                     $("#myModalSaveToDataBaseError").modal();

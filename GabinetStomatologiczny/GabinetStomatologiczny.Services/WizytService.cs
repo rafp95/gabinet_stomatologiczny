@@ -31,7 +31,7 @@ namespace GabinetStomatologiczny.Services
         {
             var status = false;
 
-            var v = db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefault();
+            var v = await db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefaultAsync();
             if (v != null)
             {
                 db.Wizyta.Remove(v);
@@ -80,7 +80,8 @@ namespace GabinetStomatologiczny.Services
         public async Task<bool> SaveEvent(Wizyta w, string user)
         {
             var status = false;
-            if (!this.db.Wizyta.Any(_ => _.Poczatek.CompareTo(w.Poczatek) == 0))
+            var equals = await this.db.Wizyta.AnyAsync(_ => _.Poczatek.CompareTo(w.Poczatek) == 0);
+            if (!equals)
             {
                 if (w.ID > 0)
                 {

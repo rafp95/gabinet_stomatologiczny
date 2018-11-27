@@ -154,7 +154,7 @@ namespace GabinetStomatologiczny.Controllers
 
             bool status = false;
             int id = (int)Session["user"];
-            if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
+            if (await db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
             {
                 await _zabiegService.SaveTooth(zab, id);
                 status = true;
@@ -168,7 +168,7 @@ namespace GabinetStomatologiczny.Controllers
 
             bool status = false;
             int id = (int)Session["user"];
-            if (db.Zab.Any(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id))
+            if (await db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id))
             {
                 await _zabiegService.DeleteTooth(zab, id);
                 status = true;

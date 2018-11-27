@@ -191,13 +191,15 @@
                     animation: true
                 });
             }, dayRender: function (date, cell) {
-                $("table>thead.fc-head").addClass("modal-info");
-                var date = moment(date, "DD-MM-YYYY HH:mm")
-                var now = moment(new Date(), "DD-MM-YYYY HH:mm");
-                if (date >= now) {
-                    cell.addClass("modal-success");
-                } else {
+                var date = moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
+                var now = moment(new Date(), "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
+
+                if (date === now) {
+                    cell.addClass("modal-info");
+                } else if (date < now) {
                     cell.addClass("modal-warning");
+                } else {
+                    cell.addClass("modal-success");
                 }
             }
         })

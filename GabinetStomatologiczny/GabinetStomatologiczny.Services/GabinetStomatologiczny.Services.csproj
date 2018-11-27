@@ -70,7 +70,7 @@
     <Compile Include="SortZabiegsService.cs" />
     <Compile Include="SugestionService.cs" />
     <Compile Include="UserRoleService.cs" />
-    <Compile Include="WizytService.cs" />
+    <Compile Include="WizytaService.cs" />
     <Compile Include="ZabiegService.cs" />
   </ItemGroup>
   <ItemGroup>

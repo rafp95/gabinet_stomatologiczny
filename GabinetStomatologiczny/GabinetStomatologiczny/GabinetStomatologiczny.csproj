@@ -494,7 +494,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Osoba.cs" />
     <Compile Include="NotyficationsHub.cs" />
     <Compile Include="NotyficatorComponnets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -984,6 +983,10 @@
     <ProjectReference Include="..\GabinetStomatologiczny.Services\GabinetStomatologiczny.Services.csproj">
       <Project>{904100e3-8b99-45a4-9d15-64e2ed0f829e}</Project>
       <Name>GabinetStomatologiczny.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GabinetStomatologiczny.Share\GabinetStomatologiczny.Share.csproj">
+      <Project>{598f0e77-eb55-49bd-985d-92d8bb5f6246}</Project>
+      <Name>GabinetStomatologiczny.Share</Name>
     </ProjectReference>
     <ProjectReference Include="..\GabinetStomatologiczny.Utils\GabinetStomatologiczny.Utils.csproj">
       <Project>{DED59786-9561-4530-943D-114C7446F95D}</Project>

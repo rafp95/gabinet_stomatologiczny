@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,19 +20,11 @@ namespace GabinetStomatologiczny.Controllers
     [Authorize(Roles = "Administrator,Lekarz")]
     public class RejestracjaController : BaseController
     {
-        private readonly new GabinetContext db;
-        private readonly ISendEmailService se;
-        private readonly IPacjentsService ps;
-        private readonly ILekarzService ls;
-        private readonly IAdminService adminS;
+        private readonly IRejestracjaService _rs;
 
-        public RejestracjaController(ISendEmailService se, IPacjentsService ps, ILekarzService ls, GabinetContext db, IAdminService adminS)
+        public RejestracjaController(IRejestracjaService rs)
         {
-            this.se = se;
-            this.db = db;
-            this.ps = ps;
-            this.ls = ls;
-            this.adminS = adminS;
+            this._rs = rs;
         }
 
         // GET: Rejestracja
@@ -52,66 +45,19 @@ namespace GabinetStomatologiczny.Controllers
         {
             try
             {
-                if (!o.Haslo.Equals(o.PowtorzHaslo))
+                if (await this._rs.UserExist(o))
+                {
+                    ModelState.AddModelError("", "Osoba o podanym imieniu i nazwisku istnieje już w bazie");
+                }
+                else if (!o.Haslo.Equals(o.PowtorzHaslo))
                 {
                     ModelState.AddModelError("Haslo", "Podane hasła są różne");
                 }
                 else if (ModelState.IsValid)
                 {
-                    var roleUser = new RoleManager<IdentityRole>(
-                                 new RoleStore<IdentityRole>(
-                                 new ApplicationDbContext()));
 
-                    var createUser = new UserManager<ApplicationUser>(
-                                      new UserStore<ApplicationUser>(
-                                      new ApplicationDbContext()));
-
-                    roleUser.Create(new IdentityRole(o.TypPracownika.ToString()));
-
-
-                    var user = new ApplicationUser { UserName = o.Email, Email = o.Email, EmailConfirmed = true };
-
-                    var pass = o.Haslo;
-
-                    createUser.Create(user, pass);
-
-                    createUser.AddToRole(user.Id, o.TypPracownika.ToString());
-
+                    await this._rs.CreateUserInIdentity(o);
                     TempData["ok"] = o.Imie + " typ konta " + o.TypPracownika;
-
-                    switch (o.TypPracownika)
-                    {
-
-                        case TypPracownika.Administrator:
-                            {
-                                var admin = Mapper.Map<DAO.Models.Administrator>(o);
-                                await se.SendMail(o.Email, "Witaj, administrator " +
-                                  o.Imie, "Twoje dane do logowania to \n"
-                                   + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                await this.adminS.CreateAdmin(admin);
-                                break;
-                            }
-                        case TypPracownika.Lekarz:
-                            {
-                                var lekarz = Mapper.Map<Lekarz>(o);
-                                lekarz.DataDodania = DateTime.Now;
-                                await se.SendMail(o.Email, "Witaj, lekarz " +
-                                    o.Imie, "Twoje dane do logowania to \n"
-                                    + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                await this.ls.CreateLekarz(lekarz);
-                                break;
-                            }
-                        case TypPracownika.Pacjent:
-                            {
-                                var pacjent = Mapper.Map<Pacjent>(o);
-                                pacjent.DataRejestracji = DateTime.Now;
-                                await se.SendMail(o.Email, "Witaj, pacjencie " +
-                                   o.Imie, "Twoje dane do logowania to \n "
-                                   + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
-                                await ps.CreatePacjnt(pacjent);
-                                break;
-                            }
-                    }
                     return RedirectToAction("Index", "Rejestracja");
                 }
             }

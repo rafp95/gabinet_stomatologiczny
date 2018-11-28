@@ -26,15 +26,15 @@ namespace GabinetStomatologiczny
             app.MapSignalR();
             //We will use Dependency Injection for all controllers and other classes, so we'll need a service collection
 
-           var services = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
+            var services = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
 
             //configure all of the services required for DI
 
-           ConfigureServices(services);
+            ConfigureServices(services);
 
             //Configure authentication
 
-           ConfigureAuth(app);
+            ConfigureAuth(app);
 
             //Create a new resolver from our own default implementation
             var resolver = new DefaultDependencyResolver(services.BuildServiceProvider());
@@ -85,7 +85,7 @@ namespace GabinetStomatologiczny
                 .Where(t => !t.IsAbstract && !t.IsGenericTypeDefinition)
             .Where(t => typeof(IController).IsAssignableFrom(t)
             || t.Name.EndsWith("Controller", StringComparison.OrdinalIgnoreCase)));
-    
+
             services.AddTransient<IPacjentsService, PacjentsService>();
             services.AddTransient<ILekarzService, LekarzsService>();
             services.AddTransient<ISendEmailService, SendEmailService>();
@@ -97,9 +97,10 @@ namespace GabinetStomatologiczny
             services.AddTransient<ISortZabiegsService, SortZabiegsService>();
             services.AddTransient<IWizytService, WizytServie>();
             services.AddTransient<IZabiegService, ZabiegService>();
-            services.AddSingleton (typeof(NotyficatorComponnets), nc );
+            services.AddSingleton(typeof(NotyficatorComponnets), nc);
             services.AddTransient<INotyficationService, NotyficationService>();
             services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IRejestracjaService, RejestracjaService>();
         }
     }
 

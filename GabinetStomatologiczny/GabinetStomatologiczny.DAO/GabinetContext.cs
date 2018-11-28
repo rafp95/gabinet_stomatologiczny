@@ -19,6 +19,8 @@ namespace GabinetStomatologiczny.DAL
         }
 
         public DbSet<Pacjent> Pacjent { get; set; }
+
+        public DbSet<ZabDescriptions> ZabDescriptions { get; set; }
         public DbSet<Zabieg> Zabieg { get; set; }
         public DbSet<Lekarz> Lekarz { get; set; }
         public DbSet<Wizyta> Wizyta { get; set; }

@@ -1,0 +1,69 @@
+﻿   <!--Zab description-->
+<div id="myModalZabDescription" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-info">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center zabDesc">Opis zęba</h4>
+            </div>
+            <div class="modal-body">
+                <form class="col-md-12 form-horizontal" data-ajax="true">
+                    <label for="inputZabDescr">Opis : </label>
+                    <textarea type="text" class="form-control" id="zabDescription" placeholder="Opis"></textarea>
+                    <div id="zabDescriptionError"></div>
+                </form>
+                <div id="buttonHistory" class="text-center" style="margin-top: 10px;">
+                    <button type="button" id="btnInfoHitory"
+                            class="btn btn-info">
+                        Historia leczenia
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                <button type="button" id="btnDescZabSave"
+                        class="btn btn-success float-right" data-loading-text="Zapis...">
+                    Zapisz
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End send email-->
+<!--More info modal-->
+<div id="myModalHistory" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-info">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center zabDesc">Historia leczenia zęba</h4>
+            </div>
+            <div class="modal-body" id="historiaLeczenia">
+                <ol id="historiaLeczeniaLista"></ol>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end more info modal-->
+<!-- Delete coonfirm modal -->
+<div class="modal fade" id="deleteConfirmModal" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Kasowanie</h4>
+            </div>
+            <div class="modal-body">
+                <p>Czy napewno chcesz skasować ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-danger" id="deleteTooth" data-dismiss="modal" data-loading-text="Kasowanie...">Kasuj</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  END Delete coonfirm modal -->

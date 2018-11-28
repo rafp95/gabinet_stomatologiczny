@@ -13,6 +13,7 @@ namespace GabinetStomatologiczny.DAO.Models
         public string IdTooth { get; set; }
         public DateTime? TreatmentDate { get; set; }
 
+        public virtual ICollection<ZabDescriptions> ZabDescriptions{ get; set; }
         public virtual Zabieg Zabieg{ get; set; }
     }
 }

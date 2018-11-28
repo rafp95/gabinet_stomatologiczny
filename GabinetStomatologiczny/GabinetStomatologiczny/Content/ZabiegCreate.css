@@ -84,12 +84,13 @@ div#saveDatabaseInfo {
   -webkit-transform: translate(-50%, -50%);
   transform: translateY(-50%, -50%);
   /* Chrome, Safari, Opera */
+  background: linear-gradient(to bottom, #33cc33 0%, #66ff33 100%);
   width: 50%;
   z-index: 99999999;
   padding: 5px;
   text-align: center;
-  color: white;
-  display: none; }
+  display: none;
+  color: white; }
 
 /* End info  save to database*/
 /*animation page content*/
@@ -136,3 +137,15 @@ div#saveDatabaseInfo {
     content: "Data zabiegu : "; }
   td:hover {
     background-color: azure; } }
+
+.modal {
+  overflow-y: hidden !important; }
+
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  align-items: center; }
+
+/*Info save to database*/

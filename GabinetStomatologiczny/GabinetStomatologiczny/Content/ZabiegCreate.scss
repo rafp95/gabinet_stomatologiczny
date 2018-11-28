@@ -106,12 +106,13 @@ div#saveDatabaseInfo {
     -ms-transform: translate(-50%, -50%); /* IE 9 */
     -webkit-transform: translate(-50%, -50%);
     transform: translateY(-50%, -50%); /* Chrome, Safari, Opera */
+    background: linear-gradient(to bottom, #33cc33 0%, #66ff33 100%);
     width: 50%;
     z-index: 99999999;
     padding: 5px;
     text-align: center;
-    color: white;
     display: none;
+    color: white;
 }
 
 /* End info  save to database*/
@@ -154,9 +155,9 @@ div#saveDatabaseInfo {
         display: block;
     }
 
-        table tr:first-child {
-            display: none;
-        }
+    table tr:first-child {
+        display: none;
+    }
 
     tr {
         border: 1px solid #ccc;
@@ -187,3 +188,17 @@ div#saveDatabaseInfo {
         background-color: azure;
     }
 }
+
+.modal{
+    overflow-y: hidden !important;
+}
+
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+/*Info save to database*/

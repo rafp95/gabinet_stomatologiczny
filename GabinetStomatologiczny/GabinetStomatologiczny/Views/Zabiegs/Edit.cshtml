@@ -15,10 +15,11 @@
 
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-        <h2 class="text-center">Model zębów pacjenta Bartek Rafał</h2>
+        <h2 class="text-center">Model zębów pacjenta @ViewBag.UserName</h2>
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 @Html.Partial("_ToothModelParital")
+                @Html.Partial("_ZDescModal")
             </div>
         </div>
         @Html.Partial("_RefreshPage")

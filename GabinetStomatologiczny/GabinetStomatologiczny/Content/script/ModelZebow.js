@@ -32,7 +32,7 @@
     //set tooth
     //
     function SetTooth() {
-        let clicks = 0, timer = null, deley = 400;
+        let clicks = 0, timer = null, deley = 200;
         tooth.off('click').on('click', function (e) {
             e.preventDefault();
             clicks++;
@@ -42,6 +42,7 @@
                     let tooth = {
                         idTooth: $(this).attr('id')
                     };
+
                     if ($(this).attr('fill') === '#FFFFFF'
                        || $(this).attr('fill') === '#010101') {
                         let color = $(this).attr('fill');
@@ -49,6 +50,13 @@
                         $(this).attr('fill', '#FF0000');
                         addTooth(tooth);
                     }
+
+                    $("#myModalZabDescription").modal();
+                    $(".zabDesc").text("Opis zęba " + $(this).attr('id'));
+
+                    sendToothDescr(tooth.idTooth);
+                    tratmentHistory(tooth);
+
                     ladowanie.css('display', 'none');
                     clicks = 0;
                 }, deley)
@@ -60,13 +68,10 @@
                 //if (idToohtExist(tooth.idTooth)) {
                 console.log(tooth.idTooth.indexOf('XMLID'));
                 if ($(this).attr('fill') === '#FF0000') {
-                    if (tooth.idTooth.indexOf('XMLID') >= 0) {
-                        console.log(tooth.idTooth)
-                        $(this).attr('fill', '#010101');
-                    } else {
-                        $(this).attr('fill', '#FFFFFF');
-                    }
-                    deleteTooth(tooth);
+
+                    $("#deleteConfirmModal").modal();
+                    deleteConfirm(tooth, $(this));
+
                 }
                 ladowanie.css('display', 'none');
                 //}
@@ -77,6 +82,22 @@
         toothColor(tab);
     }
     //end set tooth
+    //delete tooth confirm 
+    function deleteConfirm(tooth, elem) {
+        let bDelete = $("#deleteTooth");
+        bDelete.off().on('click', function () {
+            deleteTooth(tooth);
+            if (tooth.idTooth.indexOf('XMLID') >= 0) {
+                console.log(tooth.idTooth)
+                elem.attr('fill', '#010101');
+            } else {
+                elem.attr('fill', '#FFFFFF');
+            }
+
+        });
+
+    }
+    //end delete tooth confirm 
     //tooltip hover
     function ToothHover() {
         tooth.each(function () {
@@ -112,9 +133,15 @@
             url: "/Zabiegs/SaveTooth",
             data: data,
             success: function (data) {
+                console.log(data.status);
                 if (data.status) {
                     console.log('Zapisano');
+                    $("#deleteConfirmModal").modal('hide');
                     GetAllTooth();
+                    zapisInfo.text("Zapisano pomyślnie ").
+                    append('<i class="fa fa-spinner fa-spin"></i>').
+                    css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
+                    fadeIn('slow').delay(1000).fadeOut('slow');
                 }
                 ladowanie.css('display', 'none');
             }, error: function () {
@@ -137,6 +164,10 @@
                 if (data.status) {
                     console.log('Zapisano');
                     GetAllTooth();
+                    zapisInfo.text("Zapisano pomyślnie ").
+                    append('<i class="fa fa-spinner fa-spin"></i>').
+                    css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
+                    fadeIn('slow').delay(1000).fadeOut('slow');
                 }
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
@@ -177,5 +208,80 @@
             }
         }
         return null;
+    }
+    //end idTooth exist
+    //send description tooth
+    function sendToothDescr(idTooth) {
+        removeValidateStyle();
+        czyascInput($("#zabDescription"));
+
+        let buttonSave = $("#btnDescZabSave");
+
+        buttonSave.off().on('click', function () {
+            let data = {
+                idTooth: idTooth,
+                description: $("#zabDescription").val()
+            };
+
+            if (data.description.length === 0) {
+                $("#zabDescriptionError").hide().fadeIn().text("Pole nie może być puste").css('color', 'red');
+                $("#zabDescription").fadeIn().css({ 'border': '1px solid red', 'background': 'pink' });
+                return;
+            }
+
+            $("#myModalZabDescription").modal('hide');
+            sendDescription(data);
+        });
+    }
+
+    function czyascInput(input) {
+        input.val("");
+    }
+
+    function sendDescription(data) {
+        $.ajax({
+            url: '/Zabiegs/SaveTooth',
+            cache: false,
+            type: 'GET',
+            data: data,
+            success: function () {
+                zapisInfo.text("Zapisano pomyślnie ").
+                append('<i class="fa fa-spinner fa-spin"></i>').
+                css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
+                fadeIn('slow').delay(1000).fadeOut('slow');
+            }
+        })
+    }
+    //end send description tooth
+    //removeStyle after click on text area
+    $("#zabDescription").off().on('click', function () {
+        removeValidateStyle();
+    });
+    //end
+    //validate style remove
+    function removeValidateStyle() {
+        $("#zabDescriptionError").empty().css('color', '');
+        $("#zabDescription").fadeIn().css({ 'border': '1px solid black', 'background': '' });
+    }
+    //tretment history
+    function tratmentHistory(id) {
+        $("button#btnInfoHitory").off().on('click', function () {
+            $("#myModalHistory").modal();
+            let history = $("#historiaLeczeniaLista");
+            history.empty();
+            getHistoryFromApi(id, history);
+        });
+    }
+    function getHistoryFromApi(data, setText) {
+        $.ajax({
+            url: '/Zabiegs/GetHistory',
+            type: 'GET',
+            data: data,
+            success: function (data) {
+                $.each(data, function (i, o) {
+                    setText.append('<li>' + o + '</li>');
+                })
+            }
+        })
     }
 });

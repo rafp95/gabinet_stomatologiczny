@@ -135,7 +135,7 @@ namespace GabinetStomatologiczny.Controllers
             int id = (int)Session["user"];
             Pacjent p = await _pacejntService.GetPacjentById(id);
             ViewBag.User = p.Imie + " " + p.Nazwisko;
-            var pacejnt = await _zabiegService.PacejntZabiegHistory(pt,id);
+            var pacejnt = await _zabiegService.PacejntZabiegHistory(pt, id);
             return View(pacejnt);
         }
 
@@ -149,18 +149,30 @@ namespace GabinetStomatologiczny.Controllers
             return new JsonResult { Data = tooth, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        public async Task<ActionResult> SaveTooth(Zab zab)
+        public async Task<ActionResult> SaveTooth(Zab zab, ZabDescriptions zdesc)
         {
 
             bool status = false;
             int id = (int)Session["user"];
-            if (await db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
+            if (!string.IsNullOrEmpty(zdesc.Description))
+            {
+                await _zabiegService.ZabDescription(zab, zdesc, id);
+            }
+            else if (await db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
             {
                 await _zabiegService.SaveTooth(zab, id);
                 status = true;
             }
 
             return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public async Task<ActionResult> GetHistory(Zab zab)
+        {
+            int idU = (int)Session["user"];
+            var data = await this._zabiegService.GetHistory(zab.IdTooth, idU);
+
+            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public async Task<ActionResult> DeleteTooth(Zab zab)
@@ -188,6 +200,7 @@ namespace GabinetStomatologiczny.Controllers
 
             Zabieg zabieg = await _zabiegService.FindZabieg(id);
             Session["user"] = zabieg.Wizyta.PacjentID;
+            ViewBag.UserName = zabieg.Wizyta.Tytul;
             if (zabieg == null)
             {
                 return HttpNotFound();

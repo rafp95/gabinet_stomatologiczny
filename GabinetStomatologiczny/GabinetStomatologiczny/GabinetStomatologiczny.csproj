@@ -965,6 +965,7 @@
     <Content Include="Views\Pacjents\_PacejntTableHeader.cshtml" />
     <Content Include="Views\Zabiegs\_SortZabiegPartial.cshtml" />
     <Content Include="Views\Zabiegs\_PacZabPaginationPartial.cshtml" />
+    <Content Include="Views\Zabiegs\_ZDescModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

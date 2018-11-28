@@ -248,6 +248,18 @@
     <Compile Include="Migrations\201811181756519_DateTimeZabiegs.Designer.cs">
       <DependentUpon>201811181756519_DateTimeZabiegs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811271226108_zabDescriptiosn.cs" />
+    <Compile Include="Migrations\201811271226108_zabDescriptiosn.Designer.cs">
+      <DependentUpon>201811271226108_zabDescriptiosn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811272120290_zabPacjentIf.cs" />
+    <Compile Include="Migrations\201811272120290_zabPacjentIf.Designer.cs">
+      <DependentUpon>201811272120290_zabPacjentIf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811272126217_zabPacjentIf1.cs" />
+    <Compile Include="Migrations\201811272126217_zabPacjentIf1.Designer.cs">
+      <DependentUpon>201811272126217_zabPacjentIf1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -263,6 +275,7 @@
     <Compile Include="Models\Wizyta.cs" />
     <Compile Include="Models\Wojewodztwo.cs" />
     <Compile Include="Models\Zab.cs" />
+    <Compile Include="Models\ZabDescriptions.cs" />
     <Compile Include="Models\Zabieg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -369,6 +382,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811181756519_DateTimeZabiegs.resx">
       <DependentUpon>201811181756519_DateTimeZabiegs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811271226108_zabDescriptiosn.resx">
+      <DependentUpon>201811271226108_zabDescriptiosn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811272120290_zabPacjentIf.resx">
+      <DependentUpon>201811272120290_zabPacjentIf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811272126217_zabPacjentIf1.resx">
+      <DependentUpon>201811272126217_zabPacjentIf1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

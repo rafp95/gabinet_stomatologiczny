@@ -142,6 +142,7 @@ div#saveDatabaseInfo {
   overflow-y: hidden !important; }
 
 .modal-dialog {
+  word-break: break-all;
   display: flex;
   justify-content: center;
   height: 100%;

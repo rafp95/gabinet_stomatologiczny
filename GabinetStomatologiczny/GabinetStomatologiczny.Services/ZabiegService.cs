@@ -84,7 +84,7 @@ namespace GabinetStomatologiczny.Services
                 Select(_ => _.ID).FirstOrDefaultAsync();
 
             var zabDescriptionQuery = await _db.ZabDescriptions.Where(_ => _.ZabID == zabZabiegQuery).
-                Select(_ => _.Description).ToListAsync();
+                Select(_ => new {description = _.Description, dateZabieg =  _.ZabDateTreatment }).ToListAsync();
 
 
             //var zebyHistory = await zebyHistoryQuery.Select(_ =>  _.Description ).ToListAsync();
@@ -130,6 +130,7 @@ namespace GabinetStomatologiczny.Services
             var zabZabiegQuery = await _db.Zab.Where(_ => _.ZabiegID == pacejntZabiegQuery && _.IdTooth == zab.IdTooth).FirstOrDefaultAsync();
 
             zDesc.ZabID = zabZabiegQuery.ID;
+            zDesc.ZabDateTreatment = DateTime.Now;
 
             _db.ZabDescriptions.Add(zDesc);
             await _db.SaveChangesAsync();

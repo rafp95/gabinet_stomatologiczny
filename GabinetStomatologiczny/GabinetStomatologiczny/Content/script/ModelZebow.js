@@ -280,7 +280,7 @@
                 $("#laoder-div").css('display', 'none');
                 setText.empty();
                 $.each(data, function (i, o) {
-                    setText.append('<li>' + o + '</li>');
+                    setText.append('<li>' + o.description + ' ' + moment(o.dateZabieg).format("DD-MM-YYYY HH:mm") + '</li>');
                 })
             }
         })

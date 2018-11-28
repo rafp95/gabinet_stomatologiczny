@@ -268,6 +268,11 @@
     <Compile Include="Migrations\201811281843553_ZabDescriptionAddDateTime.Designer.cs">
       <DependentUpon>201811281843553_ZabDescriptionAddDateTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811281926432_zabDateDescr28\11\2018.cs" />
+    <Compile Include="Migrations\201811281927219_zabDateDescription.cs" />
+    <Compile Include="Migrations\201811281927219_zabDateDescription.Designer.cs">
+      <DependentUpon>201811281927219_zabDateDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -405,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811281843553_ZabDescriptionAddDateTime.resx">
       <DependentUpon>201811281843553_ZabDescriptionAddDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811281927219_zabDateDescription.resx">
+      <DependentUpon>201811281927219_zabDateDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

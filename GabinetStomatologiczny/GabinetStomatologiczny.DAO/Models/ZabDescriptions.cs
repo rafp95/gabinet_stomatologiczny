@@ -14,7 +14,7 @@ namespace GabinetStomatologiczny.DAO.Models
         public string Description { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
-        public DateTime ZabDateTreatment { get; set; }
+        public DateTime ZabDateDescription { get; set; }
 
         public virtual Zab Zab { get; set; }
     }

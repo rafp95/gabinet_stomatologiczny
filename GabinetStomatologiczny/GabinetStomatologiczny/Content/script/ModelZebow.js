@@ -103,7 +103,7 @@
         tooth.each(function () {
             let color = $(this).attr('fill');
             let info = color === '#FF0000' ? 'Ząb leczony ' + moment(getDateTreatment($(this).attr('id')))
-                   .format("DD-MM-YYYY HH:mm") : 'brak ingerencji lekarskiej';
+                   .format("DD-MM-YYYY HH:mm") : 'brak informacji';
             $(this).tooltip({
                 items: $(this),
                 trigger: 'hover',
@@ -137,7 +137,6 @@
                 if (data.status) {
                     console.log('Zapisano');
                     $("#deleteConfirmModal").modal('hide');
-                    GetAllTooth();
                     zapisInfo.text("Zapisano pomyślnie ").
                     append('<i class="fa fa-spinner fa-spin"></i>').
                     css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
@@ -249,6 +248,7 @@
                 append('<i class="fa fa-spinner fa-spin"></i>').
                 css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
                 fadeIn('slow').delay(1000).fadeOut('slow');
+                GetAllTooth();
             }
         })
     }
@@ -268,7 +268,6 @@
         $("button#btnInfoHitory").off().on('click', function () {
             $("#myModalHistory").modal();
             let history = $("#historiaLeczeniaLista");
-            history.empty();
             getHistoryFromApi(id, history);
         });
     }
@@ -278,6 +277,8 @@
             type: 'GET',
             data: data,
             success: function (data) {
+                $("#laoder-div").css('display', 'none');
+                setText.empty();
                 $.each(data, function (i, o) {
                     setText.append('<li>' + o + '</li>');
                 })

@@ -260,6 +260,10 @@
     <Compile Include="Migrations\201811272126217_zabPacjentIf1.Designer.cs">
       <DependentUpon>201811272126217_zabPacjentIf1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811281431252_data.cs" />
+    <Compile Include="Migrations\201811281431252_data.Designer.cs">
+      <DependentUpon>201811281431252_data.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -391,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811272126217_zabPacjentIf1.resx">
       <DependentUpon>201811272126217_zabPacjentIf1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811281431252_data.resx">
+      <DependentUpon>201811281431252_data.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

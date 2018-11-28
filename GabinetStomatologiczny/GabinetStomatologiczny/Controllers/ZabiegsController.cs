@@ -170,7 +170,7 @@ namespace GabinetStomatologiczny.Controllers
         public async Task<ActionResult> GetHistory(Zab zab)
         {
             int idU = (int)Session["user"];
-            var data = await this._zabiegService.GetHistory(zab.IdTooth, idU);
+            var data = await this._zabiegService.GetHistoryToothDescr(zab.IdTooth, idU);
 
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }

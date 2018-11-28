@@ -10,10 +10,8 @@ namespace GabinetStomatologiczny.DAO.Models
     {
         public int ID { get; set; }
         public int ZabID { get; set; }
-        public int PacjentID { get; set; }
         public string Description { get; set; }
 
         public virtual Zab Zab { get; set; }
-        public virtual Pacjent Pacjent { get; set; }
     }
 }

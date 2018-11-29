@@ -279,9 +279,13 @@
             success: function (data) {
                 $("#laoder-div").css('display', 'none');
                 setText.empty();
+                if (data.length === 0) {
+                    setText.append('<li>' + 'Brak histori leczenia' + '</li>');
+                    return;
+                }
                 $.each(data, function (i, o) {
                     setText.append('<li>' + o.description + ' ' + moment(o.dateZabieg).format("DD-MM-YYYY HH:mm") + '</li>');
-                })
+                });
             }
         })
     }

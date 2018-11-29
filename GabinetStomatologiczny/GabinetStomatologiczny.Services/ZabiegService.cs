@@ -83,12 +83,14 @@ namespace GabinetStomatologiczny.Services
             var zabZabiegQuery = await _db.Zab.Where(_ => _.ZabiegID == pacejntZabiegQuery && _.IdTooth == idTooth).
                 Select(_ => _.ID).FirstOrDefaultAsync();
 
-            var zabDescriptionQuery = await _db.ZabDescriptions.Where(_ => _.ZabID == zabZabiegQuery).
+            var zabDescriptionQuery =  _db.ZabDescriptions.Where(_ => _.ZabID == zabZabiegQuery).AsQueryable();
+
+            var zabDescription =  await zabDescriptionQuery.
                 Select(_ => new {description = _.Description, dateZabieg =  _.ZabDateDescription }).ToListAsync();
 
 
             //var zebyHistory = await zebyHistoryQuery.Select(_ =>  _.Description ).ToListAsync();
-            return zabDescriptionQuery;
+            return zabDescription;
         }
 
         public async Task<IEnumerable<Zabieg>> PacejntZabiegHistory(PaginationType ps, int id)

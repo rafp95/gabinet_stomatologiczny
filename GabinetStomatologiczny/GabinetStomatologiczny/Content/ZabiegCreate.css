@@ -148,7 +148,8 @@ div#saveDatabaseInfo {
   height: 100%;
   width: 100%;
   font-size: 17px;
-  align-items: center; }
+  align-items: center;
+  text-align: left; }
 
 /*Info save to database*/
 .div-loader-rad {

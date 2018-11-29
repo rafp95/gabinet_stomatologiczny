@@ -191,6 +191,7 @@
                     animation: true
                 });
             }, dayRender: function (date, cell) {
+                $("td.fc-head-container ").addClass("modal-info");
                 var date = moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
                 var now = moment(new Date(), "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 

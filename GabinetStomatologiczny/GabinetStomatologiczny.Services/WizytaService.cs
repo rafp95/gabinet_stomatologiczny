@@ -129,6 +129,9 @@ namespace GabinetStomatologiczny.Services
 
                 await this.db.SaveChangesAsync();
                 status = true;
+            }else
+            {
+                status = false;
             }
 
             return status;

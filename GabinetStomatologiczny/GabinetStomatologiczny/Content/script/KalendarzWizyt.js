@@ -295,7 +295,7 @@
         $("#inputDoEmail").val("");
         $("#inputWiadomoscEamil").val("");
     }
-    $("#btnEmailSend").click(function () {
+    $("#btnEmailSend").off().click(function () {
         let data = {
             to: $("#inputDoEmail").val(),
             text: $("#inputWiadomoscEamil").val(),

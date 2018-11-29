@@ -47,8 +47,8 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent")
-|| User.IsInRole("Administrator")
-|| User.IsInRole("Lekarz"))
+                || User.IsInRole("Administrator")
+                || User.IsInRole("Lekarz"))
                 {
                     {
                         <div id="action">
@@ -59,7 +59,7 @@
                                 <span class="glyphicon glyphicon-pencil"></span> Edytuj
                             </button>
                             @if (User.IsInRole("Administrator")
-|| User.IsInRole("Lekarz"))
+                                || User.IsInRole("Lekarz"))
                             {
                                 <button id="btnSms" class="btn btn-primary btn-sm">
                                     <span class="fa fa-paper-plane"></span> Sms
@@ -87,8 +87,8 @@
 
 <!--End about-->
 @if (User.IsInRole("Pacjent")
-                                                                                                  || User.IsInRole("Administrator")
-                                                                                                  || User.IsInRole("Lekarz"))
+    || User.IsInRole("Administrator")
+    || User.IsInRole("Lekarz"))
 {
     <!--Error save info-->
     <div id="myModalSaveToDataBaseError" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
@@ -100,8 +100,7 @@
                 </div>
                 <div class="modal-body">
                     <h4 style="color:red;" class="text-center">
-                        Wystąpił problem z zapisem, proszę zweryfikować poprawność
-                        danych i spróbowac ponownie
+                       Sprawdź czy zostałeś, poprawnie zapisany na wizytę, jeśli nie spróbuj ponownie 
                     </h4>
                 </div>
                 <div class="modal-footer">

@@ -109,14 +109,7 @@
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaDay,agendaFourDay'
-            },
-            views: {
-                agendaFourDay: {
-                    type: 'agenda',
-                    dayCount: 5,
-                    buttonText: '5 dni'
-                }
+                right: 'month,agendaDay'
             },
             eventLimit: 3,
             events: events,

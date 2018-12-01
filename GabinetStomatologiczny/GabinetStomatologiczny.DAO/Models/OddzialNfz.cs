@@ -8,10 +8,14 @@ namespace GabinetStomatologiczny.DAO.Models
 {
     public enum OddzialNfz
     {
-        Luków = 1,
-        Warszawa,
-        Siedlce,
-        [Display(Name = "Radzyń Podlaski")]
-        Radzyń_Podlaski
+        Lubelski = 1,
+        Mazowiecki,
+        Opolski,
+        Podkarpacki,
+        Pomorski,
+        Śląski,
+        Świętokrzyski,
+        Warmińsko_Mazurski,
+        Kujawsko_Pomorski
     }
 }

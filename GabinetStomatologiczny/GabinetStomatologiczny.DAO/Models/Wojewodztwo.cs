@@ -11,6 +11,11 @@ namespace GabinetStomatologiczny.DAO.Models
         Opolskie,
         Mazowieckie,
         Podkarpackie,
-        Śląskie
+        Śląskie,
+        Łódzkie,
+        Warmińsko_Mazurskie,
+        Wielkopolskie,
+        Zachodnio_Pomorskie,
+        Kujawsko_Pomorskie
     }
 }

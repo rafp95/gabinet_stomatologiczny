@@ -102,7 +102,7 @@
     function ToothHover() {
         tooth.each(function () {
             let color = $(this).attr('fill');
-            let info = color === '#FF0000' ? 'Ząb leczony ' + moment(getDateTreatment($(this).attr('id')))
+            let info = color === '#FF0000' ? 'dodano ' + moment(getDateTreatment($(this).attr('id')))
                    .format("DD-MM-YYYY HH:mm") : 'brak informacji';
             $(this).tooltip({
                 items: $(this),
@@ -280,7 +280,7 @@
                 $("#laoder-div").css('display', 'none');
                 setText.empty();
                 if (data.length === 0) {
-                    setText.append('<li>' + 'Brak histori leczenia' + '</li>');
+                    setText.append('<li>' + 'Brak historii leczenia' + '</li>');
                     return;
                 }
                 $.each(data, function (i, o) {

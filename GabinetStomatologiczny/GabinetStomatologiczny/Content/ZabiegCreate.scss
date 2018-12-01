@@ -190,19 +190,26 @@ div#saveDatabaseInfo {
 }
 
 .modal {
-    overflow-y: hidden !important;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 .modal-dialog {
-    word-break: break-all;
+    word-break: break-word;
     display: flex;
     justify-content: center;
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
     font-size: 17px;
     align-items: center;
     text-align: left;
+
+    .modal-content {
+        max-width: 500px;
+    }
 }
+
+
 
 /*Info save to database*/
 .div-loader-rad {

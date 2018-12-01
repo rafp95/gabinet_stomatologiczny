@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GabinetStomatologiczny.DAO.Models.Administrator">
+    <Position X="20" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="RoleType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GabinetStomatologiczny.DAO.Models.Lekarz">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="RoleType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GabinetStomatologiczny.DAO.Models.Pacjent">
+    <Position X="15.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Plec" />
+      <Property Name="Wojewodztwo" />
+      <Property Name="OdzialNfz" />
+      <Property Name="RoleType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GabinetStomatologiczny.DAO.Models.Wizyta">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Lekarz" />
+      <Property Name="Pacjent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GabinetStomatologiczny.DAO.Models.Zab">
+    <Position X="8.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Zabieg" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GabinetStomatologiczny.DAO.Models.ZabDescriptions">
+    <Position X="8.5" Y="1" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Zab" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GabinetStomatologiczny.DAO.Models.Zabieg">
+    <Position X="10.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Wizyta" />
+      <Property Name="TypZabiegu" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="GabinetStomatologiczny.DAO.Models.OddzialNfz" Collapsed="true">
+    <Position X="17.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="GabinetStomatologiczny.DAO.Models.Plec" Collapsed="true">
+    <Position X="18" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="GabinetStomatologiczny.DAO.Models.Wojewodztwo" Collapsed="true">
+    <Position X="18" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="GabinetStomatologiczny.DAO.Models.TypZabiegu" Collapsed="true">
+    <Position X="17.25" Y="6" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="GabinetStomatologiczny.DAO.Models.RoleType" Collapsed="true">
+    <Position X="14.25" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

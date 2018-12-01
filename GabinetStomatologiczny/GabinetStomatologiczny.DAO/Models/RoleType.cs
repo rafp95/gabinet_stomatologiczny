@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GabinetStomatologiczny.DAO.Models
 {
-    public enum TypPracownika
+    public enum RoleType
     {
         Pacjent,
         Lekarz,

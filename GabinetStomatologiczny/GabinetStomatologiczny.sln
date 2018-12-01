@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabinetStomatologiczny.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabinetStomatologiczny.Share", "GabinetStomatologiczny.Share\GabinetStomatologiczny.Share.csproj", "{598F0E77-EB55-49BD-985D-92D8BB5F6246}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabinetStomatologiczny.UMLDiagram", "GabinetStomatologiczny.UMLDiagram\GabinetStomatologiczny.UMLDiagram.csproj", "{60573A9A-0888-41BA-9A04-41861ED70BE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{598F0E77-EB55-49BD-985D-92D8BB5F6246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{598F0E77-EB55-49BD-985D-92D8BB5F6246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{598F0E77-EB55-49BD-985D-92D8BB5F6246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60573A9A-0888-41BA-9A04-41861ED70BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60573A9A-0888-41BA-9A04-41861ED70BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60573A9A-0888-41BA-9A04-41861ED70BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60573A9A-0888-41BA-9A04-41861ED70BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

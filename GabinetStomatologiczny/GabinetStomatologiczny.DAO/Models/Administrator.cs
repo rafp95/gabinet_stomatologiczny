@@ -13,7 +13,7 @@ namespace GabinetStomatologiczny.DAO.Models
         public int ID { get; set; }
 
         [Display(Name = "Typ pracownika")]
-        public TypPracownika TypPracownika { get; set; }
+        public RoleType RoleType { get; set; }
         public string Email { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }

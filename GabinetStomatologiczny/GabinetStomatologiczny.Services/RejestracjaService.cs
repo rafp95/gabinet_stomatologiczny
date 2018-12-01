@@ -59,7 +59,7 @@ namespace GabinetStomatologiczny.Services
                               new UserStore<ApplicationUser>(
                               new ApplicationDbContext()));
 
-            roleUser.Create(new IdentityRole(o.TypPracownika.ToString()));
+            roleUser.Create(new IdentityRole(o.RoleType.ToString()));
 
 
             var user = new ApplicationUser { UserName = o.Email, Email = o.Email, EmailConfirmed = true };
@@ -68,23 +68,23 @@ namespace GabinetStomatologiczny.Services
 
             createUser.Create(user, pass);
 
-            createUser.AddToRole(user.Id, o.TypPracownika.ToString());
+            createUser.AddToRole(user.Id, o.RoleType.ToString());
             // end rejestracja identiyy
 
             //
-            switch (o.TypPracownika)
+            switch (o.RoleType)
             {
 
-                case TypPracownika.Administrator:
+                case RoleType.Administrator:
                     {
-                        var admin = Mapper.Map<DAO.Models.Administrator>(o);
+                        var admin = Mapper.Map<Administrator>(o);
                         await se.SendMail(o.Email, "Witaj, administrator " +
                           o.Imie, "Twoje dane do logowania to \n"
                            + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
                         await this.adminS.CreateAdmin(admin);
                         break;
                     }
-                case TypPracownika.Lekarz:
+                case RoleType.Lekarz:
                     {
                         var lekarz = Mapper.Map<Lekarz>(o);
                         lekarz.DataDodania = DateTime.Now;
@@ -94,7 +94,7 @@ namespace GabinetStomatologiczny.Services
                         await this.ls.CreateLekarz(lekarz);
                         break;
                     }
-                case TypPracownika.Pacjent:
+                case RoleType.Pacjent:
                     {
                         var pacjent = Mapper.Map<Pacjent>(o);
                         pacjent.DataRejestracji = DateTime.Now;

@@ -57,7 +57,7 @@ namespace GabinetStomatologiczny.DAO.Models
         public DateTime DataRejestracji { get; set; }
 
         [Display(Name = "Typ pracownika")]
-        public TypPracownika TypPracownika { get; set; }
+        public RoleType RoleType { get; set; }
 
         public virtual ICollection<Wizyta> Wizyty { get; set; }
 

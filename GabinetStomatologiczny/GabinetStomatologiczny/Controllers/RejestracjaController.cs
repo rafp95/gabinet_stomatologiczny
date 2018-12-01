@@ -57,7 +57,7 @@ namespace GabinetStomatologiczny.Controllers
                 {
 
                     await this._rs.CreateUserInIdentity(o);
-                    TempData["ok"] = o.Imie + " typ konta " + o.TypPracownika;
+                    TempData["ok"] = o.Imie + " typ konta " + o.RoleType;
                     return RedirectToAction("Index", "Rejestracja");
                 }
             }

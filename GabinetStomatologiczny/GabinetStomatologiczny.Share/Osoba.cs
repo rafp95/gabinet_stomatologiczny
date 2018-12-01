@@ -10,7 +10,7 @@ namespace GabinetStomatologiczny.Models
     public class Osoba
     {
         [Display(Name = "Typ konta")]
-        public TypPracownika TypPracownika { get; set; }
+        public RoleType RoleType { get; set; }
 
         [Required]
         [EmailAddress(ErrorMessage = "Podaj poprawy adres email")]

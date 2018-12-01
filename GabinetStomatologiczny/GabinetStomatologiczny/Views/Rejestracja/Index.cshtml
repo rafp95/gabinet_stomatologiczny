@@ -23,10 +23,10 @@
         }
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.TypPracownika, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoleType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.TypPracownika, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TypPracownika, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.RoleType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleType, "", new { @class = "text-danger" })
             </div>
         </div>
 

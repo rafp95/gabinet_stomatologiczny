@@ -66,7 +66,7 @@ namespace GabinetStomatologiczny.Models
     public class RegisterViewModel
     {
         [Display(Name = "Typ osoby")]
-        public TypPracownika TypPracownika { get; set; }
+        public RoleType RoleType { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]

@@ -32,7 +32,7 @@ namespace GabinetStomatologiczny.DAO.Models
         public string NrTelefonu { get; set; }
 
         [Display(Name = "Typ pracownika")]
-        public TypPracownika TypPracownika { get; set; }
+        public RoleType RoleType { get; set; }
 
 
         public  virtual ICollection<Wizyta> Wiztyty { get; set; }

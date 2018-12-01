@@ -283,7 +283,7 @@
     <Compile Include="Models\Plec.cs" />
     <Compile Include="Models\RodzajSort.cs" />
     <Compile Include="Models\Sugestion.cs" />
-    <Compile Include="Models\TypPracownika.cs" />
+    <Compile Include="Models\RoleType.cs" />
     <Compile Include="Models\TypZabiegu.cs" />
     <Compile Include="Models\Wizyta.cs" />
     <Compile Include="Models\Wojewodztwo.cs" />

@@ -40,7 +40,7 @@
                 ladowanie.css('display', 'block');
                 timer = setTimeout(() => {
                     let tooth = {
-                        idTooth: $(this).attr('id')
+                        idTooth: $(this).attr('id'),
                     };
 
                     if ($(this).attr('fill') === '#FFFFFF'
@@ -128,10 +128,14 @@
     //tooltip hover
     //ajax save tooth to database
     function addTooth(data) {
+        let bufData = {
+            idTooth: data.idTooth,
+            __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
+        }
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: "/Zabiegs/SaveTooth",
-            data: data,
+            data: bufData,
             success: function (data) {
                 console.log(data.status);
                 if (data.status) {
@@ -144,7 +148,7 @@
                 }
                 ladowanie.css('display', 'none');
             }, error: function () {
-                zapisInfo.text("Wystąpił problem z zapisem do bazy danych spróbuj odświeżyć przeglądarkę ").
+                zapisInfo.text("Wystąpił problem z zapisem ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
                 css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
                 fadeIn('slow').delay(1000).fadeOut('slow');
@@ -169,7 +173,7 @@
                     fadeIn('slow').delay(1000).fadeOut('slow');
                 }
             }, error: function () {
-                zapisInfo.text("Wystąpił problem z zapisem do bazy danych ").
+                zapisInfo.text("Wystąpił problem z zapisem ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
                 css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
                 fadeIn('slow').delay(1000).fadeOut('slow');
@@ -219,7 +223,8 @@
         buttonSave.off().on('click', function () {
             let data = {
                 idTooth: idTooth,
-                description: $("#zabDescription").val()
+                description: $("#zabDescription").val(),
+                __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
             };
 
             if (data.description.length === 0) {
@@ -241,7 +246,7 @@
         $.ajax({
             url: '/Zabiegs/SaveTooth',
             cache: false,
-            type: 'GET',
+            type: 'POST',
             data: data,
             success: function () {
                 zapisInfo.text("Zapisano pomyślnie ").
@@ -249,6 +254,12 @@
                 css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
                 fadeIn('slow').delay(1000).fadeOut('slow');
                 GetAllTooth();
+            }, error: function () {
+                zapisInfo.text("Wystąpił problem z zapisem ").
+                append('<i class="fa fa-spinner fa-spin"></i>').
+                css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
+                css('color', 'white').
+                fadeIn('slow').delay(1000).fadeOut('slow');
             }
         })
     }
@@ -267,6 +278,7 @@
     function tratmentHistory(id) {
         $("button#btnInfoHitory").off().on('click', function () {
             $("#myModalHistory").modal();
+            $("#zabDescription").val("");
             let history = $("#historiaLeczeniaLista");
             getHistoryFromApi(id, history);
         });
@@ -312,7 +324,7 @@
                             if (id) {
                                 modal.modal('hide');
                                 deleteDescription(data);
-                                element.hide();
+                                element.parent().hide();
                             }
                         })
                     })
@@ -332,7 +344,8 @@
                         $("#btnDescZabSave").off().on('click', function () {
                             let data = {
                                 id: id,
-                                description: $("#zabDescription").val()
+                                description: $("#zabDescription").val(),
+                                __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
                             }
                             if (data.description.length === 0) {
                                 $("#zabDescriptionError").hide().fadeIn().text("Pole nie może być puste").css('color', 'red');
@@ -354,12 +367,18 @@
         $.ajax({
             type: 'GET',
             url: '/Zabiegs/DeleteToothDescr',
-            data: id
+            data: id,
+            success: function () {
+                zapisInfo.text("Zapisano pomyślnie ").
+                    append('<i class="fa fa-spinner fa-spin"></i>').
+                    css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
+                    fadeIn('slow').delay(1000).fadeOut('slow');
+            }
         })
     }
     function editDescription(data) {
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/Zabiegs/SaveTooth',
             data: data,
             success: function (data) {
@@ -369,6 +388,12 @@
                     css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
                     fadeIn('slow').delay(1000).fadeOut('slow');
                 }
+            }, error: function () {
+                zapisInfo.text("Wystąpił problem z zapisem ").
+                append('<i class="fa fa-spinner fa-spin"></i>').
+                css("background", "linear-gradient(to top, #800000 0%, #cc3300 100%)").
+                css('color', 'white').
+                fadeIn('slow').delay(1000).fadeOut('slow');
             }
         })
     }

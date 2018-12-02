@@ -8,6 +8,7 @@
             </div>
             <div class="modal-body">
                 <form class="col-md-12 form-horizontal" data-ajax="true">
+                    @Html.AntiForgeryToken()
                     <label for="inputZabDescr">Opis : </label>
                     <textarea type="text" class="form-control" id="zabDescription" placeholder="Opis"></textarea>
                     <div id="zabDescriptionError"></div>

@@ -149,6 +149,8 @@ namespace GabinetStomatologiczny.Controllers
             return new JsonResult { Data = tooth, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> SaveTooth(Zab zab, ZabDescriptions zdesc)
         {
 

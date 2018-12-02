@@ -84,7 +84,7 @@
     //end set tooth
     //delete tooth confirm 
     function deleteConfirm(tooth, elem) {
-        let bDelete = $("#deleteTooth");
+        let bDelete = $("#deleteConfirm");
         bDelete.off().on('click', function () {
             deleteTooth(tooth);
             if (tooth.idTooth.indexOf('XMLID') >= 0) {
@@ -300,9 +300,9 @@
                             id: id
                         };
 
-                        let modal = $("#deleteToothDescription");
+                        let modal = $("#deleteConfirmModal");
                         modal.modal();
-                        $("#deleteToothDescrConforim").off().on('click', function () {
+                        $("#deleteConfirm").off().on('click', function () {
                             if (id) {
                                 modal.modal('hide');
                                 deleteDescription(data);

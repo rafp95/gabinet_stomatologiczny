@@ -592,7 +592,6 @@
     <Content Include="Content\script\AutoComplete.js" />
     <Content Include="Content\script\ButtomSpinner.js" />
     <Content Include="Content\script\ModelZebow.js" />
-    <Content Include="Content\script\ModelZebowDeleteEdit.js" />
     <Content Include="Content\script\Notyfication.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <None Include="Content\SilaHasla.scss" />

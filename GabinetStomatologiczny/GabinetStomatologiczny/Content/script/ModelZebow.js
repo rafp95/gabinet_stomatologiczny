@@ -285,7 +285,7 @@
                 }
                 $.each(data, function (i, o) {
                     setText.append('<li style="margin-top: 5px;">' + o.description + ' ' + moment(o.dateZabieg).format("DD-MM-YYYY HH:mm")
-                        + ' '
+                        + '<div class="buttonAction">'
                         + '<button id="btnDelDescr" class="btn btn-danger btn-sm" title="Kasuj"> '
                         + '<span class="glyphicon glyphicon-remove"></span> <input type="hidden"  value="' + o.id + '" /> '
                         + '</button>'
@@ -294,7 +294,7 @@
                         + '<span class="glyphicon glyphicon-pencil"></span>'
                         + ' <input type="hidden" id="editId"  value="' + o.id + '" /> '
                         + ' <input type="hidden" id="editText" value="' + o.description + '" /> '
-                        + '</button> '
+                        + '</button></div> '
                         + '</li>');
                 })
                 //delete zab descr

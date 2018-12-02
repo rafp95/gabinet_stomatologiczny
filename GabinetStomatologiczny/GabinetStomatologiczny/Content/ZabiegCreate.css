@@ -192,3 +192,13 @@ div#saveDatabaseInfo {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+div.buttonAction {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-direction: row-reverse;
+  left: -1.3em; }
+  div.buttonAction button {
+    margin-top: 2px;
+    margin-left: 5px; }

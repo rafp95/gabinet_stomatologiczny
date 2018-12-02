@@ -284,9 +284,42 @@
                     return;
                 }
                 $.each(data, function (i, o) {
-                    setText.append('<li>' + o.description + ' ' + moment(o.dateZabieg).format("DD-MM-YYYY HH:mm") + '</li>');
+                    setText.append('<li style="margin-top: 5px;">' + o.description + ' ' + moment(o.dateZabieg).format("DD-MM-YYYY HH:mm")
+                        + ' '
+                        + '<button id="btnDelDescr" class="btn btn-danger btn-sm" title="Kasuj"> '
+                        + '<span class="glyphicon glyphicon-remove"></span> <input type="hidden"  value="' + o.id + '" /> '
+                        + '</button>'
+                        + '</li>');
+                })
+                //delete zab descr
+                $("ol li #btnDelDescr").each(function () {
+                    $(this).off().on('click', function () {
+                        let = element = $(this).parent();
+                        let id = $(this).children().closest('input').val();
+                        let data = {
+                            id: id
+                        };
+
+                        let modal = $("#deleteToothDescription");
+                        modal.modal();
+                        $("#deleteToothDescrConforim").off().on('click', function () {
+                            if (id) {
+                                modal.modal('hide');
+                                deleteDescription(data);
+                                element.hide();
+                            }
+                        })
+                    });
                 });
+                //end delete zab descr
             }
+        });
+    }
+    function deleteDescription(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/Zabiegs/DeleteToothDescr',
+            data: id
         })
     }
 });

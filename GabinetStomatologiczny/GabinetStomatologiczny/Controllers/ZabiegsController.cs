@@ -188,6 +188,11 @@ namespace GabinetStomatologiczny.Controllers
             return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        public async Task<ActionResult> DeleteToothDescr(int id)
+        {
+            var status = await _zabiegService.DeleteZabDescr(id);
+            return new JsonResult { Data = new {status}, JsonRequestBehavior = JsonRequestBehavior.AllowGet  };
+        }
 
 
         // GET: Zabiegs/Edit/5

@@ -17,6 +17,9 @@ namespace GabinetStomatologiczny.Models
                .ForMember(dest => dest.Lekarz,
                opts => opts.Ignore());
             CreateMap<LiczbaPacjentow, LiczbaPacjentow>();
+            CreateMap<ZabDescriptions,ZabDescriptions>().
+                ForMember(dest => dest.ZabID,opts => opts.MapFrom(src => src.ZabID)).
+                ForMember(dest => dest.ZabDateDescription ,opts => opts.MapFrom(src => src.ZabDateDescription));
      
         }
 

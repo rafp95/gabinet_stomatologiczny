@@ -157,6 +157,7 @@ namespace GabinetStomatologiczny.Controllers
             if (!string.IsNullOrEmpty(zdesc.Description))
             {
                 await _zabiegService.ZabDescription(zab, zdesc, id);
+                status = true;
             }
             else if (await db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
             {

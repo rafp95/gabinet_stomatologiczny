@@ -289,12 +289,18 @@
                         + '<button id="btnDelDescr" class="btn btn-danger btn-sm" title="Kasuj"> '
                         + '<span class="glyphicon glyphicon-remove"></span> <input type="hidden"  value="' + o.id + '" /> '
                         + '</button>'
+                        + ' '
+                        + '<button id="btnEditDescr" class="btn btn-warning btn-sm" title="Edytuj">'
+                        + '<span class="glyphicon glyphicon-pencil"></span>'
+                        + ' <input type="hidden" id="editId"  value="' + o.id + '" /> '
+                        + ' <input type="hidden" id="editText" value="' + o.description + '" /> '
+                        + '</button> '
                         + '</li>');
                 })
                 //delete zab descr
                 $("ol li #btnDelDescr").each(function () {
                     $(this).off().on('click', function () {
-                        let = element = $(this).parent();
+                        let element = $(this).parent();
                         let id = $(this).children().closest('input').val();
                         let data = {
                             id: id
@@ -309,9 +315,38 @@
                                 element.hide();
                             }
                         })
-                    });
-                });
+                    })
+                })
                 //end delete zab descr
+
+                //edit zab descr
+                $("ol li #btnEditDescr").each(function () {
+                    $(this).off().on('click', function () {
+                        removeValidateStyle();
+
+                        let zabDescrText = $("#zabDescription");
+                        let id = $(this).children().closest('#editId').val();
+                        let description = $(this).children().closest('#editText').val();
+                        zabDescrText.val(description);
+
+                        $("#btnDescZabSave").off().on('click', function () {
+                            let data = {
+                                id: id,
+                                description: $("#zabDescription").val()
+                            }
+                            if (data.description.length === 0) {
+                                $("#zabDescriptionError").hide().fadeIn().text("Pole nie może być puste").css('color', 'red');
+                                $("#zabDescription").fadeIn().css({ 'border': '1px solid red', 'background': 'pink' });
+                                return;
+                            }
+                            editDescription(data);
+                            $("#myModalZabDescription").modal('hide');
+                        });
+
+                        $("#myModalHistory").modal('hide');
+                    })
+                });
+                //end edit zab descr
             }
         });
     }
@@ -320,6 +355,21 @@
             type: 'GET',
             url: '/Zabiegs/DeleteToothDescr',
             data: id
+        })
+    }
+    function editDescription(data) {
+        $.ajax({
+            type: 'GET',
+            url: '/Zabiegs/SaveTooth',
+            data: data,
+            success: function (data) {
+                if (data) {
+                    zapisInfo.text("Zapisano pomyślnie ").
+                    append('<i class="fa fa-spinner fa-spin"></i>').
+                    css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
+                    fadeIn('slow').delay(1000).fadeOut('slow');
+                }
+            }
         })
     }
 });

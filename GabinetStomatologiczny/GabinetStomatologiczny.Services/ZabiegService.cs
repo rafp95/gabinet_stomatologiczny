@@ -1,4 +1,5 @@
-﻿using GabinetStomatologiczny.DAL;
+﻿using AutoMapper;
+using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Models;
 using PagedList;
@@ -101,7 +102,7 @@ namespace GabinetStomatologiczny.Services
             var zabDescriptionQuery = _db.ZabDescriptions.Where(_ => _.ZabID == zabZabiegQuery).AsQueryable();
 
             var zabDescription = await zabDescriptionQuery.
-                Select(_ => new { description = _.Description, dateZabieg = _.ZabDateDescription, id = _.ID }).ToListAsync();
+                Select(_ => new { description = _.Description, dateZabieg = _.ZabDateDescription, id = _.ID}).ToListAsync();
 
 
             //var zebyHistory = await zebyHistoryQuery.Select(_ =>  _.Description ).ToListAsync();
@@ -137,20 +138,33 @@ namespace GabinetStomatologiczny.Services
 
         public async Task<ZabDescriptions> ZabDescription(Zab zab, ZabDescriptions zDesc, int id)
         {
-            var pacejntWizytaQuery = await _db.Wizyta.
+            if (zDesc.ID > 0)
+            {
+                var idZab = await _db.ZabDescriptions.Where(_ => _.ID == zDesc.ID).Select(_ => _.ZabID).FirstOrDefaultAsync();
+                zDesc.ZabID = idZab;
+                zDesc.ZabDateDescription = DateTime.Now;
+                var tooth = Mapper.Map<ZabDescriptions, ZabDescriptions>(zDesc, zDesc);
+                _db.Entry(tooth).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
+            }
+            else
+            {
+                var pacejntWizytaQuery = await _db.Wizyta.
                 Where(_ => _.PacjentID == id).Select(_ => _.ID).FirstOrDefaultAsync();
 
-            var pacejntZabiegQuery = await _db.Zabieg.
-                Where(_ => _.WizytaID == pacejntWizytaQuery).
-                Select(_ => _.ID).FirstOrDefaultAsync();
+                var pacejntZabiegQuery = await _db.Zabieg.
+                    Where(_ => _.WizytaID == pacejntWizytaQuery).
+                    Select(_ => _.ID).FirstOrDefaultAsync();
 
-            var zabZabiegQuery = await _db.Zab.Where(_ => _.ZabiegID == pacejntZabiegQuery && _.IdTooth == zab.IdTooth).FirstOrDefaultAsync();
+                var zabZabiegQuery = await _db.Zab.Where(_ => _.ZabiegID == pacejntZabiegQuery && _.IdTooth == zab.IdTooth).FirstOrDefaultAsync();
 
-            zDesc.ZabID = zabZabiegQuery.ID;
-            zDesc.ZabDateDescription = DateTime.Now;
+                zDesc.ZabID = zabZabiegQuery.ID;
+                zDesc.ZabDateDescription = DateTime.Now;
 
-            _db.ZabDescriptions.Add(zDesc);
-            await _db.SaveChangesAsync();
+                _db.ZabDescriptions.Add(zDesc);
+                await _db.SaveChangesAsync();
+            }
+
 
             return zDesc;
         }

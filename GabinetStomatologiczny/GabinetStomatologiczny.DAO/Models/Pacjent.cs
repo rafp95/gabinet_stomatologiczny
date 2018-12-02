@@ -55,10 +55,6 @@ namespace GabinetStomatologiczny.DAO.Models
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         [Display(Name = "Data rejestracji")]
         public DateTime DataRejestracji { get; set; }
-
-        [Display(Name = "Typ pracownika")]
-        public RoleType RoleType { get; set; }
-
         public virtual ICollection<Wizyta> Wizyty { get; set; }
 
     }

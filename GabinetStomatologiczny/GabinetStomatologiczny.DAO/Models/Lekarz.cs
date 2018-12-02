@@ -31,10 +31,6 @@ namespace GabinetStomatologiczny.DAO.Models
         [StringLength(11)]
         public string NrTelefonu { get; set; }
 
-        [Display(Name = "Typ pracownika")]
-        public RoleType RoleType { get; set; }
-
-
         public  virtual ICollection<Wizyta> Wiztyty { get; set; }
     }
 }

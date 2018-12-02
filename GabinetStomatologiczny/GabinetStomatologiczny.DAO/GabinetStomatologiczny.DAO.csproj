@@ -273,6 +273,18 @@
     <Compile Include="Migrations\201811281927219_zabDateDescription.Designer.cs">
       <DependentUpon>201811281927219_zabDateDescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812012032529_rename.cs" />
+    <Compile Include="Migrations\201812012032529_rename.Designer.cs">
+      <DependentUpon>201812012032529_rename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812012045444_removeRolePacejntAndLekarz.cs" />
+    <Compile Include="Migrations\201812012045444_removeRolePacejntAndLekarz.Designer.cs">
+      <DependentUpon>201812012045444_removeRolePacejntAndLekarz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812012046456_removeRolePacjnetFromAdministrator.cs" />
+    <Compile Include="Migrations\201812012046456_removeRolePacjnetFromAdministrator.Designer.cs">
+      <DependentUpon>201812012046456_removeRolePacjnetFromAdministrator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -413,6 +425,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811281927219_zabDateDescription.resx">
       <DependentUpon>201811281927219_zabDateDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812012032529_rename.resx">
+      <DependentUpon>201812012032529_rename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812012045444_removeRolePacejntAndLekarz.resx">
+      <DependentUpon>201812012045444_removeRolePacejntAndLekarz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812012046456_removeRolePacjnetFromAdministrator.resx">
+      <DependentUpon>201812012046456_removeRolePacjnetFromAdministrator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

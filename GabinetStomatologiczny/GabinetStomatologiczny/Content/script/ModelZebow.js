@@ -352,7 +352,9 @@
                                 $("#zabDescription").fadeIn().css({ 'border': '1px solid red', 'background': 'pink' });
                                 return;
                             }
-                            editDescription(data);
+                            if (data.id > 0) {
+                                editDescription(data);
+                            }
                             $("#myModalZabDescription").modal('hide');
                         });
 

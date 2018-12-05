@@ -596,6 +596,13 @@
     <Content Include="Content\script\Notyfication.js" />
     <Content Include="Content\script\SilaHasla.js" />
     <None Include="Content\SilaHasla.scss" />
+    <None Include="Content\SharedStyle.scss" />
+    <Content Include="Content\SharedStyle.css">
+      <DependentUpon>SharedStyle.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\SharedStyle.min.css">
+      <DependentUpon>SharedStyle.css</DependentUpon>
+    </Content>
     <Content Include="Content\SilaHasla.css">
       <DependentUpon>SilaHasla.scss</DependentUpon>
     </Content>

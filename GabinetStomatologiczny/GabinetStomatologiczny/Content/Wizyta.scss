@@ -1,4 +1,6 @@
-﻿div#aktualnyCzas::before {
+﻿@import 'SharedStyle.scss';
+
+div#aktualnyCzas::before {
     font-weight: bold;
     content: "Dziś: ";
 }
@@ -164,27 +166,9 @@ tr:hover {
 /*end ui z index*/
 
 /*Info save to database*/
-
 div#saveDatabaseInfo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -moz-transform: translateY(-50%, -50%);
-    -o-transform: translateY(-50%, -50%);
-    -ms-transform: translate(-50%, -50%); /* IE 9 */
-    -webkit-transform: translate(-50%, -50%);
-    transform: translateY(-50%, -50%); /* Chrome, Safari, Opera */
-    background: linear-gradient(to bottom, #33cc33 0%, #66ff33 100%);
-    width: 50%;
-    z-index: 99999999;
-    padding: 5px;
-    text-align: center;
-    display: none;
-    @media (max-width: 768px){
-        width: 70%;
-    }
-} 
-
+    @include dataBaseSaveInfo;
+}
 /* End info  save to database*/
 
 /*Overlload kalendar styles*/

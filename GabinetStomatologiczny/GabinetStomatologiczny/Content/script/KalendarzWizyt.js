@@ -357,6 +357,10 @@
                         //Refresh the calender
                         FetchEventAndRenderCalendar();
                         zapisInfo.html("Zapisano zmiany ").fadeIn('slow').
+                        css({
+                            "background": "linear-gradient(to bottom,#3c3 0%,#6f3 100%)",
+                            "color": "black"
+                        }).
                         append('<i class="fa fa-spinner fa-spin"></i>').
                         delay(1000).fadeOut('slow');
                         $('#myModal').modal('hide');
@@ -470,6 +474,10 @@
                     //Refresh the calender
                     FetchEventAndRenderCalendar();
                     zapisInfo.html("Zapisano zmiany ").append('<i class="fa fa-spinner fa-spin"></i>').
+                    css({
+                        "background": "linear-gradient(to bottom,#3c3 0%,#6f3 100%)",
+                        "color": "black"
+                    }).
                     fadeIn('slow').delay(1000).fadeOut('slow');
                     $('#myModalSave').modal('hide');
                 } else if (data && !data.status) {

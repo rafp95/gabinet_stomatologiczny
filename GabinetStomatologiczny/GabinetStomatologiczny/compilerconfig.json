@@ -82,5 +82,9 @@
   {
     "outputFile": "Content/ErrorStylePage.css",
     "inputFile": "Content/ErrorStylePage.scss"
+  },
+  {
+    "outputFile": "Content/SharedStyle.css",
+    "inputFile": "Content/SharedStyle.scss"
   }
 ]

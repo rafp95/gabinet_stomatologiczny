@@ -128,11 +128,14 @@ div#saveDatabaseInfo {
   transform: translateY(-50%, -50%);
   /* Chrome, Safari, Opera */
   background: linear-gradient(to bottom, #33cc33 0%, #66ff33 100%);
-  width: 70%;
+  width: 50%;
   z-index: 99999999;
   padding: 5px;
   text-align: center;
   display: none; }
+  @media (max-width: 768px) {
+    div#saveDatabaseInfo {
+      width: 70%; } }
 
 /* End info  save to database*/
 /*Overlload kalendar styles*/

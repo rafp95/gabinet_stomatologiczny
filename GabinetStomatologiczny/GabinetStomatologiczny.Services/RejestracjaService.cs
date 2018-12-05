@@ -59,16 +59,16 @@ namespace GabinetStomatologiczny.Services
                               new UserStore<ApplicationUser>(
                               new ApplicationDbContext()));
 
-            roleUser.Create(new IdentityRole(o.RoleType.ToString()));
+            await roleUser.CreateAsync(new IdentityRole(o.RoleType.ToString()));
 
 
             var user = new ApplicationUser { UserName = o.Email, Email = o.Email, EmailConfirmed = true };
 
             var pass = o.Haslo;
 
-            createUser.Create(user, pass);
+            await createUser.CreateAsync(user, pass);
 
-            createUser.AddToRole(user.Id, o.RoleType.ToString());
+            await createUser.AddToRoleAsync(user.Id, o.RoleType.ToString());
             // end rejestracja identiyy
 
             //

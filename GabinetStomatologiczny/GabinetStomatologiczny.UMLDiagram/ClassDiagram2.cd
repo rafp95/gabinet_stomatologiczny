@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GabinetStomatologiczny.DAO.Models.ApplicationUser">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GabinetStomatologiczny.DAO.Models.ApplicationDbContext">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GabinetStomatologiczny.Models.Osoba">
+    <Position X="5.75" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

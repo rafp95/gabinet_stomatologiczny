@@ -44,11 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">
       <Project>{db0427cd-f52c-47bb-b9c6-54b5c3f9ab71}</Project>
       <Name>GabinetStomatologiczny.DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GabinetStomatologiczny.Share\GabinetStomatologiczny.Share.csproj">
+      <Project>{598f0e77-eb55-49bd-985d-92d8bb5f6246}</Project>
+      <Name>GabinetStomatologiczny.Share</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -156,11 +156,12 @@
                 var pom = new Date(moment(start, "DD-MM-YYYY").format("YYYY-MM-DD"));
                 var now = new Date(moment(new Date(), "DD-MM-YYYY").format("YYYY-MM-DD"));
                 console.log(pom - now);
+                //show modal if date select is >= now date
                 if ((pom - now) >= 0) {
                     openAddEditForm();
                 } else {
                     $("#myModalError").modal();
-                    return false;
+                    return;
                 }
                 $('#calendar').fullCalendar('unselect');
             },

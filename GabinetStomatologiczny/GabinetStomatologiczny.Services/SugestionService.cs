@@ -57,7 +57,7 @@ namespace GabinetStomatologiczny.Services
 
         public IEnumerable<object> SugestionWizyt(Sugestion sugestion)
         {
-            var events = _db.Wizyta.AsEnumerable().
+            var events = _db.Wizyta.Include(_ => _.Pacjent).AsEnumerable().
                  Select(_ => new
                  {
                      Tytul = _.Pacjent.Imie + " " + _.Pacjent.Nazwisko,

@@ -23,8 +23,18 @@
                 console.log('pobrano tab ' + tab.length);
                 SetTooth();
                 ToothHover();
-                ladowanie.css('display', 'none');
+
+            }, error: function () {
+                zapisInfo.text("Wystąpił problem z pobraniem danych ").
+                append('<i class="fa fa-spinner fa-spin"></i>').
+                css({
+                    "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)",
+                    "color": "white"
+                }).
+                fadeIn('slow').delay(1000).fadeOut('slow');
             }
+        }).always(() => {
+            ladowanie.css('display', 'none');
         });
     }
     //end get all tooth using ajax
@@ -146,16 +156,17 @@
                     css("background", "linear-gradient(to bottom, #33cc33 0%, #66ff33 100%)").css('color', 'black').
                     fadeIn('slow').delay(1000).fadeOut('slow');
                 }
-                ladowanie.css('display', 'none');
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z zapisem ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
                 css({
                     "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)",
-                    "color" : "white"
+                    "color": "white"
                 }).
                 fadeIn('slow').delay(1000).fadeOut('slow');
             }
+        }).always(() => {
+            ladowanie.css('display', 'none');
         });
     }
     //end ajax save tooth to database
@@ -180,7 +191,7 @@
                 append('<i class="fa fa-spinner fa-spin"></i>').
                 css({
                     "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)",
-                    "color" : "white"
+                    "color": "white"
                 }).
                 fadeIn('slow').delay(1000).fadeOut('slow');
             }

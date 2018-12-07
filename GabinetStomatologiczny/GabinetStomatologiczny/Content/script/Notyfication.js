@@ -31,7 +31,7 @@
                 $.each(response, function (index, value) {
                     $('#notiContent').append($('<li>Zapisał(a) się na '
                         + ' <a href="/Wizytas" title="Kliknij aby odświeżyć">'
-                        + ' wizytę : ' + '</a>' + ' <div> ' + value.Tytul + ' </div> '
+                        + ' wizytę : ' + '</a>' + ' <div> ' + value.tytul + ' </div> '
                         + '<div>' + moment(value.Poczatek).format('DD-MM-YYYY HH:mm') + '</div></li>'));
                 });
             },

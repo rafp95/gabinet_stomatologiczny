@@ -25,7 +25,7 @@ namespace GabinetStomatologiczny.Services
         {
             var wizytaQuery = db.Wizyta.AsQueryable();
             var wizyta = await wizytaQuery.Where(_ => _.DataDodania >= afterDate).OrderByDescending(_ => _.DataDodania)
-                .Select(_ => new {_.Poczatek,_.Tytul }).ToListAsync();
+                .Select(_ => new {_.Poczatek,tytul = _.Pacjent.Imie + " " + _.Pacjent.Nazwisko }).ToListAsync();
             return wizyta;
 
         }

@@ -24,7 +24,7 @@ namespace GabinetStomatologiczny
         public void RegisterNotyfication(DateTime currentTime)
         {
             string conStr = ConfigurationManager.ConnectionStrings["NotyficationConnection"].ConnectionString;
-            string sqlCommand = @"SELECT [Tytul] FROM [dbo].[Wizyta]";
+            string sqlCommand = @"SELECT [PacjentID] FROM [dbo].[Wizyta]";
             using (SqlConnection con = new SqlConnection(conStr))
             {
                 SqlCommand cmd = new SqlCommand(sqlCommand, con);

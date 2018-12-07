@@ -4,18 +4,11 @@
     ViewBag.Title = "Kasuj";
 }
 
-<header class="alert alert-info headerInfo"><div>@ViewBag.Title</div></header>
+<header class="alert alert-info headerInfo"><div>@ViewBag.Title @ViewBag.User</div></header>
 <h3>Jeseś pewny?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("Imię i nazwisko")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Wizyta.Tytul)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.TypZabiegu)

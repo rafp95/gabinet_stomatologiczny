@@ -9,22 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using System.Security.Claims;
 
 namespace GabinetStomatologiczny.Services
 {
     public interface IWizytService
     {
         Task<IEnumerable<object>> GetEvents(string searchQuery, bool isLogedin, string r, string u);
-        Task<bool> SaveEvent(Wizyta w, string user);
+        Task<bool> SaveEvent(Wizyta w, ClaimsIdentity user);
         Task<bool> DeleteEvent(Wizyta w);
     }
     public class WizytServie : IWizytService
     {
         private readonly GabinetContext db;
+        private readonly IUserRoleService uR;
 
-        public WizytServie(GabinetContext db)
+        public WizytServie(GabinetContext db, IUserRoleService uR)
         {
             this.db = db;
+            this.uR = uR;
         }
 
         public async Task<bool> DeleteEvent(Wizyta w)
@@ -46,7 +49,7 @@ namespace GabinetStomatologiczny.Services
             var eventsQuery = db.Wizyta.AsQueryable();
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                eventsQuery = eventsQuery.Where(p => p.Tytul.Contains(searchQuery));
+                eventsQuery = eventsQuery.Where(p => (p.Pacjent.Imie + " " + p.Pacjent.Nazwisko).ToLower().Contains(searchQuery.ToLower()));
             }
             var events = await eventsQuery.Select(_ =>
             new
@@ -54,7 +57,7 @@ namespace GabinetStomatologiczny.Services
                 _.ID,
                 _.Koniec,
                 _.Poczatek,
-                Tytul = isLogedin ? _.Tytul : "*",
+                Tytul = isLogedin ? _.Pacjent.Imie + " " + _.Pacjent.Nazwisko : "*",
                 p = isLogedin ?
                     new
                     {
@@ -77,7 +80,7 @@ namespace GabinetStomatologiczny.Services
         /// <param name="user"></param>
         /// <returns></returns>
         #region Save event
-        public async Task<bool> SaveEvent(Wizyta w, string user)
+        public async Task<bool> SaveEvent(Wizyta w, ClaimsIdentity user)
         {
             var status = false;
             var equals = await this.db.Wizyta.AnyAsync(_ => _.Poczatek.CompareTo(w.Poczatek) == 0);
@@ -90,17 +93,9 @@ namespace GabinetStomatologiczny.Services
                     {
                         w.LekarzID = v.LekarzID;
                         w.PacjentID = v.PacjentID;
-                        if (!string.IsNullOrEmpty(v.Tytul))
-                        {
-                            w.Tytul = v.Tytul;
-                        }
+                    
                         var m = Mapper.Map<Wizyta, Wizyta>(w, v);
                         m.DataDodania = DateTime.Now;
-                        if (string.IsNullOrEmpty(m.Tytul))
-                        {
-                            m.Tytul = await db.Pacjent.Where(p => p.Email == user).
-                                Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
-                        }
 
                         db.Entry(m).State = EntityState.Modified;
                     }
@@ -108,23 +103,14 @@ namespace GabinetStomatologiczny.Services
                 }
                 else
                 {
-                    w.PacjentID = await db.Pacjent.Where(p => p.Email == user).Select(p => p.ID).FirstOrDefaultAsync();
                     w.LekarzID = await db.Lekarz.Select(p => p.ID).FirstOrDefaultAsync();
                     var m = Mapper.Map<Wizyta, Wizyta>(w);
-
-                    if (m.Tytul != null)
-                    {
-                        var pacjent = await db.Pacjent.Where(_ => (_.Imie + " " + _.Nazwisko).Equals(w.Tytul)).FirstOrDefaultAsync();
-                        m.PacjentID = pacjent.ID;
-                    }
-                    else
-                    {
-                        m.Tytul = await db.Pacjent.Where(p => p.Email == user).Select(p => p.Imie + " " + p.Nazwisko).FirstOrDefaultAsync();
-                    }
-
+                    m.PacjentID = this.uR.GetUserRole(user) == "Pacjent" ?
+                        await db.Pacjent.Where(_ => _.Email == user.Name).Select(_ => _.ID).FirstOrDefaultAsync() :
+                        await db.Pacjent.Where(p => (p.Imie + " " + p.Nazwisko).
+                    Contains(w.Pacjent.Imie + " " + w.Pacjent.Nazwisko)).Select(p => p.ID).FirstOrDefaultAsync();
                     m.DataDodania = DateTime.Now;
                     db.Wizyta.Add(m);
-
                 }
 
                 await this.db.SaveChangesAsync();

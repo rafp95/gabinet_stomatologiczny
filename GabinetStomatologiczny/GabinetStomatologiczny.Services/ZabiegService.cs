@@ -76,7 +76,7 @@ namespace GabinetStomatologiczny.Services
 
         public async Task<Zabieg> FindZabieg(int? id)
         {
-            return await _db.Zabieg.Include(_ => _.Wizyta).Where(_ => _.ID == id).FirstOrDefaultAsync();
+            return await _db.Zabieg.Include(_ => _.Wizyta).Include(_ => _.Wizyta.Pacjent).Where(_ => _.ID == id).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<object>> GetAllTooth(int id)

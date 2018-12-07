@@ -85,6 +85,7 @@ namespace GabinetStomatologiczny.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Zabieg zabieg = await _zabiegService.FindZabieg(id);// db.Zabieg.Include(w => w.Wizyta).First(_ => _.ID == id);
+            ViewBag.User = zabieg.Wizyta.Pacjent.Imie + " " + zabieg.Wizyta.Pacjent.Nazwisko;
             if (zabieg == null)
             {
                 return HttpNotFound();
@@ -208,7 +209,7 @@ namespace GabinetStomatologiczny.Controllers
 
             Zabieg zabieg = await _zabiegService.FindZabieg(id);
             Session["user"] = zabieg.Wizyta.PacjentID;
-            ViewBag.UserName = zabieg.Wizyta.Tytul;
+            ViewBag.UserName = zabieg.Wizyta.Pacjent.Imie + " " + zabieg.Wizyta.Pacjent.Nazwisko;
             if (zabieg == null)
             {
                 return HttpNotFound();
@@ -228,7 +229,7 @@ namespace GabinetStomatologiczny.Controllers
             {
                 await _zabiegService.EditZabeg(zabieg);
                 var z = await _zabiegService.FindZabieg(zabieg.ID);
-                TempData["zabiegOperationSucess"] = "Pomyślnie edytowano " + z.Wizyta.Tytul;
+                TempData["zabiegOperationSucess"] = "Pomyślnie edytowano " + z.Wizyta.Pacjent.Imie + " " + z.Wizyta.Pacjent.Nazwisko;
                 return RedirectToAction("Index");
             }
             ViewBag.WizytaID = new SelectList(db.Wizyta, "ID", "ID", zabieg.WizytaID);
@@ -243,6 +244,7 @@ namespace GabinetStomatologiczny.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Zabieg zabieg = await _zabiegService.FindZabieg(id); //db.Zabieg.Include(_ => _.Wizyta).First(_ => _.ID == id);
+            ViewBag.User = zabieg.Wizyta.Pacjent.Imie + " " + zabieg.Wizyta.Pacjent.Nazwisko;
             if (zabieg == null)
             {
                 return HttpNotFound();
@@ -256,7 +258,7 @@ namespace GabinetStomatologiczny.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             var z = await _zabiegService.FindZabieg(id);
-            TempData["zabiegOperationSucess"] = "Pomyślnie skasowano " + z.Wizyta.Tytul;
+            TempData["zabiegOperationSucess"] = "Pomyślnie skasowano " + z.Wizyta.Pacjent.Imie + " " + z.Wizyta.Pacjent.Nazwisko;
             await _zabiegService.DeleteZabieg(id);
             return RedirectToAction("Index");
         }

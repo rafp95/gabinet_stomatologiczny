@@ -53,7 +53,7 @@ namespace GabinetStomatologiczny.Services
             if (!string.IsNullOrEmpty(ps.searchString))
             {
 
-                zabieg = zabieg.Where(s => (s.Wizyta.Tytul + " " + s.TypZabiegu + " " + s.CenaZabiegu)
+                zabieg = zabieg.Where(s => (s.Wizyta.Pacjent.Imie + " " + s.Wizyta.Pacjent.Nazwisko + " " + s.TypZabiegu + " " + s.CenaZabiegu)
                 .ToLower().Contains(ps.searchString.ToLower()));
             }
 
@@ -65,11 +65,11 @@ namespace GabinetStomatologiczny.Services
             switch (ps.sortOrder)
             {
                 case RodzajSort.title_asc:
-                    zabieg = zabieg.OrderBy(_ => _.Wizyta.Tytul);
+                    zabieg = zabieg.OrderBy(_ => _.Wizyta.Pacjent.Imie).ThenBy(_ => _.Wizyta.Pacjent.Nazwisko);
                     RodzajSort = ps.sortOrder;
                     break;
                 case RodzajSort.title_desc:
-                    zabieg = zabieg.OrderByDescending(_ => _.Wizyta.Tytul);
+                    zabieg = zabieg.OrderByDescending(_ => _.Wizyta.Pacjent.Imie).ThenByDescending(_ => _.Wizyta.Pacjent.Nazwisko);
                     RodzajSort = ps.sortOrder;
                     break;
                 case RodzajSort.zabiegT_asc:
@@ -97,7 +97,7 @@ namespace GabinetStomatologiczny.Services
                     RodzajSort = ps.sortOrder;
                     break;
                 default:
-                    zabieg = zabieg.OrderBy(_ => _.Wizyta.Tytul);
+                    zabieg = zabieg.OrderBy(_ => _.Wizyta.Pacjent.Imie);
                     break;
             }
 

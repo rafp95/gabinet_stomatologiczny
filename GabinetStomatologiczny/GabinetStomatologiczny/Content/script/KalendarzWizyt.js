@@ -9,7 +9,7 @@
     pokazAktualnyCzas();
     //Czyszczenie
 
-    $("input[type=text],textarea[type=text]").bind('click keyup', function () {
+    $("input[type=text],textarea[type=text],#dtp1").bind('click keyup', function () {
         ErorMessage();
         szukajDane("");
     });
@@ -202,7 +202,7 @@
     //End generate calendar
 
     //Send sms
-    $("#btnSms").off().click(() => {
+    $("#btnSms").off().on('click',() => {
         czyscSmsInput();
         ErorMessage();
         $("#inputDo").val('+48' + getPhoneNumber());
@@ -212,7 +212,7 @@
     });
 
 
-    $("#btnSmsSend").off().click(() => {
+    $("#btnSmsSend").off().on('click',() => {
 
         let data = {
             to: $("#inputDo").val(),
@@ -276,7 +276,7 @@
     //End send sms
 
     //Send email
-    $("#btnEmail").off().click(function () {
+    $("#btnEmail").off().on('click',function () {
         czyscEamilInput();
         ErorMessage();
 
@@ -289,7 +289,7 @@
         $("#inputDoEmail").val("");
         $("#inputWiadomoscEamil").val("");
     }
-    $("#btnEmailSend").off().click(function () {
+    $("#btnEmailSend").off().on('click',function () {
         let data = {
             to: $("#inputDoEmail").val(),
             text: $("#inputWiadomoscEamil").val(),
@@ -331,18 +331,18 @@
     }
     //End send email
 
-    $('#btnEdit').off().click(function () {
+    $('#btnEdit').off().on('click',function () {
         //Open modal dialog for edit event
         openAddEditForm();
     })
 
     //Dete element
-    $('#btnDelete').off().click(function () {
+    $('#btnDelete').off().on('click',function () {
         $("#deleteConfirmModal").modal();
         buttonInfo($("#kasujElement"), "Kasuj");
     })
 
-    $("#kasujElement").off().click(function () {
+    $("#kasujElement").off().on('click',function () {
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie </div> <div class='loader' style='float:left;'></div>");
         if (selectedEvent != null) {
             $.ajax({
@@ -407,7 +407,7 @@
         $('#myModalSave').modal();
     }
 
-    $('#btnSave').off().click(function () {
+    $('#btnSave').off().on('click',function () {
 
         //Validation/
         ErorMessage();
@@ -452,10 +452,14 @@
             }
         }
         //end check title is empty
+        let tBuf = tytul.length > 0 ? tytul.val().trim().split(" ") : "";
         var data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
-            Tytul: tytul.length > 0 ? tytul.val().trim() : null,
+            Pacjent: {
+                Imie: tBuf.length > 0 ? tBuf[0] : null,
+                Nazwisko:tBuf.length > 1 ? tBuf[1] : null,
+            },
             __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
         }
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Zapisywanie </div> <div class='loader' style='float:left;'></div>");

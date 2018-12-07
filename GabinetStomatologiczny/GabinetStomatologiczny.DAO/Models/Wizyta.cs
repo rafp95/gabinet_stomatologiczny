@@ -12,7 +12,6 @@ namespace GabinetStomatologiczny.DAO.Models
         public int ID { get; set; }
         public int LekarzID { get; set; }
         public int PacjentID { get; set; }
-        public string Tytul { get; set; }
 
         [UIHint("DateTimePicker")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]

@@ -136,7 +136,7 @@ namespace GabinetStomatologiczny.Controllers
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> SaveEvent(Wizyta w)
         {
-            var status = await this._wizytService.SaveEvent(w, User.Identity.Name);
+            var status = await this._wizytService.SaveEvent(w, (ClaimsIdentity)User.Identity);
             return new JsonResult { Data = new { status } };
         }
 

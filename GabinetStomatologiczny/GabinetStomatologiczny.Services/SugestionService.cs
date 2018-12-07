@@ -60,7 +60,7 @@ namespace GabinetStomatologiczny.Services
             var events = _db.Wizyta.AsEnumerable().
                  Select(_ => new
                  {
-                     _.Tytul,
+                     Tytul = _.Pacjent.Imie + " " + _.Pacjent.Nazwisko,
                      _.Poczatek
                  }).
                  Where(p => p.Tytul.ToLower().
@@ -79,7 +79,7 @@ namespace GabinetStomatologiczny.Services
 
             var zabieg = zabiegQuery.Where(z => z.Wizyta.Pacjent.Imie.ToLower().Contains(Sugestion.term.ToLower()) ||
               z.Wizyta.Pacjent.Nazwisko.ToLower().Contains(Sugestion.term.ToLower()))
-                .GroupBy(_ => new { _.Wizyta.Tytul }).Take(5).
+                .GroupBy(_ => new { Tytul = _.Wizyta.Pacjent.Imie + " " + _.Wizyta.Pacjent.Nazwisko }).Take(5).
                Select(_ => new { label = _.Key.Tytul });
 
             zabieg = zabieg.Count() == 0 ? zabieg.DefaultIfEmpty().Select(z => new { label = "Brak danych" }).Take(1) : zabieg;

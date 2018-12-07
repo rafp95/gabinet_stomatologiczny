@@ -11,6 +11,7 @@
 
     
     $(".pacjent-query").bind('click keyup', function (event) {
+        event.preventDefault();
         var pom = $("#searchQuery").val();
         showAndHideClearText(pom);
     });
@@ -19,13 +20,14 @@
     //End pacjent
 
     //Lekarz
-    var szukaj = $(".szukajLekarzaAjax").on('click', function () {
+    var szukaj = $(".szukajLekarzaAjax").off().on('click', function () {
         var pom = $("#searchQuery").val();
         SzukajDane(pom,"Lekarzs/Index/");
     });
 
     
     $(".lekarz-query").bind('click keyup', function (event) {
+        event.preventDefault()
         var pom = $("#searchQuery").val();
         showAndHideClearText(pom);
     });
@@ -35,13 +37,14 @@
 
     //zabieg
 
-    var szukaj = $(".szukajZabiegAjax").on('click', function () {
+    var szukaj = $(".szukajZabiegAjax").off().on('click', function () {
         var pom = $("#searchQuery").val();
         SzukajDane(pom, "Zabiegs/Index/");
     });
 
     
     $(".zabieg-query").bind('click keyup', function (event) {
+        event.preventDefault()
         var pom = $("#searchQuery").val();
         showAndHideClearText(pom);
     });

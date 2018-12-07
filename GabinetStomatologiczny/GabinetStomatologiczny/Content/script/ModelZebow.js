@@ -85,7 +85,7 @@
     //delete tooth confirm 
     function deleteConfirm(tooth, elem) {
         let bDelete = $("#deleteConfirm");
-        bDelete.off().on('click', function () {
+        bDelete.off('click').on('click', function () {
             deleteTooth(tooth);
             if (tooth.idTooth.indexOf('XMLID') >= 0) {
                 console.log(tooth.idTooth)
@@ -226,7 +226,7 @@
 
         let buttonSave = $("#btnDescZabSave");
 
-        buttonSave.off().on('click', function () {
+        buttonSave.off('click').on('click', function () {
             let data = {
                 idTooth: idTooth,
                 description: $("#zabDescription").val(),
@@ -271,7 +271,7 @@
     }
     //end send description tooth
     //removeStyle after click on text area
-    $("#zabDescription").off().on('click', function () {
+    $("#zabDescription").off('click').on('click', function () {
         removeValidateStyle();
     });
     //end
@@ -282,7 +282,7 @@
     }
     //tretment history
     function tratmentHistory(id) {
-        $("button#btnInfoHitory").off().on('click', function () {
+        $("button#btnInfoHitory").off('click').on('click', function () {
             $("#myModalHistory").modal();
             $("#zabDescription").val("");
             let history = $("#historiaLeczeniaLista");
@@ -317,7 +317,7 @@
                 })
                 //delete zab descr
                 $("ol li #btnDelDescr").each(function () {
-                    $(this).off().on('click', function () {
+                    $(this).off('click').on('click', function () {
                         let element = $(this).parent();
                         let id = $(this).children().closest('input').val();
                         let data = {
@@ -326,7 +326,7 @@
 
                         let modal = $("#deleteConfirmModal");
                         modal.modal();
-                        $("#deleteConfirm").off().on('click', function () {
+                        $("#deleteConfirm").off('click').on('click', function () {
                             if (id) {
                                 modal.modal('hide');
                                 deleteDescription(data);
@@ -339,7 +339,7 @@
 
                 //edit zab descr
                 $("ol li #btnEditDescr").each(function () {
-                    $(this).off().on('click', function () {
+                    $(this).off('click').on('click', function () {
                         removeValidateStyle();
 
                         let zabDescrText = $("#zabDescription");
@@ -347,7 +347,7 @@
                         let description = $(this).children().closest('#editText').val();
                         zabDescrText.val(description);
 
-                        $("#btnDescZabSave").off().on('click', function () {
+                        $("#btnDescZabSave").off('click').on('click', function () {
                             let data = {
                                 id: id,
                                 description: $("#zabDescription").val(),

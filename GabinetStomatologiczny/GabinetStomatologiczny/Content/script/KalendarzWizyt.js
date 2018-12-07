@@ -79,11 +79,15 @@
                     });
                 })
                 GenerateCalender(events);
-                ladowanie.css('display', 'none');
             },
             error: function (error) {
-                console.log(error);
+                zapisInfo.html("Wystąpił problem z pobraniem danych ").fadeIn('slow').
+                        append('<i class="fa fa-spinner fa-spin"></i>').
+                    css({ "background": "linear-gradient(to top, #800000 0%, #cc3300 100%)", "color": "white" }).
+                    fadeIn('slow').delay(1000).fadeOut('slow');
             }
+        }).always(() => {
+            ladowanie.css('display', 'none');
         })
     }
     //End add edit

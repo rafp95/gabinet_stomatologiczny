@@ -202,7 +202,7 @@
     //End generate calendar
 
     //Send sms
-    $("#btnSms").off().on('click',() => {
+    $("#btnSms").off('click').on('click', () => {
         czyscSmsInput();
         ErorMessage();
         $("#inputDo").val('+48' + getPhoneNumber());
@@ -212,7 +212,7 @@
     });
 
 
-    $("#btnSmsSend").off().on('click',() => {
+    $("#btnSmsSend").off('click').on('click', () => {
 
         let data = {
             to: $("#inputDo").val(),
@@ -276,7 +276,7 @@
     //End send sms
 
     //Send email
-    $("#btnEmail").off().on('click',function () {
+    $("#btnEmail").off('click').on('click', function () {
         czyscEamilInput();
         ErorMessage();
 
@@ -289,7 +289,7 @@
         $("#inputDoEmail").val("");
         $("#inputWiadomoscEamil").val("");
     }
-    $("#btnEmailSend").off().on('click',function () {
+    $("#btnEmailSend").off('click').on('click', function () {
         let data = {
             to: $("#inputDoEmail").val(),
             text: $("#inputWiadomoscEamil").val(),
@@ -331,18 +331,18 @@
     }
     //End send email
 
-    $('#btnEdit').off().on('click',function () {
+    $('#btnEdit').off('click').on('click', function () {
         //Open modal dialog for edit event
         openAddEditForm();
     })
 
     //Dete element
-    $('#btnDelete').off().on('click',function () {
+    $('#btnDelete').off('click').on('click', function () {
         $("#deleteConfirmModal").modal();
         buttonInfo($("#kasujElement"), "Kasuj");
     })
 
-    $("#kasujElement").off().on('click',function () {
+    $("#kasujElement").off('click').on('click', function () {
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie </div> <div class='loader' style='float:left;'></div>");
         if (selectedEvent != null) {
             $.ajax({
@@ -407,7 +407,7 @@
         $('#myModalSave').modal();
     }
 
-    $('#btnSave').off().on('click',function () {
+    $('#btnSave').off('click').on('click', function () {
 
         //Validation/
         ErorMessage();

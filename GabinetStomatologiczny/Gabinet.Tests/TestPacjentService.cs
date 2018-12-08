@@ -61,16 +61,20 @@ namespace Gabinet.Tests
         /// 
         /// </summary>
         [TestMethod]
-        public void PacejntCreate()
+        public async Task PacejntCreate()
         {
             var context = new GabinetStomatologiczny.Share.TestContext();
-            context.Pacjent.Add(new Pacjent() {Imie = "Kowalski" , Nazwisko = "Jan" ,Email = "patrykrafal33@o2.pl" });
-            context.Pacjent.Add(new Pacjent() { Imie = "FDFDS", Nazwisko = "FDS", Email = "patrykrafal33@o2.pl" });
-            context.Pacjent.Add(new Pacjent() { Imie = "FDS", Nazwisko = "JFDan", Email = "patrykrafal33@o2.pl" });
+
+            context.Pacjent.Add(new Pacjent() {ID = 1,Imie = "Kowalski" , Nazwisko = "Jan" ,Email = "patrykrafal33@o2.pl" });
+            context.Pacjent.Add(new Pacjent() {ID = 2, Imie = "Słowik", Nazwisko = "FDS", Email = "patrykrafal33@o2.pl" });
+            context.Pacjent.Add(new Pacjent() {ID = 3, Imie = "FDS", Nazwisko = "JFDan", Email = "patrykrafal33@o2.pl" });
+
             var service = new PacjentsService(context);
             var pacjents = context.SaveChanges();
             var allPacjents = service.getAllPacjents().Count();
+            var namePacjent = await service.GetPacjentById(2);
 
+            Assert.AreEqual(namePacjent.Imie, "Słowik");
             Assert.AreEqual(1, pacjents);
             Assert.AreEqual(3,allPacjents);
         }

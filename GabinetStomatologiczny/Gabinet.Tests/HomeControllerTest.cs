@@ -11,7 +11,7 @@ using System.Linq;
 namespace Gabinet.Tests
 {
     [TestClass]
-    public class ControllerTest
+    public class HomeControllerTest
     {
         [TestMethod]
         public void HomeController()

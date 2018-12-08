@@ -15,7 +15,7 @@ namespace Gabinet.Tests
         {
             //Arrange
 
-            string phone = "123-123-434";
+            string phone = "450-211-211";
 
 
             //Act 
@@ -39,11 +39,11 @@ namespace Gabinet.Tests
         public void verifyPostalCode()
         {
            
-            string code = "21-400";
+            string code = "21-500";
 
             var isValid = CodeNumberCheck(code);
 
-            Assert.AreEqual(true,isValid,"Błędny cod pocztowy");
+            Assert.AreEqual(true,isValid,"Błędny kod pocztowy");
 
         }
 
@@ -55,25 +55,7 @@ namespace Gabinet.Tests
         }
 
         //End Check kod pocztowy
-
-        //Check date format
-        [TestMethod]
-        public  void verifyTestDateFormat()
-        {
-            string code = "21-405";
-
-            var isValid = CodeDateCheck(code);
-
-            Assert.AreEqual(true, isValid);
-        }
-
-        private bool CodeDateCheck(string code)
-        {
-            string pattern = @"^\d{2}-\d{3}$";
-            return Regex.IsMatch(code,pattern);
-        }
-        //End Check date format
-
+    
         //Check pesel
         [TestMethod]
         public void peselCheck()
@@ -96,28 +78,6 @@ namespace Gabinet.Tests
         }
 
         //End check pesel
-
-        //Check number
-
-        [TestMethod]
-        public void verifyNumberFormat()
-        {
-            var number = "333434234234324432423424";
-
-            var isValid = CheckNumber(number);
-
-            Assert.AreEqual(true, isValid);
-        }
-
-        private bool CheckNumber(string number)
-        {
-            string patter = "^[0-9]";
-            return Regex.IsMatch(number, patter);
-        }
-
-        //end check number
-
-
     }
 
 

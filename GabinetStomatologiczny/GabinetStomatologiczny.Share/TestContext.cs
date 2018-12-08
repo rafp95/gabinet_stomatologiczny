@@ -16,8 +16,6 @@ namespace GabinetStomatologiczny.Share
             this.Pacjent = new TestDbSet<Pacjent>();
         }
 
-        public override DbSet<Pacjent> Pacjent { get; set; }
-
         public int SaveChangesCount { get; private set; }
         public override int SaveChanges()
         {

@@ -18,14 +18,13 @@ namespace GabinetStomatologiczny.DAL
             this.Configuration.ProxyCreationEnabled = false;
         }
 
-        public DbSet<Pacjent> Pacjent { get; set; }
-
-        public DbSet<ZabDescriptions> ZabDescriptions { get; set; }
-        public DbSet<Zabieg> Zabieg { get; set; }
-        public DbSet<Lekarz> Lekarz { get; set; }
-        public DbSet<Wizyta> Wizyta { get; set; }
-        public DbSet<Administrator> Administrator { get; set; }
-        public DbSet<Zab> Zab { get; set; }
+        public virtual DbSet<Pacjent> Pacjent { get; set; }
+        public virtual DbSet<ZabDescriptions> ZabDescriptions { get; set; }
+        public virtual DbSet<Zabieg> Zabieg { get; set; }
+        public virtual DbSet<Lekarz> Lekarz { get; set; }
+        public virtual DbSet<Wizyta> Wizyta { get; set; }
+        public virtual DbSet<Administrator> Administrator { get; set; }
+        public virtual DbSet<Zab> Zab { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

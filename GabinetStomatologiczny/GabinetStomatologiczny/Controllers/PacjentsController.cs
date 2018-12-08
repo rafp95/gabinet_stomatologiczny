@@ -25,10 +25,9 @@ namespace GabinetStomatologiczny.Controllers
         private readonly ISortPacjentService sortPacjentService = null;
         private readonly ISugestionService sugestionService = null;
 
-        public PacjentsController(IPacjentsService pacjentsService, 
-            ISortPacjentService sortPacjentService, 
-            ISugestionService sugestionService,
-            GabinetContext db):base(db)
+        public PacjentsController(IPacjentsService pacjentsService,
+            ISortPacjentService sortPacjentService,
+            ISugestionService sugestionService)
         {
             this.pacjentsService = pacjentsService;
             this.sortPacjentService = sortPacjentService;
@@ -56,12 +55,12 @@ namespace GabinetStomatologiczny.Controllers
         {
             var list = this.sugestionService.SugestionPacjent(sugestion);
 
-            
+
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Pacjents/Details/5
-        public async Task <ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -107,7 +106,7 @@ namespace GabinetStomatologiczny.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Pacjent pacjent = await this.pacjentsService.Find(id);
-      
+
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -132,14 +131,14 @@ namespace GabinetStomatologiczny.Controllers
         }
 
         // GET: Pacjents/Delete/5
-        public async Task <ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Pacjent pacjent = await this.pacjentsService.Find(id);
-            
+
             if (pacjent == null)
             {
                 return HttpNotFound();
@@ -150,7 +149,7 @@ namespace GabinetStomatologiczny.Controllers
         // POST: Pacjents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task <ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Pacjent pacjent = await this.pacjentsService.Find(id);
             await this.pacjentsService.Remove(pacjent);

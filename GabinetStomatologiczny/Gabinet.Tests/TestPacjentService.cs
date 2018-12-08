@@ -18,7 +18,10 @@ namespace Gabinet.Tests
     [TestClass]
     public class TestPacjentService
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private IQueryable<Pacjent> allPacjents()
         {
             var pacjents = new List<Pacjent>() {
@@ -31,7 +34,9 @@ namespace Gabinet.Tests
             return pacjents;
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void PacejntListCount()
         {
@@ -52,6 +57,28 @@ namespace Gabinet.Tests
             Assert.AreEqual(result.Count(), 4);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void PacejntCreate()
+        {
+            var context = new GabinetStomatologiczny.Share.TestContext();
+            context.Pacjent.Add(new Pacjent() {Imie = "Kowalski" , Nazwisko = "Jan" ,Email = "patrykrafal33@o2.pl" });
+            context.Pacjent.Add(new Pacjent() { Imie = "FDFDS", Nazwisko = "FDS", Email = "patrykrafal33@o2.pl" });
+            context.Pacjent.Add(new Pacjent() { Imie = "FDS", Nazwisko = "JFDan", Email = "patrykrafal33@o2.pl" });
+            var service = new PacjentsService(context);
+            var pacjents = context.SaveChanges();
+            var allPacjents = service.getAllPacjents().Count();
+
+            Assert.AreEqual(1, pacjents);
+            Assert.AreEqual(3,allPacjents);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [TestMethod]
         public async Task PacjentFindById()
         {
@@ -80,7 +107,9 @@ namespace Gabinet.Tests
             Assert.AreEqual(result.Imie, "Kamila");
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void TestPlec()
         {
@@ -94,7 +123,11 @@ namespace Gabinet.Tests
             Assert.AreEqual(false, isValid);
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         private bool pacjentPlec(Pacjent p)
         {
             return char.ToLower(p.Imie.ElementAt(p.Imie.Length - 1)).Equals('a');

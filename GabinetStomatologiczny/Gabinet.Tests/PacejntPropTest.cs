@@ -1,7 +1,6 @@
 ﻿using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Share;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
 using System;
 
 namespace Gabinet.Tests
@@ -16,16 +15,16 @@ namespace Gabinet.Tests
 
             var p = new Pacjent()
             {
-                //Imie = "fdfds",
-                NrTelefonu = "567-123-213",
+                Imie = "fdfds",
                 Nazwisko = "dfdsfd",
                 DataUrodzenia = DateTime.MinValue,
+                NrTelefonu = "3232",
                 Email = "patrykrafal33@o2.pl",
             };
 
             var errorcount = check.myValidation(p).Count;
 
-            NUnit.Framework.Assert.AreEqual(0, errorcount);
+            Assert.AreEqual(0, errorcount);
         }
     }
 }

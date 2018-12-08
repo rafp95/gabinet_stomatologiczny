@@ -2,11 +2,13 @@
 using GabinetStomatologiczny.DAL;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Services;
+using GabinetStomatologiczny.Share;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,13 +53,21 @@ namespace Gabinet.Tests
         }
 
         [TestMethod]
-        public async void PacjentFindById()
+        public async Task PacjentFindById()
         {
 
             var moqkSet = new Mock<DbSet<Pacjent>>();
             var moqContext = new Mock<GabinetContext>();
 
-            moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Provider).Returns(allPacjents().Provider);
+            //moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Provider).Returns(allPacjents().Provider);
+            moqkSet.As<IDbAsyncEnumerable<Pacjent>>()
+             .Setup(m => m.GetAsyncEnumerator())
+             .Returns(new TestDbAsyncEnumerator<Pacjent>(allPacjents().GetEnumerator()));
+
+            moqkSet.As<IQueryable<Pacjent>>()
+                .Setup(m => m.Provider)
+                .Returns(new TestDbAsyncQueryProvider<Pacjent>(allPacjents().Provider));
+
             moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Expression).Returns(allPacjents().Expression);
             moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.ElementType).Returns(allPacjents().ElementType);
             moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.GetEnumerator()).Returns(allPacjents().GetEnumerator());
@@ -67,7 +77,7 @@ namespace Gabinet.Tests
             IPacjentsService service = new PacjentsService(moqContext.Object);
             var result = await service.Find(2);
 
-            Assert.AreEqual(result.Imie, "Kadadsadsmila");
+            Assert.AreEqual(result.Imie, "Kamila");
         }
 
 

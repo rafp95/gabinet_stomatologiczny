@@ -123,6 +123,35 @@ namespace Gabinet.Tests
             Assert.AreEqual(result.Imie, "Kamila");
         }
 
+        [TestMethod]
+        public void TestPacejntPagination()
+        {
+            var moqkSet = new Mock<DbSet<Pacjent>>();
+            var moqContext = new Mock<GabinetContext>();
+
+            //moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Provider).Returns(allPacjents().Provider);
+            moqkSet.As<IDbAsyncEnumerable<Pacjent>>()
+             .Setup(m => m.GetAsyncEnumerator())
+             .Returns(new TestDbAsyncEnumerator<Pacjent>(allPacjents().GetEnumerator()));
+
+            moqkSet.As<IQueryable<Pacjent>>()
+                .Setup(m => m.Provider)
+                .Returns(new TestDbAsyncQueryProvider<Pacjent>(allPacjents().Provider));
+
+            moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Expression).Returns(allPacjents().Expression);
+            moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.ElementType).Returns(allPacjents().ElementType);
+            moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.GetEnumerator()).Returns(allPacjents().GetEnumerator());
+
+            moqContext.SetupGet(c => c.Pacjent).Returns(moqkSet.Object);
+
+            ISortPacjentService service = new SortPacjentService(moqContext.Object);
+            var paginationType = new GabinetStomatologiczny.Models.PaginationType() { };
+            var test = service.SortAndPaginate(paginationType);
+
+            Assert.AreEqual(paginationType.sortOrder, RodzajSort.name_asc);
+            Assert.AreEqual(test.Count(), 4);
+        }
+
         /// <summary>
         /// 
         /// </summary>

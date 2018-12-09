@@ -56,8 +56,7 @@ namespace GabinetStomatologiczny.Services
                 zabieg = zabieg.Where(s => (s.Wizyta.Pacjent.Imie + " " + s.Wizyta.Pacjent.Nazwisko + " " + s.TypZabiegu + " " + s.CenaZabiegu)
                 .ToLower().Contains(ps.searchString.ToLower()));
             }
-
-            if (string.IsNullOrEmpty(ps.searchString))
+            else
             {
                 ps.searchString = ps.currentFilter;
             }

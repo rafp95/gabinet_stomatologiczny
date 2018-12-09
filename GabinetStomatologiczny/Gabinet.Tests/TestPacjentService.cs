@@ -10,8 +10,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Gabinet.Tests
 {
@@ -40,7 +44,7 @@ namespace Gabinet.Tests
         [TestMethod]
         public void PacejntListCount()
         {
-            
+
             var moqkSet = new Mock<DbSet<Pacjent>>();
             var moqContext = new Mock<GabinetContext>();
 
@@ -65,9 +69,9 @@ namespace Gabinet.Tests
         {
             var context = new GabinetStomatologiczny.Share.TestContext();
 
-            context.Pacjent.Add(new Pacjent() {ID = 1,Imie = "Kowalski" , Nazwisko = "Jan" ,Email = "patrykrafal33@o2.pl" });
-            context.Pacjent.Add(new Pacjent() {ID = 2, Imie = "Słowik", Nazwisko = "FDS", Email = "patrykrafal33@o2.pl" });
-            context.Pacjent.Add(new Pacjent() {ID = 3, Imie = "FDS", Nazwisko = "JFDan", Email = "patrykrafal33@o2.pl" });
+            context.Pacjent.Add(new Pacjent() { ID = 1, Imie = "Kowalski", Nazwisko = "Jan", Email = "patrykrafal33@o2.pl" });
+            context.Pacjent.Add(new Pacjent() { ID = 2, Imie = "Słowik", Nazwisko = "FDS", Email = "patrykrafal33@o2.pl" });
+            context.Pacjent.Add(new Pacjent() { ID = 3, Imie = "FDS", Nazwisko = "JFDan", Email = "patrykrafal33@o2.pl" });
 
             var service = new PacjentsService(context);
             var pacjents = context.SaveChanges();
@@ -76,7 +80,15 @@ namespace Gabinet.Tests
 
             Assert.AreEqual(namePacjent.Imie, "Słowik");
             Assert.AreEqual(1, pacjents);
-            Assert.AreEqual(3,allPacjents);
+            Assert.AreEqual(3, allPacjents);
+        }
+
+        [TestMethod]
+        public void PacejntDpendencyTest()
+        {
+            var moqService = new Mock<IPacjentsService>();
+
+            Assert.AreNotEqual(moqService, null);
         }
 
         /// <summary>

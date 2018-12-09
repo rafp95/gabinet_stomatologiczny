@@ -49,6 +49,11 @@ namespace GabinetStomatologiczny.Services
                 lekarz = lekarz.Where(s => (s.Imie + " " + s.Nazwisko + " " + s.NrTelefonu + " " + s.Email)
                 .ToLower().Contains(ls.searchString.ToLower()));
             }
+            else
+            {
+                ls.searchString = ls.currentFilter;
+            }
+
 
             switch (ls.sortOrder)
             {

@@ -52,8 +52,7 @@ namespace GabinetStomatologiczny.Services
                 pacjent = pacjent.Where(s => (s.Imie + " " + s.Nazwisko + " " + s.NrTelefonu + " " + s.Email + " " + s.Plec)
                 .ToLower().Contains(ps.searchString.ToLower()));
             }
-
-            if (string.IsNullOrEmpty(ps.searchString))
+            else
             {
                 ps.searchString = ps.currentFilter;
             }
@@ -124,7 +123,7 @@ namespace GabinetStomatologiczny.Services
             ps.pageSize = 10;
             ps.pageNumber = (ps.page ?? 1);
 
-            return pacjent.ToPagedList(ps.pageNumber,ps.pageSize);
+            return pacjent.ToPagedList(ps.pageNumber, ps.pageSize);
         }
     }
 }

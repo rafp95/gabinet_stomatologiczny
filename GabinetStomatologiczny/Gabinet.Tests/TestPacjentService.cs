@@ -33,7 +33,15 @@ namespace Gabinet.Tests
               new Pacjent() { ID = 1, Imie = "Patryk", Nazwisko = "Rafal" },
               new Pacjent() { ID = 2, Imie = "Kamila", Nazwisko = "Rafal" },
               new Pacjent() { ID = 3, Imie = "Piotr", Nazwisko = "Rafal" },
-              new Pacjent() { ID = 4, Imie = "Anna", Nazwisko = "Rafal" }
+              new Pacjent() { ID = 4, Imie = "Anna", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 5, Imie = "Pavvtryk", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 6, Imie = "Kavcmila", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 7, Imie = "Pvcxiotr", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 8, Imie = "Anvna", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 9, Imie = "Patvxryk", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 10, Imie = "Kamvcxila", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 11, Imie = "Piovcxtr", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 12, Imie = "Anvxcna", Nazwisko = "Rafal" }
             }.AsQueryable();
 
             return pacjents;
@@ -59,7 +67,7 @@ namespace Gabinet.Tests
             IPacjentsService service = new PacjentsService(moqContext.Object);
             var result = service.getAllPacjents();
 
-            Assert.AreEqual(result.Count(), 4);
+            Assert.AreEqual(result.Count(), 12);
         }
 
         /// <summary>
@@ -150,7 +158,7 @@ namespace Gabinet.Tests
             s.term = "Kam";
             var service = p.SugestionPacjent(s);
             var elem = service.FirstOrDefault();
-            var obj = new  { label = "Kamila Rafal" };
+            var obj = new { label = "Kamila Rafal" };
 
             s.term = "dfsffdsfdfsdfds";
             var service2 = p.SugestionPacjent(s);
@@ -158,7 +166,7 @@ namespace Gabinet.Tests
             var obj2 = new { label = "Nie jesteś zapisany" };
 
 
-            Assert.AreEqual(obj.ToString(),elem.ToString() );
+            Assert.AreEqual(obj.ToString(), elem.ToString());
             Assert.AreEqual(obj2.ToString(), elem2.ToString());
         }
 
@@ -183,12 +191,18 @@ namespace Gabinet.Tests
 
             moqContext.SetupGet(c => c.Pacjent).Returns(moqkSet.Object);
 
-            ISortPacjentService service = new SortPacjentService(moqContext.Object);
+            var service = new SortPacjentService(moqContext.Object);
             var paginationType = new GabinetStomatologiczny.Models.PaginationType() { };
+
+            paginationType.page = 2;
+            paginationType.sortOrder = RodzajSort.nrtel_asc;
             var test = service.SortAndPaginate(paginationType);
 
-            Assert.AreEqual(paginationType.sortOrder, RodzajSort.name_asc);
-            Assert.AreEqual(test.Count(), 4);
+            Assert.AreEqual(paginationType.sortOrder, RodzajSort.nrtel_asc);
+            Assert.AreEqual(test.Count(), 2);
+            Assert.AreEqual(2, paginationType.pageNumber);
+            Assert.AreEqual(service.RodzajSort, RodzajSort.nrtel_asc);
+            
         }
 
         /// <summary>

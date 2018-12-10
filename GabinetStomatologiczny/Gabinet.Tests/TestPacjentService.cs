@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -121,6 +122,44 @@ namespace Gabinet.Tests
             var result = await service.Find(2);
 
             Assert.AreEqual(result.Imie, "Kamila");
+        }
+
+        [TestMethod]
+        public void TestSugestionPacjents()
+        {
+            var moqkSet = new Mock<DbSet<Pacjent>>();
+            var moqContext = new Mock<GabinetContext>();
+
+            //moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Provider).Returns(allPacjents().Provider);
+            moqkSet.As<IDbAsyncEnumerable<Pacjent>>()
+             .Setup(m => m.GetAsyncEnumerator())
+             .Returns(new TestDbAsyncEnumerator<Pacjent>(allPacjents().GetEnumerator()));
+
+            moqkSet.As<IQueryable<Pacjent>>()
+                .Setup(m => m.Provider)
+                .Returns(new TestDbAsyncQueryProvider<Pacjent>(allPacjents().Provider));
+
+            moqkSet.As<IQueryable<Pacjent>>().Setup(m => m.Expression).Returns(allPacjents().Expression);
+            moqkSet.As<IQueryable<Pacjent>>().Setup(m => m.ElementType).Returns(allPacjents().ElementType);
+            moqkSet.As<IQueryable<Pacjent>>().Setup(m => m.GetEnumerator()).Returns(allPacjents().GetEnumerator());
+
+            moqContext.SetupGet(c => c.Pacjent).Returns(moqkSet.Object);
+
+            ISugestionService p = new SugestionService(moqContext.Object);
+            Sugestion s = new Sugestion();
+            s.term = "Kam";
+            var service = p.SugestionPacjent(s);
+            var elem = service.FirstOrDefault();
+            var obj = new  { label = "Kamila Rafal" };
+
+            s.term = "dfsffdsfdfsdfds";
+            var service2 = p.SugestionPacjent(s);
+            var elem2 = service2.FirstOrDefault();
+            var obj2 = new { label = "Nie jesteś zapisany" };
+
+
+            Assert.AreEqual(obj.ToString(),elem.ToString() );
+            Assert.AreEqual(obj2.ToString(), elem2.ToString());
         }
 
         [TestMethod]

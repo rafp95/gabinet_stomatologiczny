@@ -24,7 +24,7 @@ namespace GabinetStomatologiczny.Services
 
         public async Task<IEnumerable<Zabieg>> GetPacjents(string user)
         {
-            var zabiegQuery =  _db.Zabieg.Include(z => z.Wizyta).AsQueryable();
+            var zabiegQuery =  _db.Zabieg.Include(z => z.Wizyta).Include(p => p.Wizyta.Pacjent).AsQueryable();
             var zabieg = await zabiegQuery.Where(_ => _.Wizyta.Pacjent.Email == user).ToListAsync();
 
             zabieg = zabieg.Count() > 0 ? zabieg : null;

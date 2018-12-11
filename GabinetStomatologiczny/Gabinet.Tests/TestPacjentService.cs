@@ -1,5 +1,6 @@
 ﻿using GabinetStomatologiczny.Controllers;
 using GabinetStomatologiczny.DAL;
+using GabinetStomatologiczny.DAO.Infrastucture;
 using GabinetStomatologiczny.DAO.Models;
 using GabinetStomatologiczny.Services;
 using GabinetStomatologiczny.Share;
@@ -229,6 +230,25 @@ namespace Gabinet.Tests
         private bool pacjentPlec(Pacjent p)
         {
             return char.ToLower(p.Imie.ElementAt(p.Imie.Length - 1)).Equals('a');
+        }
+
+        [TestMethod]
+        public void TestDatePacjentAttribue()
+        {
+            
+            var pacjentDateAttribute = new DatePacjentAttribute();
+
+            var isNull = pacjentDateAttribute.IsValid(null);
+            var isAfter = pacjentDateAttribute.IsValid(DateTime.Now.AddDays(1));
+            var isBefore = pacjentDateAttribute.IsValid(DateTime.MinValue);
+            var isMaxDate = pacjentDateAttribute.IsValid(DateTime.MaxValue);
+            var isNow = pacjentDateAttribute.IsValid(DateTime.Now);
+
+            Assert.AreEqual(false, isAfter, "Podana data nie jest wcześniejsza");
+            Assert.AreEqual(true, isBefore,"Podana data nie jest wcześniejsza");
+            Assert.AreEqual(true, isNull, "Podana data nie jest wcześniejsza");
+            Assert.AreEqual(true, isNow, "Podana data nie jest wcześniejsza");
+            Assert.AreEqual(false, isMaxDate, "Podana data nie jest wcześniejsza");
         }
     }
 }

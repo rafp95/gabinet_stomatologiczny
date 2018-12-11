@@ -111,7 +111,6 @@
     <Compile Include="GabinetTest.cs" />
     <Compile Include="PacejntPropTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HomeControllerTest.cs" />
     <Compile Include="AutoMapperTest.cs" />
     <Compile Include="TestDataBase.cs" />
     <Compile Include="TestPacjentService.cs" />

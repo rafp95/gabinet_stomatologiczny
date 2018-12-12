@@ -586,15 +586,15 @@
     <Content Include="Content\PginationPosition.min.css">
       <DependentUpon>PginationPosition.css</DependentUpon>
     </Content>
-    <Content Include="Content\script\AutoComplSearchWizyta.js" />
-    <Content Include="Content\script\Chart.js" />
-    <Content Include="Content\script\GlobalCustomScript.js" />
-    <Content Include="Content\script\KalendarzWizyt.js" />
-    <Content Include="Content\script\AutoComplete.js" />
-    <Content Include="Content\script\ButtomSpinner.js" />
-    <Content Include="Content\script\ModelZebow.js" />
-    <Content Include="Content\script\Notyfication.js" />
-    <Content Include="Content\script\SilaHasla.js" />
+    <Content Include="Scripts\custom\AutoComplSearchWizyta.js" />
+    <Content Include="Scripts\custom\Chart.js" />
+    <Content Include="Scripts\custom\GlobalCustomScript.js" />
+    <Content Include="Scripts\custom\KalendarzWizyt.js" />
+    <Content Include="Scripts\custom\AutoComplete.js" />
+    <Content Include="Scripts\custom\ButtomSpinner.js" />
+    <Content Include="Scripts\custom\ModelZebow.js" />
+    <Content Include="Scripts\custom\Notyfication.js" />
+    <Content Include="Scripts\custom\SilaHasla.js" />
     <None Include="Content\SilaHasla.scss" />
     <None Include="Content\SharedStyle.scss" />
     <Content Include="Content\SharedStyle.css">
@@ -622,7 +622,7 @@
     <Content Include="Content\img\3.jpg" />
     <None Include="Content\Kalendarz.scss" />
     <None Include="Content\Pacjent.scss" />
-    <Content Include="Content\script\Zdjecia.js" />
+    <Content Include="Scripts\custom\Zdjecia.js" />
     <Content Include="Content\TableStyle.css">
       <DependentUpon>TableStyle.scss</DependentUpon>
     </Content>
@@ -736,7 +736,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\datepicker-pl.js" />
-    <Content Include="Content\script\WyszukiwanieAjaxowe.js" />
+    <Content Include="Scripts\custom\WyszukiwanieAjaxowe.js" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

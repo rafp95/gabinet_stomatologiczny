@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     //Zmienne pobrania wartości z inputa plus informacja o sile hasła
-    var pass = $("input#Haslo");
-    var checkInfo = $("span#InfoPassword");
+    let pass = $("input#Haslo");
+    let checkInfo = $("span#InfoPassword");
     //Sprawdzenie poprawności hasła
     silaHasla(pass, checkInfo);
 

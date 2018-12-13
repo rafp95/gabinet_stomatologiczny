@@ -12,7 +12,7 @@ function silaHasla(pass, checkInfo) {
 
     pass.off().on('keyup', function () {
         $('#myProgress').css({ 'display': 'block' });
-        if ($(this).val().length <= 5) {
+        if ($(this).val().length < 5) {
             move(0, 'red');
             checkInfo.text("Bardzo słabe");
             checkInfo.css("color", "red");
@@ -35,7 +35,7 @@ function silaHasla(pass, checkInfo) {
             }
         }
 
-        if (poprawnosc > 2 && pass.val().length > 8) {
+        if (poprawnosc > 2 && pass.val().length > 5) {
             poprawnosc++;
             console.log(poprawnosc);
         }

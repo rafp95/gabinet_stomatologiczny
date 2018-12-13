@@ -32,7 +32,7 @@ namespace GabinetStomatologiczny.Models
     {
 
         [Required]
-        [StringLength(100, ErrorMessage = "Hasło {0} musi być dłuższe {2} duże znaki.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Hasło {0} musi być dłuższe niż {2} znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Nowe hasło")]
         public string NewPassword { get; set; }
@@ -52,7 +52,7 @@ namespace GabinetStomatologiczny.Models
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Hasło {0} musi być dłuższe {2} duże znaki.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Hasło {0} musi być dłuższe niż {2} znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Nowe hasło")]
         public string NewPassword { get; set; }

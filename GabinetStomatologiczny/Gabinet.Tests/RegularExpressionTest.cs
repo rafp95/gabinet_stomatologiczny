@@ -36,7 +36,7 @@ namespace Gabinet.Tests
 
         //check kod pocztowy
         [TestMethod]
-        public void verifyPostalCode()
+        public void VerifyPostalCode()
         {
            
             string code = "21-500";
@@ -58,7 +58,7 @@ namespace Gabinet.Tests
     
         //Check pesel
         [TestMethod]
-        public void peselCheck()
+        public void PeselCheck()
         {
             var pesel = "95030410314";
 

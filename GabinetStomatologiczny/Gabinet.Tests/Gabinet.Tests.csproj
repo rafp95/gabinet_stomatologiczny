@@ -108,7 +108,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="GabinetTest.cs" />
+    <Compile Include="RegularExpressionTest.cs" />
     <Compile Include="PacejntPropTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AutoMapperTest.cs" />

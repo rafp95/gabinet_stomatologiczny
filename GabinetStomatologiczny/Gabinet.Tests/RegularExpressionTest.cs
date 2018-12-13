@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace Gabinet.Tests
 {
     [TestClass]
-    public class GabinetTest
+    public class RegularExpressionTest
     {
 
         //Check phone number
@@ -78,6 +78,27 @@ namespace Gabinet.Tests
         }
 
         //End check pesel
+
+        //zabieg price test
+        [TestMethod]
+        public void CheckPriceIsValid()
+        {
+            var price1 = "100";
+            var price2 = "-100";
+
+            Assert.AreEqual(true, CheckPrice(price1));
+            Assert.AreEqual(false, CheckPrice(price2));
+        }
+
+
+        private bool CheckPrice(string price)
+        {
+            string regularPrice = @"^\s*(?=.*[1-9])\d*(?:\,\d{1,2})?\s*$";
+
+            return Regex.IsMatch(price, regularPrice);
+        }
+
+        //zabieg price test end
     }
 
 

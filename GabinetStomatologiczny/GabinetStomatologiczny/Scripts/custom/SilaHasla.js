@@ -24,7 +24,8 @@ function silaHasla(pass, checkInfo) {
         wyrazenie.push("[a-z]");
         wyrazenie.push("[0-9]");
         wyrazenie.push("[$@$!%*#?&]");
-        wyrazenie.push("[ąćźęółńĄĆŻĘÓŁŃ]");
+        wyrazenie.push("[ąćęółńżź]");
+        wyrazenie.push("[ĄĆĘÓŁŃŻŹ]");
 
         let poprawnosc = 0;
         for (let i = 0; i < wyrazenie.length; i++) {

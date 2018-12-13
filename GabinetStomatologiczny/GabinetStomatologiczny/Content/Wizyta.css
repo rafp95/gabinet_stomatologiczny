@@ -53,7 +53,8 @@ div.body-content form:not(.wyszukiwarka) {
     font-size: 10px; } }
 
 .modal {
-  overflow: hidden; }
+  overflow-x: hidden;
+  overflow-y: auto; }
 
 /*Preloader*/
 div.ladowanie {

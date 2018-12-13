@@ -79,7 +79,8 @@ div.body-content form:not(.wyszukiwarka) {
 }
 
 .modal {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /*Preloader*/

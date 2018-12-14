@@ -1,6 +1,6 @@
 ﻿$(function () {
     // Click on notification icon for show notification
-    $('button.noti').click(function (e) {
+    $('button.noti').off('click').on('click',function (e) {
         e.stopPropagation();
         $('.card-notification-desktop').fadeIn();
         let count = 0;
@@ -12,7 +12,7 @@
         $('span.count', this).html('0');
     })
     // hide notifications
-    $('html').click(function () {
+    $('html').off('click').on('click',function () {
         $('.card-notification-desktop').fadeOut();
     })
     // update notification

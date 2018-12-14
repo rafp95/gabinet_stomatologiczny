@@ -41,13 +41,13 @@
     let top = $('#back-to-top');
     $(window).scroll(() => {
         if ($(this).scrollTop() > 50) {
-            top.fadeIn(300);
+            top.fadeIn(100);
         } else {
-            top.fadeOut(300);
+            top.fadeOut(100);
         }
     });
     // scroll body to 0px on click
-    top.click((e) => {
+    top.off('click').on('click',(e) => {
         e.preventDefault();
         $('html,body').animate({
             scrollTop: 0

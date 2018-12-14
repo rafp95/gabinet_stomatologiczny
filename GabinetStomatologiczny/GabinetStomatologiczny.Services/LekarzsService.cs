@@ -16,7 +16,6 @@ namespace GabinetStomatologiczny.Services
 
     public interface ILekarzService
     {
-        Task<IEnumerable<Lekarz>> getAllLekarz();
         Task <Lekarz> About(int? id);
         Task <Lekarz> Edit(Lekarz lekarz);
         Task<Lekarz> Find(int? id);
@@ -32,11 +31,6 @@ namespace GabinetStomatologiczny.Services
         public LekarzsService(GabinetContext db)
         {
             this._db = db;
-        }
-
-        public async Task<IEnumerable<Lekarz>> getAllLekarz()
-        {
-            return await this._db.Lekarz.ToListAsync();
         }
 
         public async Task<Lekarz> About(int? id)

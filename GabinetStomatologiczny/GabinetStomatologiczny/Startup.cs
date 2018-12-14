@@ -18,8 +18,11 @@ namespace GabinetStomatologiczny
 {
     public partial class Startup
     {
-        private NotyficatorComponnets nc = new NotyficatorComponnets();
-        // tedt
+        //private NotyficatorComponnets nc = new NotyficatorComponnets();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
             //Add signalR to notyfication
@@ -97,7 +100,7 @@ namespace GabinetStomatologiczny
             services.AddTransient<ISortZabiegsService, SortZabiegsService>();
             services.AddTransient<IWizytService, WizytServie>();
             services.AddTransient<IZabiegService, ZabiegService>();
-            services.AddSingleton(typeof(NotyficatorComponnets), nc);
+            //services.AddSingleton(typeof(INotyficatorComponnets), nc);
             services.AddTransient<INotyficationService, NotyficationService>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<IRejestracjaService, RejestracjaService>();

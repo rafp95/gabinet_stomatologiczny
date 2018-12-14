@@ -1,5 +1,5 @@
 ﻿div#notyfication-pos {
-  float: right;
+  float: right !important;
   margin-left: 10px; }
 
 /*arrow*/

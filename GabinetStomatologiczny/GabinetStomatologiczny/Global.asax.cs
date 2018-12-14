@@ -22,7 +22,23 @@ namespace GabinetStomatologiczny
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private string con = ConfigurationManager.ConnectionStrings["NotyficationConnection"].ConnectionString;
+        private readonly string con = ConfigurationManager.ConnectionStrings["NotyficationConnection"].ConnectionString;
+
+        private readonly NotyficatorComponnets nc = null;
+        
+        private INotyficatorComponnets _nc
+        {
+            get
+            {
+                return nc ?? new NotyficatorComponnets();
+            }
+        }
+
+        public MvcApplication()
+        {
+
+        }
+
         protected void Application_Start()
         {
             /*
@@ -50,10 +66,9 @@ namespace GabinetStomatologiczny
 
         protected void Session_Start(object Sender, EventArgs e)
         {
-            NotyficatorComponnets nc = new NotyficatorComponnets();
             var currentTime = DateTime.Now;
             HttpContext.Current.Session["LastUpdated"] = currentTime;
-            nc.RegisterNotyfication(currentTime);
+            this._nc.RegisterNotyfication(currentTime);
         }
 
         protected void Application_End()
@@ -61,6 +76,6 @@ namespace GabinetStomatologiczny
             SqlDependency.Stop(con);
         }
 
-       
+
     }
 }

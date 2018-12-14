@@ -13,7 +13,13 @@ using System.Data.Entity;
 
 namespace GabinetStomatologiczny
 {
-    public class NotyficatorComponnets
+
+    public interface INotyficatorComponnets
+    {
+        void RegisterNotyfication(DateTime currentTime);
+    }
+
+    public class NotyficatorComponnets : INotyficatorComponnets
     {
 
         public NotyficatorComponnets()
@@ -24,7 +30,7 @@ namespace GabinetStomatologiczny
         public void RegisterNotyfication(DateTime currentTime)
         {
             string conStr = ConfigurationManager.ConnectionStrings["NotyficationConnection"].ConnectionString;
-            string sqlCommand = @"SELECT [PacjentID] FROM [dbo].[Wizyta]";
+            string sqlCommand = @"SELECT [PacjentID] FROM [dbo].[Wizyta] Where [Poczatek] >= @Poczatek";
             using (SqlConnection con = new SqlConnection(conStr))
             {
                 SqlCommand cmd = new SqlCommand(sqlCommand, con);

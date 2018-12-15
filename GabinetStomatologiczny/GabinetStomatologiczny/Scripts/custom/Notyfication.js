@@ -1,6 +1,6 @@
 ﻿$(function () {
     // Click on notification icon for show notification
-    $('button.noti').off('click').on('click',function (e) {
+    $('button.noti').off('click').on('click', function (e) {
         e.stopPropagation();
         $('.card-notification-desktop').fadeIn();
         let count = 0;
@@ -12,7 +12,7 @@
         $('span.count', this).html('0');
     })
     // hide notifications
-    $('html').off('click').on('click',function () {
+    $('html').off('click').on('click', function () {
         $('.card-notification-desktop').fadeOut();
     })
     // update notification
@@ -30,9 +30,10 @@
                 }
                 $.each(response, function (index, value) {
                     $('#notiContent').append($('<li>Zapisał(a) się na '
-                        + ' <a href="/Wizytas" title="Kliknij aby odświeżyć">'
-                        + ' wizytę : ' + '</a>' + ' <div> ' + value.tytul + ' </div> '
-                        + '<div>' + moment(value.Poczatek).format('DD-MM-YYYY HH:mm') + '</div></li>'));
+                        + '<a href="/Wizytas" title="Kliknij aby odświeżyć"> wizytę : ' + '</a>'
+                        + '<div> ' + value.tytul + ' </div> '
+                        + '<div>' + moment(value.Poczatek).format('DD-MM-YYYY HH:mm') + '</div>'
+                        + '</li>'));
                 });
             },
             error: function (error) {

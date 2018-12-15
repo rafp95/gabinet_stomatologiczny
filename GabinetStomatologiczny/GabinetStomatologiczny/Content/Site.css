@@ -13,7 +13,38 @@ body {
 
 .body-content {
   margin-top: 20px;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+  /* Fading animation */ }
+  .body-content .fade {
+    -moz-animation: fade .5s;
+    /* Firefox */
+    -webkit-animation: fade .5s;
+    /* Safari and Chrome */
+    -o-animation: fade .5s;
+    animation: fade .5s;
+    /* Opera */ }
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes fade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 /*Navbar animation*/
 .navbar-inverse {
@@ -29,7 +60,7 @@ body {
 
 .navbar-toggle .icon-bar {
   width: 22px;
-  transition: all .6s; }
+  transition: all .6s ease; }
 
 .navbar-toggle .top-bar {
   transform: rotate(45deg);

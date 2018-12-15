@@ -20,3 +20,44 @@
     }
 }
 //end  database save info
+//animation loading body
+@mixin fadeBodyAnimation {
+    /* Fading animation */
+    .fade {
+        -moz-animation: fade .5s; /* Firefox */
+        -webkit-animation: fade .5s; /* Safari and Chrome */
+        -o-animation: fade .5s;
+        animation: fade .5s; /* Opera */
+    }
+
+    @-webkit-keyframes fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-moz-keyframes fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+//end animation loading body

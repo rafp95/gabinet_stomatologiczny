@@ -1,4 +1,6 @@
-﻿* {
+﻿@import './SharedStyle.scss';
+
+* {
     box-sizing: border-box;
 }
 
@@ -17,6 +19,11 @@ body {
 .body-content {
     margin-top: 20px;
     overflow-x: hidden;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    @include fadeBodyAnimation;
 }
 
 /*Navbar animation*/
@@ -36,7 +43,7 @@ body {
 
 .navbar-toggle .icon-bar {
     width: 22px;
-    transition: all .6s;
+    transition: all .6s ease;
 }
 
 .navbar-toggle .top-bar {

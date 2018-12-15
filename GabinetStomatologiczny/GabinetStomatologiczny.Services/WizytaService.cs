@@ -83,8 +83,11 @@ namespace GabinetStomatologiczny.Services
         public async Task<bool> SaveEvent(Wizyta w, ClaimsIdentity user)
         {
             var status = false;
-            var equals = await this.db.Wizyta.AnyAsync(_ => _.Poczatek.CompareTo(w.Poczatek) == 0);
-            if (!equals)
+            if (await this.db.Wizyta.AnyAsync(_ => _.Poczatek == w.Poczatek))
+            {
+                status = false;
+            }
+            else
             {
                 if (w.ID > 0)
                 {
@@ -93,7 +96,7 @@ namespace GabinetStomatologiczny.Services
                     {
                         w.LekarzID = v.LekarzID;
                         w.PacjentID = v.PacjentID;
-                    
+
                         var m = Mapper.Map<Wizyta, Wizyta>(w, v);
                         m.DataDodania = DateTime.Now;
 
@@ -115,9 +118,7 @@ namespace GabinetStomatologiczny.Services
 
                 await this.db.SaveChangesAsync();
                 status = true;
-            }else
-            {
-                status = false;
+
             }
 
             return status;

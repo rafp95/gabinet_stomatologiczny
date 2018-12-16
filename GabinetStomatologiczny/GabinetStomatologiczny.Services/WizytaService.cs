@@ -107,10 +107,11 @@ namespace GabinetStomatologiczny.Services
                 else
                 {
                     w.LekarzID = await db.Lekarz.Select(p => p.ID).FirstOrDefaultAsync();
+                    var pacjentQuery = db.Pacjent.AsQueryable();
                     var m = Mapper.Map<Wizyta, Wizyta>(w);
                     m.PacjentID = this.uR.GetUserRole(user) == "Pacjent" ?
-                        await db.Pacjent.Where(_ => _.Email == user.Name).Select(_ => _.ID).FirstOrDefaultAsync() :
-                        await db.Pacjent.Where(p => (p.Imie + " " + p.Nazwisko).
+                        await pacjentQuery.Where(_ => _.Email == user.Name).Select(_ => _.ID).FirstOrDefaultAsync() :
+                        await pacjentQuery.Where(p => (p.Imie + " " + p.Nazwisko).
                     Contains(w.Pacjent.Imie + " " + w.Pacjent.Nazwisko)).Select(p => p.ID).FirstOrDefaultAsync();
                     m.DataDodania = DateTime.Now;
                     db.Wizyta.Add(m);

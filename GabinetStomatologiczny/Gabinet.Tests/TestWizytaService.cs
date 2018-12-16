@@ -12,6 +12,7 @@ using System.Data.Entity;
 using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
 using System.Data.Entity.Infrastructure;
+using AutoMapper;
 
 namespace Gabinet.Tests
 {
@@ -23,7 +24,12 @@ namespace Gabinet.Tests
         {
             var wizyta = new List<Wizyta>()
             {
-                new Wizyta() {ID = 1,DataDodania = DateTime.Now,LekarzID = 1, Poczatek = DateTime.Now.AddMinutes(30), Koniec = DateTime.Now.AddMinutes(60) }
+                new Wizyta() {
+                    ID = 1,DataDodania = DateTime.Now
+                    ,Poczatek = DateTime.Now.AddMinutes(30)
+                    ,Koniec = DateTime.Now.AddMinutes(60)
+                    , Lekarz = new Lekarz() {ID = 1, Imie = "Anna", Nazwisko = "Rafał" }
+                    , Pacjent = new Pacjent() {ID = 1, Imie = "Patryk",Nazwisko = "Rafał" }}
             }.AsQueryable();
             return wizyta;
         }
@@ -60,23 +66,27 @@ namespace Gabinet.Tests
             moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.Expression).Returns(allWizyta().Expression);
             moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.ElementType).Returns(allWizyta().ElementType);
             moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.GetEnumerator()).Returns(allWizyta().GetEnumerator());
-
+            
             moqContext.SetupGet(c => c.Wizyta).Returns(moqkSet.Object);
-
 
             IWizytService wizyta = new WizytServie(moqContext.Object, role);
 
             Wizyta w = new Wizyta()
             {
-                ID = 0,
-                Poczatek = DateTime.Now
+                ID = 1,
+                Poczatek = DateTime.Now,
+                Koniec = DateTime.Now.AddMinutes(30),
+                Lekarz = new Lekarz() { ID = 1, Imie = "Patryk", Nazwisko = "Rafał" },
+                Pacjent = new Pacjent() { ID = 1, Imie = "Anna" },
+                LekarzID = 1,
+                PacjentID = 1,
             };
-
+ 
             var wService = await wizyta.SaveEvent(w, identity);
 
             Assert.AreEqual(userRole, "Pacjent");
             Assert.AreEqual(identity.Name, "patrykrafal33@o2.pl");
-            Assert.AreEqual(wService, false);
+            Assert.AreEqual(wService, true);
         }
     }
 }

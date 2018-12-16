@@ -116,15 +116,26 @@ namespace Gabinet.Tests
             {
                 ID = 1,
                 Poczatek = DateTime.Now,
-                Koniec = DateTime.Now.AddMinutes(30),
+                Koniec = DateTime.Now,
                 Lekarz = new Lekarz() { ID = 1, Imie = "Patryk", Nazwisko = "Rafał" },
                 Pacjent = new Pacjent() { ID = 1, Imie = "Anna", Nazwisko = "DFDS" },       
             };
-            var wService = await wizyta.SaveEvent(w, identity);
+            var wServiceCreateTtrue = await wizyta.SaveEvent(w, identity);
+
+            Wizyta wFalse = new Wizyta()
+            {
+                ID = 1,
+                Poczatek = data,
+                Koniec = data,
+                Lekarz = new Lekarz() { ID = 1, Imie = "Patryk", Nazwisko = "Rafał" },
+                Pacjent = new Pacjent() { ID = 1, Imie = "Anna", Nazwisko = "DFDS" },
+            };
+            var wServiceCreateFalse = await wizyta.SaveEvent(w, identity);
 
             Assert.AreEqual(userRole, "Pacjent");
             Assert.AreEqual(identity.Name, "patrykrafal33@o2.pl");
-            Assert.AreEqual(wService, true);
+            Assert.AreEqual(wServiceCreateTtrue, true);
+            Assert.AreEqual(wServiceCreateFalse, false);
         }
     }
 }

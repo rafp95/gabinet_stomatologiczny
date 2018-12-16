@@ -177,10 +177,12 @@ namespace Gabinet.Tests
 
             IWizytService wizyta = new WizytServie(moqContext.Object, role);
 
-            var lists = await wizyta.GetEvents(false, "", "");
+            var listsIsNotAutenticated = await wizyta.GetEvents(false, "", "");
 
-            Assert.AreEqual(true, lists.Count() > 0);
-            
+            var listsIsAutenticated = await wizyta.GetEvents(true, userRole, identity.Name);
+
+            Assert.AreEqual(true, listsIsNotAutenticated.Count() > 0);
+            Assert.AreEqual(true, listsIsAutenticated.Count() > 0);
         }
 
     }

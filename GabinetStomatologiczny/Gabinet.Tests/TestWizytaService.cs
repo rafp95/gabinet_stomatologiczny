@@ -177,7 +177,7 @@ namespace Gabinet.Tests
 
             IWizytService wizyta = new WizytServie(moqContext.Object, role);
 
-            var lists = await wizyta.GetEvents("Patryk", false, "", "");
+            var lists = await wizyta.GetEvents(false, "", "");
 
             Assert.AreEqual(true, lists.Count() > 0);
             

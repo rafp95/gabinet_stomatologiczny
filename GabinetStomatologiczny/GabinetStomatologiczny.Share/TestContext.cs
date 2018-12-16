@@ -15,6 +15,7 @@ namespace GabinetStomatologiczny.Share
         {
             this.Pacjent = new TestDbSet<Pacjent>();
             this.Wizyta = new TestDbSet<Wizyta>();
+            this.Lekarz = new TestDbSet<Lekarz>();
         }
 
         public int SaveChangesCount { get; private set; }

@@ -13,6 +13,9 @@ using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
 using System.Data.Entity.Infrastructure;
 using AutoMapper;
+using GabinetStomatologiczny;
+using System.Reflection;
+using AutoMapper.Configuration;
 
 namespace Gabinet.Tests
 {
@@ -20,14 +23,50 @@ namespace Gabinet.Tests
     public class TestWizytaService
     {
 
+        private readonly DateTime data = DateTime.Now;
+
+        [TestInitialize]
+        public void AutoMapperTestVerify()
+        {
+            //var ass = typeof(Startup).Assembly;
+            //var all = ass.DefinedTypes
+            //    .Where(type => type.AsType().GetTypeInfo().IsSubclassOf(typeof(MapperConfigurationExpression)));
+
+            //foreach (var ti in all)
+            //{
+            //    var t = ti.AsType();
+
+            //    var mappingProfile = Activator.CreateInstance(t) as MapperConfigurationExpression;
+
+            //    var config = new MapperConfiguration(mappingProfile);
+            //    var mapper = new Mapper(config);
+
+            //    (mapper as IMapper).ConfigurationProvider.AssertConfigurationIsValid();
+            // }
+
+            Mapper.Initialize(conf =>
+            {
+                conf.CreateMap<Wizyta, Wizyta>()
+                .ForMember(dest => dest.Koniec,
+               opts => opts.MapFrom(src => src.Poczatek.AddMinutes(30)))
+               .ForMember(dest => dest.Lekarz,
+               opts => opts.Ignore())
+               .ForPath(dest => dest.Pacjent.Imie, opts => opts.Ignore())
+               .ForPath(dest => dest.Pacjent.Nazwisko, opts => opts.Ignore());
+            });
+
+
+        }
         private IQueryable<Wizyta> allWizyta()
         {
             var wizyta = new List<Wizyta>()
             {
                 new Wizyta() {
-                    ID = 1,DataDodania = DateTime.Now
-                    ,Poczatek = DateTime.Now.AddMinutes(30)
-                    ,Koniec = DateTime.Now.AddMinutes(60)
+                      ID = 1,DataDodania = DateTime.Now
+                    , Poczatek = data
+                    , Koniec = data.AddMinutes(30)
+                    , LekarzID = 1
+                    , PacjentID = 1
                     , Lekarz = new Lekarz() {ID = 1, Imie = "Anna", Nazwisko = "Rafał" }
                     , Pacjent = new Pacjent() {ID = 1, Imie = "Patryk",Nazwisko = "Rafał" }}
             }.AsQueryable();
@@ -66,10 +105,12 @@ namespace Gabinet.Tests
             moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.Expression).Returns(allWizyta().Expression);
             moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.ElementType).Returns(allWizyta().ElementType);
             moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.GetEnumerator()).Returns(allWizyta().GetEnumerator());
-            
+
             moqContext.SetupGet(c => c.Wizyta).Returns(moqkSet.Object);
 
+
             IWizytService wizyta = new WizytServie(moqContext.Object, role);
+
 
             Wizyta w = new Wizyta()
             {
@@ -77,11 +118,8 @@ namespace Gabinet.Tests
                 Poczatek = DateTime.Now,
                 Koniec = DateTime.Now.AddMinutes(30),
                 Lekarz = new Lekarz() { ID = 1, Imie = "Patryk", Nazwisko = "Rafał" },
-                Pacjent = new Pacjent() { ID = 1, Imie = "Anna" },
-                LekarzID = 1,
-                PacjentID = 1,
+                Pacjent = new Pacjent() { ID = 1, Imie = "Anna", Nazwisko = "DFDS" },       
             };
- 
             var wService = await wizyta.SaveEvent(w, identity);
 
             Assert.AreEqual(userRole, "Pacjent");

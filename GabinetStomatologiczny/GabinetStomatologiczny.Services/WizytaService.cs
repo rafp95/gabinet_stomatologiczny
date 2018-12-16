@@ -15,7 +15,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface IWizytService
     {
-        Task<IEnumerable<object>> GetEvents(string searchQuery, bool isLogedin, string r, string u);
+        Task<IEnumerable<object>> GetEvents(bool isLogedin, string r, string u);
         Task<bool> SaveEvent(Wizyta w, ClaimsIdentity user);
         Task<bool> DeleteEvent(Wizyta w);
     }
@@ -44,13 +44,10 @@ namespace GabinetStomatologiczny.Services
             return status;
         }
 
-        public async Task<IEnumerable<object>> GetEvents(string searchQuery, bool isLogedin, string r, string u)
+        public async Task<IEnumerable<object>> GetEvents(bool isLogedin, string r, string u)
         {
             var eventsQuery = db.Wizyta.AsQueryable();
-            if (!string.IsNullOrEmpty(searchQuery))
-            {
-                eventsQuery = eventsQuery.Where(p => (p.Pacjent.Imie + " " + p.Pacjent.Nazwisko).ToLower().Contains(searchQuery.ToLower()));
-            }
+
             var events = await eventsQuery.Select(_ =>
             new
             {

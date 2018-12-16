@@ -16,6 +16,7 @@ using AutoMapper;
 using GabinetStomatologiczny;
 using System.Reflection;
 using AutoMapper.Configuration;
+using System.Web.Mvc;
 
 namespace Gabinet.Tests
 {
@@ -118,7 +119,7 @@ namespace Gabinet.Tests
                 Poczatek = DateTime.Now,
                 Koniec = DateTime.Now,
                 Lekarz = new Lekarz() { ID = 1, Imie = "Patryk", Nazwisko = "Rafał" },
-                Pacjent = new Pacjent() { ID = 1, Imie = "Anna", Nazwisko = "DFDS" },       
+                Pacjent = new Pacjent() { ID = 1, Imie = "Anna", Nazwisko = "DFDS" },
             };
             var wServiceCreateTtrue = await wizyta.SaveEvent(w, identity);
 
@@ -137,5 +138,51 @@ namespace Gabinet.Tests
             Assert.AreEqual(wServiceCreateTtrue, true);
             Assert.AreEqual(wServiceCreateFalse, false);
         }
+
+        [TestMethod]
+        public async Task GetEventTest()
+        {
+            var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name, "patrykrafal33@o2.pl"),
+                new Claim(ClaimTypes.NameIdentifier, "1"),
+                new Claim(ClaimTypes.Role, "Pacjent"),
+                new Claim("name", "Patryk Rafał"),
+            };
+
+            var identity = new ClaimsIdentity(claims, "TestAuthType");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+
+            IUserRoleService role = new UserRoleService();
+
+            var userRole = role.GetUserRole(identity);
+
+            var moqkSet = new Mock<DbSet<Wizyta>>();
+            var moqContext = new Mock<GabinetContext>();
+
+            moqkSet.As<IDbAsyncEnumerable<Wizyta>>()
+             .Setup(m => m.GetAsyncEnumerator())
+             .Returns(new TestDbAsyncEnumerator<Wizyta>(allWizyta().GetEnumerator()));
+
+            moqkSet.As<IQueryable<Wizyta>>()
+                .Setup(m => m.Provider)
+                .Returns(new TestDbAsyncQueryProvider<Wizyta>(allWizyta().Provider));
+
+            moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.Expression).Returns(allWizyta().Expression);
+            moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.ElementType).Returns(allWizyta().ElementType);
+            moqkSet.As<IQueryable<Wizyta>>().Setup(m => m.GetEnumerator()).Returns(allWizyta().GetEnumerator());
+
+            moqContext.SetupGet(c => c.Wizyta).Returns(moqkSet.Object);
+
+
+            IWizytService wizyta = new WizytServie(moqContext.Object, role);
+
+            var lists = await wizyta.GetEvents("Patryk", false, "", "");
+
+            Assert.AreEqual(true, lists.Count() > 0);
+            
+        }
+
     }
+
 }

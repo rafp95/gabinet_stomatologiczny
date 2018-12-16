@@ -55,14 +55,14 @@ namespace GabinetStomatologiczny.Controllers
         /// </summary>
         /// <param name="searchQuery"></param>
         /// <returns></returns>
-        public async Task<JsonResult> GetEvents(string searchQuery)
+        public async Task<JsonResult> GetEvents()
         {
 
             var isLogedin = User.Identity.IsAuthenticated;
             var r = this._userRoleService.GetUserRole((ClaimsIdentity)User.Identity);
             var u = User.Identity.Name;
 
-            var events = await this._wizytService.GetEvents(searchQuery, isLogedin, r, u);
+            var events = await this._wizytService.GetEvents(isLogedin, r, u);
 
             return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }

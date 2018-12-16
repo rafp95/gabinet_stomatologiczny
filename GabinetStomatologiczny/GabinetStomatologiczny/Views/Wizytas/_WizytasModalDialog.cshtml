@@ -2,7 +2,7 @@
 @if (User.Identity.IsAuthenticated)
 {
     <div class="form-group">
-        <form id="wyslij" class="wyszukiwarka" action="@Url.Action("GetEvents")" method="get" data-ajax="true">
+        <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
             <input type="text" id="searchQuery" name="searchQuery"
                    data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
                    class="form-control" />

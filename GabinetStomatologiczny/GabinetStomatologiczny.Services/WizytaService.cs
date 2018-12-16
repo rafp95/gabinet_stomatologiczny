@@ -91,7 +91,7 @@ namespace GabinetStomatologiczny.Services
             {
                 if (w.ID > 0)
                 {
-                    var v = await db.Wizyta.Where(a => a.ID == w.ID && a.Poczatek == w.Poczatek).FirstOrDefaultAsync();
+                    var v = await db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefaultAsync();
                     if (v != null)
                     {
                         w.LekarzID = v.LekarzID;

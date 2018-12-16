@@ -82,7 +82,7 @@ namespace GabinetStomatologiczny.Services
         #region Save event
         public async Task<bool> SaveEvent(Wizyta w, ClaimsIdentity user)
         {
-            var status = false;
+            var status = true;
             if (await this.db.Wizyta.AnyAsync(_ => _.Poczatek == w.Poczatek))
             {
                 status = false;
@@ -91,7 +91,7 @@ namespace GabinetStomatologiczny.Services
             {
                 if (w.ID > 0)
                 {
-                    var v = await db.Wizyta.Where(a => a.ID == w.ID).FirstOrDefaultAsync();
+                    var v = await db.Wizyta.Where(a => a.ID == w.ID && a.Poczatek == w.Poczatek).FirstOrDefaultAsync();
                     if (v != null)
                     {
                         w.LekarzID = v.LekarzID;

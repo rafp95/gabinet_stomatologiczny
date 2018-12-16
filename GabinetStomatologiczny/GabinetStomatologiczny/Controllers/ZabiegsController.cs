@@ -157,16 +157,8 @@ namespace GabinetStomatologiczny.Controllers
 
             bool status = false;
             int id = (int)Session["user"];
-            if (!string.IsNullOrEmpty(zdesc.Description))
-            {
-                await _zabiegService.ZabDescription(zab, zdesc, id);
-                status = true;
-            }
-            else if (await db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id) == false)
-            {
-                await _zabiegService.SaveTooth(zab, id);
-                status = true;
-            }
+
+            await _zabiegService.SaveToothOrDescriptionTooth(zab, zdesc, id);
 
             return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }

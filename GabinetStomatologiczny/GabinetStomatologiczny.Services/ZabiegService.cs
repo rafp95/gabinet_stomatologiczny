@@ -23,6 +23,7 @@ namespace GabinetStomatologiczny.Services
         Task<Zabieg> ZabiegCreate(Zabieg zabieg);
         Task<Zabieg> DeleteZabieg(int zabieg);
         Task<ZabDescriptions> ZabDescription(Zab zab, ZabDescriptions zDesc, int id);
+        Task<bool> SaveToothOrDescriptionTooth(Zab zab, ZabDescriptions zDesc, int id);
         Task<object> GetHistoryToothDescr(string idTooth, int pacejntID);
         Task<bool> DeleteZabDescr(int id);
 
@@ -102,7 +103,7 @@ namespace GabinetStomatologiczny.Services
             var zabDescriptionQuery = _db.ZabDescriptions.Where(_ => _.ZabID == zabZabiegQuery).AsQueryable();
 
             var zabDescription = await zabDescriptionQuery.
-                Select(_ => new { description = _.Description, dateZabieg = _.ZabDateDescription, id = _.ID}).ToListAsync();
+                Select(_ => new { description = _.Description, dateZabieg = _.ZabDateDescription, id = _.ID }).ToListAsync();
 
 
             //var zebyHistory = await zebyHistoryQuery.Select(_ =>  _.Description ).ToListAsync();
@@ -134,6 +135,30 @@ namespace GabinetStomatologiczny.Services
             await _db.SaveChangesAsync();
             return zab;
 
+        }
+
+        public async Task<bool> SaveToothOrDescriptionTooth(Zab zab, ZabDescriptions zdesc, int id)
+        {
+            var status = true;
+            if (!string.IsNullOrEmpty(zdesc.Description))
+            {
+                await ZabDescription(zab, zdesc, id);
+                status = true;
+            }
+            else
+            {
+                if (await _db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id))
+                {
+                    status = false;
+                }
+                else
+                {
+                    await SaveTooth(zab, id);
+                    status = true;
+                }
+
+            }
+            return status;
         }
 
         public async Task<ZabDescriptions> ZabDescription(Zab zab, ZabDescriptions zDesc, int id)

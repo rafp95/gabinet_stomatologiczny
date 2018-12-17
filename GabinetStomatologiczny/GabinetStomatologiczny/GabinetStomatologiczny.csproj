@@ -586,14 +586,68 @@
     <Content Include="Content\PginationPosition.min.css">
       <DependentUpon>PginationPosition.css</DependentUpon>
     </Content>
+    <Content Include="Scripts\custom\AutoComplete.es5.js">
+      <DependentUpon>AutoComplete.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\AutoComplete.es5.min.js">
+      <DependentUpon>AutoComplete.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\AutoComplSearchWizyta.es5.js">
+      <DependentUpon>AutoComplSearchWizyta.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\AutoComplSearchWizyta.es5.min.js">
+      <DependentUpon>AutoComplSearchWizyta.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\custom\AutoComplSearchWizyta.js" />
+    <Content Include="Scripts\custom\ButtomSpinner.es5.js">
+      <DependentUpon>ButtomSpinner.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\ButtomSpinner.es5.min.js">
+      <DependentUpon>ButtomSpinner.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\Chart.es5.js">
+      <DependentUpon>Chart.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\Chart.es5.min.js">
+      <DependentUpon>Chart.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\custom\Chart.js" />
+    <Content Include="Scripts\custom\GlobalCustomScript.es5.js">
+      <DependentUpon>GlobalCustomScript.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\GlobalCustomScript.es5.min.js">
+      <DependentUpon>GlobalCustomScript.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\custom\GlobalCustomScript.js" />
+    <Content Include="Scripts\custom\KalendarzWizyt.es5.js">
+      <DependentUpon>KalendarzWizyt.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\KalendarzWizyt.es5.min.js">
+      <DependentUpon>KalendarzWizyt.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\custom\KalendarzWizyt.js" />
     <Content Include="Scripts\custom\AutoComplete.js" />
     <Content Include="Scripts\custom\ButtomSpinner.js" />
+    <Content Include="Scripts\custom\ModelZebow.es5.js">
+      <DependentUpon>ModelZebow.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\ModelZebow.es5.min.js">
+      <DependentUpon>ModelZebow.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\custom\ModelZebow.js" />
+    <Content Include="Scripts\custom\Notyfication.es5.js">
+      <DependentUpon>Notyfication.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\Notyfication.es5.min.js">
+      <DependentUpon>Notyfication.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\custom\Notyfication.js" />
+    <Content Include="Scripts\custom\SilaHasla.es5.js">
+      <DependentUpon>SilaHasla.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\SilaHasla.es5.min.js">
+      <DependentUpon>SilaHasla.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\custom\SilaHasla.js" />
     <None Include="Content\SilaHasla.scss" />
     <None Include="Content\SharedStyle.scss" />
@@ -622,6 +676,18 @@
     <Content Include="Content\img\3.jpg" />
     <None Include="Content\Kalendarz.scss" />
     <None Include="Content\Pacjent.scss" />
+    <Content Include="Scripts\custom\WyszukiwanieAjaxowe.es5.js">
+      <DependentUpon>WyszukiwanieAjaxowe.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\WyszukiwanieAjaxowe.es5.min.js">
+      <DependentUpon>WyszukiwanieAjaxowe.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\Zdjecia.es5.js">
+      <DependentUpon>Zdjecia.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\custom\Zdjecia.es5.min.js">
+      <DependentUpon>Zdjecia.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\custom\Zdjecia.js" />
     <Content Include="Content\TableStyle.css">
       <DependentUpon>TableStyle.scss</DependentUpon>
@@ -903,6 +969,12 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\testsCustomScripts\TestSilaHasla.es5.js">
+      <DependentUpon>TestSilaHasla.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\testsCustomScripts\TestSilaHasla.es5.min.js">
+      <DependentUpon>TestSilaHasla.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\testsCustomScripts\TestSilaHasla.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">

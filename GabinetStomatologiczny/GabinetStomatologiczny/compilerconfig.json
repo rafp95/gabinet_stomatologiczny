@@ -86,5 +86,53 @@
   {
     "outputFile": "Content/SharedStyle.css",
     "inputFile": "Content/SharedStyle.scss"
+  },
+  {
+    "outputFile": "Scripts/custom/AutoComplete.es5.js",
+    "inputFile": "Scripts/custom/AutoComplete.js"
+  },
+  {
+    "outputFile": "Scripts/custom/AutoComplSearchWizyta.es5.js",
+    "inputFile": "Scripts/custom/AutoComplSearchWizyta.js"
+  },
+  {
+    "outputFile": "Scripts/custom/ButtomSpinner.es5.js",
+    "inputFile": "Scripts/custom/ButtomSpinner.js"
+  },
+  {
+    "outputFile": "Scripts/custom/Chart.es5.js",
+    "inputFile": "Scripts/custom/Chart.js"
+  },
+  {
+    "outputFile": "Scripts/custom/GlobalCustomScript.es5.js",
+    "inputFile": "Scripts/custom/GlobalCustomScript.js"
+  },
+  {
+    "outputFile": "Scripts/custom/KalendarzWizyt.es5.js",
+    "inputFile": "Scripts/custom/KalendarzWizyt.js"
+  },
+  {
+    "outputFile": "Scripts/custom/ModelZebow.es5.js",
+    "inputFile": "Scripts/custom/ModelZebow.js"
+  },
+  {
+    "outputFile": "Scripts/custom/Notyfication.es5.js",
+    "inputFile": "Scripts/custom/Notyfication.js"
+  },
+  {
+    "outputFile": "Scripts/custom/SilaHasla.es5.js",
+    "inputFile": "Scripts/custom/SilaHasla.js"
+  },
+  {
+    "outputFile": "Scripts/custom/WyszukiwanieAjaxowe.es5.js",
+    "inputFile": "Scripts/custom/WyszukiwanieAjaxowe.js"
+  },
+  {
+    "outputFile": "Scripts/custom/Zdjecia.es5.js",
+    "inputFile": "Scripts/custom/Zdjecia.js"
+  },
+  {
+    "outputFile": "Scripts/testsCustomScripts/TestSilaHasla.es5.js",
+    "inputFile": "Scripts/testsCustomScripts/TestSilaHasla.js"
   }
 ]

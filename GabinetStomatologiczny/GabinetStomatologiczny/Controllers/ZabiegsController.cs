@@ -27,7 +27,7 @@ namespace GabinetStomatologiczny.Controllers
         private IZabiegService _zabiegService;
         private IPacjentsService _pacejntService;
 
-        public ZabiegsController(GabinetContext db,
+        public ZabiegsController(
             IGenerateZabiegsPdf generatePdf,
             ISortZabiegsService sortZabiegService,
             ISugestionService sugestionService,
@@ -253,15 +253,6 @@ namespace GabinetStomatologiczny.Controllers
             TempData["zabiegOperationSucess"] = "Pomyślnie skasowano " + z.Wizyta.Pacjent.Imie + " " + z.Wizyta.Pacjent.Nazwisko;
             await _zabiegService.DeleteZabieg(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

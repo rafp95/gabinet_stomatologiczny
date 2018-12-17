@@ -32,7 +32,7 @@ namespace GabinetStomatologiczny.Controllers
             ISortZabiegsService sortZabiegService,
             ISugestionService sugestionService,
             IZabiegService zabiegService,
-            IPacjentsService pacejntService) : base(db)
+            IPacjentsService pacejntService)
         {
             _generatePdf = generatePdf;
             _sortZabiegService = sortZabiegService;

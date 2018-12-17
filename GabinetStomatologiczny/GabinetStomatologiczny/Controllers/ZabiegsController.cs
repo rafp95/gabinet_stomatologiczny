@@ -174,21 +174,15 @@ namespace GabinetStomatologiczny.Controllers
 
         public async Task<ActionResult> DeleteTooth(Zab zab)
         {
-
-            bool status = false;
             int id = (int)Session["user"];
-            if (await db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == id))
-            {
-                await _zabiegService.DeleteTooth(zab, id);
-                status = true;
-            }
+            var status = await _zabiegService.DeleteTooth(zab, id);
             return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public async Task<ActionResult> DeleteToothDescr(int id)
         {
             var status = await _zabiegService.DeleteZabDescr(id);
-            return new JsonResult { Data = new {status}, JsonRequestBehavior = JsonRequestBehavior.AllowGet  };
+            return new JsonResult { Data = new { status }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
 

@@ -16,7 +16,7 @@ namespace GabinetStomatologiczny.Services
     {
         Task<IEnumerable<object>> GetAllTooth(int id);
         Task<Zab> SaveTooth(Zab zab, int userID);
-        Task<Zab> DeleteTooth(Zab zab, int userID);
+        Task<bool> DeleteTooth(Zab zab, int userID);
         Task<Zabieg> FindZabieg(int? id);
         Task<Zabieg> EditZabeg(Zabieg zabieg);
         Task<IEnumerable<Zabieg>> PacejntZabiegHistory(PaginationType ps, int id);
@@ -37,14 +37,20 @@ namespace GabinetStomatologiczny.Services
             this._db = db;
         }
 
-        public async Task<Zab> DeleteTooth(Zab zab, int userID)
+        public async Task<bool> DeleteTooth(Zab zab, int userID)
         {
-            var idWizyta = await _db.Wizyta.Where(_ => _.Pacjent.ID == userID).FirstOrDefaultAsync();
-            var idZabeg = await _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta.ID).FirstOrDefaultAsync();
-            Zab z = await _db.Zab.Where(_ => _.IdTooth == zab.IdTooth && _.ZabiegID == idZabeg.ID).FirstOrDefaultAsync();
-            _db.Zab.Remove(z);
-            await _db.SaveChangesAsync();
-            return z;
+            var status = false;
+            if (await _db.Zab.AnyAsync(_ => _.IdTooth == zab.IdTooth && _.Zabieg.Wizyta.PacjentID == userID))
+            {
+                var idWizyta = await _db.Wizyta.Where(_ => _.Pacjent.ID == userID).FirstOrDefaultAsync();
+                var idZabeg = await _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta.ID).FirstOrDefaultAsync();
+                Zab z = await _db.Zab.Where(_ => _.IdTooth == zab.IdTooth && _.ZabiegID == idZabeg.ID).FirstOrDefaultAsync();
+                _db.Zab.Remove(z);
+                await _db.SaveChangesAsync();
+                status = true;
+            }
+
+            return status;
         }
 
         public async Task<bool> DeleteZabDescr(int id)

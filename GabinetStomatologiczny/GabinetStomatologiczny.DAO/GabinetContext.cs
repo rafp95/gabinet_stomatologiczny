@@ -15,7 +15,6 @@ namespace GabinetStomatologiczny.DAL
         public GabinetContext()
             :base("DefaultConnection")
         {
-            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Pacjent> Pacjent { get; set; }

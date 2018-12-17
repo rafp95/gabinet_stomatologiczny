@@ -27,7 +27,8 @@ namespace GabinetStomatologiczny.Controllers
         private IZabiegService _zabiegService;
         private IPacjentsService _pacejntService;
 
-        public ZabiegsController(GabinetContext db,
+        public ZabiegsController(
+            GabinetContext db,
             IGenerateZabiegsPdf generatePdf,
             ISortZabiegsService sortZabiegService,
             ISugestionService sugestionService,

@@ -14,14 +14,15 @@ namespace GabinetStomatologiczny.DAO.Models
         public int PacjentID { get; set; }
 
         [UIHint("DateTimePicker")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm}")]
         [Column(TypeName = "datetime2")]
         public DateTime Poczatek { get; set; }
 
         [UIHint("DateTimePicker")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm}")]
         [Column(TypeName = "datetime2")]
         public DateTime Koniec { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm}")]
         public DateTime DataDodania { get; set; }
         public virtual Lekarz Lekarz { get; set; }
         public virtual Pacjent Pacjent { get; set; }

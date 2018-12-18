@@ -367,8 +367,7 @@
                                 $("#zabDescriptionError").hide().fadeIn().text("Pole nie może być puste").css('color', 'red');
                                 $("#zabDescription").fadeIn().css({ 'border': '1px solid red', 'background': 'pink' });
                                 return;
-                            }
-                            if (data.id > 0) {
+                            }else if (data.id > 0) {
                                 editDescription(data);
                             }
                             $("#myModalZabDescription").modal('hide');

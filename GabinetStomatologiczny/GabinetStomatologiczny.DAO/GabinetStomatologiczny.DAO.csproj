@@ -289,6 +289,10 @@
     <Compile Include="Migrations\201812062001159_removeTytulFromWizyta.Designer.cs">
       <DependentUpon>201812062001159_removeTytulFromWizyta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812172201425_date.cs" />
+    <Compile Include="Migrations\201812172201425_date.Designer.cs">
+      <DependentUpon>201812172201425_date.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -441,6 +445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812062001159_removeTytulFromWizyta.resx">
       <DependentUpon>201812062001159_removeTytulFromWizyta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812172201425_date.resx">
+      <DependentUpon>201812172201425_date.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

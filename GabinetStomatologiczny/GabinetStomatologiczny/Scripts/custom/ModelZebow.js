@@ -262,7 +262,6 @@
     function sendDescription(data) {
         $.ajax({
             url: '/Zabiegs/SaveTooth',
-            cache: false,
             type: 'POST',
             data: data,
             success: function () {

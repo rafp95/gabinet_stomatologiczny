@@ -49,15 +49,15 @@ namespace Gabinet.Tests
             {
                 conf.CreateMap<Wizyta, Wizyta>()
                 .ForMember(dest => dest.Koniec,
-               opts => opts.MapFrom(src => src.Poczatek.AddMinutes(30)))
-               .ForMember(dest => dest.Lekarz,
-               opts => opts.Ignore())
+                            opts => opts.MapFrom(src => src.Poczatek.AddMinutes(30)))
+               .ForMember(dest => dest.Lekarz,opts => opts.Ignore())
                .ForPath(dest => dest.Pacjent.Imie, opts => opts.Ignore())
                .ForPath(dest => dest.Pacjent.Nazwisko, opts => opts.Ignore());
             });
 
 
         }
+        
         private IQueryable<Wizyta> allWizyta()
         {
             var wizyta = new List<Wizyta>()
@@ -72,6 +72,21 @@ namespace Gabinet.Tests
                     , Pacjent = new Pacjent() {ID = 1, Imie = "Patryk",Nazwisko = "Rafał" }}
             }.AsQueryable();
             return wizyta;
+        }
+
+
+        [TestMethod]
+        public void AutoMapperMappingTest()
+        {
+            #region prop
+
+            var wizyta = new Wizyta()
+            {
+                Poczatek = data,
+            };
+            #endregion
+            var mapper = Mapper.Map<Wizyta, Wizyta>(wizyta);
+            Assert.AreEqual(DateTime.Equals(mapper.Koniec, data.AddMinutes(30)),true);
         }
 
         [TestMethod]

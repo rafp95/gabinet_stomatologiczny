@@ -116,6 +116,7 @@
     <Compile Include="TestPacjentService.cs" />
     <Compile Include="TestWizytaService.cs" />
     <Compile Include="TestZabiegService.cs" />
+    <Compile Include="SendEmailTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabinetStomatologiczny.DAO\GabinetStomatologiczny.DAO.csproj">

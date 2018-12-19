@@ -41,6 +41,11 @@ div {
             font-size: 2em;
         }
     }
+    &.fc-agenda-view .fc-content{
+        font-size: .8em;
+        letter-spacing: .1em;
+        text-indent: .1em;
+    }
 }
 
 /*modal width on screen in modal*/

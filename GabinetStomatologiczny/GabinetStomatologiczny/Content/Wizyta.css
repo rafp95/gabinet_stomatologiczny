@@ -28,6 +28,11 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
 div.fc-center h2 {
   font-size: 2em; }
 
+div.fc-agenda-view .fc-content {
+  font-size: .8em;
+  letter-spacing: .1em;
+  text-indent: .1em; }
+
 /*modal width on screen in modal*/
 div.body-content form:not(.wyszukiwarka) {
   display: table;

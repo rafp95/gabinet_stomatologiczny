@@ -12,6 +12,7 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using GabinetStomatologiczny.Services;
+using GabinetStomatologiczny.Utils;
 
 [assembly: OwinStartupAttribute(typeof(GabinetStomatologiczny.Startup))]
 namespace GabinetStomatologiczny
@@ -100,7 +101,7 @@ namespace GabinetStomatologiczny
             services.AddTransient<ISortZabiegsService, SortZabiegsService>();
             services.AddTransient<IWizytService, WizytServie>();
             services.AddTransient<IZabiegService, ZabiegService>();
-            //services.AddSingleton(typeof(INotyficatorComponnets), nc);
+            services.AddTransient<ISendEmailConfig, SendEmailConfig>();
             services.AddTransient<INotyficationService, NotyficationService>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<IRejestracjaService, RejestracjaService>();

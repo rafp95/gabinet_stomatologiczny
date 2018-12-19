@@ -9,7 +9,11 @@ using System.Web;
 
 namespace GabinetStomatologiczny.Utils
 {
-    public class SendEmail
+    public interface ISendEmailConfig
+    {
+        Task SendMail(string to, string subject, string body);
+    }
+    public class SendEmailConfig : ISendEmailConfig
     {
 
         public async Task SendMail(string to, string subject, string body)
@@ -37,5 +41,6 @@ namespace GabinetStomatologiczny.Utils
             await smtp.SendMailAsync(mail);
 
         }
+
     }
 }

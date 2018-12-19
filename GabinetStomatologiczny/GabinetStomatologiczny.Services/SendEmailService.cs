@@ -13,19 +13,11 @@ namespace GabinetStomatologiczny.Services
     }
     public class SendEmailService : ISendEmailService
     {
-        private SendEmail _se;
+        private readonly ISendEmailConfig se;
 
-        private SendEmail se
+        public SendEmailService(ISendEmailConfig se)
         {
-            get
-            {
-                if(_se == null)
-                {
-                    _se = new SendEmail(); 
-                }
-               return _se;
-            }
-            
+            this.se = se;
         }
 
         public async Task SendMail(string to, string subject, string body)

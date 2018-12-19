@@ -100,8 +100,8 @@
             themeSystem: 'bootstrap4',
             weekNumbers: true,
             navLinks: true,
-            slotMinutes: 15,
-            slotLabelInterval: 15,
+            slotMinutes: 20,
+            slotLabelInterval: 20,
             slotEventOverlap: false,
             nowIndicator: true,
             aspectRatio: () => { size },
@@ -386,7 +386,7 @@
 
     //Date time picker
     $('#dtp1').datetimepicker({
-        stepping: '15',
+        stepping: '20',
         enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16],
         minDate: new Date(),
         daysOfWeekDisabled: [0, 6],

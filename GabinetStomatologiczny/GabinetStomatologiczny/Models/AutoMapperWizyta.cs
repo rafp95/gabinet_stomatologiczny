@@ -13,7 +13,7 @@ namespace GabinetStomatologiczny.Models
         {
             CreateMap<Wizyta, Wizyta>()
                 .ForMember(dest => dest.Koniec,
-               opts => opts.MapFrom(src => src.Poczatek.AddMinutes(15)))
+               opts => opts.MapFrom(src => src.Poczatek.AddMinutes(20)))
                .ForMember(dest => dest.Lekarz,
                opts => opts.Ignore())
                .ForPath(dest => dest.Pacjent.Imie , opts => opts.Ignore())

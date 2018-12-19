@@ -28,7 +28,7 @@ namespace Gabinet.Tests
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
             smtp.Credentials = new System.Net.NetworkCredential
-                 ("*************", "************"); //login and password
+                 ("p.rafal123@gmail.com", "*************"); //login and password
             smtp.Port = 587;
 
             //Or your Smtp Email ID and Password

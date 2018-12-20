@@ -66,7 +66,7 @@ namespace GabinetStomatologiczny
 
         protected void Session_Start(object Sender, EventArgs e)
         {
-            var currentTime = DateTime.Now;
+            var currentTime = DateTime.UtcNow;
             HttpContext.Current.Session["LastUpdated"] = currentTime;
             this._nc.RegisterNotyfication(currentTime);
         }

@@ -31,7 +31,8 @@ namespace GabinetStomatologiczny.Controllers
 
         public  async Task<JsonResult> GetNotyficationWizytas()
         {
-            var notyficationTime = Session["LastUpdated"] != null ?  Convert.ToDateTime(Session["LastUpdated"]) : DateTime.UtcNow ;
+            var notyficationTime = Session["LastUpdated"] != null ? 
+                (DateTime)Session["LastUpdated"] : DateTime.UtcNow ;
            
             var list = await ns.GetWizyts(notyficationTime);
             //update session for get only wizytas

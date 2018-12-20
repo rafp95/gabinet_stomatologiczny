@@ -17,6 +17,7 @@ namespace GabinetStomatologiczny.DAO.Models
         public TypZabiegu TypZabiegu { get; set; }
 
         [Display(Name = "Cena zabiegu")]
+        [DataType(DataType.Currency)]
         [ZabiegPricePacjent]
         public int CenaZabiegu { get; set; }
 

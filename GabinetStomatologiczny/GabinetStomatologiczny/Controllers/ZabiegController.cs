@@ -111,6 +111,7 @@ namespace GabinetStomatologiczny.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu,SearchQuery")] Zabieg zabieg)
         {
+            ViewBag.name = $"{zabieg.SearchQuery}";
             try
             {
                 if (string.IsNullOrEmpty(zabieg.SearchQuery))

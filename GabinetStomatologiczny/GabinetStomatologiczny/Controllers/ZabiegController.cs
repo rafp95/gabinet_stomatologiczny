@@ -98,7 +98,7 @@ namespace GabinetStomatologiczny.Controllers
         public async Task<ActionResult> Create(PaginationType search)
         {
             var user = await _pacejntService.Find(search.ID);
-            ViewBag.name = await db.Pacjent.Where(_ => _.ID == search.ID).Select(_ => _.Imie + " " + _.Nazwisko).FirstOrDefaultAsync();
+            ViewBag.name = $"{user.Imie} {user.Nazwisko}";
             Session["user"] = user.ID;
             ViewBag.WizytaID = new SelectList(db.Wizyta.Include(p => p.Pacjent), "ID", "ID");
             return View();

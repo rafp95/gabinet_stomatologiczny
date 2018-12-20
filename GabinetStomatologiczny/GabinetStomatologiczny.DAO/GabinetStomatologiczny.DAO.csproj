@@ -116,6 +116,7 @@
   <ItemGroup>
     <Compile Include="GabinetContext.cs" />
     <Compile Include="Infrastucture\DatePacjentAttribute.cs" />
+    <Compile Include="Infrastucture\ZabiegPricePacjentAttribute.cs" />
     <Compile Include="Migrations\201807151820346_InitialCreate.cs" />
     <Compile Include="Migrations\201807151820346_InitialCreate.Designer.cs">
       <DependentUpon>201807151820346_InitialCreate.cs</DependentUpon>

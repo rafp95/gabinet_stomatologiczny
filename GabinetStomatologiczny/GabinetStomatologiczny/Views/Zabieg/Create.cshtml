@@ -29,9 +29,9 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        @Html.Label("Pacjent", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label("Szukaj pacjęta", htmlAttributes: new { @class = "control-label col-md-2" })
                         <input type="text" id="searchQuery" name="SearchQuery"
-                               readonly
+                               data-autocomplete-source="@Url.Action("Sugestions","Pacjent")" placeholder="Wpisz min 1 znak"
                                value="@ViewBag.name"
                                class="form-control" />
                     </div>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         @Html.LabelFor(model => model.CenaZabiegu, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.CenaZabiegu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.CenaZabiegu, new { htmlAttributes = new { @class = "form-control", @type="text" } })
                         @Html.ValidationMessageFor(model => model.CenaZabiegu, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -63,7 +63,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Wstecz", "","Wizyta", null, new { @class = "glyphicon glyphicon-hand-left" })
+    @Html.ActionLink("Wstecz", "","Wizytas", null, new { @class = "glyphicon glyphicon-hand-left" })
 </div>
 
 @section MyCustomStyle{

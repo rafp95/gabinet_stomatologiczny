@@ -20,7 +20,7 @@ using GabinetStomatologiczny.Services;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    public class WizytasController : BaseController
+    public class WizytaController : BaseController
     {
         private readonly IUserRoleService _userRoleService;
         private readonly IWizytService _wizytService;
@@ -32,7 +32,7 @@ namespace GabinetStomatologiczny.Controllers
         /// <param name="userRoleService"></param>
         /// <param name="wizytService"></param>
         /// <param name="sugestionService"></param>
-        public WizytasController(
+        public WizytaController(
             IUserRoleService userRoleService,
             IWizytService wizytService,
             ISugestionService sugestionService,

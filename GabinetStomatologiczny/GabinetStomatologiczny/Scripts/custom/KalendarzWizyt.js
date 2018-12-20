@@ -62,7 +62,7 @@
         events = [];
         $.ajax({
             type: "GET",
-            url: "/Wizytas/GetEvents",
+            url: "/Wizyta/GetEvents",
             success: function (data) {
                 $("div.loader").html("");
                 $.each(data, function (i, v) {
@@ -248,7 +248,7 @@
     function sendSmsToApi(data) {
         $.ajax({
             type: "POST",
-            url: '/Wizytas/Sms',
+            url: '/Wizyta/Sms',
             data: data,
             success: function (data) {
                 if (data && data.status) {
@@ -316,7 +316,7 @@
     function sendEmailToApi(data) {
         $.ajax({
             type: 'POST',
-            url: 'Wizytas/SendEmail',
+            url: 'Wizyta/SendEmail',
             data: data,
             success: function (data) {
                 if (data && data.status) {
@@ -351,7 +351,7 @@
         if (selectedEvent != null) {
             $.ajax({
                 type: "POST",
-                url: '/Wizytas/DeleteEvent',
+                url: '/Wizyta/DeleteEvent',
                 data: {
                     'ID': selectedEvent.eventID,
                     __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
@@ -474,7 +474,7 @@
     function SaveEvent(data) {
         $.ajax({
             type: "POST",
-            url: '/Wizytas/SaveEvent',
+            url: '/Wizyta/SaveEvent',
             data: data,
             success: function (data) {
                 if (data && data.status) {

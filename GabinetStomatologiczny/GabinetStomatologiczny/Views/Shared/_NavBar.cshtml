@@ -27,13 +27,13 @@
                             Osoby <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="@(ViewBag.Title == "Pacjenci" ? "active" : "")">@Html.ActionLink("Pacjenci", "Index", "Pacjents")</li>
-                            <li class="@(ViewBag.Title == "Zabiegi" ? "active" : "")">@Html.ActionLink("Zabiegi", "Index", "Zabiegs")</li>
-                            <li class="@(ViewBag.Title == "Lekarze" ? "active" : "")">@Html.ActionLink("Lekarze", "Index", "Lekarzs")</li>
+                            <li class="@(ViewBag.Title == "Pacjenci" ? "active" : "")">@Html.ActionLink("Pacjenci", "Index", "Pacjent")</li>
+                            <li class="@(ViewBag.Title == "Zabiegi" ? "active" : "")">@Html.ActionLink("Zabiegi", "Index", "Zabieg")</li>
+                            <li class="@(ViewBag.Title == "Lekarze" ? "active" : "")">@Html.ActionLink("Lekarze", "Index", "Lekarz")</li>
                         </ul>
                     </li>
                 }
-                <li class="@(ViewBag.Active == "Wizytas" ? "active" : "")">@Html.ActionLink("Wizyty", "Index", "Wizytas")</li>
+                <li class="@(ViewBag.Active == "Wizytas" ? "active" : "")">@Html.ActionLink("Wizyty", "Index", "Wizyta")</li>
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                 {
                     <li class="@(ViewBag.Active=="Rejestracja" ? "active" : "")"><a href="/Rejestracja/Index"> <span class="glyphicon glyphicon-user" style="font-size:14px;"></span>  Nowe konto </a> </li>

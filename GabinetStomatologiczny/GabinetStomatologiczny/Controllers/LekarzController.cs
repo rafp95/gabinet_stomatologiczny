@@ -18,13 +18,13 @@ using GabinetStomatologiczny.Models;
 namespace GabinetStomatologiczny.Controllers
 {
     [Authorize]
-    public class LekarzsController : BaseController
+    public class LekarzController : BaseController
     {
 
         private readonly ILekarzService _lekarzservice;
         private readonly ISortLekarzService _lekarzSortService;
         private readonly ISugestionService _sugestionService;
-        public LekarzsController(ILekarzService lekarzservice, ISortLekarzService lekarzSortService, ISugestionService sugestionService)
+        public LekarzController(ILekarzService lekarzservice, ISortLekarzService lekarzSortService, ISugestionService sugestionService)
         {
             this._lekarzservice = lekarzservice;
             this._lekarzSortService = lekarzSortService;

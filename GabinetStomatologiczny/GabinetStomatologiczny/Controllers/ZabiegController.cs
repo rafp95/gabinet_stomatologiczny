@@ -18,7 +18,7 @@ using System.Security.Claims;
 namespace GabinetStomatologiczny.Controllers
 {
     [Authorize]
-    public class ZabiegsController : BaseController
+    public class ZabiegController : BaseController
     {
 
         private IGenerateZabiegsPdf _generatePdf;
@@ -27,7 +27,7 @@ namespace GabinetStomatologiczny.Controllers
         private IZabiegService _zabiegService;
         private IPacjentsService _pacejntService;
 
-        public ZabiegsController(
+        public ZabiegController(
             GabinetContext db,
             IGenerateZabiegsPdf generatePdf,
             ISortZabiegsService sortZabiegService,

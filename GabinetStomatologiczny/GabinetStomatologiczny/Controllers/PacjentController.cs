@@ -18,14 +18,14 @@ using System.Drawing.Printing;
 namespace GabinetStomatologiczny.Controllers
 {
     [Authorize]
-    public class PacjentsController : BaseController
+    public class PacjentController : BaseController
     {
 
         private readonly IPacjentsService pacjentsService = null;
         private readonly ISortPacjentService sortPacjentService = null;
         private readonly ISugestionService sugestionService = null;
 
-        public PacjentsController(IPacjentsService pacjentsService,
+        public PacjentController(IPacjentsService pacjentsService,
             ISortPacjentService sortPacjentService,
             ISugestionService sugestionService)
         {

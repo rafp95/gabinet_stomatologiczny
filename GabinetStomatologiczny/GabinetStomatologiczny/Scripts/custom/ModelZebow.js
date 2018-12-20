@@ -10,7 +10,7 @@
         tab = [];
         $.ajax({
             type: "GET",
-            url: "/Zabiegs/GetAllTooth",
+            url: "/Zabieg/GetAllTooth",
             success: function (data) {
                 $.each(data, function (i, v) {
                     $.each(v, function (i, o) {
@@ -144,7 +144,7 @@
         }
         $.ajax({
             type: 'POST',
-            url: "/Zabiegs/SaveTooth",
+            url: "/Zabieg/SaveTooth",
             data: bufData,
             success: function (data) {
                 console.log(data.status);
@@ -175,7 +175,7 @@
     function deleteTooth(data) {
         $.ajax({
             type: 'GET',
-            url: "/Zabiegs/DeleteTooth",
+            url: "/Zabieg/DeleteTooth",
             data: data,
             success: function (data) {
                 if (data.status) {
@@ -261,7 +261,7 @@
 
     function sendDescription(data) {
         $.ajax({
-            url: '/Zabiegs/SaveTooth',
+            url: '/Zabieg/SaveTooth',
             type: 'POST',
             data: data,
             success: function () {
@@ -301,7 +301,7 @@
     }
     function getHistoryFromApi(data, setText) {
         $.ajax({
-            url: '/Zabiegs/GetHistory',
+            url: '/Zabieg/GetHistory',
             type: 'GET',
             data: data,
             success: function (data) {
@@ -383,7 +383,7 @@
     function deleteDescription(id) {
         $.ajax({
             type: 'GET',
-            url: '/Zabiegs/DeleteToothDescr',
+            url: '/Zabieg/DeleteToothDescr',
             data: id,
             success: function () {
                 zapisInfo.text("Zapisano pomyślnie ").
@@ -396,7 +396,7 @@
     function editDescription(data) {
         $.ajax({
             type: 'POST',
-            url: '/Zabiegs/SaveTooth',
+            url: '/Zabieg/SaveTooth',
             data: data,
             success: function (data) {
                 if (data) {

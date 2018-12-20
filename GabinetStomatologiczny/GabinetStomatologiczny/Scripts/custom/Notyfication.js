@@ -31,7 +31,7 @@
                 $.each(response, function (index, value) {
                     $('#notiContent').append($('<li>'
                         + '<div>Zapisał(a) się na '
-                            + ' <a href="/Wizytas" title="Kliknij aby odświeżyć"> wizytę : ' + '</a>'
+                            + ' <a href="/Wizyta" title="Kliknij aby odświeżyć"> wizytę : ' + '</a>'
                         + '</div>'
                         + '<div> ' + value.tytul + ' </div> '
                         + '<div>' + moment(value.Poczatek).format('DD-MM-YYYY HH:mm') + '</div>'

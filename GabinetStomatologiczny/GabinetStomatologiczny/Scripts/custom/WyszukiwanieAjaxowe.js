@@ -6,7 +6,7 @@
     var szukajL = $(".szukajPacjentAjax");
     szukajL.on('click', function () {
         var pom = $("#searchQuery").val();
-        SzukajDane(pom, "Pacjents/"); 
+        SzukajDane(pom, "Pacjent/"); 
     });
 
     
@@ -22,7 +22,7 @@
     //Lekarz
     var szukaj = $(".szukajLekarzaAjax").off('click').on('click', function () {
         var pom = $("#searchQuery").val();
-        SzukajDane(pom,"Lekarzs/Index/");
+        SzukajDane(pom,"Lekarz/Index/");
     });
 
     
@@ -39,7 +39,7 @@
 
     var szukaj = $(".szukajZabiegAjax").off('click').on('click', function () {
         var pom = $("#searchQuery").val();
-        SzukajDane(pom, "Zabiegs/Index/");
+        SzukajDane(pom, "Zabieg/Index/");
     });
 
     
@@ -114,21 +114,21 @@
         var kasuj = $("span.kasujTextPacjent");
         kasuj.off('click').on("click", function () {
             $("#searchQuery").val("");
-            SzukajDane("", "Pacjents/Index/");
+            SzukajDane("", "Pacjent/Index/");
             kasuj.css("display", "none");
         });
 
         var kasuj = $("span.kasujTextLekarz");
         kasuj.off('click').on("click", function () {
             $("#searchQuery").val("");
-            SzukajDane("", "Lekarzs/Index/");
+            SzukajDane("", "Lekarz/Index/");
             kasuj.css("display", "none");
         });
 
         var kasuj = $("span.kasujTextZabieg");
         kasuj.off('click').on("click", function () {
             $("#searchQuery").val("");
-            SzukajDane("", "Zabiegs/Index/");
+            SzukajDane("", "Zabieg/Index/");
             kasuj.css("display", "none");
         });
 

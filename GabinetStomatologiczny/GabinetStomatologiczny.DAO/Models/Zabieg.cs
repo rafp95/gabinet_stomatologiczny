@@ -1,5 +1,4 @@
-﻿using GabinetStomatologiczny.DAO.Infrastucture;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,7 +18,6 @@ namespace GabinetStomatologiczny.DAO.Models
         [Display(Name = "Cena zabiegu")]
         [DataType(DataType.Currency)]
         [RegularExpression(@"\d+",ErrorMessage = "To nie jest liczba")]
-        [ZabiegPricePacjent]
         public int CenaZabiegu { get; set; }
 
         [Display(Name = "Data zabiegu")]

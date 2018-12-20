@@ -29,9 +29,9 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        @Html.Label("Szukaj pacjęta", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label("Pacjent", htmlAttributes: new { @class = "control-label col-md-2" })
                         <input type="text" id="searchQuery" name="SearchQuery"
-                               data-autocomplete-source="@Url.Action("Sugestions","Pacjent")" placeholder="Wpisz min 1 znak"
+                               readonly
                                value="@ViewBag.name"
                                class="form-control" />
                     </div>

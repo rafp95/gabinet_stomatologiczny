@@ -18,6 +18,7 @@ namespace GabinetStomatologiczny.DAO.Models
 
         [Display(Name = "Cena zabiegu")]
         [DataType(DataType.Currency)]
+        [RegularExpression(@"\d+",ErrorMessage = "To nie jest liczba")]
         [ZabiegPricePacjent]
         public int CenaZabiegu { get; set; }
 

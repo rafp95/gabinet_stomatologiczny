@@ -1,6 +1,8 @@
 ﻿@import './SharedStyle.scss';
 
 * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -43,11 +45,22 @@ body {
 
 .navbar-toggle .icon-bar {
     width: 22px;
+    -moz-transition: all .6s ease;
+    -o-transition: all .6s ease;
+    -webkit-transition: all .6s ease;
     transition: all .6s ease;
 }
 
 .navbar-toggle .top-bar {
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+    -moz-transform-origin: 10% 10%;
+    -ms-transform-origin: 10% 10%;
+    -o-transform-origin: 10% 10%;
+    -webkit-transform-origin: 10% 10%;
     transform-origin: 10% 10%;
 }
 
@@ -56,11 +69,23 @@ body {
 }
 
 .navbar-toggle .bottom-bar {
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
+    -moz-transform-origin: 10% 90%;
+    -ms-transform-origin: 10% 90%;
+    -o-transform-origin: 10% 90%;
+    -webkit-transform-origin: 10% 90%;
     transform-origin: 10% 90%;
 }
 
 .navbar-toggle.collapsed .top-bar {
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
+    -webkit-transform: rotate(0);
     transform: rotate(0);
 }
 
@@ -69,6 +94,10 @@ body {
 }
 
 .navbar-toggle.collapsed .bottom-bar {
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
+    -webkit-transform: rotate(0);
     transform: rotate(0);
 }
 /*end navbar aimation*/
@@ -100,6 +129,9 @@ input[type=text], input[type=password], input[type=submit], img, p,
 canvas, button, div.fc-content, select, ul.nav a, .alert {
     -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
+    -moz-transition-duration: 0.4s inherit;
+    -o-transition-duration: 0.4s inherit;
+    -webkit-transition-duration: 0.4s inherit;
     transition-duration: 0.4s inherit;
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
@@ -118,6 +150,7 @@ button:hover, input[type="submit"]:hover {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
+    -o-transform: scale(1);
     transform: scale(1);
     opacity: .8;
 }
@@ -126,10 +159,12 @@ button:hover, input[type="submit"]:hover {
 .modal.fade .modal-dialog {
     -moz-transition: all 0.6s ease;
     -o-transition: all 0.6s ease;
+    -webkit-transition: all 0.6s ease;
     transition: all 0.6s ease;
     -webkit-transform: scale(0.1);
     -moz-transform: scale(0.1);
     -ms-transform: scale(0.1);
+    -o-transform: scale(0.1);
     transform: scale(0.1);
     opacity: 0;
 }
@@ -138,6 +173,7 @@ button:hover, input[type="submit"]:hover {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
+    -o-transform: scale(1);
     transform: scale(1);
     opacity: 1;
 }
@@ -245,6 +281,8 @@ button:hover, input[type="submit"]:hover {
     box-shadow: 6px 5px 9px -9px black;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
@@ -258,6 +296,7 @@ button:hover, input[type="submit"]:hover {
 .pagination > li:first-child > a, .pagination > li:first-child > span {
     -moz-transition: all 0.6s ease;
     -o-transition: all 0.6s ease;
+    -webkit-transition: all 0.6s ease;
     transition: all 0.6s ease;
 }
 
@@ -339,6 +378,10 @@ span.field-validation-error {
 
 
     .navbar-toggle:hover {
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
         transform: rotate(180deg);
     }
 
@@ -389,10 +432,15 @@ span.field-validation-error {
 .caret {
     -moz-transition: transform 1s;
     -webkit-transition: transform 1s;
+    -o-transition: transform 1s;
     transition: transform 1s;
 }
 
 .rotate-180 {
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
     transform: rotate(-180deg);
 }
 /*end caret rotation*/
@@ -403,7 +451,11 @@ header {
         text-align: center;
         -webkit-animation-name: animatebottom;
         -webkit-animation-duration: 1s;
+        -moz-animation-name: animatebottom;
+        -o-animation-name: animatebottom;
         animation-name: animatebottom;
+        -moz-animation-duration: 1s;
+        -o-animation-duration: 1s;
         animation-duration: 1s;
 
         div {

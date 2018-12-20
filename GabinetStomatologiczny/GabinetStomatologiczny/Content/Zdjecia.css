@@ -8,6 +8,10 @@
   cursor: pointer; }
 
 #myImg:hover {
+  -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  -o-transform: scale(0.9);
+  -webkit-transform: scale(0.9);
   transform: scale(0.9); }
 
 /* The Modal (background) */
@@ -38,6 +42,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   margin: auto;
   display: block;
@@ -59,10 +67,16 @@
 .modal-content, #caption {
   -webkit-animation-name: zoom;
   -webkit-animation-duration: 0.6s;
+  -moz-animation-name: zoom;
+  -o-animation-name: zoom;
   animation-name: zoom;
+  -moz-animation-duration: 0.6s;
+  -o-animation-duration: 0.6s;
   animation-duration: 0.6s;
   -webkit-animation-timing-function: ease-in-out;
   /* Safari 4.0 - 8.0 */
+  -moz-animation-timing-function: ease-in-out;
+  -o-animation-timing-function: ease-in-out;
   animation-timing-function: ease-in-out; }
 
 @-webkit-keyframes zoom {
@@ -85,6 +99,9 @@ div#myModal span.close {
   color: white;
   font-size: 40px;
   font-weight: bold;
+  -moz-transition: all .3s;
+  -o-transition: all .3s;
+  -webkit-transition: all .3s;
   transition: all .3s;
   z-index: 9999;
   opacity: 10; }
@@ -106,13 +123,15 @@ img.zdjecie {
   .modal-content {
     width: 100%; }
   img.zdjecie {
-    width: 94%;
-    height: 40%; } }
+    width: 94%; } }
 
 /*Loading*/
 div.loader {
   height: 50px;
   width: 50px;
+  -moz-animation: rotate 0.8s infinite linear;
+  -o-animation: rotate 0.8s infinite linear;
+  -webkit-animation: rotate 0.8s infinite linear;
   animation: rotate 0.8s infinite linear;
   border: 2px solid black;
   border-right-color: transparent;
@@ -120,14 +139,30 @@ div.loader {
 
 @-moz-keyframes rotate {
   0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
 @keyframes rotate {
   0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
 /*End loading*/

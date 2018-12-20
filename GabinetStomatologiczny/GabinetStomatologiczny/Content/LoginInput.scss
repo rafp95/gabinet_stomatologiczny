@@ -16,9 +16,14 @@ div.loginForm {
     padding: 1em;
     -webkit-animation-name: animatebottom;
     -webkit-animation-duration: 1s;
+    -moz-animation-name: animatebottom;
+    -o-animation-name: animatebottom;
     animation-name: animatebottom;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
     animation-duration: 1s;
-    div.forgotPassword{
+
+    div.forgotPassword {
         text-align: center;
     }
 }
@@ -99,7 +104,7 @@ i.loginSpinner {
 /*end hide loader i*/
 
 /*div list error page text*/
-div.validation-summary-errors ul li{
+div.validation-summary-errors ul li {
     text-align: left;
 }
 /*end div list error page */

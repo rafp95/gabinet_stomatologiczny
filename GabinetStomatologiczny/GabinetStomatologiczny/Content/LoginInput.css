@@ -14,7 +14,11 @@ div.loginForm {
   padding: 1em;
   -webkit-animation-name: animatebottom;
   -webkit-animation-duration: 1s;
+  -moz-animation-name: animatebottom;
+  -o-animation-name: animatebottom;
   animation-name: animatebottom;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
   animation-duration: 1s; }
   div.loginForm div.forgotPassword {
     text-align: center; }

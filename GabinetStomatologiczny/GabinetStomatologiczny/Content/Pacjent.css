@@ -40,6 +40,9 @@ table tr td a.btn-success {
 .ui-autocomplete {
   z-index: 2147483647;
   font-size: 16px;
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -webkit-transition: all .3s ease;
   transition: all .3s ease; }
 
 /*end ui z index*/
@@ -54,28 +57,61 @@ div.ladowanie {
   margin: -30px 0 0 -30px;
   left: 50%;
   top: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  -moz-animation: rotate 0.8s infinite linear;
+  -o-animation: rotate 0.8s infinite linear;
+  -webkit-animation: rotate 0.8s infinite linear;
   animation: rotate 0.8s infinite linear;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   z-index: 99999999;
   display: none; }
 
 @-moz-keyframes rotate {
   0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
 @-webkit-keyframes rotate {
   0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
 @keyframes rotate {
   0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
 /*End preloader*/

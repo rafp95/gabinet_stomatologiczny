@@ -41,7 +41,8 @@ div {
             font-size: 2em;
         }
     }
-    &.fc-agenda-view .fc-content{
+
+    &.fc-agenda-view .fc-content {
         font-size: .8em;
         letter-spacing: .1em;
         text-indent: .1em;
@@ -100,8 +101,17 @@ div.ladowanie {
     margin: -30px 0 0 -30px;
     left: 50%;
     top: 50%;
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
+    -moz-animation: rotate 0.8s infinite linear;
+    -o-animation: rotate 0.8s infinite linear;
+    -webkit-animation: rotate 0.8s infinite linear;
     animation: rotate 0.8s infinite linear;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     z-index: 99999999;
     display: none;
@@ -115,6 +125,8 @@ div.loader {
     width: 18px;
     height: 18px;
     -webkit-animation: rotate .8s linear infinite; /* Safari */
+    -moz-animation: rotate .8s linear infinite;
+    -o-animation: rotate .8s linear infinite;
     animation: rotate .8s linear infinite;
     border-radius: 50%;
     border-top: 2px solid white;
@@ -125,30 +137,54 @@ div.loader {
 
 @-moz-keyframes rotate {
     0% {
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
 
     100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 }
 
 @-webkit-keyframes rotate {
     0% {
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
 
     100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 }
 
 @keyframes rotate {
     0% {
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
 
     100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 }
@@ -157,6 +193,9 @@ div.loader {
 
 tr:hover {
     cursor: pointer;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
@@ -166,6 +205,9 @@ tr:hover {
 .ui-autocomplete {
     z-index: 2147483647;
     font-size: 16px;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
     transition: all .3s ease;
 }
 
@@ -214,7 +256,11 @@ div#saveDatabaseInfo {
 #calender {
     -webkit-animation-name: animatebottom;
     -webkit-animation-duration: 1s;
+    -moz-animation-name: animatebottom;
+    -o-animation-name: animatebottom;
     animation-name: animatebottom;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
     animation-duration: 1s;
 }
 
@@ -257,16 +303,18 @@ div.fc-content {
     min-height: 100%;
 
     .fc-title {
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
     }
 }
 //not exist wizytas info modal
-#myModalSaveToDataBaseError{
+#myModalSaveToDataBaseError {
     z-index: 999999999999;
 }
-//end not exist wizytas 
+//end not exist wizytas
 /*end fullcalendar center element fc-content*/
 
 /*space betwwen time and title*/
@@ -278,6 +326,8 @@ span.fc-time {
 div#action {
     display: flex;
     justify-content: space-around;
+    -ms-flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
     flex-direction: row-reverse;
 
     button {
@@ -297,6 +347,10 @@ div#action {
         overflow: auto;
         left: 50% !important;
         top: 50% !important;
+        -moz-transform: translate(-50%,-50%) !important;
+        -ms-transform: translate(-50%,-50%) !important;
+        -o-transform: translate(-50%,-50%) !important;
+        -webkit-transform: translate(-50%,-50%) !important;
         transform: translate(-50%,-50%) !important;
     }
 }

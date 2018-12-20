@@ -41,7 +41,7 @@ namespace GabinetStomatologiczny.Services
         public async Task<Lekarz> Edit(Lekarz lekarz)
         {
             var lekarzBuf = await _db.Lekarz.Where(_ => _.Email == lekarz.Email).FirstOrDefaultAsync();
-            lekarz.DataDodania = DateTime.Now;
+            lekarz.DataDodania = DateTime.UtcNow;
             if (string.IsNullOrEmpty(lekarz.Zdjecie))
             {
                 lekarz.Zdjecie = lekarzBuf.Zdjecie;

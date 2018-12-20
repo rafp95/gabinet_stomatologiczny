@@ -34,7 +34,7 @@ namespace Gabinet.Tests
             const string expectedLastName = "Rafał";
             const string expectedEmail = "patrykrafal33@o2.pl";
             const OddzialNfz expetcedOddzialNfz = OddzialNfz.Kujawsko_Pomorski;
-            DateTime expectedRegisterDate = DateTime.Now;
+            DateTime expectedRegisterDate = DateTime.UtcNow;
 
             var pacjent = new Pacjent()
             {

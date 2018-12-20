@@ -239,10 +239,10 @@ namespace Gabinet.Tests
             var pacjentDateAttribute = new DatePacjentAttribute();
 
             var isNull = pacjentDateAttribute.IsValid(null);
-            var isAfter = pacjentDateAttribute.IsValid(DateTime.Now.AddDays(1));
+            var isAfter = pacjentDateAttribute.IsValid(DateTime.UtcNow.AddDays(1));
             var isBefore = pacjentDateAttribute.IsValid(DateTime.MinValue);
             var isMaxDate = pacjentDateAttribute.IsValid(DateTime.MaxValue);
-            var isNow = pacjentDateAttribute.IsValid(DateTime.Now);
+            var isNow = pacjentDateAttribute.IsValid(DateTime.UtcNow);
 
             Assert.AreEqual(false, isAfter, "Podana data nie jest wcześniejsza");
             Assert.AreEqual(true, isBefore,"Podana data nie jest wcześniejsza");

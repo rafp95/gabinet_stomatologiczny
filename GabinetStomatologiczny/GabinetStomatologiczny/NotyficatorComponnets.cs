@@ -62,7 +62,7 @@ namespace GabinetStomatologiczny
                 var notificationHub = GlobalHost.ConnectionManager.GetHubContext<NotyficationsHub>();
                 notificationHub.Clients.All.notify("added");
 
-                RegisterNotyfication(DateTime.Now);
+                RegisterNotyfication(DateTime.UtcNow);
 
 
             }

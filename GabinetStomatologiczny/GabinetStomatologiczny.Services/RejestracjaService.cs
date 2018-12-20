@@ -87,7 +87,7 @@ namespace GabinetStomatologiczny.Services
                 case RoleType.Lekarz:
                     {
                         var lekarz = Mapper.Map<Lekarz>(o);
-                        lekarz.DataDodania = DateTime.Now;
+                        lekarz.DataDodania = DateTime.UtcNow;
                         await se.SendMail(o.Email, "Witaj, lekarz " +
                             o.Imie, "Twoje dane do logowania to \n"
                             + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);
@@ -97,7 +97,7 @@ namespace GabinetStomatologiczny.Services
                 case RoleType.Pacjent:
                     {
                         var pacjent = Mapper.Map<Pacjent>(o);
-                        pacjent.DataRejestracji = DateTime.Now;
+                        pacjent.DataRejestracji = DateTime.UtcNow;
                         await se.SendMail(o.Email, "Witaj, pacjencie " +
                            o.Imie, "Twoje dane do logowania to \n "
                            + "Login:  " + o.Email + "\n" + "hasło " + o.Haslo);

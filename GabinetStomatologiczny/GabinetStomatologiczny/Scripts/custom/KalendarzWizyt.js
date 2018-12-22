@@ -110,6 +110,7 @@
             minTime: "08:00:00",
             maxTime: "17:00:00",
             defaultView: widok,
+            slotDuration: "00:20:00",
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -462,7 +463,7 @@
             Poczatek: $("#txtStart").val().trim(),
             Pacjent: {
                 Imie: tBuf.length > 0 ? tBuf[0] : null,
-                Nazwisko:tBuf.length > 1 ? tBuf[1] : null,
+                Nazwisko: tBuf.length > 1 ? tBuf[1] : null,
             },
             __RequestVerificationToken: $('[name="__RequestVerificationToken"]').val()
         }

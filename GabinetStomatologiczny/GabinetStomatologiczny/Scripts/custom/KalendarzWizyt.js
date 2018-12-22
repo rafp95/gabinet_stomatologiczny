@@ -10,7 +10,7 @@
     //Czyszczenie
 
     $("input[type=text],textarea[type=text],#dtp1").bind('click keyup', function () {
-        ErorMessage();
+        ErorMessageClear();
         szukajDane("");
     });
 
@@ -131,7 +131,7 @@
             eventLimit: 3,
             events: events,
             eventClick: function (calEvent, jsEvent, view) {
-                ErorMessage();
+                ErorMessageClear();
                 selectedEvent = calEvent;
                 //budowanie modal
                 let tel = calEvent.phone != null ? calEvent.phone : " *";
@@ -163,7 +163,7 @@
                 let identity = $('#identity-Info');
                 identity = identity.length > 0 ? identity.modal() : "";
                 //end if user is not autenticated
-                ErorMessage();
+                ErorMessageClear();
                 selectedEvent = {
                     eventID: 0,
                     description: '',
@@ -221,7 +221,7 @@
     //Send sms
     $("#btnSms").off('click').on('click', () => {
         czyscSmsInput();
-        ErorMessage();
+        ErorMessageClear();
         $("#inputDo").val('+48' + getPhoneNumber());
         $("#inputWiadomosc").val("Przypomnienie o wizycie dnia " + selectedEvent.start.format("DD-MMM-YYYY HH:mm"));
         buttonInfo($("#btnSmsSend"), "Wyślij");
@@ -295,7 +295,7 @@
     //Send email
     $("#btnEmail").off('click').on('click', function () {
         czyscEamilInput();
-        ErorMessage();
+        ErorMessageClear();
 
         $("#inputDoEmail").val(selectedEvent.email);
         $("#inputWiadomoscEamil").val("Przypomnienie o wizycie " + selectedEvent.start.format("DD-MMM-YYYY HH:mm"));
@@ -427,7 +427,7 @@
     $('#btnSave').off('click').on('click', function () {
 
         //Validation/
-        ErorMessage();
+        ErorMessageClear();
         var error = $("div.error");
         var errorTime = $("div.errorTime");
         var maxTime = moment("17:00", 'HH:mm').format("HH:mm");
@@ -526,7 +526,7 @@
     }
 
     //Validate massage
-    function ErorMessage() {
+    function ErorMessageClear() {
         $("#errorSmsTo").html("");
         $("#errorSmsWiadom").html("");
         $("#errorEmailTo").html("");

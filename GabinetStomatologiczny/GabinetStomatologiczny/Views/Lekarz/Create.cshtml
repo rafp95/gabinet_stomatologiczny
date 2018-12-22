@@ -4,10 +4,12 @@
     ViewBag.Title = "Utwórz";
 }
 
-<h2>@ViewBag.Title</h2>
 
 @if (User.IsInRole("Administrator") || User.IsInRole("Lekarz"))
 {
+
+    <h2>@ViewBag.Title</h2>
+
     using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -56,7 +58,7 @@ else
 }
 
 <div>
-    @Html.ActionLink("Wstecz", "Index",null,new { @class = "glyphicon glyphicon-hand-left" })
+    @Html.ActionLink("Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
 </div>
 
 @section Scripts {

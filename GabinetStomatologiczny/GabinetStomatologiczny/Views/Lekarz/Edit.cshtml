@@ -10,7 +10,7 @@
 
     <header class="alert alert-info headerInfo"><div>@ViewBag.Title</div></header>
 
-    using (Html.BeginForm("Edit", "Lekarzs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    using (Html.BeginForm("Edit", "Lekarz", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 

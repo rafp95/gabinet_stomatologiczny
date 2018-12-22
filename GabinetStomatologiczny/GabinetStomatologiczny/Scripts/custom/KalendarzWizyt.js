@@ -109,6 +109,18 @@
             timeFormat: 'HH:mm',
             minTime: "08:00:00",
             maxTime: "17:00:00",
+            businessHours: [ // specify an array instead
+              {
+                  dow: [ 1, 2, 3 ], // Monday, Tuesday, Wednesday
+                  start: '08:00', // 8am
+                  end: '14:00' // 2pm
+              },
+              {
+                  dow: [ 4, 5 ], // Thursday, Friday
+                  start: '10:00', // 10am
+                  end: '16:00' // 4pm
+              }
+            ],
             defaultView: widok,
             slotDuration: "00:20:00",
             header: {

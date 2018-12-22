@@ -33,6 +33,9 @@ div.fc-agenda-view .fc-content {
   letter-spacing: .1em;
   text-indent: .1em; }
 
+div.fc-nonbusiness.fc-bgevent {
+  background: red; }
+
 /*modal width on screen in modal*/
 div.body-content form:not(.wyszukiwarka) {
   display: table;

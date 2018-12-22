@@ -35,6 +35,10 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
 }
 
 //miesiąc w kalendarzu
+.fc-scroller {
+    overflow-y: hidden !important;
+}
+
 div {
     &.fc-center {
         h2 {

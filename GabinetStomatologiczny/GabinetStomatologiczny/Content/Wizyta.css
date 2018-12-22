@@ -25,6 +25,9 @@ td.fc-event-container:hover, div.fc-event-container a:hover {
   opacity: 0.8;
   cursor: pointer; }
 
+.fc-scroller {
+  overflow-y: hidden !important; }
+
 div.fc-center h2 {
   font-size: 2em; }
 

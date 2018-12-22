@@ -31,7 +31,7 @@
             reader.onload = function () {
                 let dataURL = reader.result;
                 let output = $("#miniaturka");
-                output.html("<img class='zdjecie' src='" + dataURL + "' />");
+                output.hide().fadeIn('slow').html("<img class='zdjecie' src='" + dataURL + "' />");
             };
             reader.readAsDataURL(input.files[0]);
         });
@@ -47,7 +47,7 @@
                 if (width > 100) {
                     clearInterval(timer);
                 } else {
-                    $('#myProgress').css({ 'display': 'block' });
+                    $('#myProgress').fadeIn('slow');
                     elem.css({ 'width': width + '%' });
                     elem.text(width + '%');
                 }

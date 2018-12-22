@@ -17,7 +17,7 @@
     </div>
 }
 
-@if (User.Identity.IsAuthenticated && (User.IsInRole("Lekarz") || User.IsInRole("Administrator")))
+@if ( User.IsInRole("Lekarz") || User.IsInRole("Administrator") )
 {
     <div class="form-group">
         <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">

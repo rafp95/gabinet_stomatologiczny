@@ -1,17 +1,21 @@
 ﻿$(document).ready(function () {
     //carpet menu rotation
     let caret = $(".caret");
-    $("ul.nav a.dropdown-toggle").off().on('click', function () {
-        if(!caret.hasClass('rotate-180')) {
+    $("ul.nav a.dropdown-toggle").off().on('click', function (event) {
+        event.preventDefault();
+
+        if (!caret.hasClass('rotate-180')) {
             caret.toggleClass('rotate-180');
         }
     });
-    $("ul.nav li.dropdown").off().on('mouseleave', function () {
+    $("ul.nav li.dropdown").off().on('mouseleave', function (event) {
+        event.preventDefault();
+
         if (caret.hasClass('rotate-180')) {
             caret.toggleClass('rotate-180');
         }
     });
-        
+
     //end carpet menu rotation
 
     //tooltip
@@ -39,7 +43,9 @@
     */
     //back to top page
     let top = $('#back-to-top');
-    $(window).scroll(() => {
+    $(window).scroll(function (event) {
+        event.preventDefault();
+
         if ($(this).scrollTop() > 50) {
             top.fadeIn(100);
         } else {
@@ -47,7 +53,7 @@
         }
     });
     // scroll body to 0px on click
-    top.off('click').on('click',(e) => {
+    top.off('click').on('click', function(e){
         e.preventDefault();
         $('html,body').animate({
             scrollTop: 0

@@ -9,7 +9,8 @@
     pokazAktualnyCzas();
     //Czyszczenie
 
-    $("input[type=text],textarea[type=text],#dtp1").bind('click keyup', function () {
+    $("input[type=text],textarea[type=text],#dtp1").bind('click keyup', function (event) {
+        event.preventDefault();
         ErorMessageClear();
         szukajDane("");
     });
@@ -33,7 +34,9 @@
     function czyscText() {
         var kasuj = $("span.kasujText");
 
-        kasuj.on("click", function () {
+        kasuj.on("click", function (event) {
+            event.preventDefault();
+
             $("#searchQuery").val("");
             szukajDane("");
             kasuj.css("display", "none");
@@ -111,12 +114,12 @@
             maxTime: "17:00:00",
             businessHours: [ // specify an array instead
               {
-                  dow: [ 1, 2, 3 ], // Monday, Tuesday, Wednesday
+                  dow: [1, 2, 3], // Monday, Tuesday, Wednesday
                   start: '08:00', // 8am
                   end: '14:00' // 2pm
               },
               {
-                  dow: [ 4, 5 ], // Thursday, Friday
+                  dow: [4, 5], // Thursday, Friday
                   start: '10:00', // 10am
                   end: '16:00' // 4pm
               }
@@ -219,7 +222,9 @@
     //End generate calendar
 
     //Send sms
-    $("#btnSms").off('click').on('click', () => {
+    $("#btnSms").off('click').on('click', function (event) {
+        event.preventDefault();
+
         czyscSmsInput();
         ErorMessageClear();
         $("#inputDo").val('+48' + getPhoneNumber());
@@ -229,7 +234,8 @@
     });
 
 
-    $("#btnSmsSend").off('click').on('click', () => {
+    $("#btnSmsSend").off('click').on('click', function (event) {
+        event.preventDefault();
 
         let data = {
             to: $("#inputDo").val(),
@@ -293,7 +299,9 @@
     //End send sms
 
     //Send email
-    $("#btnEmail").off('click').on('click', function () {
+    $("#btnEmail").off('click').on('click', function (event) {
+        event.preventDefault();
+
         czyscEamilInput();
         ErorMessageClear();
 
@@ -306,7 +314,9 @@
         $("#inputDoEmail").val("");
         $("#inputWiadomoscEamil").val("");
     }
-    $("#btnEmailSend").off('click').on('click', function () {
+    $("#btnEmailSend").off('click').on('click', function (event) {
+        event.preventDefault();
+
         let data = {
             to: $("#inputDoEmail").val(),
             text: $("#inputWiadomoscEamil").val(),
@@ -348,18 +358,24 @@
     }
     //End send email
 
-    $('#btnEdit').off('click').on('click', function () {
+    $('#btnEdit').off('click').on('click', function (event) {
+        event.preventDefault();
+
         //Open modal dialog for edit event
         openAddEditForm();
     })
 
     //Dete element
-    $('#btnDelete').off('click').on('click', function () {
+    $('#btnDelete').off('click').on('click', function (event) {
+        event.preventDefault();
+
         $("#deleteConfirmModal").modal();
         buttonInfo($("#kasujElement"), "Kasuj");
     })
 
-    $("#kasujElement").off('click').on('click', function () {
+    $("#kasujElement").off('click').on('click', function (event) {
+        event.preventDefault();
+
         buttonInfo($(this), "<div clsss='saveText' style='float:left; '>Kasowanie </div> <div class='loader' style='float:left;'></div>");
         if (selectedEvent != null) {
             $.ajax({
@@ -424,7 +440,8 @@
         $('#myModalSave').modal();
     }
 
-    $('#btnSave').off('click').on('click', function () {
+    $('#btnSave').off('click').on('click', function (event) {
+        event.preventDefault();
 
         //Validation/
         ErorMessageClear();

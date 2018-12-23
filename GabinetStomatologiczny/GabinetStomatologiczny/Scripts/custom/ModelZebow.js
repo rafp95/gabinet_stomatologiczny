@@ -325,8 +325,11 @@
                         + '</button></div> '
                         + '</li>');
                 })
+                //text more less
+                ShowMoreLess();
+                //text more less
                 //delete zab descr
-                $("ol li #btnDelDescr").each(function () {
+                $("ol li span #btnDelDescr").each(function () {
                     $(this).off('click').on('click', function () {
                         let element = $(this).parent();
                         let id = $(this).children().closest('input').val();
@@ -348,7 +351,7 @@
                 //end delete zab descr
 
                 //edit zab descr
-                $("ol li #btnEditDescr").each(function () {
+                $("ol li span #btnEditDescr").each(function () {
                     $(this).off('click').on('click', function () {
                         removeValidateStyle();
 
@@ -377,9 +380,7 @@
                     })
                 });
                 //end edit zab descr
-                //text more less
-                ShowMoreLess();
-                //text more less
+
             }
         });
     }

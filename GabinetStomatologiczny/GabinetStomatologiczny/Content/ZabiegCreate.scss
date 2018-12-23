@@ -317,3 +317,11 @@ div.buttonAction {
         margin-left: 5px;
     }
 }
+
+/*text more less*/
+span {
+    &.hide {
+        display: none;
+    }
+}
+/*end text more less*/

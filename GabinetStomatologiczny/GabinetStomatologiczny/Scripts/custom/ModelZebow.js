@@ -23,7 +23,6 @@
                 console.log('pobrano tab ' + tab.length);
                 SetTooth();
                 ToothHover();
-
             }, error: function () {
                 zapisInfo.text("Wystąpił problem z pobraniem danych ").
                 append('<i class="fa fa-spinner fa-spin"></i>').
@@ -254,11 +253,11 @@
             sendDescription(data);
         });
     }
-
+    /**********************************************************/
     function czyascInput(input) {
         input.val("");
     }
-
+    /**********************************************************/
     function sendDescription(data) {
         $.ajax({
             url: '/Zabieg/SaveTooth',
@@ -299,6 +298,7 @@
             getHistoryFromApi(id, history);
         });
     }
+    /**********************************************************/
     function getHistoryFromApi(data, setText) {
         $.ajax({
             url: '/Zabieg/GetHistory',
@@ -367,7 +367,7 @@
                                 $("#zabDescriptionError").hide().fadeIn().text("Pole nie może być puste").css('color', 'red');
                                 $("#zabDescription").fadeIn().css({ 'border': '1px solid red', 'background': 'pink' });
                                 return;
-                            }else if (data.id > 0) {
+                            } else if (data.id > 0) {
                                 editDescription(data);
                             }
                             $("#myModalZabDescription").modal('hide');
@@ -377,9 +377,13 @@
                     })
                 });
                 //end edit zab descr
+                //text more less
+                ShowMoreLess();
+                //text more less
             }
         });
     }
+    /**********************************************************/
     function deleteDescription(id) {
         $.ajax({
             type: 'GET',
@@ -393,6 +397,7 @@
             }
         })
     }
+    /**********************************************************/
     function editDescription(data) {
         $.ajax({
             type: 'POST',
@@ -414,4 +419,36 @@
             }
         })
     }
+    /**********************************************************/
+    function ShowMoreLess() {
+        let text = $("ol#historiaLeczeniaLista>li");
+
+        text.each(function () {
+            let bufElem = $(this).text().length > 5 ?
+            " <span class='textLess'>"
+            + $(this).text().substring(0, 5) + '...'
+            + "<a class='showMore'> Pokaż więcej </a> </span> "
+            + "<span class='textMore hide'>" + $(this).text().substring(0)
+            + " " + $(this).children().html()
+            + "<a class='showLess'>" + "Pokaż mniej" + "</a>  </span>"
+            : $(this).text() + ' ' + $(this).children().html();
+            $(this).html(bufElem);
+        });
+
+        let showMore = $("a.showMore");
+        let showLess = $("a.showLess");
+        showMore.off('click').on('click', function () {
+            if (!$(this).parent().hasClass('hide')) {
+                $(this).parent().addClass('hide');
+                $(this).parent().next('span.textMore').hide().fadeIn().removeClass('hide');
+            }
+        });
+        showLess.off('click').on('click', function () {
+            if (!$(this).parent().hasClass('hide')) {
+                $(this).parent().addClass('hide');
+                $(this).parent().prev('span.textLess').hide().fadeIn().removeClass('hide');
+            }
+        });
+    }
+    /**********************************************************/
 });

@@ -42,8 +42,9 @@
     //
     function SetTooth() {
         let clicks = 0, timer = null, deley = 200;
-        tooth.off('click').on('click', function (e) {
-            e.preventDefault();
+        tooth.off('click').on('click', function (event) {
+            event.preventDefault();
+
             clicks++;
             if (clicks == 1) {
                 ladowanie.css('display', 'block');
@@ -94,7 +95,9 @@
     //delete tooth confirm 
     function deleteConfirm(tooth, elem) {
         let bDelete = $("#deleteConfirm");
-        bDelete.off('click').on('click', function () {
+        bDelete.off('click').on('click', function (event) {
+            event.preventDefault();
+
             deleteTooth(tooth);
             if (tooth.idTooth.indexOf('XMLID') >= 0) {
                 console.log(tooth.idTooth)
@@ -236,7 +239,9 @@
 
         let buttonSave = $("#btnDescZabSave");
 
-        buttonSave.off('click').on('click', function () {
+        buttonSave.off('click').on('click', function (event) {
+            event.preventDefault();
+
             let data = {
                 idTooth: idTooth,
                 description: $("#zabDescription").val(),
@@ -280,7 +285,9 @@
     }
     //end send description tooth
     //removeStyle after click on text area
-    $("#zabDescription").off('click').on('click', function () {
+    $("#zabDescription").off('click').on('click', function (event) {
+        event.preventDefault();
+
         removeValidateStyle();
     });
     //end
@@ -330,7 +337,9 @@
                 //text more less
                 //delete zab descr
                 $("ol li span #btnDelDescr").each(function () {
-                    $(this).off('click').on('click', function () {
+                    $(this).off('click').on('click', function (event) {
+                        event.preventDefault();
+
                         let element = $(this).parent();
                         let id = $(this).children().closest('input').val();
                         let data = {
@@ -352,7 +361,9 @@
 
                 //edit zab descr
                 $("ol li span #btnEditDescr").each(function () {
-                    $(this).off('click').on('click', function () {
+                    $(this).off('click').on('click', function (event) {
+                        event.preventDefault();
+
                         removeValidateStyle();
 
                         let zabDescrText = $("#zabDescription");
@@ -438,13 +449,17 @@
 
         let showMore = $("a.showMore");
         let showLess = $("a.showLess");
-        showMore.off('click').on('click', function () {
+        showMore.off('click').on('click', function (event) {
+            event.preventDefault();
+
             if (!$(this).parent().hasClass('hide')) {
                 $(this).parent().addClass('hide');
                 $(this).parent().next('span.textMore').hide().fadeIn().removeClass('hide');
             }
         });
-        showLess.off('click').on('click', function () {
+        showLess.off('click').on('click', function (event) {
+            event.preventDefault();
+
             if (!$(this).parent().hasClass('hide')) {
                 $(this).parent().addClass('hide');
                 $(this).parent().prev('span.textLess').hide().fadeIn().removeClass('hide');

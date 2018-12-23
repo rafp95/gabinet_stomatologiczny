@@ -431,7 +431,7 @@
             + "<a class='showMore'> Pokaż więcej </a> </span> "
             + "<span class='textMore hide'>" + $(this).text().substring(0)
             + " " + $(this).children().html()
-            + "<a class='showLess'>" + "Pokaż mniej" + "</a>  </span>"
+            + "<a class='showLess'>" + " Pokaż mniej" + "</a>  </span>"
             : $(this).text() + ' ' + $(this).children().html();
             $(this).html(bufElem);
         });

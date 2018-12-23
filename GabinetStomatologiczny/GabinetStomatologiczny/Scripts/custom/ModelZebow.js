@@ -425,9 +425,9 @@
         let text = $("ol#historiaLeczeniaLista>li");
 
         text.each(function () {
-            let bufElem = $(this).text().length > 5 ?
+            let bufElem = $(this).text().length > 10 ?
             " <span class='textLess'>"
-            + $(this).text().substring(0, 5) + '...'
+            + $(this).text().substring(0, 10) + '...'
             + "<a class='showMore'> Pokaż więcej </a> </span> "
             + "<span class='textMore hide'>" + $(this).text().substring(0)
             + " " + $(this).children().html()

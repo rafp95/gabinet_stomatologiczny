@@ -65,7 +65,7 @@ namespace GabinetStomatologiczny.Services
                  }).
                  Where(p => p.Tytul.ToLower().
                  Contains(sugestion.term.ToLower()) &&
-                 p.Poczatek >= DateTime.UtcNow).
+                 p.Poczatek >= DateTime.Now).
                  OrderBy(p => p.Poczatek).
                  Take(5).
                  Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, HH:mm") ?? "" });

@@ -32,11 +32,11 @@ namespace GabinetStomatologiczny.Controllers
         public  async Task<JsonResult> GetNotyficationWizytas()
         {
             var notyficationTime = Session["LastUpdated"] != null ? 
-                (DateTime)Session["LastUpdated"] : DateTime.UtcNow ;
+                (DateTime)Session["LastUpdated"] : DateTime.Now ;
            
             var list = await ns.GetWizyts(notyficationTime);
             //update session for get only wizytas
-            Session["LastUpdated"] = DateTime.UtcNow;
+            Session["LastUpdated"] = DateTime.Now;
             return new JsonResult { Data = list,JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 

@@ -24,7 +24,7 @@ namespace Gabinet.Tests
     public class TestWizytaService
     {
 
-        private readonly DateTime data = DateTime.UtcNow;
+        private readonly DateTime data = DateTime.Now;
 
         [TestInitialize]
         public void AutoMapperTestVerify()
@@ -63,7 +63,7 @@ namespace Gabinet.Tests
             var wizyta = new List<Wizyta>()
             {
                 new Wizyta() {
-                      ID = 1,DataDodania = DateTime.UtcNow
+                      ID = 1,DataDodania = DateTime.Now
                     , Poczatek = data
                     , Koniec = data.AddMinutes(30)
                     , LekarzID = 1
@@ -131,8 +131,8 @@ namespace Gabinet.Tests
             Wizyta w = new Wizyta()
             {
                 ID = 1,
-                Poczatek = DateTime.UtcNow,
-                Koniec = DateTime.UtcNow,
+                Poczatek = DateTime.Now,
+                Koniec = DateTime.Now,
                 Lekarz = new Lekarz() { ID = 1, Imie = "Patryk", Nazwisko = "Rafał" },
                 Pacjent = new Pacjent() { ID = 1, Imie = "Anna", Nazwisko = "DFDS" },
             };

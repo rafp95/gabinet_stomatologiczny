@@ -135,7 +135,7 @@ namespace GabinetStomatologiczny.Services
             var idZabieg = await _db.Zabieg.Where(_ => _.Wizyta.ID == idWizyta.ID).FirstOrDefaultAsync();
 
             zab.ZabiegID = idZabieg.ID;
-            zab.TreatmentDate = DateTime.UtcNow;
+            zab.TreatmentDate = DateTime.Now;
 
             _db.Zab.Add(zab);
             await _db.SaveChangesAsync();
@@ -173,7 +173,7 @@ namespace GabinetStomatologiczny.Services
             {
                 var idZab = await _db.ZabDescriptions.Where(_ => _.ID == zDesc.ID).Select(_ => _.ZabID).FirstOrDefaultAsync();
                 zDesc.ZabID = idZab;
-                zDesc.ZabDateDescription = DateTime.UtcNow;
+                zDesc.ZabDateDescription = DateTime.Now;
                 var tooth = Mapper.Map<ZabDescriptions, ZabDescriptions>(zDesc, zDesc);
                 _db.Entry(tooth).State = EntityState.Modified;
                 await _db.SaveChangesAsync();
@@ -190,7 +190,7 @@ namespace GabinetStomatologiczny.Services
                 var zabZabiegQuery = await _db.Zab.Where(_ => _.ZabiegID == pacejntZabiegQuery && _.IdTooth == zab.IdTooth).FirstOrDefaultAsync();
 
                 zDesc.ZabID = zabZabiegQuery.ID;
-                zDesc.ZabDateDescription = DateTime.UtcNow;
+                zDesc.ZabDateDescription = DateTime.Now;
 
                 _db.ZabDescriptions.Add(zDesc);
                 await _db.SaveChangesAsync();
@@ -209,7 +209,7 @@ namespace GabinetStomatologiczny.Services
                 Where(p => p.PacjentID == pacjet).Select(p => p.ID).FirstOrDefaultAsync();
 
             zabieg.WizytaID = wizyta;
-            zabieg.ZabiegDate = DateTime.UtcNow;
+            zabieg.ZabiegDate = DateTime.Now;
             _db.Zabieg.Add(zabieg);
             await _db.SaveChangesAsync();
             return zabieg;

@@ -23,9 +23,9 @@ namespace Gabinet.Tests
             var wizyta = new List<Wizyta>()
             {
                 new Wizyta() {
-                      ID = 1,DataDodania = DateTime.UtcNow
-                    , Poczatek = DateTime.UtcNow
-                    , Koniec = DateTime.UtcNow.AddMinutes(30)
+                      ID = 1,DataDodania = DateTime.Now
+                    , Poczatek = DateTime.Now
+                    , Koniec = DateTime.Now.AddMinutes(30)
                     , LekarzID = 1
                     , PacjentID = 1
                     , Lekarz = new Lekarz() {ID = 1, Imie = "Anna", Nazwisko = "Rafał" }
@@ -43,9 +43,9 @@ namespace Gabinet.Tests
                     ID = 1,
                     WizytaID = 1,
                     Wizyta = new Wizyta() {
-                              ID = 1,DataDodania = DateTime.UtcNow
-                            , Poczatek = DateTime.UtcNow
-                            , Koniec = DateTime.UtcNow.AddMinutes(30)
+                              ID = 1,DataDodania = DateTime.Now
+                            , Poczatek = DateTime.Now
+                            , Koniec = DateTime.Now.AddMinutes(30)
                             , LekarzID = 1
                             , PacjentID = 1
                             , Lekarz = new Lekarz() {ID = 1, Imie = "Anna", Nazwisko = "Rafał" }
@@ -71,9 +71,9 @@ namespace Gabinet.Tests
                             ID = 1,
                             WizytaID = 1,
                             Wizyta = new Wizyta() {
-                                      ID = 1,DataDodania = DateTime.UtcNow
-                                    , Poczatek = DateTime.UtcNow
-                                    , Koniec = DateTime.UtcNow.AddMinutes(30)
+                                      ID = 1,DataDodania = DateTime.Now
+                                    , Poczatek = DateTime.Now
+                                    , Koniec = DateTime.Now.AddMinutes(30)
                                     , LekarzID = 1
                                     , PacjentID = 1
                                     , Lekarz = new Lekarz() {ID = 1, Imie = "Anna", Nazwisko = "Rafał" }

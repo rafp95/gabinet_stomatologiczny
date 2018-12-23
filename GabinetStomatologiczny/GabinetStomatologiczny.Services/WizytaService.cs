@@ -95,7 +95,7 @@ namespace GabinetStomatologiczny.Services
                         w.PacjentID = v.PacjentID;
 
                         var m = Mapper.Map<Wizyta, Wizyta>(w, v);
-                        m.DataDodania = DateTime.UtcNow;
+                        m.DataDodania = DateTime.Now;
 
                         db.Entry(m).State = EntityState.Modified;
                     }
@@ -110,7 +110,7 @@ namespace GabinetStomatologiczny.Services
                         await pacjentQuery.Where(_ => _.Email == user.Name).Select(_ => _.ID).FirstOrDefaultAsync() :
                         await pacjentQuery.Where(p => (p.Imie + " " + p.Nazwisko).
                     Contains(w.Pacjent.Imie + " " + w.Pacjent.Nazwisko)).Select(p => p.ID).FirstOrDefaultAsync();
-                    m.DataDodania = DateTime.UtcNow;
+                    m.DataDodania = DateTime.Now;
                     db.Wizyta.Add(m);
                 }
 

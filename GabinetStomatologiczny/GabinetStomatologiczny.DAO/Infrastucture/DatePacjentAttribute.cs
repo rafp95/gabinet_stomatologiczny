@@ -20,7 +20,7 @@ namespace GabinetStomatologiczny.DAO.Infrastucture
                 return true;
             }
             DateTime date = Convert.ToDateTime(value);
-            return date > DateTime.UtcNow ? false : true;
+            return date > DateTime.Now ? false : true;
         }
     }
 }

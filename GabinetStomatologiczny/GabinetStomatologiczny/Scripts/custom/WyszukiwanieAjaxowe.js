@@ -1,54 +1,61 @@
 ﻿$(document).ready(function wyslij() {
-    
+
     let ladowanie = $("div.ladowanie");
 
     //Pacjent
-    var szukajL = $(".szukajPacjentAjax");
-    szukajL.on('click', function () {
+    let szukajPacjent = $(".szukajPacjentAjax");
+    szukajPacjent.off('click').on('click', function (event) {
+        event.preventDefault();
+
         var pom = $("#searchQuery").val();
-        SzukajDane(pom, "Pacjent/"); 
+        SzukajDane(pom, "Pacjent/");
     });
 
-    
+
     $(".pacjent-query").bind('click keyup', function (event) {
         event.preventDefault();
+
         var pom = $("#searchQuery").val();
         showAndHideClearText(pom);
     });
-    
+
 
     //End pacjent
 
     //Lekarz
-    var szukaj = $(".szukajLekarzaAjax").off('click').on('click', function () {
+    let szukajLekarz = $(".szukajLekarzaAjax").off('click').on('click', function (event) {
+        event.preventDefault();
+
         var pom = $("#searchQuery").val();
-        SzukajDane(pom,"Lekarz/Index/");
+        SzukajDane(pom, "Lekarz/Index/");
     });
 
-    
+
     $(".lekarz-query").bind('click keyup', function (event) {
         event.preventDefault()
         var pom = $("#searchQuery").val();
         showAndHideClearText(pom);
     });
-    
+
 
     //end lekarz
 
     //zabieg
 
-    var szukaj = $(".szukajZabiegAjax").off('click').on('click', function () {
+    let szukajZabieg = $(".szukajZabiegAjax").off('click').on('click', function (event) {
+        event.preventDefault();
+
         var pom = $("#searchQuery").val();
         SzukajDane(pom, "Zabieg/Index/");
     });
 
-    
+
     $(".zabieg-query").bind('click keyup', function (event) {
         event.preventDefault()
         var pom = $("#searchQuery").val();
         showAndHideClearText(pom);
     });
-    
+
 
     //end zabieg
 
@@ -58,13 +65,13 @@
     //end clear text with input
 
     //method using ajax send data to controller
-    function SzukajDane(pom,akcja) {
+    function SzukajDane(pom, akcja) {
         ladowanie.css("display", "block");
         var searchQuery = $("#searchQuery").val();
         var setData = $(".data-select");
         var param = getUrlParams("sortOrder");
         var page = getUrlParams("page");
-        
+
         showAndHideClearText(pom);
 
         $.ajax({
@@ -88,11 +95,11 @@
 
     //icon disable text
     function showAndHideClearText(pom) {
-            if (pom.length > 0) {
-                $("span.kasujText").css("display", "block");
-            } else {
-                $("span.kasujText").css("display", "none");
-            }
+        if (pom.length > 0) {
+            $("span.kasujText").css("display", "block");
+        } else {
+            $("span.kasujText").css("display", "none");
+        }
     }
     //end disable icon clear text
 
@@ -112,21 +119,27 @@
     //clear input
     function czyscText() {
         var kasuj = $("span.kasujTextPacjent");
-        kasuj.off('click').on("click", function () {
+        kasuj.off('click').on("click", function (event) {
+            event.preventDefault();
+
             $("#searchQuery").val("");
             SzukajDane("", "Pacjent/Index/");
             kasuj.css("display", "none");
         });
 
         var kasuj = $("span.kasujTextLekarz");
-        kasuj.off('click').on("click", function () {
+        kasuj.off('click').on("click", function (event) {
+            event.preventDefault();
+
             $("#searchQuery").val("");
             SzukajDane("", "Lekarz/Index/");
             kasuj.css("display", "none");
         });
 
         var kasuj = $("span.kasujTextZabieg");
-        kasuj.off('click').on("click", function () {
+        kasuj.off('click').on("click", function (event) {
+            event.preventDefault();
+
             $("#searchQuery").val("");
             SzukajDane("", "Zabieg/Index/");
             kasuj.css("display", "none");

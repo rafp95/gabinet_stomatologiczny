@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('div.main-loader').fadeOut();
+    $('div.main-loader').fadeOut('slow');
     //carpet menu rotation
     let caret = $(".caret");
     $("ul.nav a.dropdown-toggle").off().on('click', function (event) {

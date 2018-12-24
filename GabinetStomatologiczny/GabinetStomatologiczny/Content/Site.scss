@@ -465,3 +465,8 @@ header {
         }
     }
 }
+
+div.main-loader {
+    @include mainLoader;
+    @include loaderRotation;
+}

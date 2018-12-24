@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $('div.main-loader').fadeOut();
     //carpet menu rotation
     let caret = $(".caret");
     $("ul.nav a.dropdown-toggle").off().on('click', function (event) {
@@ -53,7 +54,7 @@
         }
     });
     // scroll body to 0px on click
-    top.off('click').on('click', function(e){
+    top.off('click').on('click', function (e) {
         e.preventDefault();
         $('html,body').animate({
             scrollTop: 0

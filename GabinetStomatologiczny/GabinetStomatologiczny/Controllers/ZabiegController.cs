@@ -119,21 +119,14 @@ namespace GabinetStomatologiczny.Controllers
         public async Task<ActionResult> Create([Bind(Include = "ID,WizytaID,TypZabiegu,CenaZabiegu,SearchQuery")] Zabieg zabieg)
         {
             ViewBag.name = $"{zabieg.SearchQuery}";
-            try
+            if (string.IsNullOrEmpty(zabieg.SearchQuery))
             {
-                if (string.IsNullOrEmpty(zabieg.SearchQuery))
-                {
-                    TempData["error"] = "Pole szukaj pacjęta nie może być puste";
-                }
-                else if (ModelState.IsValid)
-                {
-                    await _zabiegService.ZabiegCreate(zabieg);
-                    return RedirectToAction("ToothModel");
-                }
+                TempData["error"] = "Pole szukaj pacjęta nie może być puste";
             }
-            catch (Exception)
+            else if (ModelState.IsValid)
             {
-                TempData["error"] = "Osoba nie była zapisana na wizytę";
+                await _zabiegService.ZabiegCreate(zabieg);
+                return RedirectToAction("ToothModel");
             }
 
             ViewBag.WizytaID = new SelectList(db.Wizyta, "ID", "ID", zabieg.WizytaID);

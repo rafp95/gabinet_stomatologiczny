@@ -47,7 +47,26 @@ body {
 
 /*Navbar animation*/
 .navbar-inverse {
-  filter: drop-shadow(0 0.1rem 0.4rem #505050); }
+  filter: drop-shadow(0 0.1rem 0.4rem #505050);
+  /*End animation page content*/ }
+
+@-webkit-keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 .navbar-toggle {
   border: none;

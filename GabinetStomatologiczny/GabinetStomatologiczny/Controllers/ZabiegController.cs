@@ -52,7 +52,7 @@ namespace GabinetStomatologiczny.Controllers
             ViewBag.CurrentFilter = zabiegSort.searchString;
             ViewBag.ActiveClass = this._sortZabiegService.RodzajSort;
 
-            if (((IPagedList)zabieg).PageCount < zabiegSort.page)
+            if (zabieg is IPagedList && ((IPagedList)zabieg).PageCount < zabiegSort.page)
             {
                 zabiegSort.page = zabiegSort.page > ((IPagedList)zabieg).PageCount ? ((IPagedList)zabieg).PageCount : zabiegSort.page;
                 zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort, (ClaimsIdentity)User.Identity);

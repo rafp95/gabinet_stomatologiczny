@@ -19,7 +19,7 @@ namespace GabinetStomatologiczny.Services
         Task<bool> DeleteTooth(Zab zab, int userID);
         Task<Zabieg> FindZabieg(int? id);
         Task<Zabieg> EditZabeg(Zabieg zabieg);
-        Task<IEnumerable<Zabieg>> PacejntZabiegHistory(PaginationType ps, int id);
+        IEnumerable<Zabieg> PacejntZabiegHistory(PaginationType ps, int id);
         Task<Zabieg> ZabiegCreate(Zabieg zabieg);
         Task<Zabieg> DeleteZabieg(int zabieg);
         Task<ZabDescriptions> ZabDescription(Zab zab, ZabDescriptions zDesc, int id);
@@ -116,12 +116,12 @@ namespace GabinetStomatologiczny.Services
             return zabDescription;
         }
 
-        public async Task<IEnumerable<Zabieg>> PacejntZabiegHistory(PaginationType ps, int id)
+        public IEnumerable<Zabieg> PacejntZabiegHistory(PaginationType ps, int id)
         {
-            var zabiegs = await _db.Zabieg.
+            var zabiegs = _db.Zabieg.
                Include(_ => _.Wizyta).Include(_ => _.Wizyta.Pacjent).
                Where(_ => _.Wizyta.PacjentID == id).
-               OrderByDescending(_ => _.ZabiegDate).ToListAsync();
+               OrderByDescending(_ => _.ZabiegDate);
 
             ps.pageSize = 10;
             ps.pageNumber = (ps.page ?? 1);

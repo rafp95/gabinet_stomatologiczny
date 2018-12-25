@@ -14,6 +14,7 @@ using Rotativa;
 using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using PagedList;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -50,6 +51,12 @@ namespace GabinetStomatologiczny.Controllers
             var zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort, (ClaimsIdentity)User.Identity);
             ViewBag.CurrentFilter = zabiegSort.searchString;
             ViewBag.ActiveClass = this._sortZabiegService.RodzajSort;
+
+            if (((IPagedList)zabieg).PageCount < zabiegSort.page)
+            {
+                zabiegSort.page = zabiegSort.page > ((IPagedList)zabieg).PageCount ? ((IPagedList)zabieg).PageCount : zabiegSort.page;
+                zabieg = this._sortZabiegService.SortAndPaginate(zabiegSort, (ClaimsIdentity)User.Identity);
+            }
 
             if (Request.IsAjaxRequest())
             {
@@ -138,7 +145,14 @@ namespace GabinetStomatologiczny.Controllers
             int id = (int)Session["user"];
             Pacjent p = await _pacejntService.GetPacjentById(id);
             ViewBag.User = p.Imie + " " + p.Nazwisko;
-            var pacejnt = await _zabiegService.PacejntZabiegHistory(pt, id);
+            var pacejnt = _zabiegService.PacejntZabiegHistory(pt, id);
+
+            if (((IPagedList)pacejnt).PageCount < pt.page)
+            {
+                pt.page = ((IPagedList)pacejnt).PageCount < pt.page ? ((IPagedList)pacejnt).PageCount : pt.page;
+                pacejnt = _zabiegService.PacejntZabiegHistory(pt, id);
+            }
+
             return View(pacejnt);
         }
 

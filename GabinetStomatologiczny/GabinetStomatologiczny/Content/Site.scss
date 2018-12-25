@@ -17,17 +17,23 @@ body {
     padding-bottom: 20px;
     font-size: 16.8px;
     font-family: 'Open Sans',Arial, sans-serif;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    -moz-animation-name: animatebottom;
+    -o-animation-name: animatebottom;
+    animation-name: animatebottom;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    @include opacityFade;
 }
+
 
 .body-content {
     margin-top: 20px;
-    overflow-x: hidden;
-    -moz-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    transition: all .5s ease;
-    @include fadeBodyAnimation;
+    overflow-x: hidden !important;
 }
+
 
 /*Navbar animation*/
 .navbar-inverse {

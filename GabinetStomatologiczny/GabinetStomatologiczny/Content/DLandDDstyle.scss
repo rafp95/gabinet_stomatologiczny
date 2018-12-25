@@ -1,4 +1,5 @@
-﻿/*DL, DT, DD TAGS LIST DATA*/
+﻿@import 'SharedStyle.scss';
+/*DL, DT, DD TAGS LIST DATA*/
 dl {
     margin-bottom: 50px;
     position: relative;
@@ -44,34 +45,6 @@ dl dd {
 }
 
 /* Add animation to "page content" */
-@-webkit-keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
+@include opacityFade;
 
 /*End animation page content*/

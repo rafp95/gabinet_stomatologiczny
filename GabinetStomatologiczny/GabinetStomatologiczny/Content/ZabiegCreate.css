@@ -154,6 +154,7 @@ div#saveDatabaseInfo {
     opacity: 1; } }
 
 /*End animation page content*/
+/*End animation page content*/
 /*mobile*/
 @media only screen and (max-width: 1200px), (min-device-width: 1200px) and (max-device-width: 1200px) {
   /* Force table to not be like tables anymore */

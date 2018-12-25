@@ -1,4 +1,5 @@
-﻿/*center form*/
+﻿@import 'SharedStyle.scss';
+/*center form*/
 div.wysrodkowanieLoginForm {
     display: flex;
     min-height: 70vh;
@@ -64,37 +65,7 @@ span.control-label span.glyphicon:hover {
 }
 
 /* Add animation to "page content" */
-
-@-webkit-keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
+@include opacityFade;
 /*End animation page content*/
 
 /*hide loader i*/

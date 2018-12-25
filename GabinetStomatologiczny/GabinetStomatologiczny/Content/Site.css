@@ -12,42 +12,38 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
   font-size: 16.8px;
-  font-family: 'Open Sans',Arial, sans-serif; }
+  font-family: 'Open Sans',Arial, sans-serif;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  -moz-animation-name: animatebottom;
+  -o-animation-name: animatebottom;
+  animation-name: animatebottom;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  /*End animation page content*/ }
+
+@-webkit-keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 .body-content {
   margin-top: 20px;
-  overflow-x: hidden;
-  -moz-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
-  /* Fading animation */ }
-  .body-content .fade {
-    -moz-animation: fade .5s;
-    /* Firefox */
-    -webkit-animation: fade .5s;
-    /* Safari and Chrome */
-    -o-animation: fade .5s;
-    animation: fade .5s;
-    /* Opera */ }
-
-@-webkit-keyframes fade {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@-moz-keyframes fade {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@keyframes fade {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+  overflow-x: hidden !important; }
 
 /*Navbar animation*/
 .navbar-inverse {

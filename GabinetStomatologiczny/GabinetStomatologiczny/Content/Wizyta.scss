@@ -220,35 +220,7 @@ div#saveDatabaseInfo {
     animation-duration: 1s;
 }
 
-@-webkit-keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes animatebottom {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
+@include opacityFade;
 
 /*End animation page content*/
 

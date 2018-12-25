@@ -77,8 +77,7 @@ namespace GabinetStomatologiczny.Services
         {
             var zabiegQuery = _db.Zabieg.Include(_ => _.Wizyta).AsQueryable();
 
-            var zabieg = zabiegQuery.Where(z => z.Wizyta.Pacjent.Imie.ToLower().Contains(Sugestion.term.ToLower()) ||
-              z.Wizyta.Pacjent.Nazwisko.ToLower().Contains(Sugestion.term.ToLower()))
+            var zabieg = zabiegQuery.Where(z => (z.Wizyta.Pacjent.Imie + " " +  z.Wizyta.Pacjent.Nazwisko).ToLower().Contains(Sugestion.term.ToLower()) )
                 .GroupBy(_ => new { Tytul = _.Wizyta.Pacjent.Imie + " " + _.Wizyta.Pacjent.Nazwisko }).Take(5).
                Select(_ => new { label = _.Key.Tytul });
 

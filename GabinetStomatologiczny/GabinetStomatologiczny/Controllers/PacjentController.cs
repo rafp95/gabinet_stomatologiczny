@@ -42,6 +42,11 @@ namespace GabinetStomatologiczny.Controllers
             ViewBag.CurrentFilter = pacjentSort.searchString;
             ViewBag.ActiveClass = this.sortPacjentService.RodzajSort;
 
+            if (((IPagedList)pacjent).PageCount < pacjentSort.page)
+            {
+                pacjentSort.page = pacjentSort.page > ((IPagedList)pacjent).PageCount ? ((IPagedList)pacjent).PageCount : pacjentSort.page;
+                pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort);
+            }
 
             if (Request.IsAjaxRequest())
             {

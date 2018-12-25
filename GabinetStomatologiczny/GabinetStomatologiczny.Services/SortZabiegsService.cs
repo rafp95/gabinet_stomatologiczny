@@ -28,7 +28,7 @@ namespace GabinetStomatologiczny.Services
             this._db = db;
             this._userRole = userRole;
         }
-        public RodzajSort RodzajSort { get; private set; } = RodzajSort.title_asc;
+        public RodzajSort RodzajSort { get; private set; } = RodzajSort.dataZ_desc;
 
         public IEnumerable<Zabieg> SortAndPaginate(PaginationType ps, ClaimsIdentity user)
         {
@@ -63,14 +63,6 @@ namespace GabinetStomatologiczny.Services
 
             switch (ps.sortOrder)
             {
-                case RodzajSort.title_asc:
-                    zabieg = zabieg.OrderBy(_ => _.Wizyta.Pacjent.Imie).ThenBy(_ => _.Wizyta.Pacjent.Nazwisko);
-                    RodzajSort = ps.sortOrder;
-                    break;
-                case RodzajSort.title_desc:
-                    zabieg = zabieg.OrderByDescending(_ => _.Wizyta.Pacjent.Imie).ThenByDescending(_ => _.Wizyta.Pacjent.Nazwisko);
-                    RodzajSort = ps.sortOrder;
-                    break;
                 case RodzajSort.zabiegT_asc:
                     zabieg = zabieg.OrderBy(_ => _.TypZabiegu);
                     RodzajSort = ps.sortOrder;
@@ -96,7 +88,7 @@ namespace GabinetStomatologiczny.Services
                     RodzajSort = ps.sortOrder;
                     break;
                 default:
-                    zabieg = zabieg.OrderBy(_ => _.Wizyta.Pacjent.Imie);
+                    zabieg = zabieg.OrderByDescending(_ => _.ZabiegDate);
                     break;
             }
 

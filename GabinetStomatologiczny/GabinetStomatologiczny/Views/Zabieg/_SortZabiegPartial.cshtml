@@ -1,10 +1,7 @@
 ﻿@using GabinetStomatologiczny.DAO.Models;
 
 <td>
-    @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.title_asc, currentFilter = ViewBag.CurrentFilter }
-                    , new { @class = @ViewBag.ActiveClass == RodzajSort.title_asc ? "active" : "", title = "Rosnąco" })
-    @Html.ActionLink("↓", "Index", new { sortOrder = RodzajSort.title_desc, currentFilter = ViewBag.CurrentFilter },
-                    new { @class = @ViewBag.ActiveClass == RodzajSort.title_desc ? "active" : "", title = "Malejąco" })
+
 </td>
 <td>
     @Html.ActionLink("↑", "Index", new { sortOrder = RodzajSort.zabiegT_asc, currentFilter = ViewBag.CurrentFilter }

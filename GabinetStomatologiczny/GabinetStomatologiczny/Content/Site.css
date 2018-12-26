@@ -312,28 +312,18 @@ button:hover, input[type="submit"]:hover {
   padding: 10px 12px;
   position: fixed;
   bottom: 8px;
-  right: 20px;
+  right: 50px;
   display: none;
   background: #0086dc;
   z-index: 999;
-  -webkit-transition: all 0.6s ease-out;
-  -moz-transition: all 0.6s ease-out;
-  -o-transition: all 0.6s ease-out;
-  transition: all 0.6s ease-out; }
-
-.back-to-top glyphicon-chevron-up::before {
-  -webkit-transition: all 0.6s ease-out;
-  -moz-transition: all 0.6s ease-out;
-  -o-transition: all 0.6s ease-out;
-  transition: all 0.6s ease-out; }
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -o-transition: 0.6s;
+  transition: 0.6s; }
+  .back-to-top.back-to-top:hover, .back-to-top span.glyphicon:hover:before {
+    opacity: .8; }
 
 /*End top page style*/
-/*Glyphicon style*/
-.back-to-top:hover span.glyphicon::before {
-  cursor: pointer;
-  opacity: .8; }
-
-/*Glyphicon style*/
 /*Wlidation input style*/
 span.field-validation-error {
   color: red;

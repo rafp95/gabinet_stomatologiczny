@@ -44,9 +44,8 @@
     */
     //back to top page
     let top = $('#back-to-top');
-    $(window).scroll(function (event) {
+    $('html,body').scroll(function (event) {
         event.preventDefault();
-
         if ($(this).scrollTop() > 50) {
             top.fadeIn(100);
         } else {

@@ -10,11 +10,11 @@
             updateNotification();
         }
         $('span.count', this).html('0');
-    })
+    });
     // hide notifications
     $('html').off('click').on('click', function () {
         $('.card-notification-desktop').fadeOut();
-    })
+    });
     // update notification
     function updateNotification() {
         $('#notiContent').empty();
@@ -42,7 +42,7 @@
                 $("#notiContent").empty();
                 $("#notiContent").append("<li>Wystąpił problem z połączeniem</li>");
             }
-        })
+        });
     }
     // update notification count
     function updateNotificationCount() {

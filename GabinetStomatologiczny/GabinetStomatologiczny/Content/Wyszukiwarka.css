@@ -21,7 +21,8 @@ form.wyszukiwarka input[type=text] {
   border: 1px solid grey;
   float: left;
   width: 60%;
-  background: #f1f1f1; }
+  background: #f1f1f1;
+  text-overflow: ellipsis; }
 
 form.wyszukiwarka button {
   float: left;

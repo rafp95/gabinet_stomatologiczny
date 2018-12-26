@@ -58,7 +58,6 @@
         $('html,body').animate({
             scrollTop: 0
         }, 700);
-        return false;
     });
     //end back to top page
     //decteded connection is online

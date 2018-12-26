@@ -73,11 +73,11 @@
         }
     }
     checkStatus();
-    window.addEventListener("online", () => {
+    $(window).off("online").on("online", () => {
         checkStatus();
     });
     console.log(window);
-    window.addEventListener("offline", () => {
+    $(window).off("offline").on("offline", () => {
         checkStatus();
     });
 

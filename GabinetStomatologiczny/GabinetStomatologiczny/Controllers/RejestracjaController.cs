@@ -17,7 +17,7 @@ using System.Web.Mvc;
 
 namespace GabinetStomatologiczny.Controllers
 {
-    [Authorize(Roles = "Administrator,Lekarz")]
+    [Authorize]
     public class RejestracjaController : BaseController
     {
         private readonly IRejestracjaService _rs;

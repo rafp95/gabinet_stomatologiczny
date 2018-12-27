@@ -16,7 +16,7 @@ namespace GabinetStomatologiczny
 
     public interface INotyficatorComponnets
     {
-        void RegisterNotyfication(DateTime currentTime);
+        Task RegisterNotyfication(DateTime currentTime);
     }
 
     public class NotyficatorComponnets : INotyficatorComponnets
@@ -27,7 +27,7 @@ namespace GabinetStomatologiczny
 
         }
 
-        public void RegisterNotyfication(DateTime currentTime)
+        public async Task RegisterNotyfication(DateTime currentTime)
         {
             string conStr = ConfigurationManager.ConnectionStrings["NotyficationConnection"].ConnectionString;
             string sqlCommand = @"SELECT [PacjentID] FROM [dbo].[Wizyta] Where [Poczatek] >= @Poczatek";
@@ -43,9 +43,9 @@ namespace GabinetStomatologiczny
                 SqlDependency sqlDep = new SqlDependency(cmd);
                 sqlDep.OnChange += sqlDep_OnChange;
                 //read notyfications
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
-                   
+
                 }
 
             }
@@ -62,7 +62,7 @@ namespace GabinetStomatologiczny
                 var notificationHub = GlobalHost.ConnectionManager.GetHubContext<NotyficationsHub>();
                 notificationHub.Clients.All.notify("added");
 
-                RegisterNotyfication(DateTime.Now);
+                Task.Run(async () => await RegisterNotyfication(DateTime.Now));
 
 
             }

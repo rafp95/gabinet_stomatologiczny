@@ -17,6 +17,7 @@ using System.Reflection;
 using WebGrease.Css.Extensions;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace GabinetStomatologiczny
 {
@@ -25,7 +26,7 @@ namespace GabinetStomatologiczny
         private readonly string con = ConfigurationManager.ConnectionStrings["NotyficationConnection"].ConnectionString;
 
         private readonly NotyficatorComponnets nc = null;
-        
+
         private INotyficatorComponnets _nc
         {
             get
@@ -68,7 +69,7 @@ namespace GabinetStomatologiczny
         {
             var currentTime = DateTime.Now;
             HttpContext.Current.Session["LastUpdated"] = currentTime;
-            this._nc.RegisterNotyfication(currentTime);
+            Task.Run(async () => await this._nc.RegisterNotyfication(currentTime));
         }
 
         protected void Application_End()

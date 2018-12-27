@@ -356,7 +356,7 @@ span.field-validation-error {
     }
 }
 //end navbar center
-//zwijanie navbar poniżej 1200px
+//collapse less than 1200px
 @media (max-width: 1200px) {
     .navbar-header {
         float: none;
@@ -370,15 +370,6 @@ span.field-validation-error {
         display: block;
         border: none;
         outline: none;
-    }
-
-
-    .navbar-toggle:hover {
-        -moz-transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-        -o-transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
     }
 
     .navbar-collapse {

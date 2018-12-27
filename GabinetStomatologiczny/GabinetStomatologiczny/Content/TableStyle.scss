@@ -32,18 +32,18 @@ table tr:not(:first-child):hover {
 }
 
 .table > tbody > tr {
-    -webkit-transition: .1s ease-in-out;
-    -moz-transition: .1s ease-in-out;
-    -o-transition: .1s ease-in-out;
-    transition: .1s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
 }
 
 .table > tbody > tr > td {
     vertical-align: middle;
-    -webkit-transition: 0.1s ease-in-out;
-    -moz-transition: 0.1s ease-in-out;
-    -o-transition: 0.1s ease-in-out;
-    transition: 0.1s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
 }
 
 

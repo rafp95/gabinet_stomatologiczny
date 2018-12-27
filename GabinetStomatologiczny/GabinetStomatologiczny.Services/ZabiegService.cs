@@ -88,7 +88,7 @@ namespace GabinetStomatologiczny.Services
 
         public async Task<IEnumerable<object>> GetAllTooth(int id)
         {
-            var idWizyta = await _db.Wizyta.FirstAsync(_ => _.Pacjent.ID == id);
+            var idWizyta = await _db.Wizyta.Where(_ => _.Pacjent.ID == id).FirstOrDefaultAsync();
             var tooth = _db.Zabieg.Where(_ => _.WizytaID == idWizyta.ID && _.Wizyta.PacjentID == id).AsQueryable();
             var getAllTooth = await tooth.Select(_ => _.Zeby).ToListAsync();
             return getAllTooth;

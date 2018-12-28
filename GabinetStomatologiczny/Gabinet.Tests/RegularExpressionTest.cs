@@ -22,7 +22,7 @@ namespace Gabinet.Tests
             var isValid = PhoneNumberCheck(phone);
 
             //Assert
-            Assert.AreEqual(true, isValid,"Błędny numer telefonu");
+            Assert.AreEqual(true, isValid, "Błędny numer telefonu");
         }
 
         private bool PhoneNumberCheck(string email)
@@ -38,16 +38,18 @@ namespace Gabinet.Tests
         [TestMethod]
         public void VerifyPostalCode()
         {
-           
-            string code = "21-500";
-
+            //Arrange
+            string code = "21-400";
+            string codeFailed = "dd-dssd";
+            //Act 
             var isValid = CodeNumberCheck(code);
-
-            Assert.AreEqual(true,isValid,"Błędny kod pocztowy");
-
+            var isFailde = CodeNumberCheck(codeFailed);
+            //Assert
+            Assert.AreEqual(true, isValid);
+            Assert.AreEqual(false, isFailde);
         }
 
-        
+
         private bool CodeNumberCheck(string code)
         {
             string pattern = @"^\d{2}-\d{3}$";
@@ -55,7 +57,7 @@ namespace Gabinet.Tests
         }
 
         //End Check kod pocztowy
-    
+
         //Check pesel
         [TestMethod]
         public void PeselCheck()
@@ -64,7 +66,7 @@ namespace Gabinet.Tests
 
             var isValid = CheckPesel(pesel);
 
-            Assert.AreEqual(true,isValid);
+            Assert.AreEqual(true, isValid);
 
         }
 

@@ -35,28 +35,19 @@ namespace Gabinet.Tests
             const string expectedEmail = "patrykrafal33@o2.pl";
             const OddzialNfz expetcedOddzialNfz = OddzialNfz.Kujawsko_Pomorski;
             DateTime expectedRegisterDate = DateTime.Now;
-
             var pacjent = new Pacjent()
             {
-                Imie = expectedFirstName
-                ,
-                Nazwisko = expectedLastName
-                ,
-                Email = expectedEmail
-                 ,
-                OdzialNfz = expetcedOddzialNfz
-                ,
+                Imie = expectedFirstName,
+                Nazwisko = expectedLastName,
+                Email = expectedEmail,
+                OdzialNfz = expetcedOddzialNfz,
                 DataRejestracji = expectedRegisterDate
             };
-
-
             Assert.AreEqual(pacjent.Imie, expectedFirstName, false, "Błędne imie");
             Assert.AreEqual(pacjent.Nazwisko, expectedLastName, false, "Błędne nazwisko");
             Assert.AreEqual(pacjent.Email, expectedEmail, false, "Błędne email");
             Assert.AreEqual(pacjent.OdzialNfz, expetcedOddzialNfz, "Błędny oddzial NFZ");
             Assert.AreEqual(pacjent.DataRejestracji, expectedRegisterDate, "Błędna data rejestracji");
-            
-
         }
     }
 }

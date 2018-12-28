@@ -112,7 +112,7 @@ namespace GabinetStomatologiczny.Services
                 Select(_ => new { description = _.Description, dateZabieg = _.ZabDateDescription, id = _.ID }).ToListAsync();
 
 
-            //var zebyHistory = await zebyHistoryQuery.Select(_ =>  _.Description ).ToListAsync();
+            
             return zabDescription;
         }
 

@@ -218,10 +218,9 @@ div#saveDatabaseInfo {
     -moz-animation-duration: 2s;
     -o-animation-duration: 2s;
     animation-duration: 2s;
-    @include opacityFade;
 }
 
-
+@include opacityFade;
 
 /*End animation page content*/
 

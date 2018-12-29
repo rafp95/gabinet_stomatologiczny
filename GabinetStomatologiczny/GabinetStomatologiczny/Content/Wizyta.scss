@@ -211,16 +211,17 @@ div#saveDatabaseInfo {
 /* Add animation to "page content" */
 #calender {
     -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
+    -webkit-animation-duration: 2s;
     -moz-animation-name: animatebottom;
     -o-animation-name: animatebottom;
     animation-name: animatebottom;
-    -moz-animation-duration: 1s;
-    -o-animation-duration: 1s;
-    animation-duration: 1s;
+    -moz-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    animation-duration: 2s;
+    @include opacityFade;
 }
 
-@include opacityFade;
+
 
 /*End animation page content*/
 

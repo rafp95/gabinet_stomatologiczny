@@ -4,6 +4,11 @@
     var uid = Guid.NewGuid();
 }
 
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/datepicker-pl.js"></script>
+
+
 @Html.TextBox(
     string.Empty,
     Model.HasValue ? Model.Value.ToString("yyyy-MM-dd") : string.Empty,

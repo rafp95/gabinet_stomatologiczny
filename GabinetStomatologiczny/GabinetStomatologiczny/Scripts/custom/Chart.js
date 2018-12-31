@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
 
     let ladowanie = $("div.ladowanie");
-    let widok = 'month';
     ladowanie.css('display', 'block');
 
     let date = [];

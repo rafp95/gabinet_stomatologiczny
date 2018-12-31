@@ -32,8 +32,8 @@ namespace GabinetStomatologiczny.Services
             var personQuery = _db.Lekarz.AsQueryable();
             var personList = personQuery.Where(p => (p.Imie + " " + p.Nazwisko)
               .ToLower().Contains(sugestion.term.ToLower()))
-              .Take(5)
-              .Select(p => new { label = p.Imie + " " + p.Nazwisko });
+              .Select(p => new { label = p.Imie + " " + p.Nazwisko })
+              .Take(5);
 
             personList = personList.Count() == 0 ? personList.DefaultIfEmpty().
                Select(p => new { label = "Nie znaleziono" }).Take(1) : personList;
@@ -46,8 +46,8 @@ namespace GabinetStomatologiczny.Services
             var personQuery = _db.Pacjent.AsQueryable();
             var personList = personQuery.Where(p => (p.Imie + " " + p.Nazwisko)
             .ToLower().Contains(sugestion.term.ToLower()))
-            .Take(5)
-            .Select(p => new { label = p.Imie + " " + p.Nazwisko });
+            .Select(p => new { label = p.Imie + " " + p.Nazwisko })
+            .Take(5);
 
             personList = personList.Count() == 0 ? personList.DefaultIfEmpty().
                 Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : personList;
@@ -65,10 +65,10 @@ namespace GabinetStomatologiczny.Services
                  }).
                  Where(p => p.Tytul.ToLower().
                  Contains(sugestion.term.ToLower()) &&
-                 p.Poczatek >= DateTime.Now).
-                 OrderBy(p => p.Poczatek).
-                 Take(5).
-                 Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, HH:mm") ?? "" });
+                 p.Poczatek >= DateTime.Now)
+                 .OrderBy(p => p.Poczatek)
+                 .Select(p => new { label = p.Tytul + " " + p.Poczatek.ToString("dd.MMM.yyyy, HH:mm") ?? "" })
+                 .Take(5);
             events = events.Count() == 0 ? events.DefaultIfEmpty().Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : events;
             return events;
         }
@@ -77,7 +77,7 @@ namespace GabinetStomatologiczny.Services
         {
             var zabiegQuery = _db.Zabieg.Include(_ => _.Wizyta).AsQueryable();
 
-            var zabieg = zabiegQuery.Where(z => (z.Wizyta.Pacjent.Imie + " " +  z.Wizyta.Pacjent.Nazwisko).ToLower().Contains(Sugestion.term.ToLower()) )
+            var zabieg = zabiegQuery.Where(z => (z.Wizyta.Pacjent.Imie + " " + z.Wizyta.Pacjent.Nazwisko).ToLower().Contains(Sugestion.term.ToLower()))
                 .GroupBy(_ => new { Tytul = _.Wizyta.Pacjent.Imie + " " + _.Wizyta.Pacjent.Nazwisko }).Take(5).
                Select(_ => new { label = _.Key.Tytul });
 

@@ -52,13 +52,13 @@
         $('span.count').html(count);
     }
     // signalr js code for start hub and send receive notification
-    var notificationHub = $.connection.notyficationsHub;
+    let notificationHub = $.connection.notyficationsHub;
     $.connection.hub.start().done(function () {
         console.log('Notification hub started');
     });
 
     //signalr method for push server message to client
-    var lastTime = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
+    let lastTime = new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();
     notificationHub.client.notify = function (message) {
         if (message && message.toLowerCase() === "added") {
             console.log(lastTime != (new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds()));

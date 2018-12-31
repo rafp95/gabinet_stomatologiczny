@@ -1,4 +1,23 @@
-﻿div.kalendarz {
+﻿@-webkit-keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+/*End animation page content*/
+div.kalendarz {
   position: relative; }
 
 div.kalendarz span.kalendarz {
@@ -7,7 +26,16 @@ div.kalendarz span.kalendarz {
   left: 250px; }
 
 .ui-datepicker {
-  width: 15.55em; }
+  width: 15.55em;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: .4s;
+  -moz-animation-name: animatebottom;
+  -o-animation-name: animatebottom;
+  animation-name: animatebottom;
+  -moz-animation-duration: .4s;
+  -o-animation-duration: .4s;
+  animation-duration: .4s;
+  animation-timing-function: ease-in-out; }
 
 @media (max-width: 320px) {
   div.kalendarz span.kalendarz {

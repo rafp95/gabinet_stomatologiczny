@@ -18,7 +18,7 @@
     czyscText();
 
     function szukajDane(pom) {
-        var searchQuery = $("#searchQuery").val();
+        let searchQuery = $("#searchQuery").val();
 
         if (pom.length > 0) {
             searchQuery = pom;
@@ -32,7 +32,7 @@
     }
 
     function czyscText() {
-        var kasuj = $("span.kasujText");
+        let kasuj = $("span.kasujText");
 
         kasuj.on("click", function (event) {
             event.preventDefault();
@@ -46,7 +46,7 @@
     //Czyszczenie input
 
     //Dopasownaie do mobilnych urządzeń
-    var size = 0;
+    let size = 0;
     $(window).resize(function () {
         if ($(window).width() < 500) {
             size = 0;
@@ -58,8 +58,8 @@
     });
 
     //Get all events
-    var events = [];
-    var selectedEvent = null;
+    let events = [];
+    let selectedEvent = null;
     FetchEventAndRenderCalendar();
     function FetchEventAndRenderCalendar() {
         events = [];
@@ -173,8 +173,8 @@
                     start: start,
                     end: end,
                 };
-                var pom = new Date(moment(start, "DD-MM-YYYY").format("YYYY-MM-DD"));
-                var now = new Date(moment(new Date(), "DD-MM-YYYY").format("YYYY-MM-DD"));
+                let pom = new Date(moment(start, "DD-MM-YYYY").format("YYYY-MM-DD"));
+                let now = new Date(moment(new Date(), "DD-MM-YYYY").format("YYYY-MM-DD"));
                 console.log(pom - now);
                 //show modal if date select is >= now date
                 if ((pom - now) >= 0) {
@@ -186,15 +186,15 @@
                 $('#calendar').fullCalendar('unselect');
             },
             eventDrop: function (event) {
-                var data = {
+                let data = {
                     EventID: event.eventID,
                     Start: event.start.format('DD-MMYYYY HH:mm'),
                     Description: event.description,
                 };
                 SaveEvent(data);
             }, eventRender: function (eventObj, el) {
-                var dataStart = eventObj.start.format("DD-MMM-YYYY HH:mm");
-                var phone = eventObj.phone;
+                let dataStart = eventObj.start.format("DD-MMM-YYYY HH:mm");
+                let phone = eventObj.phone;
                 el.popover({
                     title: eventObj.title,
                     content: phone == null ? "Dla zalogowanych" : "tel. " + phone,
@@ -206,12 +206,12 @@
                 });
             }, dayRender: function (date, cell) {
                 $("td.fc-head-container ").addClass("modal-info");
-                var date = moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
-                var now = moment(new Date(), "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
+                let dateBuf = moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
+                let now = moment(new Date(), "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 
-                if (date === now) {
+                if (dateBuf === now) {
                     cell.addClass("modal-info");
-                } else if (date < now) {
+                } else if (dateBuf < now) {
                     cell.addClass("modal-warning");
                 } else {
                     cell.addClass("modal-success");
@@ -287,7 +287,7 @@
     function getPhoneNumber() {
         let phone = selectedEvent.phone.trim();
         let pomPhone = '';
-        for (var i = 0; i < phone.length; i++) {
+        for (let i = 0; i < phone.length; i++) {
 
             if (phone.charAt(i) != '-') {
                 pomPhone += phone.charAt(i);
@@ -445,14 +445,14 @@
 
         //Validation/
         ErorMessageClear();
-        var error = $("div.error");
-        var errorTime = $("div.errorTime");
-        var maxTime = moment("17:00", 'HH:mm').format("HH:mm");
-        var clickTime = moment($("#txtStart").val().trim(), 'DD.MM.YYYY HH:mm');
-        var minTime = moment("8:00", 'HH:mm').format("HH:mm");
+        let error = $("div.error");
+        let errorTime = $("div.errorTime");
+        let maxTime = moment("17:00", 'HH:mm').format("HH:mm");
+        let clickTime = moment($("#txtStart").val().trim(), 'DD.MM.YYYY HH:mm');
+        let minTime = moment("8:00", 'HH:mm').format("HH:mm");
 
         //check hours is empty
-        for (var i = 0; i < events.length; i++) {
+        for (let i = 0; i < events.length; i++) {
             if (clickTime.format('DD.MM.YYYY HH:mm') === moment(events[i].start).format('DD.MM.YYYY HH:mm')) {
                 $("#txtStart").css({ 'border': '1px solid red', 'background': 'pink' }).parent().
                 after("<div class='errorTime'>Czas zajęty...</div>").next().css("color", "red").hide().fadeIn();
@@ -463,8 +463,8 @@
         //end check hours
 
         //Check date and time
-        var now = moment(new Date(), "DD-MM-YYYY HH:mm");
-        var check = (moment(new Date(now), "DD-MM-YYYY HH:mm") <
+        let now = moment(new Date(), "DD-MM-YYYY HH:mm");
+        let check = (moment(new Date(now), "DD-MM-YYYY HH:mm") <
             moment(new Date(clickTime), "DD-MM-YYYY HH:mm") &&
             (clickTime.format("HH:mm") >= minTime &&
              clickTime.format("HH:mm") < maxTime)) ?
@@ -477,7 +477,7 @@
         }
         //End check date
         //Check title is empty
-        var tytul = $("#tytul");
+        let tytul = $("#tytul");
         if (tytul.length > 0) {
             if (tytul.val().length == 0) {
                 tytul.css({ 'border': '1px solid red', 'background': 'pink' }).parent().
@@ -487,7 +487,7 @@
         }
         //end check title is empty
         let tBuf = tytul.length > 0 ? tytul.val().trim().split(" ") : "";
-        var data = {
+        let data = {
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
             Pacjent: {
@@ -568,8 +568,8 @@
 });
 
 function pokazAktualnyCzas() {
-    var aktualny = setInterval(() => {
-        var aktualntCzas = moment(new Date());
+    let aktualny = setInterval(() => {
+        let aktualntCzas = moment(new Date());
         $("div#aktualnyCzas").html(aktualntCzas.format("DD MMMM YYYY HH:mm:ss"));
     }, 1000);
 }

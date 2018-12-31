@@ -209,11 +209,9 @@
                 let dateBuf = moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
                 let now = moment(new Date(), "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 
-                if (dateBuf === now) {
-                    cell.addClass("modal-info");
-                } else if (dateBuf < now) {
+                if (dateBuf < now) {
                     cell.addClass("modal-warning");
-                } else {
+                } else if (dateBuf > now) {
                     cell.addClass("modal-success");
                 }
             }

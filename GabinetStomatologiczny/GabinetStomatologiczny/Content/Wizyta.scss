@@ -270,6 +270,19 @@ div#action {
     padding: 5px 20px;
 }
 //end modal body
+//date bootstrap-datetimepicker-widget
+.bootstrap-datetimepicker-widget {
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: .5s;
+    -moz-animation-name: animatebottom;
+    -o-animation-name: animatebottom;
+    animation-name: animatebottom;
+    -moz-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
+}
+
 @media (max-height: 600px) {
     .bootstrap-datetimepicker-widget {
         position: fixed;
@@ -283,3 +296,4 @@ div#action {
         transform: translate(-50%,-50%) !important;
     }
 }
+//end bootstrap-datetimepicker-widget

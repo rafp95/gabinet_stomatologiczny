@@ -21,7 +21,7 @@ function silaHasla(pass, checkInfo) {
             return;
         }
 
-        let wyrazenie = new Array();
+        let wyrazenie = [];
         wyrazenie.push("[A-Z]");
         wyrazenie.push("[a-z]");
         wyrazenie.push("[0-9]");

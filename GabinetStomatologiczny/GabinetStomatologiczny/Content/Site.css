@@ -20,26 +20,7 @@ body {
   animation-name: animatebottom;
   -moz-animation-duration: .5s;
   -o-animation-duration: .5s;
-  animation-duration: .5s;
-  /*End animation page content*/ }
-
-@-webkit-keyframes animatebottom {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@-moz-keyframes animatebottom {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@keyframes animatebottom {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+  animation-duration: .5s; }
 
 .body-content {
   margin-top: 20px;
@@ -55,26 +36,7 @@ body {
   animation-name: animatebottom;
   -moz-animation-duration: 1s;
   -o-animation-duration: 1s;
-  animation-duration: 1s;
-  /*End animation page content*/ }
-
-@-webkit-keyframes animatebottom {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@-moz-keyframes animatebottom {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@keyframes animatebottom {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+  animation-duration: 1s; }
 
 .navbar-inverse {
   filter: drop-shadow(0 0.1rem 0.4rem #505050);

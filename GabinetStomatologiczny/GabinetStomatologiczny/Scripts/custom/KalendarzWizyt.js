@@ -12,17 +12,13 @@
     $("input[type=text],textarea[type=text],#dtp1").bind('click keyup', function (event) {
         event.preventDefault();
         ErorMessageClear();
-        szukajDane("");
+        ShowHideRemoveText();
     });
 
     czyscText();
 
-    function szukajDane(pom) {
+    function ShowHideRemoveText() {
         let searchQuery = $("#searchQuery").val();
-
-        if (pom.length > 0) {
-            searchQuery = pom;
-        }
 
         if (searchQuery.length > 0) {
             $("span.kasujText").css("display", "block");
@@ -38,7 +34,7 @@
             event.preventDefault();
 
             $("#searchQuery").val("");
-            szukajDane("");
+            ShowHideRemoveText();
             kasuj.css("display", "none");
         });
 

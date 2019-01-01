@@ -36,6 +36,19 @@ body {
 
 
 /*Navbar animation*/
+.container > .navbar-header,
+.container > .navbar-collapse {
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    -moz-animation-name: animatebottom;
+    -o-animation-name: animatebottom;
+    animation-name: animatebottom;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    @include opacityFade;
+}
+
 .navbar-inverse {
     filter: drop-shadow(0 0.1rem .4rem #505050);
     @include opacityFade;

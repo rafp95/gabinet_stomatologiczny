@@ -1,52 +1,44 @@
 ﻿$(function () {
     let pass = $("input#Haslo");
     let checkInfo = $("span#InfoPassword");
-    pass.val("Patryk12345!");
+    pass.val('Patryk12345!');
 
     //test element exist
-    //test(pass.length > 0);
     //end test element exist
 
     //test password is too short
-    test(pass, checkInfo);
     //end test password is too short
 
+    QUnit.test("Bardzo słabe", function (assert) {
+        assert.ok(checkPasswordStrength(pass.val("p"), checkInfo) === "Bardzo słabe red", "passed");
+    });
+
+    QUnit.test("Dobre", function (assert) {
+        assert.ok(checkPasswordStrength(pass.val("Patryk"), checkInfo) === "Dobre darkorange", "passed");
+    });
+
+    QUnit.test("Silne", function (assert) {
+        assert.ok(checkPasswordStrength(pass.val('Patryk12345!'), checkInfo) === "Silne darkgreen", "passed");
+    });
     //Test sila hasla
-    function test(pass, checkInfo) {
-
-        //check if element exist in dom
-        //assert(pass,'');
-        //end test
-
-        //testPasswordIsToShort(pass, checkInfo);
-        //assert(true, 'Hasło poprawne');
-        checkPasswordStrength(pass, checkInfo);
-
-
-    }
-
-    function testPasswordIsToShort(pass, checkInfo) {
-        if (pass.val().length < 5) {
-            move(0, 'red');
-            checkInfo.text("Bardzo słabe");
-            checkInfo.css("color", "red");
-
-            assert(false, 'Zbyt mało znaków');
-            assert(checkInfo.css('color') === 'red', 'Kolor czerwony');
-            assert(checkInfo.text() === 'Bardzo słabe', 'Bardzo słabe');
-            return;
-        }
-    }
 
     function checkPasswordStrength(pass, checkInfo) {
 
-        let wyrazenie = new Array();
+        let wyrazenie = [];
         wyrazenie.push("[A-Z]");
         wyrazenie.push("[a-z]");
         wyrazenie.push("[0-9]");
         wyrazenie.push("[$@$!%*#?&]");
         wyrazenie.push("[ąćęółńżź]");
         wyrazenie.push("[ĄĆĘÓŁŃŻŹ]");
+
+        $('#myProgress').css({ 'display': 'block' });
+        if (pass.val().length < 5) {
+            move(0, 'red');
+            checkInfo.text("Bardzo słabe");
+            checkInfo.css("color", "red");
+            return `Bardzo słabe red`;
+        }
 
         let poprawnosc = 0;
         for (let i = 0; i < wyrazenie.length; i++) {
@@ -99,8 +91,9 @@
         }
         checkInfo.text(silaHasla);
         checkInfo.css("color", kolor);
-        assert(kolor === 'darkgreen', 'Ustawiony kolor jest prawidłowy');
-        assert(silaHasla === 'Silne', 'Hasło jest silne');
+
+        console.log(`${silaHasla} ${kolor}`);
+        return `${silaHasla} ${kolor}`;
     }
 
     function move(procent, kolor) {

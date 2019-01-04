@@ -17,6 +17,11 @@
         assert.ok(checkPasswordStrength(pass.val("Patryk"), checkInfo) === "Dobre darkorange", "passed");
     });
 
+    QUnit.test("Bardzo dobre", function (assert) {
+        assert.ok(checkPasswordStrength(pass.val("Patryk12"), checkInfo) === "Bardzo dobre green", "passed");
+    });
+
+
     QUnit.test("Silne", function (assert) {
         assert.ok(checkPasswordStrength(pass.val('Patryk12345!'), checkInfo) === "Silne darkgreen", "passed");
     });

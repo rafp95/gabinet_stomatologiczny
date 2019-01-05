@@ -399,12 +399,11 @@ span.field-validation-error {
     display: block !important; } }
 
 @media (min-width: 1200px) {
-  .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+  .navbar-inverse .navbar-brand a, .navbar-inverse .navbar-nav > li a {
     position: relative; }
-    .navbar-inverse .navbar-brand:after, .navbar-inverse .navbar-nav > li > a:after {
+    .navbar-inverse .navbar-brand a:after, .navbar-inverse .navbar-nav > li a:after {
       position: absolute;
       top: 100%;
-      /*because we want it to be at the bottom of the anchor*/
       width: 90%;
       display: flex;
       left: calc(10% - 5px);
@@ -412,8 +411,11 @@ span.field-validation-error {
       content: '';
       border-bottom: solid 1px white;
       transform: scaleX(0);
+      -moz-transition: transform 300ms ease-in-out;
+      -o-transition: transform 300ms ease-in-out;
+      -webkit-transition: transform 300ms ease-in-out;
       transition: transform 300ms ease-in-out; }
-    .navbar-inverse .navbar-brand:hover:after, .navbar-inverse .navbar-nav > li > a:hover:after {
+    .navbar-inverse .navbar-brand a:hover:after, .navbar-inverse .navbar-nav > li a:hover:after {
       transform: scaleX(1); } }
 
 /*center form on smal screen*/

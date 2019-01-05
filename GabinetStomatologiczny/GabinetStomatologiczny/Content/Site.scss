@@ -445,11 +445,15 @@ span.field-validation-error {
 //hover animation in nav > 1200px
 @media (min-width: 1200px) {
     .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+        position: relative;
 
         &:after {
-            position: relative;
-            display: block;
-            bottom: -15px;
+            position: absolute;
+            top: 100%; /*because we want it to be at the bottom of the anchor*/
+            width: 90%;
+            display: flex;
+            left: calc(10% - 5px);
+            justify-content: center;
             content: '';
             border-bottom: solid 1px white;
             transform: scaleX(0);

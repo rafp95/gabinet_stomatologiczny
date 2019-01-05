@@ -426,6 +426,7 @@
         //Save button change text
         buttonInfo($("#btnSave"), "Zapisz");
         if (selectedEvent != null) {
+            $("#hdPacjentID").val(0);
             $('#hdEventID').val(selectedEvent.eventID);
             $('#txtStart').val(selectedEvent.start.format('DD.MM.YYYY HH:mm'));
             $('#tytul').length > 0 ? $('#tytul').val(selectedEvent.title) : "";
@@ -485,6 +486,7 @@
             ID: $('#hdEventID').val(),
             Poczatek: $("#txtStart").val().trim(),
             Pacjent: {
+                ID: $("#hdPacjentID").val(),
                 Imie: tBuf.length > 0 ? tBuf[0] : null,
                 Nazwisko: tBuf.length > 1 ? tBuf[1] : null,
             },

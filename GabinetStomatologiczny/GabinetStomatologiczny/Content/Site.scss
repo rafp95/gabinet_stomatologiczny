@@ -440,7 +440,29 @@ span.field-validation-error {
         display: block !important;
     }
 }
-//zwijanie koniec
+//end collapse less than 1200px
+
+//hover animation in nav > 1200px
+@media (min-width: 1200px) {
+    .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+
+        &:after {
+            position: relative;
+            display: block;
+            bottom: -15px;
+            content: '';
+            border-bottom: solid 1px white;
+            transform: scaleX(0);
+            transition: transform 300ms ease-in-out;
+        }
+
+        &:hover:after {
+            transform: scaleX(1);
+        }
+    }
+}
+//end hover animation in nav > 1200px
+
 /*center form on smal screen*/
 @media(max-width: 768px) {
     div.body-content form:not(.wyszukiwarka) {

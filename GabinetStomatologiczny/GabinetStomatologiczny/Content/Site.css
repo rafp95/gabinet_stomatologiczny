@@ -398,6 +398,18 @@ span.field-validation-error {
   .collapse.in {
     display: block !important; } }
 
+@media (min-width: 1200px) {
+  .navbar-inverse .navbar-brand:after, .navbar-inverse .navbar-nav > li > a:after {
+    position: relative;
+    display: block;
+    bottom: -15px;
+    content: '';
+    border-bottom: solid 1px white;
+    transform: scaleX(0);
+    transition: transform 300ms ease-in-out; }
+  .navbar-inverse .navbar-brand:hover:after, .navbar-inverse .navbar-nav > li > a:hover:after {
+    transform: scaleX(1); } }
+
 /*center form on smal screen*/
 @media (max-width: 768px) {
   div.body-content form:not(.wyszukiwarka) {

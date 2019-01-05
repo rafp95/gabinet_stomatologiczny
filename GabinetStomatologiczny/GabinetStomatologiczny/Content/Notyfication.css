@@ -13,10 +13,12 @@ div.noti-arrow {
   right: 20px;
   bottom: -11px;
   max-width: 10px;
-  display: none; }
+  display: none;
+  z-index: 9999999; }
 
 /*end arrow*/
 .card-notification-desktop {
+  z-index: 9999999;
   position: absolute;
   background: #e5e5e5;
   border-radius: 4px;

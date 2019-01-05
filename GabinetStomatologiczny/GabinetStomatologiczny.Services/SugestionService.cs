@@ -46,11 +46,11 @@ namespace GabinetStomatologiczny.Services
             var personQuery = _db.Pacjent.AsQueryable();
             var personList = personQuery.Where(p => (p.Imie + " " + p.Nazwisko)
             .ToLower().Contains(sugestion.term.ToLower()))
-            .Select(p => new { label = p.Imie + " " + p.Nazwisko })
+            .Select(p => new { label = p.Imie + " " + p.Nazwisko, ID = p.ID })
             .Take(5);
 
             personList = personList.Count() == 0 ? personList.DefaultIfEmpty().
-                Select(p => new { label = "Nie jesteś zapisany" }).Take(1) : personList;
+                Select(p => new { label = "Nie jesteś zapisany", ID = 0 }).Take(1) : personList;
 
             return personList;
         }

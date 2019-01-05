@@ -108,8 +108,7 @@ namespace GabinetStomatologiczny.Services
                     var m = Mapper.Map<Wizyta, Wizyta>(w);
                     m.PacjentID = this.uR.GetUserRole(user) == "Pacjent" ?
                         await pacjentQuery.Where(_ => _.Email == user.Name).Select(_ => _.ID).FirstOrDefaultAsync() :
-                        await pacjentQuery.Where(p => (p.Imie + " " + p.Nazwisko).
-                    Contains(w.Pacjent.Imie + " " + w.Pacjent.Nazwisko)).Select(p => p.ID).FirstOrDefaultAsync();
+                        await pacjentQuery.Where(p => p.ID == w.Pacjent.ID ).Select(p => p.ID).FirstOrDefaultAsync();
                     m.DataDodania = DateTime.Now;
                     db.Wizyta.Add(m);
                 }

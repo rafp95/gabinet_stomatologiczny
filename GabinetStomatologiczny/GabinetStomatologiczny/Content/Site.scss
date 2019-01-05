@@ -5,6 +5,22 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
+
+    &.popover {
+        @include opacityFade;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: .5s;
+        -moz-animation-name: animatebottom;
+        -o-animation-name: animatebottom;
+        animation-name: animatebottom;
+        -moz-animation-duration: .5s;
+        -o-animation-duration: .5s;
+        animation-duration: .5s;
+        -moz-animation-timing-function: ease-in-out;
+        -o-animation-timing-function: ease-in-out;
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+    }
 }
 
 html, body {
@@ -25,6 +41,10 @@ body {
     -moz-animation-duration: .5s;
     -o-animation-duration: .5s;
     animation-duration: .5s;
+    -moz-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
 }
 
 

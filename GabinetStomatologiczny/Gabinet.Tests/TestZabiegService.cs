@@ -56,7 +56,7 @@ namespace Gabinet.Tests
             return zabieg;
         }
         [TestInitialize]
-        private IQueryable<Zab> allZab()
+        public IQueryable<Zab> allZab()
         {
             var zeby = new List<Zab>()
             {

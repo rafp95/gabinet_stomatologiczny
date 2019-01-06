@@ -159,12 +159,12 @@ namespace Gabinet.Tests
             s.term = "Kam";
             var service = p.SugestionPacjent(s);
             var elem = service.FirstOrDefault();
-            var obj = new { label = "Kamila Rafal" };
+            var obj = new { label = "Kamila Rafal",ID = 2 };
 
             s.term = "dfsffdsfdfsdfds";
             var service2 = p.SugestionPacjent(s);
             var elem2 = service2.FirstOrDefault();
-            var obj2 = new { label = "Nie jesteś zapisany" };
+            var obj2 = new { label = "Nie jesteś zapisany", ID = 0 };
 
 
             Assert.AreEqual(obj.ToString(), elem.ToString());

@@ -1,10 +1,6 @@
 ﻿@import './SharedStyle.scss';
 
 * {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-
     &.popover {
         @include opacityFade;
         -webkit-animation-name: animatebottom;
@@ -24,11 +20,6 @@
 
 html, body {
     height: 100%;
-    -moz-box-sizing: inherit;
-    -webkit-box-sizing: inherit;
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
 }
 
 body {

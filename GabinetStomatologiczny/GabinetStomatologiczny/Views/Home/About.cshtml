@@ -8,12 +8,15 @@
 <header class="alert alert-info headerInfo"><div>Statystyki</div></header>
 
 
-<div style="margin-bottom: 20px;">
-    Genruj PDF :
-    <a href="Pdf" target="_blank" class="btn btn-success">
-        <span class="glyphicon glyphicon-print"></span> Drukuj
-    </a>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div style="margin-bottom: 20px;">
+        Genruj PDF :
+        <a href="Pdf" target="_blank" class="btn btn-success">
+            <span class="glyphicon glyphicon-print"></span> Drukuj
+        </a>
+    </div>
+}
 
 <div class="ladowanie"></div>
 
@@ -31,7 +34,7 @@
 }
 
 @section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" type="text/javascript"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" type="text/javascript"></script>
     <script src="~/Scripts/custom/Chart.es5.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
 }

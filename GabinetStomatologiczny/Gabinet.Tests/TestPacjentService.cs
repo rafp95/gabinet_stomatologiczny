@@ -66,7 +66,7 @@ namespace Gabinet.Tests
             moqContext.SetupGet(c => c.Pacjent).Returns(moqkSet.Object);
 
             IPacjentsService service = new PacjentsService(moqContext.Object);
-            var result = service.getAllPacjents();
+            var result = service.GetAllPacjents();
 
             Assert.AreEqual(result.Count(), 12);
         }
@@ -85,7 +85,7 @@ namespace Gabinet.Tests
 
             var service = new PacjentsService(context);
             var pacjents = context.SaveChanges();
-            var allPacjents = service.getAllPacjents().Count();
+            var allPacjents = service.GetAllPacjents().Count();
             var namePacjent = await service.GetPacjentById(2);
 
             Assert.AreEqual(namePacjent.Imie, "Słowik");

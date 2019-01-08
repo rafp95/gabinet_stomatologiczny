@@ -14,7 +14,7 @@ namespace GabinetStomatologiczny.Services
     public interface IPacjentsService
     {
 
-        IEnumerable<Pacjent> getAllPacjents();
+        IEnumerable<Pacjent> GetAllPacjents();
         IEnumerable<IGrouping<DateTime, Pacjent>> Statistic();
         Task<Pacjent> Edit(Pacjent pacjent);
         Task<Pacjent> Find(int? id);
@@ -41,11 +41,11 @@ namespace GabinetStomatologiczny.Services
 
         public IEnumerable<IGrouping<DateTime, Pacjent>> Statistic()
         {
-            return this._db.Pacjent.ToList().GroupBy(m => m.DataRejestracji.Date);
+            return this.GetAllPacjents().GroupBy(m => m.DataRejestracji.Date);
         }
         #endregion
 
-        public IEnumerable<Pacjent> getAllPacjents()
+        public IEnumerable<Pacjent> GetAllPacjents()
         {
             return this._db.Pacjent.ToList();
         }

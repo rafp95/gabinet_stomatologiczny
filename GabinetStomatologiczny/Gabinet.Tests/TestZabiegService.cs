@@ -17,7 +17,6 @@ namespace Gabinet.Tests
     public class TestZabiegService
     {
 
-        [TestInitialize]
         private IQueryable<Wizyta> allWizyta()
         {
             var wizyta = new List<Wizyta>()
@@ -33,7 +32,7 @@ namespace Gabinet.Tests
             }.AsQueryable();
             return wizyta;
         }
-        [TestInitialize]
+
         private IQueryable<Zabieg> allZabieg()
         {
             var zabieg = new List<Zabieg>()

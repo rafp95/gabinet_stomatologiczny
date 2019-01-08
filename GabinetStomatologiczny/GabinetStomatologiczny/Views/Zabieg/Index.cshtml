@@ -18,7 +18,7 @@
 }
 
 @if (User.IsInRole("Pacjent") &&
-Model.Any(m => m.Wizyta.Pacjent.Email == User.Identity.Name))
+            Model.Any(m => m.Wizyta.Pacjent.Email == User.Identity.Name))
 {
     <div style="margin-bottom: 20px;">
         Genruj PDF :
@@ -32,7 +32,7 @@ else if (User.IsInRole("Administrator")
 {
     <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
         <div class="form-group">
-            <div class="col-12">
+            <div class="col-12 sugestion">
                 <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextZabieg"></span>
                 <input type="text" id="searchQuery" name="searchQuery"
                        data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Wpisz min 1 znak"

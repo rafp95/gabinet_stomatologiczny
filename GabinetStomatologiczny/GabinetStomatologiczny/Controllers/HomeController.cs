@@ -49,7 +49,7 @@ namespace GabinetStomatologiczny.Controllers
         {
             var about = pacjentsService.Statistic().
                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
-               OrderByDescending(p => p.DataRejestracji).ToList();
+               OrderByDescending(p => p.DataRejestracji);
             
             return Json(about, JsonRequestBehavior.AllowGet);
         }

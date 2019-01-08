@@ -3,7 +3,7 @@
 {
     <form id="wyslij" class="wyszukiwarka" method="get" data-ajax="true">
         <div class="form-group">
-            <div class="col-12">
+            <div class="col-12 sugestion">
                 <input type="text" id="searchQuery" name="searchQuery"
                        data-autocomplete-source="@Url.Action("Sugestions")" placeholder="Sprawdź czy jesteś zapisany"
                        class="form-control" />
@@ -49,8 +49,8 @@
             <div class="modal-body">
                 <p id="pDetails"></p>
                 @if (User.IsInRole("Pacjent")
-        || User.IsInRole("Administrator")
-        || User.IsInRole("Lekarz"))
+    || User.IsInRole("Administrator")
+    || User.IsInRole("Lekarz"))
                 {
                     {
                         <div id="action">
@@ -61,7 +61,7 @@
                                 <span class="glyphicon glyphicon-pencil"></span> Edytuj
                             </button>
                             @if (User.IsInRole("Administrator")
-                || User.IsInRole("Lekarz"))
+        || User.IsInRole("Lekarz"))
                             {
                                 <button id="btnSms" class="btn btn-primary btn-sm">
                                     <span class="fa fa-paper-plane"></span> Sms
@@ -89,8 +89,8 @@
 
 <!--End about-->
 @if (User.IsInRole("Pacjent")
-                            || User.IsInRole("Administrator")
-                            || User.IsInRole("Lekarz"))
+                                        || User.IsInRole("Administrator")
+                                        || User.IsInRole("Lekarz"))
 {
     <!--Error save info-->
     <div id="myModalSaveToDataBaseError" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">

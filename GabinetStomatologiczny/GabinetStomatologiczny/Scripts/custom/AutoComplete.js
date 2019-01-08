@@ -10,7 +10,8 @@
                 input.val(ui.item.item);
                 let form = input.parents("form:first");
                 form.submit();
-            }
+            },
+            appendTo: '.sugestion'
         };
 
         input.autocomplete(options);

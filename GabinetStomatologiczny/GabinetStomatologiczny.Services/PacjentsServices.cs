@@ -47,7 +47,7 @@ namespace GabinetStomatologiczny.Services
 
         public IEnumerable<Pacjent> GetAllPacjents()
         {
-            return this._db.Pacjent.ToList();
+            return this._db.Pacjent;
         }
 
         public async Task<Pacjent> Edit(Pacjent pacjent)

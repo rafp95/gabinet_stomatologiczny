@@ -55,7 +55,7 @@ namespace Gabinet.Tests
             }.AsQueryable();
             return zabieg;
         }
-        [TestInitialize]
+
         public IQueryable<Zab> allZab()
         {
             var zeby = new List<Zab>()
@@ -142,8 +142,8 @@ namespace Gabinet.Tests
 
             IZabiegService zabiegService = new ZabiegService(moqContext.Object);
 
-            await zabiegService.SaveTooth(new Zab() { IdTooth = "tooth1", ID = 1 }, 1);
-
+            var save = await zabiegService.SaveTooth(new Zab() { IdTooth = "tooth1", ID = 1 }, 1);
+            Assert.AreEqual(save.ID,1);
         }
     }
 }

@@ -267,7 +267,7 @@ button:hover, input[type="submit"]:hover {
   body {
     padding-top: 80px; } }
 
-/*Tooltip style*/
+/*Tooltip style and ui.autocomplete*/
 ul.ui-autocomplete {
   /*End animation page content*/
   -webkit-animation-name: animatebottom;

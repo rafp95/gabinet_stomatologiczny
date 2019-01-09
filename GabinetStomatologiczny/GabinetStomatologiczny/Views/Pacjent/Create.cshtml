@@ -3,10 +3,6 @@
     ViewBag.Title = "Utwórz";
 }
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-<script src="~/Scripts/datepicker-pl.js"></script>
-
 @if (User.IsInRole("Administrator") || User.IsInRole("Lekarz"))
 {
 
@@ -124,7 +120,7 @@ else
 }
 
 <div>
-    @Html.ActionLink("Wstecz", "Index",null, new { @class = "glyphicon glyphicon-hand-left" })
+    @Html.ActionLink("Wstecz", "Index", null, new { @class = "glyphicon glyphicon-hand-left" })
 </div>
 
 @section MyCustomStyle{

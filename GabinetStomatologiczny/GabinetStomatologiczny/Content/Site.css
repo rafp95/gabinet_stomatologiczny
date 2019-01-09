@@ -268,6 +268,39 @@ button:hover, input[type="submit"]:hover {
     padding-top: 80px; } }
 
 /*Tooltip style*/
+ul.ui-autocomplete {
+  /*End animation page content*/
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: .3s;
+  -moz-animation-name: animatebottom;
+  -o-animation-name: animatebottom;
+  animation-name: animatebottom;
+  -moz-animation-duration: .3s;
+  -o-animation-duration: .3s;
+  animation-duration: .3s;
+  -moz-animation-timing-function: ease-in-out;
+  -o-animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out; }
+
+@-webkit-keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes animatebottom {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
 .ui-tooltip, .arrow:after {
   background: black;
   opacity: .9;

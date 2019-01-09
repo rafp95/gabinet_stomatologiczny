@@ -270,7 +270,23 @@ button:hover, input[type="submit"]:hover {
 }
 
 
-/*Tooltip style*/
+/*Tooltip style and ui.autocomplete*/
+ul.ui-autocomplete {
+    @include opacityFade;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: .3s;
+    -moz-animation-name: animatebottom;
+    -o-animation-name: animatebottom;
+    animation-name: animatebottom;
+    -moz-animation-duration: .3s;
+    -o-animation-duration: .3s;
+    animation-duration: .3s;
+    -moz-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+}
+
 .ui-tooltip, .arrow:after {
     background: black;
     opacity: .9;

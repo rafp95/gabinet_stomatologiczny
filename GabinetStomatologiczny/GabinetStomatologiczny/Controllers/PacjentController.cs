@@ -14,6 +14,7 @@ using GabinetStomatologiczny.Utils;
 using GabinetStomatologiczny.Services;
 using System.Threading.Tasks;
 using System.Drawing.Printing;
+using System.Security.Claims;
 
 namespace GabinetStomatologiczny.Controllers
 {
@@ -38,14 +39,14 @@ namespace GabinetStomatologiczny.Controllers
         public ActionResult Index(PaginationType pacjentSort)
         {
             ViewBag.CurrentSort = pacjentSort.sortOrder;
-            var pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort);
+            var pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort,(ClaimsIdentity)User.Identity);
             ViewBag.CurrentFilter = pacjentSort.searchString;
             ViewBag.ActiveClass = this.sortPacjentService.RodzajSort;
 
             if ( pacjent is IPagedList && ((IPagedList)pacjent).PageCount < pacjentSort.page)
             {
                 pacjentSort.page = pacjentSort.page > ((IPagedList)pacjent).PageCount ? ((IPagedList)pacjent).PageCount : pacjentSort.page;
-                pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort);
+                pacjent = this.sortPacjentService.SortAndPaginate(pacjentSort, (ClaimsIdentity)User.Identity);
             }
 
             if (Request.IsAjaxRequest())

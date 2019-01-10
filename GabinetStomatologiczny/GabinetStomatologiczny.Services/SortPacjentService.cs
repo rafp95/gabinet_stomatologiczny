@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace GabinetStomatologiczny.Services
 {
     public interface ISortPacjentService
     {
-        IEnumerable<Pacjent> SortAndPaginate(PaginationType ps);
+        IEnumerable<Pacjent> SortAndPaginate(PaginationType ps, ClaimsIdentity user);
         RodzajSort RodzajSort { get; }
     }
 
@@ -21,10 +22,12 @@ namespace GabinetStomatologiczny.Services
     {
 
         private readonly GabinetContext _db;
+        private readonly IUserRoleService _roleSerive;
 
-        public SortPacjentService(GabinetContext db)
+        public SortPacjentService(GabinetContext db, IUserRoleService roleSerive)
         {
             this._db = db;
+            this._roleSerive = roleSerive;
         }
 
         public RodzajSort RodzajSort { get; private set; } = RodzajSort.name_asc;
@@ -34,7 +37,7 @@ namespace GabinetStomatologiczny.Services
             return rodzajSort;
         }
 
-        public IEnumerable<Pacjent> SortAndPaginate(PaginationType ps)
+        public IEnumerable<Pacjent> SortAndPaginate(PaginationType ps, ClaimsIdentity user)
         {
             if (!string.IsNullOrEmpty(ps.searchString))
             {
@@ -55,6 +58,11 @@ namespace GabinetStomatologiczny.Services
             else
             {
                 ps.searchString = ps.currentFilter;
+            }
+
+            if (this._roleSerive.GetUserRole(user) == "Pacjent")
+            {
+                pacjent = pacjent.Where(_ => _.Email == user.Name);
             }
 
             switch (ps.sortOrder)

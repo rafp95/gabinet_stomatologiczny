@@ -801,6 +801,12 @@
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\datepicker-pl.es5.js">
+      <DependentUpon>datepicker-pl.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\datepicker-pl.es5.min.js">
+      <DependentUpon>datepicker-pl.es5.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\datepicker-pl.js" />
     <Content Include="Scripts\custom\WyszukiwanieAjaxowe.js" />
     <Content Include="NLog.config">

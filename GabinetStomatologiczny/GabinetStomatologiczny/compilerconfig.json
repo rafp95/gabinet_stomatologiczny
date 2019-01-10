@@ -134,5 +134,9 @@
   {
     "outputFile": "Scripts/testsCustomScripts/TestSilaHasla.es5.js",
     "inputFile": "Scripts/testsCustomScripts/TestSilaHasla.js"
+  },
+  {
+    "outputFile": "Scripts/datepicker-pl.es5.js",
+    "inputFile": "Scripts/datepicker-pl.js"
   }
 ]

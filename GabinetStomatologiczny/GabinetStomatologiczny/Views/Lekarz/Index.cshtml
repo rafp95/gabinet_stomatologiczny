@@ -22,7 +22,7 @@
         <div class="col-12 sugestion">
             <span id="searchclear" class="glyphicon glyphicon-remove-circle kasujText kasujTextLekarz"></span>
             <input type="text" id="searchQuery" name="searchQuery" data-autocomplete-source="@Url.Action("SugestionsLekarzs")"
-                   placeholder="Wpisz min 1 znak" class="form-control lekarz-query" />
+                   placeholder="Wpisz min 1 znak" value="@ViewBag.currentFilter" class="form-control lekarz-query" />
             <button type="submit" data-toggle="tooltip" title="Wyszukaj" class="szukajLekarzaAjax form-control tooltipLink"><i class="fa fa-search"></i></button>
         </div>
     </div>

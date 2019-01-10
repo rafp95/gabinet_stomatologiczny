@@ -12,12 +12,11 @@
             type: "GET",
             url: "/Zabieg/GetAllTooth",
             success: function (data) {
+
                 $.each(data, function (i, v) {
-                    $.each(v, function (i, o) {
-                        tab.push({
-                            idT: o.IdTooth,
-                            dateT: o.TreatmentDate
-                        });
+                    tab.push({
+                        idT: v.IdTooth,
+                        dateT: v.TreatmentDate
                     });
                 })
                 console.log('pobrano tab ' + tab.length);

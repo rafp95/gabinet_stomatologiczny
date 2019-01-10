@@ -90,7 +90,7 @@ namespace GabinetStomatologiczny.Services
         {
             var idWizyta = await _db.Wizyta.Where(_ => _.Pacjent.ID == id).FirstOrDefaultAsync();
             var tooth = _db.Zabieg.Where(_ => _.WizytaID == idWizyta.ID && _.Wizyta.PacjentID == id).AsQueryable();
-            var getAllTooth = await tooth.Select(_ => _.Zeby).ToListAsync();
+            var getAllTooth = await tooth.SelectMany(_ => _.Zeby.Select(z => new {z.IdTooth,z.TreatmentDate })).ToListAsync();
             return getAllTooth;
         }
 

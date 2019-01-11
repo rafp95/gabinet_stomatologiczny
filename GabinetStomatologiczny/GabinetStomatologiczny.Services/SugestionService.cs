@@ -14,7 +14,7 @@ namespace GabinetStomatologiczny.Services
     {
         IEnumerable<object> SugestionPacjent(Sugestion sugestion);
         IEnumerable<object> SugestionLekarz(Sugestion sugestion);
-        IEnumerable<object> SugestionZabeg(Sugestion Sugestion);
+        IEnumerable<object> SugestionZabieg(Sugestion Sugestion);
         IEnumerable<object> SugestionWizyt(Sugestion sugestion);
     }
     public class SugestionService : ISugestionService
@@ -73,15 +73,19 @@ namespace GabinetStomatologiczny.Services
             return events;
         }
 
-        public IEnumerable<object> SugestionZabeg(Sugestion Sugestion)
+        public IEnumerable<object> SugestionZabieg(Sugestion Sugestion)
         {
             var zabiegQuery = _db.Zabieg.Include(_ => _.Wizyta).AsQueryable();
 
-            var zabieg = zabiegQuery.Where(z => (z.Wizyta.Pacjent.Imie + " " + z.Wizyta.Pacjent.Nazwisko).ToLower().Contains(Sugestion.term.ToLower()))
-                .GroupBy(_ => new { Tytul = _.Wizyta.Pacjent.Imie + " " + _.Wizyta.Pacjent.Nazwisko }).Take(5).
-               Select(_ => new { label = _.Key.Tytul });
+            var zabieg = zabiegQuery
+                .Where(z => (z.Wizyta.Pacjent.Imie + " " + z.Wizyta.Pacjent.Nazwisko)
+                .ToLower()
+                .Contains(Sugestion.term.ToLower()))
+                .GroupBy(_ => new { Tytul = _.Wizyta.Pacjent.Imie + " " + _.Wizyta.Pacjent.Nazwisko })
+                .Select(_ => new { label = _.Key.Tytul})
+                .Take(5);
 
-            zabieg = zabieg.Count() == 0 ? zabieg.DefaultIfEmpty().Select(z => new { label = "Brak danych" }).Take(1) : zabieg;
+            zabieg = zabieg.Count() == 0 ? zabieg.DefaultIfEmpty().Select(z => new { label = "Brak danych"}).Take(1) : zabieg;
 
             return zabieg;
         }

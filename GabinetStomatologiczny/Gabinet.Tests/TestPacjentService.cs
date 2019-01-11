@@ -13,6 +13,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection.Emit;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -174,6 +175,21 @@ namespace Gabinet.Tests
         [TestMethod]
         public void TestPacejntPagination()
         {
+            var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name, "patrykrafal33@o2.pl"),
+                new Claim(ClaimTypes.NameIdentifier, "1"),
+                new Claim(ClaimTypes.Role, "Lekarz"),
+                new Claim("name", "Patryk Rafał"),
+            };
+
+            var identity = new ClaimsIdentity(claims, "TestAuthType");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+
+            IUserRoleService role = new UserRoleService();
+
+            var userRole = role.GetUserRole(identity);
+
             var moqkSet = new Mock<DbSet<Pacjent>>();
             var moqContext = new Mock<GabinetContext>();
 
@@ -192,12 +208,12 @@ namespace Gabinet.Tests
 
             moqContext.SetupGet(c => c.Pacjent).Returns(moqkSet.Object);
 
-            var service = new SortPacjentService(moqContext.Object);
+            var service = new SortPacjentService(moqContext.Object, role);
             var paginationType = new GabinetStomatologiczny.Models.PaginationType() { };
 
             paginationType.page = 2;
             paginationType.sortOrder = RodzajSort.nrtel_asc;
-            var test = service.SortAndPaginate(paginationType);
+            var test = service.SortAndPaginate(paginationType,identity);
 
             Assert.AreEqual(paginationType.sortOrder, RodzajSort.nrtel_asc);
             Assert.AreEqual(test.Count(), 2);

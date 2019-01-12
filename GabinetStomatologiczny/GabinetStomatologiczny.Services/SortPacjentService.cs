@@ -39,32 +39,40 @@ namespace GabinetStomatologiczny.Services
 
         public IEnumerable<Pacjent> SortAndPaginate(PaginationType ps, ClaimsIdentity user)
         {
-            if (!string.IsNullOrEmpty(ps.searchString))
-            {
-                ps.page = 1;
-            }
-            else
-            {
-                ps.searchString = ps.currentFilter;
-            }
-
             var pacjent = this._db.Pacjent.AsQueryable();
-            if (!string.IsNullOrEmpty(ps.searchString))
-            {
 
-                pacjent = pacjent.Where(s => (s.Imie + " " + s.Nazwisko + " " + s.NrTelefonu + " " + s.Email + " " + s.Plec)
-                .ToLower().Contains(ps.searchString.ToLower()));
-            }
-            else
-            {
-                ps.searchString = ps.currentFilter;
-            }
-
+            #region check
             if (this._roleSerive.GetUserRole(user) == "Pacjent")
             {
                 pacjent = pacjent.Where(_ => _.Email == user.Name);
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(ps.searchString))
+                {
+                    ps.page = 1;
+                }
+                else
+                {
+                    ps.searchString = ps.currentFilter;
+                }
 
+
+                if (!string.IsNullOrEmpty(ps.searchString))
+                {
+
+                    pacjent = pacjent.Where(s => (s.Imie + " " + s.Nazwisko + " " + s.NrTelefonu + " " + s.Email + " " + s.Plec)
+                    .ToLower().Contains(ps.searchString.ToLower()));
+                }
+                else
+                {
+                    ps.searchString = ps.currentFilter;
+                }
+
+            }
+            #endregion
+
+            #region sort 
             switch (ps.sortOrder)
             {
                 case RodzajSort.name_asc:
@@ -127,6 +135,7 @@ namespace GabinetStomatologiczny.Services
                     pacjent = pacjent.OrderBy(p => p.Imie);
                     break;
             }
+            #endregion
 
             ps.pageSize = 10;
             ps.pageNumber = (ps.page ?? 1);

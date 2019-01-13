@@ -6,14 +6,14 @@
                 @Html.Partial("_NotyficationPartial")
             </div>
         }
-        <div class="navbar-header">
+        <header class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="icon-bar top-bar"></span>
                 <span class="icon-bar middle-bar"></span>
                 <span class="icon-bar bottom-bar"></span>
             </button>
             @Html.ActionLink("YourSmile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        </div>
+        </header>
         <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="@(ViewBag.Active=="Home"? "active" : "")">

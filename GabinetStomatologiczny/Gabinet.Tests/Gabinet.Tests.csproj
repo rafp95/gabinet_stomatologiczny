@@ -113,7 +113,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AutoMapperTest.cs" />
     <Compile Include="RejestracjaServiceTest.cs" />
-    <Compile Include="TestDataBase.cs" />
     <Compile Include="TestPacjentService.cs" />
     <Compile Include="TestWizytaService.cs" />
     <Compile Include="TestZabiegService.cs" />

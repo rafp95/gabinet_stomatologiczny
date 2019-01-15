@@ -13,7 +13,7 @@
     <link href="~/Content/PdfStyle.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h2>Statystki rejestracji / edycji pacjentow</h2>
+    <h2>Statystki rejestracji / edycji pacjentów</h2>
 
 
     @if (Model != null && Model.Count() > 0)
@@ -43,7 +43,7 @@
             <tr class="last">
                 <td colspan="2">
                     <span class="sum">Łącznie</span>
-                    <span class="total"> @Model.Select(_ => _.Pacjentow).Sum() pacjentow </span>
+                    <span class="total"> @Model.Select(_ => _.Pacjentow).Sum() pacjentów </span>
                 </td>
             </tr>
         </table>

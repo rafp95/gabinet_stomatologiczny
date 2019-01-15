@@ -13,13 +13,13 @@
     <link href="~/Content/PdfStyle.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h2>Statystki rejestracji / edycji pacjętów</h2>
+    <h2>Statystki rejestracji / edycji pacjentow</h2>
 
 
     @if (Model != null && Model.Count() > 0)
     {
 
-        <table class="table">
+        <table class="table-responsive">
             <tr>
                 <th>
                     Data rejestracji
@@ -41,9 +41,9 @@
                 </tr>
             }
             <tr class="last">
-                <td colspan="3">
+                <td colspan="2">
                     <span class="sum">Łącznie</span>
-                    <span class="total"> @Model.Select(_ => _.Pacjentow).Sum() pacjętów </span>
+                    <span class="total"> @Model.Select(_ => _.Pacjentow).Sum() pacjentow </span>
                 </td>
             </tr>
         </table>

@@ -573,6 +573,10 @@
       <DependentUpon>Pacjent.css</DependentUpon>
     </Content>
     <None Include="Content\PagedList.scss" />
+    <Content Include="Content\PdfStyle.css">
+      <DependentUpon>PdfStyle.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\PdfStyle.scss" />
     <None Include="Content\PginationPosition.scss" />
     <Content Include="Content\PagedList.css">
       <DependentUpon>PagedList.scss</DependentUpon>

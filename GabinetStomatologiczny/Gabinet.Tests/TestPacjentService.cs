@@ -53,23 +53,27 @@ namespace Gabinet.Tests
         /// 
         /// </summary>
         [TestMethod]
-        public void PacejntListCount()
+        public async Task PacejntListCount()
         {
 
             var moqkSet = new Mock<DbSet<Pacjent>>();
             var moqContext = new Mock<GabinetContext>();
 
+            moqkSet.As<IDbAsyncEnumerable<Pacjent>>()
+               .Setup(m => m.GetAsyncEnumerator())
+               .Returns(new TestDbAsyncEnumerator<Pacjent>(allPacjents().GetEnumerator()));
+
             moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Provider).Returns(allPacjents().Provider);
             moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Expression).Returns(allPacjents().Expression);
             moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.ElementType).Returns(allPacjents().ElementType);
-            moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.GetEnumerator()).Returns(allPacjents().GetEnumerator());
+            moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.GetEnumerator()).Returns(allPacjents().GetEnumerator);
 
             moqContext.SetupGet(c => c.Pacjent).Returns(moqkSet.Object);
 
             IPacjentsService service = new PacjentsService(moqContext.Object);
-            var result = service.GetAllPacjents();
+            var pacjents = await service.GetAllPacjents();
 
-            Assert.AreEqual(result.Count(), 12);
+            Assert.AreEqual(pacjents.Count(),12);
         }
 
         /// <summary>
@@ -86,12 +90,12 @@ namespace Gabinet.Tests
 
             var service = new PacjentsService(context);
             var pacjents = context.SaveChanges();
-            var allPacjents = service.GetAllPacjents().Count();
+            var allPacjents = await service.GetAllPacjents();
             var namePacjent = await service.GetPacjentById(2);
 
             Assert.AreEqual(namePacjent.Imie, "Słowik");
             Assert.AreEqual(1, pacjents);
-            Assert.AreEqual(3, allPacjents);
+            Assert.AreEqual(3, allPacjents.Count());
         }
 
         [TestMethod]

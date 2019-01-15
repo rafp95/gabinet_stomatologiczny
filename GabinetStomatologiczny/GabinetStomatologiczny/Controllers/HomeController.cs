@@ -45,21 +45,21 @@ namespace GabinetStomatologiczny.Controllers
             return View();
         }
 
-        public ActionResult Chart()
+        public async Task<ActionResult> Chart()
         {
-            var about = pacjentsService.Statistic().
-               Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
+            var about = await pacjentsService.Statistic();
+            var statistic = about.Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
                OrderByDescending(p => p.DataRejestracji);
             
-            return Json(about, JsonRequestBehavior.AllowGet);
+            return Json(statistic, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Statistic()
+        public async Task<ActionResult> Statistic()
         {
-            var about = pacjentsService.Statistic().
-                Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
+            var about = await pacjentsService.Statistic();
+            var statistic = about.Select(m => new LiczbaPacjentow { DataRejestracji = m.Key, Pacjentow = m.Count() }).
                 OrderByDescending(p => p.DataRejestracji).ToList();
-            return View(about);
+            return View(statistic);
         }
 
         public ActionResult Pdf()

@@ -125,7 +125,7 @@
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaDay'
+                right: 'month,agendaWeek,agendaDay'
             },
             eventLimit: 3,
             events: events,

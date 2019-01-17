@@ -279,6 +279,19 @@ div.buttonAction {
     margin-left: 5px; }
 
 /*text more less*/
+span.textLess a {
+  position: relative; }
+  span.textLess a.showMore::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(10deg, rgba(255, 255, 255, 0), white); }
+
 span.hide {
   display: none; }
 

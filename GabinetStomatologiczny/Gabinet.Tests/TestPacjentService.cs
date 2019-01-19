@@ -33,7 +33,8 @@ namespace Gabinet.Tests
         {
             var pacjents = new List<Pacjent>() {
               new Pacjent() { ID = 1, Imie = "Patryk", Nazwisko = "Rafal" },
-              new Pacjent() { ID = 2, Imie = "Kamila", Nazwisko = "Rafal" },
+              new Pacjent() { ID = 2, Imie = "Kamila", Nazwisko = "Rafal",
+                                OdzialNfz = OddzialNfz.Lubelski,Wojewodztwo = Wojewodztwo.Mazowieckie },
               new Pacjent() { ID = 3, Imie = "Piotr", Nazwisko = "Rafal" },
               new Pacjent() { ID = 4, Imie = "Anna", Nazwisko = "Rafal" },
               new Pacjent() { ID = 5, Imie = "Pavvtryk", Nazwisko = "Rafal" },
@@ -73,7 +74,7 @@ namespace Gabinet.Tests
             IPacjentsService service = new PacjentsService(moqContext.Object);
             var pacjents = await service.GetAllPacjents();
 
-            Assert.AreEqual(pacjents.Count(),12);
+            Assert.AreEqual(pacjents.Count(), 12);
         }
 
         /// <summary>
@@ -164,7 +165,7 @@ namespace Gabinet.Tests
             s.term = "Kam";
             var service = p.SugestionPacjent(s);
             var elem = service.FirstOrDefault();
-            var obj = new { label = "Kamila Rafal",ID = 2 };
+            var obj = new { label = "Kamila Rafal", ID = 2 };
 
             s.term = "dfsffdsfdfsdfds";
             var service2 = p.SugestionPacjent(s);
@@ -217,13 +218,13 @@ namespace Gabinet.Tests
 
             paginationType.page = 2;
             paginationType.sortOrder = RodzajSort.nrtel_asc;
-            var test = service.SortAndPaginate(paginationType,identity);
+            var test = service.SortAndPaginate(paginationType, identity);
 
             Assert.AreEqual(paginationType.sortOrder, RodzajSort.nrtel_asc);
             Assert.AreEqual(test.Count(), 2);
             Assert.AreEqual(2, paginationType.pageNumber);
             Assert.AreEqual(service.RodzajSort, RodzajSort.nrtel_asc);
-            
+
         }
 
         /// <summary>
@@ -255,7 +256,7 @@ namespace Gabinet.Tests
         [TestMethod]
         public void TestDatePacjentAttribue()
         {
-            
+
             var pacjentDateAttribute = new DatePacjentAttribute();
 
             var isNull = pacjentDateAttribute.IsValid(null);
@@ -265,10 +266,44 @@ namespace Gabinet.Tests
             var isNow = pacjentDateAttribute.IsValid(DateTime.Now);
 
             Assert.AreEqual(false, isAfter, "Podana data nie jest wcześniejsza");
-            Assert.AreEqual(true, isBefore,"Podana data nie jest wcześniejsza");
+            Assert.AreEqual(true, isBefore, "Podana data nie jest wcześniejsza");
             Assert.AreEqual(true, isNull, "Podana data nie jest wcześniejsza");
             Assert.AreEqual(true, isNow, "Podana data nie jest wcześniejsza");
             Assert.AreEqual(false, isMaxDate, "Podana data nie jest wcześniejsza");
+        }
+
+        [TestMethod]
+        public async Task FindPacjent()
+        {
+            #region mock
+            var moqkSet = new Mock<DbSet<Pacjent>>();
+            var moqContext = new Mock<GabinetContext>();
+
+            //moqkSet.As<IQueryable<Pacjent>>().Setup(p => p.Provider).Returns(allPacjents().Provider);
+            moqkSet.As<IDbAsyncEnumerable<Pacjent>>()
+             .Setup(m => m.GetAsyncEnumerator())
+             .Returns(new TestDbAsyncEnumerator<Pacjent>(allPacjents().GetEnumerator()));
+
+            moqkSet.As<IQueryable<Pacjent>>()
+                .Setup(m => m.Provider)
+                .Returns(new TestDbAsyncQueryProvider<Pacjent>(allPacjents().Provider));
+
+            moqkSet.As<IQueryable<Pacjent>>().Setup(m => m.Expression).Returns(allPacjents().Expression);
+            moqkSet.As<IQueryable<Pacjent>>().Setup(m => m.ElementType).Returns(allPacjents().ElementType);
+            moqkSet.As<IQueryable<Pacjent>>().Setup(m => m.GetEnumerator()).Returns(allPacjents().GetEnumerator());
+
+            moqContext.SetupGet(c => c.Pacjent).Returns(moqkSet.Object);
+            #endregion
+
+            var pacjentService = new PacjentsService(moqContext.Object);
+            var resultNull = await pacjentService.Find(1);
+            var resultNotNull = await pacjentService.Find(2);
+
+            Assert.AreEqual(null, resultNull.OdzialNfz);
+            Assert.AreEqual(null, resultNull.Wojewodztwo);
+            Assert.AreEqual(OddzialNfz.Lubelski, resultNotNull.OdzialNfz);
+            Assert.AreEqual(Wojewodztwo.Mazowieckie, resultNotNull.Wojewodztwo);
+
         }
     }
 }

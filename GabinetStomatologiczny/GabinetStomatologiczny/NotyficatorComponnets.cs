@@ -41,7 +41,10 @@ namespace GabinetStomatologiczny
                 }
                 cmd.Notification = null;
                 SqlDependency sqlDep = new SqlDependency(cmd);
-                sqlDep.OnChange += sqlDep_OnChange;
+                sqlDep.OnChange += (s, e) =>
+                {
+                    this.sqlDep_OnChange(s, e);
+                };
                 //read notyfications
                 using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
@@ -51,7 +54,7 @@ namespace GabinetStomatologiczny
             }
         }
 
-        private void sqlDep_OnChange(object sender, SqlNotificationEventArgs e)
+        private async void sqlDep_OnChange(object sender, SqlNotificationEventArgs e)
         {
             if (e.Type == SqlNotificationType.Change)
             {
@@ -62,7 +65,7 @@ namespace GabinetStomatologiczny
                 var notificationHub = GlobalHost.ConnectionManager.GetHubContext<NotyficationsHub>();
                 notificationHub.Clients.All.notify("added");
 
-                Task.Run(async () => await RegisterNotyfication(DateTime.Now));
+                await RegisterNotyfication(DateTime.Now);
 
 
             }

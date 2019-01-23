@@ -286,11 +286,14 @@ span.textLess a {
     pointer-events: none;
     position: absolute;
     top: 0;
-    right: 0;
+    left: calc(-30%);
     width: 30%;
     height: 100%;
     z-index: 1;
-    background: linear-gradient(10deg, rgba(255, 255, 255, 0), white); }
+    background-image: -webkit-linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff 100%);
+    background-image: -moz-linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff 100%);
+    background-image: -o-linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff 100%);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff 100%); }
 
 span.hide {
   display: none; }
